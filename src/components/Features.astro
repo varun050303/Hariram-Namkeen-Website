@@ -35,7 +35,7 @@ const colorClasses = {
           class="flex flex-col gap-4 p-6 rounded-2xl border border-[#e7ddcf] dark:border-[#3a2d1e] bg-white dark:bg-[#2a2016] hover:border-primary/50 transition-colors group"
         >
           <div
-            class={`size-12 rounded-full ${colorClasses[feature.iconColor]} flex items-center justify-center group-hover:scale-110 transition-transform`}
+            class={`size-12 rounded-full ${colorClasses[feature.iconColor as keyof typeof colorClasses]} flex items-center justify-center group-hover:scale-110 transition-transform`}
           >
             <span class="material-symbols-outlined">{feature.icon}</span>
           </div>
