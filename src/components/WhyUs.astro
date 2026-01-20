@@ -1,0 +1,46 @@
+---
+import featuresData from '../data/features.json';
+import contentData from '../data/content.json';
+
+const { whyUs } = featuresData;
+const { testimonial } = contentData;
+---
+
+<section class="w-full px-4 md:px-10 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
+    <div class="flex-1 flex flex-col justify-center gap-6">
+      <h2 class="text-3xl md:text-5xl font-black text-text-main dark:text-white leading-tight">
+        {whyUs.title}
+      </h2>
+      <p class="text-xl text-text-muted dark:text-[#d1c2b0] font-light" set:html={whyUs.subtitle.replace('almonds, not ads', '<span class="font-bold text-primary">almonds, not ads</span>')} />
+      
+      <div class="flex flex-col gap-6 mt-4">
+        {whyUs.benefits.map((benefit) => (
+          <div class="flex gap-4">
+            <div class="size-12 rounded-lg bg-background-light dark:bg-[#33281d] border border-[#e7ddcf] dark:border-[#4a3b2a] flex items-center justify-center shrink-0 text-text-main dark:text-white">
+              <span class="material-symbols-outlined">{benefit.icon}</span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold">{benefit.title}</h3>
+              <p class="text-sm text-text-muted dark:text-[#a89d91]">{benefit.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <div class="flex-1 relative h-[400px] md:h-auto rounded-2xl overflow-hidden bg-gray-100">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style={`background-image: url("${testimonial.image}");`}
+      >
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl text-white">
+          <p class="font-bold text-lg">"{testimonial.quote}"</p>
+          <p class="text-sm opacity-80 mt-2">— {testimonial.author}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+{
+    "products": [
+        {
+            "id": "navratan-mix",
+            "name": "Navratan Mix",
+            "description": "A delightful blend of nine premium ingredients including cashews, almonds, raisins, and traditional spices. Rich in protein and essential nutrients, perfect for a healthy snack.",
+            "price": 249,
+            "weight": "250g",
+            "image": "/images/product-1.jpg",
+            "tags": [
+                "Best Seller"
+            ],
+            "ingredients": [
+                "Cashews",
+                "Almonds",
+                "Raisins",
+                "Peanuts",
+                "Chickpea flour",
+                "Spices",
+                "Mustard oil",
+                "Salt"
+            ],
+            "benefits": [
+                "High in protein",
+                "Rich in healthy fats",
+                "Energy boosting"
+            ]
+        },
+        {
+            "id": "roasted-almonds",
+            "name": "Roasted Almonds",
+            "description": "Premium Mamra almonds slow-roasted to perfection with aromatic spices. Packed with vitamin E, fiber, and healthy fats for heart health and sustained energy.",
+            "price": 499,
+            "weight": "200g",
+            "image": "/images/product-2.jpg",
+            "tags": [],
+            "ingredients": [
+                "Mamra Almonds",
+                "Spices",
+                "Mustard oil",
+                "Rock salt"
+            ],
+            "benefits": [
+                "Heart healthy",
+                "Rich in Vitamin E",
+                "Brain food"
+            ]
+        },
+        {
+            "id": "aloo-bhujia",
+            "name": "Aloo Bhujia",
+            "description": "Crispy, light, and perfectly spiced potato noodles made the traditional way. A classic Indian snack that's irresistibly crunchy and flavorful.",
+            "price": 199,
+            "weight": "400g",
+            "image": "/images/product-3.jpg",
+            "tags": [],
+            "ingredients": [
+                "Potato",
+                "Gram flour",
+                "Spices",
+                "Mustard oil",
+                "Salt"
+            ],
+            "benefits": [
+                "Light and crispy",
+                "Traditional recipe",
+                "Perfect tea-time snack"
+            ]
+        },
+        {
+            "id": "panchratan-mix",
+            "name": "Panchratan Mix",
+            "description": "A harmonious blend of five premium dry fruits and nuts, seasoned with traditional spices. A nutritious powerhouse combining taste and health.",
+            "price": 349,
+            "weight": "300g",
+            "image": "/images/product-4.jpg",
+            "tags": [],
+            "ingredients": [
+                "Cashews",
+                "Almonds",
+                "Pistachios",
+                "Walnuts",
+                "Raisins",
+                "Spices",
+                "Mustard oil"
+            ],
+            "benefits": [
+                "Nutrient dense",
+                "Premium ingredients",
+                "Perfect gift option"
+            ]
+        }
+    ]
+}

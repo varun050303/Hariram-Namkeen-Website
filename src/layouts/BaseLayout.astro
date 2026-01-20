@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import siteData from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+
+const pageTitle = title || siteData.seo.title;
+const pageDescription = description || siteData.seo.description;
+const pageImage = image || siteData.url + siteData.seo.ogImage;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Structured data for LocalBusiness
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': siteData.url,
+  name: siteData.business.name,
+  url: siteData.url,
+  logo: siteData.url + '/images/hero-image.jpg',
+  image: siteData.url + siteData.seo.ogImage,
+  description: siteData.description,
+  priceRange: siteData.business.priceRange,
+  servesCuisine: siteData.business.servesCuisine,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: siteData.business.address.addressLocality,
+    addressRegion: siteData.business.address.addressRegion,
+    addressCountry: siteData.business.address.addressCountry,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: siteData.business.geo.latitude,
+    longitude: siteData.business.geo.longitude,
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: siteData.contact.email,
+    contactType: 'Customer Service',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={siteData.seo.keywords} />
+    <meta name="author" content={siteData.seo.author} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={pageImage} />
+    <meta property="og:site_name" content={siteData.name} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content={siteData.seo.twitterCard} />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={pageImage} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteData.url
+      }]
+    })} />
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body class="bg-background-light dark:bg-background-dark text-text-main dark:text-[#f3eee7] font-display">
+    <slot />
+  </body>
+</html>

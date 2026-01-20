@@ -1,0 +1,110 @@
+---
+import contentData from '../data/content.json';
+
+const { hero } = contentData;
+---
+
+<section class="relative w-full px-4 md:px-10 py-12 md:py-20 flex justify-center overflow-hidden">
+  <!-- Background Pattern -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background-image: radial-gradient(#ec9213 1px, transparent 1px); background-size: 24px 24px; opacity: 0.1;"
+  >
+  </div>
+
+  <!-- Floating SVGs -->
+  <div class="absolute top-20 right-[10%] opacity-20 text-primary pointer-events-none float-leaf z-0">
+    <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C8.58,15.06 10.13,10.5 18.88,10.96C18.73,11.03 18.29,11.53 17.53,12.87C16.89,14 16.5,15.25 16.5,15.25L18.25,16.25C18.25,16.25 18.78,14.65 19.34,13.67L22.1,8.9L17,8Z"
+      />
+    </svg>
+  </div>
+  <div class="absolute bottom-20 left-[5%] opacity-10 text-text-main dark:text-white pointer-events-none float-chili z-0">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M16.53,11.16C16.53,11.16 12.15,7.56 10.15,9.66C8.15,11.76 10.15,15.96 6.15,15.96C2.15,15.96 3.05,11.36 2.05,9.36C1.05,7.36 4.25,6.56 5.85,7.16C7.45,7.76 10.55,6.56 12.05,2.46C13.55,-1.64 19.55,1.86 19.55,1.86C19.55,1.86 19.05,3.66 17.65,4.36C16.25,5.06 14.95,4.16 14.55,4.56C14.15,4.96 14.05,7.06 14.05,7.06L16.53,11.16Z"
+      />
+    </svg>
+  </div>
+
+  <div class="max-w-7xl w-full grid md:grid-cols-2 gap-10 items-center relative z-10">
+    <div class="order-2 md:order-1 flex flex-col gap-6 items-start">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider"
+      >
+        <span class="material-symbols-outlined !text-[16px]">{hero.badge.icon}</span>
+        {hero.badge.text}
+      </div>
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-text-main dark:text-white py-2"
+      >
+        <span id="typing-text"></span><span class="animate-blink text-primary">|</span> <br /> as <span
+          class="text-primary">Power Food</span
+        >
+      </h1>
+      <p class="text-lg text-text-muted dark:text-[#d1c2b0] max-w-md leading-relaxed">
+        {hero.description}
+      </p>
+      <div class="flex flex-wrap gap-4 pt-4">
+        <button
+          class="bg-primary text-[#1b160d] px-8 py-3.5 rounded-xl font-bold hover:bg-[#d68310] transition-transform active:scale-95 shadow-lg shadow-primary/25"
+        >
+          {hero.cta.primary}
+        </button>
+        <button
+          class="bg-transparent border border-[#e7ddcf] dark:border-[#4a3b2a] text-text-main dark:text-white px-8 py-3.5 rounded-xl font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+        >
+          {hero.cta.secondary}
+        </button>
+      </div>
+    </div>
+    <div
+      class="order-1 md:order-2 relative aspect-square md:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl"
+    >
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+      <div
+        class="w-full h-full bg-center bg-cover bg-no-repeat transform hover:scale-105 transition-transform duration-700 ease-out"
+        style={`background-image: url("${hero.image.src}");`}
+      >
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ typingWords: hero.typingWords }}>
+  const typingTextElement = document.getElementById('typing-text');
+  const texts = typingWords;
+
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typeSpeed = 150;
+
+  function type() {
+    const currentText = texts[textIndex];
+
+    if (isDeleting) {
+      typingTextElement.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      typeSpeed = 100;
+    } else {
+      typingTextElement.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      typeSpeed = 150;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      typeSpeed = 2000;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      typeSpeed = 500;
+    }
+
+    setTimeout(type, typeSpeed);
+  }
+
+  document.addEventListener('DOMContentLoaded', type);
+</script>

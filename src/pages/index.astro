@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Story from '../components/Story.astro';
+import Products from '../components/Products.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Kitchen from '../components/Kitchen.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <main class="flex flex-col w-full">
+    <Hero />
+    <Features />
+    <Story />
+    <Products />
+    <WhyUs />
+    <Kitchen />
+    <FAQ />
+  </main>
+  <Footer />
+  
+  <script>
+    // GSAP Creative Animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // @ts-ignore
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. Hero Section: Creative Entrance
+      // @ts-ignore
+      const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      // Parallax for Hero Image
+      // @ts-ignore
+      gsap.to('.order-1.relative > div:last-child', {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.order-1.relative',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+
+      heroTl
+        // @ts-ignore
+        .fromTo(
+          '.order-1.relative',
+          { scale: 0.8, opacity: 0, rotation: -2 },
+          { scale: 1, opacity: 1, rotation: 0, duration: 1.5, ease: 'expo.out' }
+        )
+        // @ts-ignore
+        .fromTo(
+          '.order-2 h1',
+          { y: 100, opacity: 0, clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
+          { y: 0, opacity: 1, clipPath: 'polygon(-20% -50%, 120% -50%, 120% 150%, -20% 150%)', duration: 1.2 },
+          '-=1.2'
+        )
+        // @ts-ignore
+        .fromTo('.order-2 p', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, '-=0.8')
+        // @ts-ignore
+        .fromTo(
+          '.order-2 button',
+          { y: 20, opacity: 0, scale: 0.9 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' },
+          '-=0.8'
+        );
+
+      // 2. Features: 3D Hover & Elastic Pop
+      // @ts-ignore
+      const features = gsap.utils.toArray('.grid > .group');
+      features.forEach((card: any, index: number) => {
+        // Entrance
+        // @ts-ignore
+        gsap.fromTo(
+          card,
+          { y: 100, opacity: 0, scale: 0.8 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            delay: index * 0.1,
+            ease: 'elastic.out(1, 0.75)',
+            scrollTrigger: {
+              trigger: '.grid > .group',
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+
+        // 3D Hover Effect
+        card.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+
+          // @ts-ignore
+          gsap.to(card, {
+            duration: 0.5,
+            rotateX: rotateX,
+            rotateY: rotateY,
+            scale: 1.05,
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+            ease: 'power2.out',
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          // @ts-ignore
+          gsap.to(card, {
+            duration: 0.5,
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+            ease: 'power2.out',
+          });
+        });
+      });
+
+      // 3. Story Section: Parallax Reveal
+      const storyImage = document.querySelector('.rounded-2xl.overflow-hidden.aspect-\\[4\\/3\\] .bg-cover');
+      if (storyImage) {
+        // @ts-ignore
+        gsap.fromTo(
+          storyImage,
+          { scale: 1.2 },
+          {
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: storyImage.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      }
+
+      // Story Text Reveal
+      // @ts-ignore
+      gsap.fromTo(
+        '.flex.flex-col.gap-6 > *',
+        { x: 50, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.flex.flex-col.gap-6',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // 5. Why Us: Staggered Slide
+      // @ts-ignore
+      gsap.fromTo(
+        '.flex.flex-col.gap-6.mt-4 > div',
+        { x: -50, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'back.out(1.2)',
+          scrollTrigger: {
+            trigger: '.flex.flex-col.gap-6.mt-4',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      // 6. Our Kitchen: Masonry Reveal
+      // @ts-ignore
+      const kitchenImages = gsap.utils.toArray('.max-w-7xl.mx-auto.grid.lg\\:grid-cols-2.items-center > .grid > div > div');
+      kitchenImages.forEach((img: any, i: number) => {
+        // @ts-ignore
+        gsap.fromTo(
+          img,
+          { scale: 0.5, opacity: 0, y: 50 },
+          {
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+              trigger: '.max-w-7xl.mx-auto.grid.lg\\:grid-cols-2.items-center > .grid',
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+
+      // 7. Floating Aesthetic SVGs
+      // @ts-ignore
+      gsap.to('.float-leaf', {
+        y: -20,
+        rotation: 10,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      });
+
+      // @ts-ignore
+      gsap.to('.float-chili', {
+        y: 15,
+        rotation: -10,
+        duration: 4,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      });
+
+      // @ts-ignore
+      gsap.to('.float-abstract', {
+        y: -30,
+        scale: 1.1,
+        duration: 5,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+      });
+
+      // Scroll Rotation (Parallax)
+      // @ts-ignore
+      gsap.to('.float-leaf, .float-chili, .float-abstract', {
+        rotation: 360,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 2,
+        },
+      });
+    });
+  </script>
+</BaseLayout>
