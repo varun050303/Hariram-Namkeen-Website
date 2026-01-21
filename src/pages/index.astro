@@ -24,18 +24,20 @@ import FAQ from '../components/FAQ.astro';
   </main>
   <Footer />
   
-  <script>
+  <script is:inline>
     // GSAP Creative Animations
-    document.addEventListener('DOMContentLoaded', () => {
-      // @ts-ignore
+    function initAnimations() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.error('GSAP not loaded');
+        return;
+      }
+
       gsap.registerPlugin(ScrollTrigger);
 
       // 1. Hero Section: Creative Entrance
-      // @ts-ignore
       const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
       // Parallax for Hero Image
-      // @ts-ignore
       gsap.to('.order-1.relative > div:last-child', {
         yPercent: 20,
         ease: 'none',
@@ -48,22 +50,18 @@ import FAQ from '../components/FAQ.astro';
       });
 
       heroTl
-        // @ts-ignore
         .fromTo(
           '.order-1.relative',
           { scale: 0.8, opacity: 0, rotation: -2 },
           { scale: 1, opacity: 1, rotation: 0, duration: 1.5, ease: 'expo.out' }
         )
-        // @ts-ignore
         .fromTo(
           '.order-2 h1',
           { y: 100, opacity: 0, clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
           { y: 0, opacity: 1, clipPath: 'polygon(-20% -50%, 120% -50%, 120% 150%, -20% 150%)', duration: 1.2 },
           '-=1.2'
         )
-        // @ts-ignore
         .fromTo('.order-2 p', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, '-=0.8')
-        // @ts-ignore
         .fromTo(
           '.order-2 button',
           { y: 20, opacity: 0, scale: 0.9 },
@@ -72,11 +70,9 @@ import FAQ from '../components/FAQ.astro';
         );
 
       // 2. Features: 3D Hover & Elastic Pop
-      // @ts-ignore
       const features = gsap.utils.toArray('.grid > .group');
-      features.forEach((card: any, index: number) => {
+      features.forEach((card, index) => {
         // Entrance
-        // @ts-ignore
         gsap.fromTo(
           card,
           { y: 100, opacity: 0, scale: 0.8 },
@@ -96,7 +92,7 @@ import FAQ from '../components/FAQ.astro';
         );
 
         // 3D Hover Effect
-        card.addEventListener('mousemove', (e: MouseEvent) => {
+        card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
@@ -105,7 +101,6 @@ import FAQ from '../components/FAQ.astro';
           const rotateX = (y - centerY) / 20;
           const rotateY = (centerX - x) / 20;
 
-          // @ts-ignore
           gsap.to(card, {
             duration: 0.5,
             rotateX: rotateX,
@@ -117,7 +112,6 @@ import FAQ from '../components/FAQ.astro';
         });
 
         card.addEventListener('mouseleave', () => {
-          // @ts-ignore
           gsap.to(card, {
             duration: 0.5,
             rotateX: 0,
@@ -132,7 +126,6 @@ import FAQ from '../components/FAQ.astro';
       // 3. Story Section: Parallax Reveal
       const storyImage = document.querySelector('.rounded-2xl.overflow-hidden.aspect-\\[4\\/3\\] .bg-cover');
       if (storyImage) {
-        // @ts-ignore
         gsap.fromTo(
           storyImage,
           { scale: 1.2 },
@@ -150,7 +143,6 @@ import FAQ from '../components/FAQ.astro';
       }
 
       // Story Text Reveal
-      // @ts-ignore
       gsap.fromTo(
         '.flex.flex-col.gap-6 > *',
         { x: 50, opacity: 0 },
@@ -169,7 +161,6 @@ import FAQ from '../components/FAQ.astro';
       );
 
       // 5. Why Us: Staggered Slide
-      // @ts-ignore
       gsap.fromTo(
         '.flex.flex-col.gap-6.mt-4 > div',
         { x: -50, opacity: 0 },
@@ -188,10 +179,8 @@ import FAQ from '../components/FAQ.astro';
       );
 
       // 6. Our Kitchen: Masonry Reveal
-      // @ts-ignore
       const kitchenImages = gsap.utils.toArray('.max-w-7xl.mx-auto.grid.lg\\:grid-cols-2.items-center > .grid > div > div');
-      kitchenImages.forEach((img: any, i: number) => {
-        // @ts-ignore
+      kitchenImages.forEach((img, i) => {
         gsap.fromTo(
           img,
           { scale: 0.5, opacity: 0, y: 50 },
@@ -212,7 +201,6 @@ import FAQ from '../components/FAQ.astro';
       });
 
       // 7. Floating Aesthetic SVGs
-      // @ts-ignore
       gsap.to('.float-leaf', {
         y: -20,
         rotation: 10,
@@ -222,7 +210,6 @@ import FAQ from '../components/FAQ.astro';
         ease: 'sine.inOut',
       });
 
-      // @ts-ignore
       gsap.to('.float-chili', {
         y: 15,
         rotation: -10,
@@ -232,7 +219,6 @@ import FAQ from '../components/FAQ.astro';
         ease: 'sine.inOut',
       });
 
-      // @ts-ignore
       gsap.to('.float-abstract', {
         y: -30,
         scale: 1.1,
@@ -243,7 +229,6 @@ import FAQ from '../components/FAQ.astro';
       });
 
       // Scroll Rotation (Parallax)
-      // @ts-ignore
       gsap.to('.float-leaf, .float-chili, .float-abstract', {
         rotation: 360,
         ease: 'none',
@@ -254,6 +239,14 @@ import FAQ from '../components/FAQ.astro';
           scrub: 2,
         },
       });
-    });
+    }
+
+    // Execute animations when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimations);
+    } else {
+      // DOM is already ready, execute immediately
+      initAnimations();
+    }
   </script>
 </BaseLayout>
