@@ -1,0 +1,89 @@
+{
+    "hero": {
+        "badge": {
+            "icon": "bolt",
+            "text": "Power Snacking Reimagined"
+        },
+        "typingWords": [
+            "Namkeen",
+            "नमकीन",
+            "નમકીન",
+            "நம்கீன்",
+            "ನಮಕೀನ್",
+            "নামকিন",
+            "ਨਮਕੀਨ"
+        ],
+        "headline": "as Power Food",
+        "description": "Authentic flavors from our home in UP, made with pure mustard oil, premium dry fruits, and zero preservatives.",
+        "cta": {
+            "primary": "Taste the Tradition",
+            "secondary": "View Menu"
+        },
+        "image": {
+            "src": "/images/hero-image.jpg",
+            "alt": "Close up of Indian spicy snack mixture with nuts and lentils in a rustic bowl"
+        }
+    },
+    "story": {
+        "badge": "Our Roots",
+        "title": "From Our Kitchen in Uttar Pradesh",
+        "content": [
+            "We started Hariram to bring back the taste of grandmother's recipes. In a world of mass-manufactured snacks, we chose the slower path.",
+            "Every batch is made in our home kitchen in Uttar Pradesh, ensuring the authentic taste of tradition. We use the same spices our family has used for generations—ground fresh, roasted slow, and mixed with love."
+        ],
+        "cta": "Read Full Story",
+        "image": {
+            "src": "/images/story-image.jpg",
+            "alt": "Traditional Indian kitchen setting with spices and brass utensils"
+        }
+    },
+    "kitchen": {
+        "title": "No Factories. Just Our Kitchen.",
+        "description": "Every batch is prepared in small quantities to ensure freshness. We taste-test everything. If it's not good enough for our family, it doesn't go into your jar.",
+        "badges": [
+            {
+                "icon": "home",
+                "title": "Home Made",
+                "subtitle": "Authentic recipe"
+            },
+            {
+                "icon": "verified_user",
+                "title": "Hygienic",
+                "subtitle": "Strict standards"
+            }
+        ],
+        "images": [
+            {
+                "src": "/images/kitchen-hands.jpg",
+                "alt": "Hands preparing traditional namkeen in home kitchen"
+            },
+            {
+                "src": "/images/kitchen-snack.jpg",
+                "alt": "Freshly prepared namkeen snacks"
+            },
+            {
+                "src": "/images/kitchen-jars.jpg",
+                "alt": "Glass jars filled with various namkeen varieties"
+            },
+            {
+                "src": "/images/kitchen-spices.jpg",
+                "alt": "Traditional Indian spices used in namkeen preparation"
+            }
+        ]
+    },
+    "testimonial": {
+        "quote": "The best namkeen I've had since my childhood.",
+        "author": "Sharma Ji, Regular Customer",
+        "image": "/images/why-us-image.jpg"
+    },
+    "newsletter": {
+        "title": "Join the Family",
+        "description": "Subscribe for updates on seasonal specials.",
+        "placeholder": "Email address"
+    },
+    "footer": {
+        "description": "Bringing the authentic taste of Uttar Pradesh to homes across India. Pure, healthy, and made with love.",
+        "copyright": "© 2024 Hariram Foods. All rights reserved.",
+        "madeIn": "Made in India"
+    }
+}

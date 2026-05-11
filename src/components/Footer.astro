@@ -1,0 +1,68 @@
+---
+import siteData from '../data/site.json';
+import navData from '../data/navigation.json';
+import contentData from '../data/content.json';
+---
+
+<footer class="bg-[#221a10] text-[#f3eee7] px-4 md:px-10 py-12 md:py-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="md:col-span-1 flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">{siteData.logo}</span>
+        <span class="text-xl font-bold">Hariram</span>
+      </div>
+      <p class="text-sm text-[#a89d91]">
+        {contentData.footer.description}
+      </p>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <h4 class="font-bold text-white">Shop</h4>
+      <div class="flex flex-col gap-2 text-sm text-[#a89d91]">
+        {navData.footer.shop.map((item) => (
+          <a class="hover:text-primary transition-colors" href={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <h4 class="font-bold text-white">Company</h4>
+      <div class="flex flex-col gap-2 text-sm text-[#a89d91]">
+        {navData.footer.company.map((item) => (
+          <a class="hover:text-primary transition-colors" href={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <h4 class="font-bold text-white">{contentData.newsletter.title}</h4>
+      <p class="text-sm text-[#a89d91]">{contentData.newsletter.description}</p>
+      <div class="flex gap-2">
+        <input
+          class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary text-white"
+          placeholder={contentData.newsletter.placeholder}
+          type="email"
+        />
+        <button
+          class="bg-primary hover:bg-primary/90 text-black p-2 rounded-lg flex items-center justify-center"
+        >
+          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div
+    class="max-w-7xl mx-auto pt-8 mt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#6e665c]"
+  >
+    <p>{contentData.footer.copyright}</p>
+    <div class="flex gap-4">
+      <span>FSSAI Lic No. {siteData.business.fssaiLicense}</span>
+      <span>{contentData.footer.madeIn}</span>
+    </div>
+  </div>
+</footer>

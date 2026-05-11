@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar for better aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4c5b0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ec9213;
+}
+
+/* Animation Helpers */
+.reveal-text {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.reveal-text-content {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* Typing animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply antialiased overflow-x-hidden;
+  }
+}

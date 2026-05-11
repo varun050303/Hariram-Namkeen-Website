@@ -1,0 +1,59 @@
+---
+import ProductCard from './ProductCard.astro';
+import productsData from '../data/products.json';
+
+const { products } = productsData;
+---
+
+<section class="w-full px-4 md:px-10 py-16 bg-[#fffaf2] dark:bg-[#1a140d]">
+  <div class="max-w-7xl mx-auto flex flex-col gap-10">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-3xl font-bold text-text-main dark:text-white">Customer Favorites</h2>
+        <p class="text-text-muted dark:text-[#a89d91]">Made fresh this week.</p>
+      </div>
+      <a
+        class="text-text-main dark:text-white font-medium hover:text-primary transition-colors underline decoration-primary decoration-2 underline-offset-4"
+        href="#"
+      >
+        View All Products
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {products.map((product) => (
+        <ProductCard {...product} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Product Schema for SEO -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": products.map((product, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Product",
+      "name": product.name,
+      "description": product.description,
+      "image": "https://hariramnamkeen.com" + product.image,
+      "offers": {
+        "@type": "Offer",
+        "price": product.price,
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Hariram Foods"
+        }
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "Hariram"
+      }
+    }
+  }))
+})} />
