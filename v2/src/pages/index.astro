@@ -8,12 +8,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header     from '../components/Header.astro';
 import Hero       from '../components/Hero.astro';
 import Marquee    from '../components/Marquee.astro';
+import Craft      from '../components/Craft.astro';
 import OilTruth   from '../components/OilTruth.astro';
 import Products   from '../components/Products.astro';
-import Platforms  from '../components/Platforms.astro';
+// import Platforms  from '../components/Platforms.astro';
 import Story      from '../components/Story.astro';
 import Process    from '../components/Process.astro';
 import CTA        from '../components/CTA.astro';
+import GrahakDev  from '../components/GrahakDev.astro';
 import Footer     from '../components/Footer.astro';
 
 import '../styles/global.css';
@@ -28,11 +30,13 @@ import '../styles/global.css';
   <Header />
   <Hero />
   <Marquee />
+  <Craft />
   <OilTruth />
   <Products />
-  <Platforms />
+  <!-- <Platforms /> -->
   <Story />
   <Process />
+  <GrahakDev />
   <CTA />
   <Footer />
 </BaseLayout>
@@ -120,19 +124,17 @@ import '../styles/global.css';
     });
 
     // ── HERO ENTRANCE ─────────────────────────────────────────────
-    gsap.set(['#h-origin','#h-made','#h-sub','#h-pill','#h-btns',
+    gsap.set(['#h-origin','#h-sub','#h-btns',
               '#hl1','#hl2','#hl3'], {opacity:0});
     gsap.set(['#hl1','#hl2','#hl3'], {y:'110%'});
-    gsap.set(['#h-origin','#h-made','#h-sub','#h-pill','#h-btns'], {y:24});
+    gsap.set(['#h-origin','#h-sub','#h-btns'], {y:24});
     gsap.set('.hero-stat', {opacity:0, y:20});
 
     const heroTl = gsap.timeline({ defaults:{ ease:'power3.out' }, delay:.15 });
     heroTl
       .to('#h-origin',              {opacity:1, y:0, duration:.6})
       .to(['#hl1','#hl2','#hl3'],   {y:'0%', opacity:1, duration:1.1, stagger:.12, ease:'expo.out'}, '-=.3')
-      .to('#h-made',                {opacity:1, y:0, duration:.6}, '-=.55')
       .to('#h-sub',                 {opacity:1, y:0, duration:.8}, '-=.5')
-      .to('#h-pill',                {opacity:1, y:0, duration:.6}, '-=.5')
       .to('#h-btns',                {opacity:1, y:0, duration:.6}, '-=.5')
       .to('.hero-stat',             {opacity:1, y:0, duration:.5, stagger:.08}, '-=.6');
 
@@ -206,10 +208,10 @@ import '../styles/global.css';
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width/2;
         const y = e.clientY - r.top  - r.height/2;
-        gsap.to(el, { x: x*.32, y: y*.32, duration:.3, ease:'power2.out' });
+        gsap.to(el, { x: x*.1, y: y*.1, duration:.4, ease:'power2.out' });
       });
       el.addEventListener('mouseleave', () => {
-        gsap.to(el, { x:0, y:0, duration:.7, ease:'elastic.out(1,.5)' });
+        gsap.to(el, { x:0, y:0, duration:.5, ease:'power2.out' });
       });
     });
 
@@ -218,6 +220,28 @@ import '../styles/global.css';
       { opacity:0, y:32 },
       { opacity:1, y:0, duration:.6, stagger:.08, ease:'back.out(1.5)',
         scrollTrigger:{ trigger:'.platforms-grid', start:'top 80%', once:true } }
+    );
+
+    // ── CRAFT SECTION ─────────────────────────────────────────────
+    gsap.fromTo('.craft-left > *',
+      { opacity:0, y:36 },
+      { opacity:1, y:0, duration:.7, stagger:.15, ease:'power2.out',
+        scrollTrigger:{ trigger:'#craft', start:'top 75%', once:true } }
+    );
+    gsap.fromTo('.craft-diff-item',
+      { opacity:0, x:-20 },
+      { opacity:1, x:0, duration:.6, stagger:.1, ease:'back.out(1.5)',
+        scrollTrigger:{ trigger:'.craft-differentiators', start:'top 80%', once:true } }
+    );
+    gsap.fromTo('.craft-vs-card',
+      { opacity:0, y:30, scale:.97 },
+      { opacity:1, y:0, scale:1, duration:.7, stagger:.12, ease:'expo.out',
+        scrollTrigger:{ trigger:'.craft-vs-grid', start:'top 80%', once:true } }
+    );
+    gsap.fromTo('.craft-quote',
+      { opacity:0, y:24 },
+      { opacity:1, y:0, duration:.8, ease:'power2.out',
+        scrollTrigger:{ trigger:'.craft-quote', start:'top 85%', once:true } }
     );
 
     // ── STORY SECTION ─────────────────────────────────────────────
@@ -276,6 +300,23 @@ import '../styles/global.css';
           scrollTrigger:{ trigger:el, start:'top 88%', once:true } }
       );
     });
+
+    // ── GRAHAK DEV SECTION ───────────────────────────────
+    gsap.fromTo('.gd-proclamation',
+      { opacity:0, y:40 },
+      { opacity:1, y:0, duration:1, ease:'expo.out',
+        scrollTrigger:{ trigger:'#grahak-dev', start:'top 75%', once:true } }
+    );
+    gsap.fromTo('.gd-pillar',
+      { opacity:0, y:30, scale:.96 },
+      { opacity:1, y:0, scale:1, duration:.7, stagger:.15, ease:'back.out(1.5)',
+        scrollTrigger:{ trigger:'.gd-pillars', start:'top 80%', once:true } }
+    );
+    gsap.fromTo('.gd-bottom-quote',
+      { opacity:0, y:20 },
+      { opacity:1, y:0, duration:.8, ease:'power2.out',
+        scrollTrigger:{ trigger:'.gd-bottom-quote', start:'top 88%', once:true } }
+    );
 
     // ── SMOOTH ANCHOR SCROLL ──────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {

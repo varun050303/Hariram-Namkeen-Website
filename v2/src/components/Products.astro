@@ -7,7 +7,8 @@
 ---
 
 <section class="products" id="products">
-  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+  <div class="sec-bg-text" aria-hidden="true">नमकीन</div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;position:relative;z-index:1;">
     <div class="products-head">
       <div>
         <div class="sec-tag">Our Products</div>
@@ -46,7 +47,6 @@
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/premium.jpg" alt="Shahi Dal Bhiji"/>
-          <span class="pbadge premium">Premium</span>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal + Sev</div>
@@ -92,30 +92,34 @@
         </div>
       </div>
 
+
       <div class="pcard" data-tilt>
-        <div class="pcard-img">
-          <div class="placeholder">🍜</div>
-          <div class="pcard-ingredients">
-            <div class="ing-title">What's inside</div>
-            <div class="ing-item">Besan (Chickpea Flour)</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
-            <div class="ing-item">Carom Seeds (Ajwain)</div>
-            <div class="ing-item">Black Pepper &amp; Salt</div>
-            <div class="ing-item">Asafoetida (Hing)</div>
-          </div>
+        <div class="pcard-img" style="background:#f9f9f9;">
+          <div class="placeholder" style="background:linear-gradient(135deg,#f0f0f0,#e8e8e8);color:#ccc;">⏳</div>
         </div>
         <div class="pinfo">
-          <h3>Sev Bhujia</h3>
-          <div class="pinfo-hi">सेव भुजिया</div>
-          <div class="ptags"><span class="ptag">Classic</span><span class="ptag">Crispy</span></div>
-          <div class="pweight">⚖ 200g</div>
+          <h3>Coming Soon</h3>
+          <div class="pinfo-hi">जल्द आ रहा है</div>
+          <div class="ptags"><span class="ptag">New Recipe</span><span class="ptag">In Kitchen</span></div>
+          <div class="pweight">⚖ ???</div>
           <div class="pfoot">
-            <div class="pprice">₹119 <span>/ pack</span></div>
-            <a href="#order" class="porder">Order ↗</a>
+            <div class="pprice" style="font-size:16px;color:var(--muted);font-style:italic;">Testing...</div>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Coming Soon Banner -->
+    <div class="products-coming-soon">
+      <div class="pcs-icon">🍲</div>
+      <div class="pcs-content">
+        <h3>More Flavours In The Kitchen</h3>
+        <p>We cook what you crave. We're testing new authentic UP recipes every month based on your demand. Have a favourite namkeen you want us to make in your preferred oil?</p>
+      </div>
+      <a href="https://wa.me/916396122920?text=I'd%20love%20to%20suggest%20a%20new%20namkeen%20flavour%21" target="_blank" rel="noopener noreferrer" class="pcs-btn" data-magnetic>
+        Suggest a Flavour ↗
+      </a>
     </div>
   </div>
 </section>
