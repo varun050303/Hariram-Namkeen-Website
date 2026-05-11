@@ -1,0 +1,39 @@
+---
+// Process.astro
+// 4-step process with:
+//   - Line draw animation tied to scroll (scrub)
+//   - Steps light up (.lit class) as line reaches them
+---
+
+<section class="process-section" id="process">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+    <div class="process-header">
+      <div class="sec-tag" style="border-color:rgba(200,147,26,.3);background:rgba(200,147,26,.1);">How It's Made</div>
+      <h2 class="sec-title" style="color:var(--cream);margin-top:10px;">No factory. <em>Just craft.</em></h2>
+      <p class="process-promise">"The day we rush the process is the day the taste changes. We'd rather make less than make it wrong."</p>
+    </div>
+    <div class="process-steps" id="proc-steps">
+      <div class="process-line"><div class="process-line-fill" id="proc-line"></div></div>
+      <div class="process-step" data-step>
+        <div class="step-circle">01</div>
+        <h4>Source Ingredients</h4>
+        <p>Dal, spices, Kachi Ghani mustard oil — locally sourced in Muzaffarnagar.</p>
+      </div>
+      <div class="process-step" data-step>
+        <div class="step-circle">02</div>
+        <h4>Prepare the Batch</h4>
+        <p>Our halwai preps fresh, small quantities only. Never bulk, never rushed.</p>
+      </div>
+      <div class="process-step" data-step>
+        <div class="step-circle">03</div>
+        <h4>Taste &amp; Check</h4>
+        <p>Every batch is tasted before packing. Doesn't pass? Doesn't go out.</p>
+      </div>
+      <div class="process-step" data-step>
+        <div class="step-circle">04</div>
+        <h4>Pack &amp; Ship</h4>
+        <p>FSSAI-compliant BOPP inner bags, kraft outer. Sealed fresh for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
