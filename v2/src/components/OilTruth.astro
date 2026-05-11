@@ -1,0 +1,69 @@
+---
+// OilTruth.astro
+// KEY SECTION: Pinned via GSAP ScrollTrigger (pin: true, scrub).
+// Compare rows stagger in as user scrolls.
+// Oil counter animates from 0x → 3x.
+---
+
+<div id="oil-truth-wrap">
+  <div id="oil-truth">
+    <div class="oil-bg-text">सरसों का तेल</div>
+    <div class="oil-truth-inner">
+      <div class="oil-left">
+        <div class="oil-tag">The Truth About Your Namkeen</div>
+        <h2 class="oil-hl">
+          The big brands<br>
+          switched to <em>cheaper oil.</em><br>
+          We never did.
+        </h2>
+        <p class="oil-body">
+          When Haldiram's and Bikaji scaled up, they quietly switched from mustard oil to <strong>refined palm and sunflower oil</strong>. Cost savings. Longer shelf life. More profit.<br><br>
+          We use <em>Kachi Ghani mustard oil</em> — cold-pressed, unrefined, exactly as traditional UP namkeen was always made.
+        </p>
+        <div class="oil-stats">
+          <div class="oil-stat-item">
+            <div class="oil-stat-n" id="omega-count">0x</div>
+            <div class="oil-stat-l">More Omega-3 than refined oil</div>
+          </div>
+          <div class="oil-stat-item">
+            <div class="oil-stat-n">UP</div>
+            <div class="oil-stat-l">Traditional cooking oil since generations</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-wrap" id="compare-table">
+        <div class="compare-head">
+          <div class="c-head-col bad">Others (Haldiram's, Bikaji…)</div>
+          <div class="c-div"></div>
+          <div class="c-head-col good">Hariram Namkeen</div>
+        </div>
+        <div class="compare-row" data-row>
+          <div class="c-cell bad"><span class="ci">✗</span> Refined palm / sunflower oil</div>
+          <div class="c-div"></div>
+          <div class="c-cell good"><span class="ci">✓</span> Kachi Ghani mustard oil</div>
+        </div>
+        <div class="compare-row" data-row>
+          <div class="c-cell bad"><span class="ci">✗</span> Factory-made, bulk batches</div>
+          <div class="c-div"></div>
+          <div class="c-cell good"><span class="ci">✓</span> Small batch, home kitchen</div>
+        </div>
+        <div class="compare-row" data-row>
+          <div class="c-cell bad"><span class="ci">✗</span> Months-old warehouse stock</div>
+          <div class="c-div"></div>
+          <div class="c-cell good"><span class="ci">✓</span> Made fresh this week</div>
+        </div>
+        <div class="compare-row" data-row>
+          <div class="c-cell bad"><span class="ci">✗</span> Artificial flavour enhancers</div>
+          <div class="c-div"></div>
+          <div class="c-cell good"><span class="ci">✓</span> Real spices only</div>
+        </div>
+        <div class="compare-row" data-row>
+          <div class="c-cell bad"><span class="ci">✗</span> Ad spend in your price</div>
+          <div class="c-div"></div>
+          <div class="c-cell good"><span class="ci">✓</span> Price = ingredients</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

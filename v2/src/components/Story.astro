@@ -1,0 +1,39 @@
+---
+// Story.astro
+// Emotional founder letter with:
+//   - Scroll-triggered text highlight marks (.hl-mark.lit)
+//   - Quote card reveal (GSAP back.out ease)
+//   - Milestone counters
+---
+
+<section class="story-section" id="story">
+  <div class="sec-bg-text" aria-hidden="true">कहानी</div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;position:relative;z-index:1;">
+    <div class="story-inner">
+      <div class="story-img-wrap">
+        <div class="story-img-main">
+          <img src="/images/dal-bhiji.jpg" alt="Dal Bhiji fresh batch"/>
+        </div>
+        <div class="story-quote-card">
+          <div class="story-quote-text">"If it's not good enough for our table, it doesn't leave our kitchen."</div>
+          <div class="story-quote-src">— Hariram Namkeen</div>
+        </div>
+      </div>
+      <div class="story-content">
+        <div class="sec-tag">Our Story</div>
+        <h2 class="sec-title" style="margin-top:10px;">From Muzaffarnagar,<br><em>with no shortcuts.</em></h2>
+        <p class="story-letter">
+          We started Hariram because we were
+          <span class="hl-mark">tired of settling</span> — tired of namkeen
+          that tasted like it was made in a machine by someone who'd never eaten it.<br><br>
+          UP has a real namkeen tradition. Mustard oil, fresh spices, slow cooking —
+          that's what it tastes like when it's done right. The big brands knew this once.
+          Then they grew, and <span class="hl-mark">the oil changed first.</span><br><br>
+          We're FSSAI licensed. We're live. We're growing.
+          But <span class="hl-mark">what we cook in will never change.</span>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
