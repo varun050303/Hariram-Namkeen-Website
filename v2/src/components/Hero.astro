@@ -1,0 +1,56 @@
+---
+// Hero.astro
+// Animation: headline line-by-line reveal, parallax on hero-visual
+// All driven by GSAP timeline in animations.js (heroTl)
+---
+
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-origin" id="h-origin">
+      <span class="hero-origin-dot"></span>
+      Muzaffarnagar, UP
+    </div>
+
+    <h1 class="hero-headline">
+      <span class="split-line"><span class="split-inner" id="hl1">We could have used<br />refined oil.</span></span>
+      <span class="split-line"><em><span class="split-inner" id="hl2">We chose kachi ghani instead.</span></em></span>
+      <span class="split-line"><span class="gold"><span class="split-inner" id="hl3">Fresh batches. Made to order.</span></span></span>
+    </h1>
+
+    <div class="hero-made-tag" id="h-made">Made to Order</div>
+
+    <p class="hero-sub" id="h-sub">
+      The sharpness comes from real kachi ghani mustard oil - cold-pressed, unrefined, and true to UP namkeen.
+    </p>
+
+    <div class="hero-pill" id="h-pill">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>
+      <strong>Kachi Ghani Mustard Oil</strong>
+      <span class="hero-pill-dot"></span>
+      Not refined. Not compromised.
+    </div>
+
+    <div class="hero-btns" id="h-btns">
+      <a href="#products" class="btn-p" data-magnetic>
+        Shop Now
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#oil-truth" class="btn-g" data-magnetic>Why We're Different</a>
+    </div>
+
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-overlay"></div>
+    <div class="hero-bg-word">नमकीन</div>
+    <div id="hero-parallax">
+      <img src="/images/premium.jpg" alt="Shahi Dal Bhiji"/>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="h-stat-l">Local Delivery</div><div class="h-stat-n">30-45 min</div></div>
+      <div class="hero-stat"><div class="h-stat-l">Freshness Window</div><div class="h-stat-n">Up to 7 days</div></div>
+      <div class="hero-stat"><div class="h-stat-l">Order On</div><div class="h-stat-n">Swiggy · Zomato</div></div>
+      <div class="hero-stat"><div class="h-stat-l">Production</div><div class="h-stat-n">Made after order</div></div>
+    </div>
+  </div>
+</section>
