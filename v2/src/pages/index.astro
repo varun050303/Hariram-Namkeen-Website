@@ -148,6 +148,21 @@ import '../styles/global.css';
 
     // Marquee now uses fixed CSS animation speed only (no scroll reaction).
 
+    // ── HERO SLIDESHOW ────────────────────────────────────────────
+    const desktopSlides = document.querySelectorAll('.hero-slide');
+    const mobileSlides = document.querySelectorAll('.hero-slide-mobile');
+    let currentSlide = 0;
+    if (desktopSlides.length > 0) {
+      setInterval(() => {
+        desktopSlides[currentSlide].classList.remove('active');
+        if (mobileSlides.length > 0) mobileSlides[currentSlide].classList.remove('active');
+        
+        currentSlide = (currentSlide + 1) % desktopSlides.length;
+        
+        desktopSlides[currentSlide].classList.add('active');
+        if (mobileSlides.length > 0) mobileSlides[currentSlide].classList.add('active');
+      }, 4000);
+    }
     // ── PINNED OIL TRUTH ─────────────────────────────────────────
     const rows = gsap.utils.toArray('[data-row]');
     const rowsTl = gsap.timeline({ paused:true });
