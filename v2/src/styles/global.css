@@ -234,7 +234,7 @@
     .hero-headline .gold { color:var(--gold); }
     .hero-headline #hl1 { font-weight:700; font-size:1em; }
     .hero-headline #hl2 { font-size:1.04em; font-weight:700; }
-    .hero-headline #hl3 { font-weight:900; font-size:1.1em; line-height:1.1; }
+    .hero-headline #hl3 { font-weight:900; font-size:0.85em; line-height:1.1; white-space:nowrap; }
     .hero-sub {
       font-size:16px; color:var(--mid); line-height:1.65;
       border-left:3px solid var(--gold); padding-left:18px;
@@ -1130,8 +1130,11 @@
 
       /* ── Hero mobile ── */
       .hero{
-        grid-template-columns:1fr;
-        padding-top:60px;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        padding-top:100px;
+        padding-bottom:40px;
         min-height:auto;
         max-height:none;
       }
@@ -1146,7 +1149,7 @@
       }
       .hero-headline #hl1 { font-size:1em; }
       .hero-headline #hl2 { font-size:1em; }
-      .hero-headline #hl3 { font-size:0.95em; }
+      .hero-headline #hl3 { font-size:clamp(15px, 4.5vw, 20px); white-space:nowrap; }
       .hero-sub {
         font-size:14px;
         padding-left:14px;
