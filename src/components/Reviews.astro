@@ -1,0 +1,155 @@
+---
+// Reviews.astro
+
+const reviews = [
+  {
+    name: "Manisha",
+    location: "Haridwar",
+    quote: "Ordered for the first time and it felt like something made at home with care — fresh namkeen, nice packaging, and the person responding was genuinely respectful. Felt premium without being overpriced.",
+    rating: 5
+  },
+  {
+    name: "Anshul",
+    location: "Muzaffarnagar",
+    quote: "Once you try this, you won't want to go back to any other brand. That's what real authentic recipe tastes like.",
+    rating: 5
+  },
+  {
+    name: "Anonymous",
+    location: "Uttar Pradesh",
+    quote: "Doosre brands itne mein milawati tel ka namkeen dete hain. Yahan same rate mein Kachi Ghani ka namkeen milta hai, saaf jagah mein bana. Sach mein value for money hai.",
+    rating: 5
+  },
+  {
+    name: "Tanmay",
+    location: "Muzaffarnagar",
+    quote: "Yeh sirf namak aur lal mirch wala namkeen nahi hai. Kai masale hain jo aapas mein ghule hue hain — aur sarson ke tel ki wajah se ek alag hi khushboo aur taste aata hai. Market wala taste is se bilkul alag hai.",
+    rating: 5
+  },
+  {
+    name: "Rohan",
+    location: "Mumbai",
+    quote: "The aroma when you open the packet is something else — you can tell instantly this isn't factory made. Tastes genuinely premium. And the price? Other brands charge the same for stuff that doesn't come close.",
+    rating: 5
+  },
+  {
+    name: "Krupa",
+    location: "Ahmedabad",
+    quote: "We always have farsan at home but this felt like a step above. The masala, the crunch, the smell — everything feels considered. Can't believe something this good is priced this reasonably.",
+    rating: 5
+  }
+];
+---
+<section class="reviews-section">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <div class="reviews-tag">ग्राहकों की राय</div>
+      <h2 class="reviews-heading">What Our Customers Say</h2>
+    </div>
+    
+    <div class="reviews-grid">
+      {reviews.map(review => (
+        <div class="review-card">
+          <div class="stars">
+            {Array.from({ length: review.rating }).map(() => (
+              <svg viewBox="0 0 24 24" fill="currentColor" class="star"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            ))}
+          </div>
+          <p class="review-quote">"{review.quote}"</p>
+          <div class="review-author">
+            <span class="author-name">{review.name}</span>
+            <span class="author-loc">, {review.location}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    padding: 100px 0;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+  }
+  .reviews-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .reviews-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .reviews-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--H);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(200, 147, 26, 0.1);
+    border: 1px solid rgba(200, 147, 26, 0.25);
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 16px;
+  }
+  .reviews-heading {
+    font-family: var(--F);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 900;
+    color: var(--cream);
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .review-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(200, 147, 26, 0.15);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s, background 0.3s, border-color 0.3s;
+  }
+  .review-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(200, 147, 26, 0.3);
+  }
+  .stars {
+    display: flex;
+    gap: 4px;
+    color: var(--gold);
+  }
+  .star {
+    width: 20px;
+    height: 20px;
+  }
+  .review-quote {
+    font-size: 16px;
+    color: rgba(253, 243, 227, 0.8);
+    line-height: 1.6;
+    flex-grow: 1;
+    font-style: italic;
+  }
+  .review-author {
+    margin-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+  }
+  .author-name {
+    font-weight: 700;
+    color: var(--cream);
+    font-size: 15px;
+  }
+  .author-loc {
+    color: rgba(253, 243, 227, 0.5);
+    font-size: 13px;
+  }
+</style>
