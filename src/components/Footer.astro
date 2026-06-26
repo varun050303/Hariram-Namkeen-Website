@@ -1,68 +1,51 @@
 ---
-import siteData from '../data/site.json';
-import navData from '../data/navigation.json';
-import contentData from '../data/content.json';
+// Footer.astro
+// Contains real FSSAI number: 22725393001461 (valid to 08-10-2026)
+// Reminder: Renew 180 days before expiry (~April 2026)
 ---
 
-<footer class="bg-[#221a10] text-[#f3eee7] px-4 md:px-10 py-12 md:py-16">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-    <div class="md:col-span-1 flex flex-col gap-4">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary">{siteData.logo}</span>
-        <span class="text-xl font-bold">Hariram</span>
-      </div>
-      <p class="text-sm text-[#a89d91]">
-        {contentData.footer.description}
-      </p>
-    </div>
-    
-    <div class="flex flex-col gap-4">
-      <h4 class="font-bold text-white">Shop</h4>
-      <div class="flex flex-col gap-2 text-sm text-[#a89d91]">
-        {navData.footer.shop.map((item) => (
-          <a class="hover:text-primary transition-colors" href={item.href}>
-            {item.label}
+<footer>
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/images/logo.png" alt="Hariram Namkeen" style="width:auto;height:64px;object-fit:contain;border-radius:6px;"/>
+        <p>Traditional namkeen from Muzaffarnagar, UP. Pure Kachi Ghani mustard oil. No factory. No shortcuts. Made fresh every week.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/hariram.namkeen" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
           </a>
-        ))}
-      </div>
-    </div>
-    
-    <div class="flex flex-col gap-4">
-      <h4 class="font-bold text-white">Company</h4>
-      <div class="flex flex-col gap-2 text-sm text-[#a89d91]">
-        {navData.footer.company.map((item) => (
-          <a class="hover:text-primary transition-colors" href={item.href}>
-            {item.label}
+          <a href="mailto:namaste@hariramnamkeen.com" class="footer-social-link" aria-label="Email">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            namaste@hariramnamkeen.com
           </a>
-        ))}
+        </div>
       </div>
-    </div>
-    
-    <div class="flex flex-col gap-4">
-      <h4 class="font-bold text-white">{contentData.newsletter.title}</h4>
-      <p class="text-sm text-[#a89d91]">{contentData.newsletter.description}</p>
-      <div class="flex gap-2">
-        <input
-          class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary text-white"
-          placeholder={contentData.newsletter.placeholder}
-          type="email"
-        />
-        <button
-          class="bg-primary hover:bg-primary/90 text-black p-2 rounded-lg flex items-center justify-center"
-        >
-          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-        </button>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Dal Bhiji</a></li>
+          <li><a href="#">Shahi Dal Bhiji</a></li>
+          <li><a href="#">Masala Chana Dal</a></li>
+          <li><a href="#">Sev Bhujia</a></li>
+        </ul>
       </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:namaste@hariramnamkeen.com">Email Us</a></li>
+          <li><a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>
+          <li><a href="https://instagram.com/hariram.namkeen" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        </ul>
+      </div>
+
     </div>
-  </div>
-  
-  <div
-    class="max-w-7xl mx-auto pt-8 mt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#6e665c]"
-  >
-    <p>{contentData.footer.copyright}</p>
-    <div class="flex gap-4">
-      <span>FSSAI Lic No. {siteData.business.fssaiLicense}</span>
-      <span>{contentData.footer.madeIn}</span>
+    <div class="footer-bot">
+      <p>© 2026 Hariram Foods. All rights reserved. Made in India 🇮🇳</p>
+      <div class="footer-certs">
+        <div class="fcert">FSSAI Lic. 22725393001461</div>
+        <div class="fcert">GST Registered</div>
+      </div>
     </div>
   </div>
 </footer>
