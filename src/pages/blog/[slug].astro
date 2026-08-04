@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = import.meta.glob('../../content/blog/*.md', { eager: true });
+
+  return Object.values(posts).map((post) => ({
+    params: { slug: post.frontmatter.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+---
+
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
+  <Header />
+
+  <main class="article">
+    <p class="eyebrow">HARIRAM STORIES</p>
+    <h1>{post.frontmatter.title}</h1>
+    <p class="date">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', {dateStyle:'long'})}</p>
+
+    <article class="content">
+      <Content />
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.article{padding:140px 6vw 80px;background:#f8f0df;color:#4b1717;min-height:100vh}
+.eyebrow{color:#9b6b2f;letter-spacing:.25em;font-size:.75rem}
+h1{font-family:serif;font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;max-width:900px}
+.date{color:#9b6b2f}
+.content{max-width:760px;margin:60px auto;font-size:1.1rem;line-height:1.9}
+.content :global(h2){margin-top:40px}
+</style>
