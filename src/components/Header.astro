@@ -6,13 +6,14 @@
 
 <header id="header">
   <div class="header-inner">
-    <a href="#">
+    <a href="/">
       <img src="/images/logo.png" alt="Hariram Namkeen" style="width:auto;height:50px;object-fit:contain;border-radius:6px;"/>
     </a>
     <nav id="main-nav">
-      <a href="#oil-truth">Why We're Different</a>
-      <a href="#products">Shop</a>
-      <a href="#story">Our Story</a>
+      <a href="/#oil-truth">Why We're Different</a>
+      <a href="/#products">Shop</a>
+      <a href="/#story">Our Story</a>
+      <a href="/blog">Blog</a>
       <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer">Order Now</a>
     </nav>
     <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="order-btn desktop-only">Order Now ↗</a>
@@ -35,12 +36,13 @@
       </button>
     </div>
     <nav class="mobile-nav-links">
-      <a href="#craft">Crafted Differently</a>
-      <a href="#oil-truth">Why We're Different</a>
-      <a href="#products">Our Products</a>
-      <a href="#story">Our Story</a>
-      <a href="#process">How It's Made</a>
-      <a href="#grahak-dev">Our Culture</a>
+      <a href="/#craft">Crafted Differently</a>
+      <a href="/#oil-truth">Why We're Different</a>
+      <a href="/#products">Our Products</a>
+      <a href="/#story">Our Story</a>
+      <a href="/#process">How It's Made</a>
+      <a href="/#grahak-dev">Our Culture</a>
+      <a href="/blog">Blog</a>
     </nav>
     <div class="mobile-nav-cta">
       <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="btn-wa mobile-nav-wa">
@@ -81,7 +83,7 @@
     overlay.addEventListener('click', closeMenu);
     
     // Close on link click
-    nav.querySelectorAll('a[href^="#"]').forEach(link => {
+    nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMenu);
     });
   })();
