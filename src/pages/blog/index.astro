@@ -8,19 +8,107 @@ const posts = Object.values(import.meta.glob('../../content/blog/*.md', { eager:
 
 <BaseLayout>
   <main class="blog-page">
-    <section>
-      <h1>Hariram Stories</h1>
-      <p>Traditional food stories, ingredients, and the thoughts behind our namkeen.</p>
+    <section class="blog-hero">
+      <p class="eyebrow">HARIRAM STORIES</p>
+      <h1>Tradition, Ingredients & <span>Honest Food</span></h1>
+      <p class="intro">
+        Stories behind our namkeen, the ingredients we choose, and the traditional
+        methods that shape every batch from our kitchen in Muzaffarnagar.
+      </p>
+    </section>
 
-      <div class="blog-grid">
-        {posts.map((post) => (
-          <article class="blog-card">
-            <h2>{post.title}</h2>
-            <p>{post.description}</p>
-            <a href={`/blog/${post.slug}`}>Read article →</a>
-          </article>
-        ))}
-      </div>
+    <section class="blog-grid">
+      {posts.map((post) => (
+        <article class="blog-card">
+          <p class="date">
+            {new Date(post.pubDate).toLocaleDateString('en-IN', {
+              day: 'numeric', month: 'long', year: 'numeric'
+            })}
+          </p>
+          <h2>{post.title}</h2>
+          <p>{post.description}</p>
+          <a href={`/blog/${post.slug}`}>Read story →</a>
+        </article>
+      ))}
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .blog-page {
+    min-height: 100vh;
+    padding: 8rem 6vw 5rem;
+    background: #f8f0df;
+    color: #4b1717;
+  }
+
+  .blog-hero {
+    max-width: 850px;
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    letter-spacing: .25em;
+    font-size: .75rem;
+    color: #9b6b2f;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    margin: 1rem 0;
+    font-family: serif;
+  }
+
+  h1 span {
+    color: #8b2525;
+  }
+
+  .intro {
+    max-width: 650px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    opacity: .85;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-card {
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(139,37,37,.15);
+    padding: 2rem;
+    border-radius: 24px;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(75,23,23,.12);
+  }
+
+  .blog-card h2 {
+    font-size: 1.5rem;
+    margin: .8rem 0;
+  }
+
+  .date {
+    color: #9b6b2f;
+    font-size: .85rem;
+  }
+
+  .blog-card a {
+    color: #8b2525;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media(max-width:768px) {
+    .blog-page {
+      padding: 6rem 5vw 3rem;
+    }
+  }
+</style>
