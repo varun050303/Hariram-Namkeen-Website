@@ -2,10 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import '../../styles/global.css';
 
 export async function getStaticPaths() {
   const posts = import.meta.glob('../../content/blog/*.md', { eager: true });
-
   return Object.values(posts).map((post) => ({
     params: { slug: post.frontmatter.slug },
     props: { post }
@@ -23,10 +23,7 @@ const { Content } = post;
     <p class="eyebrow">HARIRAM STORIES</p>
     <h1>{post.frontmatter.title}</h1>
     <p class="date">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', {dateStyle:'long'})}</p>
-
-    <article class="content">
-      <Content />
-    </article>
+    <article class="content"><Content /></article>
   </main>
 
   <Footer />
