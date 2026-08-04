@@ -1,0 +1,52 @@
+name: Weekly Brand Content
+
+on:
+  schedule:
+    # Every Monday 09:00 IST = 03:30 UTC
+    - cron: '30 3 * * 1'
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab to test
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate weekly post
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/generate-post.mjs
+
+      - name: Open Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: weekly-content/${{ github.run_number }}
+          title: "Weekly content: ${{ steps.generate.outputs.title }}"
+          body: |
+            Auto-generated weekly post.
+
+            **Title:** ${{ steps.generate.outputs.title }}
+            **Slug:** ${{ steps.generate.outputs.slug }}
+
+            **Social caption (copy-paste to Instagram/WhatsApp):**
+
+            ${{ steps.generate.outputs.caption }}
+
+            ---
+            Review the content for accuracy before merging. Merging this PR
+            triggers a Cloudflare Pages deploy and the page goes live.
+          commit-message: "content: add weekly post - ${{ steps.generate.outputs.title }}"
+          add-paths: |
+            src/content/blog/*.md
