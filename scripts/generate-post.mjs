@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ---- CONFIG: adjust these two lines to match your actual Astro repo ----
 const CONTENT_DIR = 'src/content/blog';   // <-- change if your blog posts live elsewhere
-const GEMINI_MODEL = 'gemini-2.5-flash';  // <-- check aistudio.google.com for the current free-tier model name; swap if this is retired
+const GEMINI_MODEL = 'gemini-3.5-flash';  // <-- check aistudio.google.com for the current free-tier model name; swap if this is retired
 // --------------------------------------------------------------------
 
 const API_KEY = process.env.GEMINI_API_KEY;
