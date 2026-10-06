@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout
+  title="Cancellation & Refund Policy — Hariram Namkeen"
+  description="Transparent cancellation, return, and refund policies for Hariram Namkeen snacks and gift hampers."
+>
+  <Header />
+
+  <main class="policy-page">
+    <div class="policy-inner">
+      <a href="/" class="back-link">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+
+      <header class="policy-header">
+        <div class="sec-tag"><span>✦</span> POLICIES &amp; RETURNS</div>
+        <h1>Cancellation &amp; Refund Policy</h1>
+        <p class="policy-meta">Last Updated: March 2026 · Hariram Namkeen, Muzaffarnagar</p>
+      </header>
+
+      <article class="policy-body">
+        <section>
+          <h2>1. Nature of Our Artisanal Food Products</h2>
+          <p>
+            At Hariram Namkeen, we take immense pride in crafting genuine Uttar Pradesh namkeen fried fresh in pure Kachi Ghani yellow mustard oil with zero preservatives, chemicals, or palm oil.
+          </p>
+          <p>
+            Because our items are perishable edible consumables, <strong>we cannot accept physical returns of opened or consumed food packages</strong> due to food safety and hygiene regulations. However, your complete satisfaction is our foremost priority ("ग्राहक देव तुल्य"), and we stand 100% behind the quality of every pack we ship.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Order Cancellations</h2>
+          <p>
+            Because all batches are prepared fresh upon receiving your order:
+          </p>
+          <ul>
+            <li>You can cancel your order free of charge within <strong>2 hours</strong> of placing it, or at any time before your batch has entered the frying/dispatch cycle.</li>
+            <li>To request a cancellation, immediately reach out to our team on WhatsApp at <a href="https://wa.me/916396122920">+91 63961 22920</a> or email <a href="mailto:namaste@hariramnamkeen.com">namaste@hariramnamkeen.com</a> with your order details.</li>
+            <li>If the order has already been dispatched with our logistics partner, it cannot be cancelled in transit.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Damaged, Defective, or Incorrect Deliveries</h2>
+          <p>
+            If your package meets any of the following conditions upon delivery:
+          </p>
+          <ul>
+            <li>The outer shipping carton or inner food pouch is punctured, crushed, or visibly damaged in transit.</li>
+            <li>You received an incorrect product or missing packs compared to your invoice.</li>
+            <li>There is an unusual quality defect or broken seal.</li>
+          </ul>
+          <p>
+            <strong>What to do:</strong> Please contact us within <strong>48 hours</strong> of receiving the shipment. Share a photo or short video showing the issue along with your order details via WhatsApp (<a href="https://wa.me/916396122920">+91 63961 22920</a>) or email (<a href="mailto:namaste@hariramnamkeen.com">namaste@hariramnamkeen.com</a>).
+          </p>
+          <p class="resolution-card">
+            <strong>Immediate Resolution:</strong> Once reviewed (usually within a few business hours), we will promptly offer you either:
+            <br />1. A complimentary replacement pack dispatched at our own cost, OR
+            <br />2. A full 100% refund credited back to your original payment method.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Refund Processing Timeframe</h2>
+          <p>
+            Once a refund is approved by our support desk:
+          </p>
+          <ul>
+            <li><strong>UPI &amp; Instant Wallets:</strong> Processed within 24 to 48 hours.</li>
+            <li><strong>Credit Card, Debit Card, &amp; Net Banking:</strong> Processed and reflected in your banking account statement within 5 to 7 business days, depending on your issuing bank.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5. Customer Support Desk</h2>
+          <div class="contact-card">
+            <p><strong>Hariram Namkeen Care Desk</strong></p>
+            <p>Main Market, Muzaffarnagar, Uttar Pradesh - 251001, India</p>
+            <p>Phone / WhatsApp: <a href="https://wa.me/916396122920">+91 63961 22920</a></p>
+            <p>Email: <a href="mailto:namaste@hariramnamkeen.com">namaste@hariramnamkeen.com</a></p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.policy-page {
+  padding: 130px 0 100px;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.policy-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: transform .2s, color .2s;
+}
+
+.back-link:hover {
+  transform: translateX(-4px);
+  color: var(--maroon-l);
+}
+
+.policy-header {
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(194, 127, 21, 0.2);
+  padding-bottom: 24px;
+}
+
+.policy-header h1 {
+  font-family: var(--F);
+  font-size: clamp(32px, 4.5vw, 46px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.15;
+  margin: 12px 0 8px;
+}
+
+.policy-meta {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.policy-body section {
+  margin-bottom: 36px;
+}
+
+.policy-body h2 {
+  font-family: var(--F);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--maroon);
+  margin-bottom: 12px;
+}
+
+.policy-body p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.policy-body strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.policy-body ul {
+  list-style: disc;
+  padding-left: 24px;
+  margin-bottom: 16px;
+  color: var(--text-dim);
+}
+
+.policy-body li {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.resolution-card {
+  background: rgba(14, 115, 55, 0.08);
+  border-left: 4px solid #0e7337;
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 16px 0;
+}
+
+.contact-card {
+  background: rgba(79, 14, 14, 0.04);
+  border: 1px solid rgba(79, 14, 14, 0.12);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+}
+
+.contact-card p {
+  margin-bottom: 6px;
+  font-size: 14.5px;
+}
+
+.contact-card a, .policy-body a {
+  color: var(--maroon);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .policy-page {
+    padding: 100px 0 60px;
+  }
+}
+</style>

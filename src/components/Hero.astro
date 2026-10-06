@@ -11,26 +11,34 @@
   <div class="hero-inner">
     <!-- Left column: Editorial Value Proposition -->
     <div class="hero-content">
-      <!-- 1. H1 Trust Headline -->
-      <h1 class="hero-headline" id="hero-h1">Namkeen made in yellow mustard oil.</h1>
+      <!-- 1. H1 Trust Headline + UP Hindi Line -->
+      <div class="hero-headline-wrap">
+        <h1 class="hero-headline" id="hero-h1">
+          Namkeen made in <em class="hl-oil">yellow mustard oil.</em>
+        </h1>
+        <p class="hero-hindi">पीली सरसों के तेल में बनी नमकीन</p>
+      </div>
 
-      <!-- 2. Subline -->
+      <!-- 2. Subline (Concise, no duplicate lines) -->
       <p class="hero-sub" id="hero-sub">
-        Aloo Bhujia, Masala Chana Dal, Dal Biji and Moongfali. 4 x 200g, fried in yellow mustard oil. Zero palm oil, zero preservatives.
+        4 × 200g fresh packs. <strong>Zero palm oil, zero preservatives.</strong>
       </p>
 
-      <!-- 3. Offer block (compact card) -->
-      <div class="hero-offer-card" id="hero-offer">
-        <div class="hoc-header">
-          <div class="hoc-price-wrap">
-            <span class="hoc-price">₹499</span>
-            <span class="hoc-meta">4 varieties · 800g</span>
+      <!-- 3. Offer block (The Royal Maroon Card with Gold Price) -->
+      <div class="hero-box-card" id="hero-offer">
+        <div class="hbc-header">
+          <div class="hbc-title-wrap">
+            <span class="hbc-name">The Special 4 Box</span>
+            <span class="hbc-wt">4 varieties · 800g (4 × 200g)</span>
           </div>
-          <span class="hoc-badge">Free delivery across India</span>
+          <div class="hbc-price-wrap">
+            <span class="hbc-price">₹499</span>
+            <span class="hbc-ship">Free Delivery Across India</span>
+          </div>
         </div>
-        <div class="hoc-contents">
-          <span class="hoc-label">Includes:</span>
-          <span class="hoc-items">
+        <div class="hbc-menu-row">
+          <span class="hbc-menu-label">Includes:</span>
+          <span class="hbc-menu-items">
             <strong>Aloo Bhujia</strong> · 
             <strong>Masala Chana Dal</strong> · 
             <strong>Dal Biji</strong> · 
@@ -39,7 +47,7 @@
         </div>
       </div>
 
-      <!-- 4. One primary button -->
+      <!-- 4. One primary button (Gold CTA) -->
       <div class="hero-cta-wrap" id="hero-cta">
         <a 
           href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details." 
@@ -54,15 +62,13 @@
         </a>
       </div>
 
-      <!-- 5. Proof row under the button -->
-      <div class="hero-proof-row" id="hero-proof">
-        <span class="hero-proof-item">Fried fresh to order</span>
-        <span class="hero-proof-sep" aria-hidden="true">·</span>
-        <span class="hero-proof-item">FSSAI Lic. 22725393001461</span>
-        <span class="hero-proof-sep" aria-hidden="true">·</span>
-        <!-- Dispatch time: TODO -->
-        <span class="hero-proof-item">Dispatch time: TODO</span>
-        <!-- /Dispatch time: TODO -->
+      <!-- 5. Proof row (Fried fresh to order enlarged) -->
+      <div class="hero-trust-inline" id="hero-proof">
+        <span class="trust-highlight">✦ Fried fresh to order</span>
+        <span class="ht-sep">·</span>
+        <span>Muzaffarnagar Craft</span>
+        <span class="ht-sep">·</span>
+        <span>Zero Palm Oil</span>
       </div>
     </div>
 

@@ -156,7 +156,7 @@
 </section>
 
 <script is:inline>
-  // Hamper gallery thumbnail switcher & auto-cycle
+  // Hamper gallery thumbnail switcher & auto-cycle (respects prefers-reduced-motion)
   (() => {
     const gallery = document.getElementById('hamper-gallery');
     const thumbs = document.querySelectorAll('#hamper-thumbs .h-thumb');
@@ -165,6 +165,7 @@
     if (imgs.length < 2) return;
     let idx = 0;
     let timer = null;
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function setSlide(newIdx) {
       imgs[idx].classList.remove('active');
@@ -184,6 +185,7 @@
     });
 
     function startTimer() {
+      if (prefersReducedMotion && prefersReducedMotion.matches) return;
       timer = setInterval(() => {
         setSlide(idx + 1);
       }, 5000);
@@ -192,6 +194,16 @@
     function restartTimer() {
       if (timer) clearInterval(timer);
       startTimer();
+    }
+
+    if (prefersReducedMotion && prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener('change', (e) => {
+        if (e.matches) {
+          if (timer) clearInterval(timer);
+        } else {
+          restartTimer();
+        }
+      });
     }
 
     startTimer();
