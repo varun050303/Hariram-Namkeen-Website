@@ -1,27 +1,29 @@
 ---
-// Hero.astro — High-Converting Graphic-Dominant Edition
-// Visual-first: Grand 360° video pedestal + punchy, uncluttered hook
+// Hero.astro — Cinematic Edge-to-Edge Visual Showcase
+// Visual-first: Card-free, full-height visual pane with 360° rotating video & carousel
+// Punchy, high-converting offer copy with zero vague fluff
 ---
 
 <section class="hero" id="hero">
-  <!-- Architectural background atmosphere -->
+  <!-- Subtle architectural background ambience -->
   <div class="hero-arch-pattern" aria-hidden="true"></div>
   <div class="hero-radial-glow" aria-hidden="true"></div>
 
+  <!-- Left: Open, High-Impact Editorial Copy (Card-Free) -->
   <div class="hero-content">
-    <!-- Prestige Location & Heritage Tag -->
+    <!-- Prestige Heritage Origin Tag -->
     <div class="hero-prestige-tag" id="h-origin">
       <span class="prestige-dot"></span>
       <span class="prestige-text">Fresh From Muzaffarnagar Kadhai</span>
     </div>
 
-    <!-- Concrete, High-Converting Headline (Zero vague fluff, directly addressing customer need) -->
+    <!-- Direct, Punchy Headline (Focus on Mustard Oil & Crunch) -->
     <h1 class="hero-headline">
       <span class="split-line"><span class="split-inner" id="hl1">Zero Palm Oil.</span></span>
       <span class="split-line"><em class="headline-crimson"><span class="split-inner" id="hl2">Pure Mustard Oil Crunch.</span></em></span>
     </h1>
 
-    <!-- ── THE PRIMARY CONVERSION HOOK (OPEN, CARD-FREE & HIGH-IMPACT) ── -->
+    <!-- ── THE PRIMARY VALUE HOOK (OPEN & DIRECT) ── -->
     <div class="hero-offer-hook" id="h-hook">
       <div class="hero-hook-badge">
         <span class="hook-dot"></span>
@@ -38,10 +40,10 @@
       </div>
 
       <p class="hero-offer-sub" id="h-sub">
-        4 signature snacks — Aloo Bhujia, Masala Chana Dal, Dal Biji &amp; Masala Moongfali — slow-cooked in cold-pressed Kachi Ghani mustard oil with home-ground spices. No chemical preservatives, no warehouse stock. Just ~₹62 / 100g delivered to your door.
+        4 signature snacks — Aloo Bhujia, Masala Chana Dal, Dal Biji &amp; Masala Moongfali — slow-cooked in cold-pressed Kachi Ghani mustard oil with home-ground spices. No chemical preservatives, no warehouse stock. Handcrafted in Muzaffarnagar and delivered fresh to your door.
       </p>
 
-      <div class="hero-cta-group">
+      <div class="hero-cta-group" id="h-btns">
         <a 
           href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details." 
           target="_blank" 
@@ -55,7 +57,7 @@
         <a href="#products" class="btn-hero-sec">View All 5 Snacks ↓</a>
       </div>
 
-      <div class="hero-trust-row">
+      <div class="hero-trust-row" id="h-trust">
         <span class="ht-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
           100% Kachi Ghani Oil
@@ -72,15 +74,18 @@
     </div>
   </div>
 
-  <!-- ── HERO RIGHT: ARCH-FRAMED 360° VIDEO SHOWCASE ── -->
-  <div class="hero-visual-col">
-    <div class="hero-arch-card" id="hero-media-card">
+  <!-- ── HERO RIGHT: EDGE-TO-EDGE CINEMATIC VISUAL SHOWCASE (CARD-FREE) ── -->
+  <div class="hero-visual" id="hero-visual-pane">
+    <!-- Feathering gradient blend that seamlessly merges the visual into the left column -->
+    <div class="hero-visual-blend" aria-hidden="true"></div>
+    <div class="hero-visual-vignette" aria-hidden="true"></div>
 
-      <!-- Viewport Frame -->
-      <div class="hero-arch-viewport">
+    <!-- Parallax Slide Container (Full Bleed) -->
+    <div id="hero-parallax" class="hero-parallax-wrap">
+      <div class="hero-slideshow">
 
-        <!-- Slide 0: Aloo Bhujia 360° Rotating Studio Video -->
-        <div class="arch-slide-pane active" data-slide="0">
+        <!-- Slide 0: Aloo Bhujia 360° Infinite Video -->
+        <div class="hero-visual-slide active" data-slide="0">
           <video 
             src="/videos/aloo_bhujia_rotating_shoot.mp4" 
             autoplay 
@@ -88,129 +93,118 @@
             muted 
             playsinline 
             preload="auto"
-            class="arch-video"
+            class="hero-media-element"
             aria-label="360° studio rotation of fresh Hariram Aloo Bhujia"
           ></video>
-          <div class="arch-vignette"></div>
-
-          <!-- Studio Live Indicator -->
-          <div class="arch-meta-chip chip-top-left">
-            <span class="meta-pulse-dot"></span>
-            <span>360° Rotating Shoot</span>
-          </div>
-
-          <div class="arch-feature-chip chip-bottom-left">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-            <span>Pure Kachi Ghani Mustard Oil</span>
-          </div>
         </div>
 
-        <!-- Slide 1: Masala Chana Dal -->
-        <div class="arch-slide-pane" data-slide="1">
-          <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal Studio Shoot" loading="lazy" />
-          <div class="arch-vignette"></div>
-          <div class="arch-meta-chip chip-top-left">
-            <span>Masala Chana Dal · 200g</span>
-          </div>
-          <div class="arch-feature-chip chip-bottom-left">
-            <span>High Protein · Stone-Ground Amchur</span>
-          </div>
+        <!-- Slide 1: Hariram Special 4 Box Tasting Platter -->
+        <div class="hero-visual-slide" data-slide="1">
+          <img 
+            src="/images/hariram_special_4_top_view.png" 
+            alt="The Hariram Special 4 Tasting Platter (800g)" 
+            class="hero-media-element"
+            loading="eager"
+          />
         </div>
 
-        <!-- Slide 2: Traditional Dal Biji -->
-        <div class="arch-slide-pane" data-slide="2">
-          <img src="/images/dal-bhiji.jpg" alt="Traditional Moong Dal Dal Biji" loading="lazy" />
-          <div class="arch-vignette"></div>
-          <div class="arch-meta-chip chip-top-left">
-            <span>Dal Biji · Muzaffarnagar Classic</span>
-          </div>
-          <div class="arch-feature-chip chip-bottom-left">
-            <span>Moong Dal &amp; Heritage Spices</span>
-          </div>
+        <!-- Slide 2: Masala Chana Dal -->
+        <div class="hero-visual-slide" data-slide="2">
+          <img 
+            src="/images/masala_chana_dal.png" 
+            alt="Masala Chana Dal Studio Shoot" 
+            class="hero-media-element"
+            loading="lazy" 
+          />
         </div>
 
-        <!-- Slide 3: Masala Moongfali -->
-        <div class="arch-slide-pane" data-slide="3">
-          <img src="/images/masala_moongfali.png" alt="Masala Moongfali Peanuts" loading="lazy" />
-          <div class="arch-vignette"></div>
-          <div class="arch-meta-chip chip-top-left">
-            <span>Masala Moongfali · 200g</span>
-          </div>
-          <div class="arch-feature-chip chip-bottom-left">
-            <span>Kashmiri Chilli &amp; Roasted Peanuts</span>
-          </div>
+        <!-- Slide 3: Traditional Dal Biji -->
+        <div class="hero-visual-slide" data-slide="3">
+          <img 
+            src="/images/dal-bhiji.jpg" 
+            alt="Traditional Dal Biji with Moong Dal" 
+            class="hero-media-element"
+            loading="lazy" 
+          />
         </div>
 
-        <!-- Slide 4: Special 4 Platter Preview -->
-        <div class="arch-slide-pane" data-slide="4">
-          <img src="/images/hariram_special_4_top_view.png" alt="Hariram Special 4 Platter Top View" loading="lazy" />
-          <div class="arch-vignette"></div>
-          <div class="arch-meta-chip chip-top-left">
-            <span>Special 4 Tasting Platter (800g)</span>
-          </div>
-          <div class="arch-feature-chip chip-bottom-left">
-            <span>₹499 All-Inclusive · Free Shipping</span>
-          </div>
+        <!-- Slide 4: Masala Moongfali -->
+        <div class="hero-visual-slide" data-slide="4">
+          <img 
+            src="/images/masala_moongfali.png" 
+            alt="Masala Moongfali Roasted Peanuts" 
+            class="hero-media-element"
+            loading="lazy" 
+          />
         </div>
 
       </div>
-
-      <!-- Professional Carousel Controller -->
-      <div class="hero-arch-controls">
-        <button class="arch-nav-arrow prev" id="hero-prev" aria-label="Previous product">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
-        </button>
-
-        <div class="arch-pills-bar" id="hero-pills">
-          <button class="arch-pill active" data-index="0">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            Aloo Bhujia 360°
-          </button>
-          <button class="arch-pill" data-index="1">Chana Dal</button>
-          <button class="arch-pill" data-index="2">Dal Biji</button>
-          <button class="arch-pill" data-index="3">Moongfali</button>
-          <button class="arch-pill" data-index="4">Special 4 Box</button>
-        </div>
-
-        <button class="arch-nav-arrow next" id="hero-next" aria-label="Next product">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
     </div>
+
+    <!-- Floating Live Studio Badge (No Card, Frosted Glass) -->
+    <div class="hero-floating-studio-badge">
+      <span class="live-pulse-dot"></span>
+      <span class="badge-text">360° Studio View · Pure Mustard Oil</span>
+    </div>
+
+    <!-- Sleek Floating Carousel Controller -->
+    <div class="hero-visual-controls">
+      <button class="hero-ctrl-arrow prev" id="hero-prev" aria-label="Previous slide">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <div class="hero-ctrl-pills" id="hero-pills">
+        <button class="h-pill active" data-index="0">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          360° Video
+        </button>
+        <button class="h-pill" data-index="1">Special 4 Box</button>
+        <button class="h-pill" data-index="2">Chana Dal</button>
+        <button class="h-pill" data-index="3">Dal Biji</button>
+        <button class="h-pill" data-index="4">Moongfali</button>
+      </div>
+
+      <button class="hero-ctrl-arrow next" id="hero-next" aria-label="Next slide">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Ambient Glow Layer -->
+    <div class="hero-visual-ambient-glow" aria-hidden="true"></div>
   </div>
 
-  <!-- Scroll Down Hint -->
+  <!-- Scroll Down Cue -->
   <a href="#craft" class="hero-scroll-cue" aria-label="Scroll down to explore">
     <span class="cue-label">Explore The Craft</span>
     <span class="cue-arrow">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </span>
   </a>
 </section>
 
 <script is:inline>
-  // Hero Arch Carousel Controller
+  // Hero Visual Slideshow & Video Controller
   (() => {
-    const panes = document.querySelectorAll('.arch-slide-pane');
-    const pills = document.querySelectorAll('#hero-pills .arch-pill');
+    const slides = document.querySelectorAll('.hero-visual-slide');
+    const pills = document.querySelectorAll('#hero-pills .h-pill');
     const prevBtn = document.getElementById('hero-prev');
     const nextBtn = document.getElementById('hero-next');
-    if (!panes.length) return;
+    if (!slides.length) return;
 
     let current = 0;
     let timer = null;
 
     function showSlide(idx) {
-      panes[current].classList.remove('active');
+      slides[current]?.classList.remove('active');
       pills[current]?.classList.remove('active');
 
-      current = (idx + panes.length) % panes.length;
+      current = (idx + slides.length) % slides.length;
 
-      panes[current].classList.add('active');
+      slides[current]?.classList.add('active');
       pills[current]?.classList.add('active');
 
-      // Video play state
-      const vid = panes[current].querySelector('video');
+      // Video playback assurance
+      const vid = slides[current]?.querySelector('video');
       if (vid && vid.paused) {
         vid.play().catch(() => {});
       }
