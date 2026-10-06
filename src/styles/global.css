@@ -2502,15 +2502,6 @@ footer {
     object-position: 22% center;
   }
 
-  .hero-visual-blend {
-    display: none;
-  }
-
-  .hook-banner-strip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
   .craft-inner, .oil-truth-inner, .story-inner, .hamper-grid {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -2573,10 +2564,6 @@ footer {
   }
 
   .gd-pillars {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-pack-breakdown {
     grid-template-columns: 1fr;
   }
 

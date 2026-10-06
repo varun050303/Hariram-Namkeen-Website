@@ -4,8 +4,12 @@
 
 const {
   title = "Hariram Namkeen — Pure Mustard Oil Snacks, Muzaffarnagar",
-  description = "Traditional namkeen from Muzaffarnagar. Pure Kachi Ghani mustard oil. No preservatives. FSSAI licensed.",
+  description = "Traditional namkeen from Muzaffarnagar. Pure yellow mustard oil. No preservatives. FSSAI licensed.",
+  image = "/images/hariram_special_4_top_view.webp",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hariramnamkeen.com');
+const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 ---
 
 <!DOCTYPE html>
@@ -15,7 +19,22 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/images/logo.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageURL} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
 
   <!-- Fonts: Playfair Display (heavy display serif), Plus Jakarta Sans & Inter (body), Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,7 +54,7 @@ const {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
     "name": "Hariram Namkeen",
-    "description": "Traditional homemade namkeen from Muzaffarnagar UP, cooked in pure Kachi Ghani mustard oil",
+    "description": "Traditional homemade namkeen from Muzaffarnagar UP, cooked in pure yellow mustard oil",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Muzaffarnagar",
@@ -44,7 +63,7 @@ const {
     },
     "telephone": "+91-6396122920",
     "servesCuisine": "Indian",
-    "priceRange": "₹100-₹200",
+    "priceRange": "Rs 360-Rs 500 per kg",
     "url": "https://hariramnamkeen.com"
   }
   </script>
