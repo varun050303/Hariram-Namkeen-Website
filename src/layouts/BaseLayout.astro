@@ -1,5 +1,5 @@
 ---
-// BaseLayout.astro
+// BaseLayout.astro — v2 Dark Luxury Editorial
 // Wraps every page with <html>, <head>, fonts, GSAP CDN.
 
 const {
@@ -17,17 +17,19 @@ const {
   <meta name="description" content={description} />
   <link rel="icon" type="image/png" href="/images/logo.png" />
 
-  <!-- Fonts -->
+  <!-- Fonts: Cormorant Garamond (display), Inter (body), Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap"
     rel="stylesheet"
   />
 
-  <!-- GSAP (free since Webflow acquisition 2024) -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

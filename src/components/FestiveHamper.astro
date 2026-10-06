@@ -1,0 +1,111 @@
+---
+// FestiveHamper.astro — v2
+// Showcases the Hariram Special 4 gift platter
+// ₹499 with Free All-India Delivery
+// Includes: Aloo Bhujia, Masala Chana Dal, Dal Biji, Light Malka / Masala Moongfali
+---
+
+<section class="hamper-section" id="hamper">
+  <div class="hamper-inner">
+    <div class="sec-tag"><span>✦</span> शाही उपहार · Special Festive Tasting Box</div>
+    <h2 class="sec-title">The Hariram <em>Special 4.</em></h2>
+    <p class="sec-sub">Our signature four-variety tasting box — authentic Muzaffarnagar namkeen handcrafted in pure Kachi Ghani mustard oil. Delivered fresh right to your doorstep anywhere in India.</p>
+
+    <div class="hamper-grid">
+      <div class="hamper-gallery" id="hamper-gallery">
+        <img src="/images/hariram_special_4_top_view.png" alt="Hariram Special 4 - Top View" class="active"/>
+        <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 - Portrait View"/>
+        <img src="/images/hariram_special_4_top_view_wide_angle.png" alt="Hariram Special 4 - Wide Angle"/>
+        <div class="hamper-badge">
+          <span>₹499 Only</span> · Free All-India Delivery
+        </div>
+      </div>
+
+      <div class="hamper-details">
+        <div class="hamper-price-card">
+          <div class="hamper-price-left">
+            <div class="hamper-price-label">Special 4-Variety Box</div>
+            <div class="hamper-price-val">₹499 <span class="hamper-price-allin">all inclusive</span></div>
+          </div>
+          <div class="hamper-shipping-badge">
+            <span class="shipping-icon">🚚</span>
+            <div>
+              <strong>FREE DELIVERY</strong>
+              <span>All Over India 🇮🇳</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Four signature namkeens,<br/><em>one irresistible box.</em></h3>
+        <p class="hamper-desc">
+          Each box brings together four handcrafted namkeens cooked slow in pure Kachi Ghani mustard oil with home-ground spices. Zero palm oil, zero chemical preservatives — pure authentic taste.
+        </p>
+
+        <div class="hamper-contents">
+          <div class="hamper-item">
+            <span class="hamper-item-icon">🥔</span>
+            <div>
+              <strong>Aloo Bhujia</strong>
+              <span class="hamper-item-sub">Crispy, spiced potato &amp; besan</span>
+            </div>
+          </div>
+          <div class="hamper-item">
+            <span class="hamper-item-icon">🥜</span>
+            <div>
+              <strong>Masala Chana Dal</strong>
+              <span class="hamper-item-sub">Crunchy Bengal gram &amp; chaat masala</span>
+            </div>
+          </div>
+          <div class="hamper-item">
+            <span class="hamper-item-icon">🍛</span>
+            <div>
+              <strong>Dal Biji</strong>
+              <span class="hamper-item-sub">Heritage moong dal classic</span>
+            </div>
+          </div>
+          <div class="hamper-item hamper-choice">
+            <span class="hamper-item-icon">🫘</span>
+            <div>
+              <strong>Light Malka / Masala Moongfali</strong>
+              <span class="hamper-item-sub">Choose your favourite crunch</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hamper-cta">
+          <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Hariram%20Special%204%20Box%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20order%20details." target="_blank" rel="noopener noreferrer" class="btn-p" data-magnetic>
+            Order Special 4 @ ₹499
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#products" class="btn-wa" data-magnetic>
+            View All Products
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Hamper gallery auto-cycle
+  (() => {
+    const gallery = document.getElementById('hamper-gallery');
+    if (!gallery) return;
+    const imgs = gallery.querySelectorAll('img');
+    if (imgs.length < 2) return;
+    let idx = 0;
+    
+    setInterval(() => {
+      imgs[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+    }, 4000);
+
+    // Click to advance
+    gallery.addEventListener('click', () => {
+      imgs[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+    });
+  })();
+</script>

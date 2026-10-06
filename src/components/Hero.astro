@@ -1,8 +1,7 @@
 ---
-// Hero.astro
-// Animation: headline line-by-line reveal, parallax on hero-visual
-// All driven by GSAP timeline in animations.js (heroTl)
-// Mobile: shows namkeen image as background + namkeen-first messaging
+// Hero.astro — v2 Dark Luxury Editorial
+// Full-bleed cinematic hero with new product photography
+// Slideshow features new high-res studio shots
 ---
 
 <section class="hero" id="hero">
@@ -22,16 +21,17 @@
       Handcrafted in small batches. Kachi Ghani mustard oil. No palm oil. No preservatives.
     </p>
 
-    <!-- Mobile-only hero image (visible only on small screens) -->
+    <!-- Mobile-only hero image -->
     <div class="hero-mobile-img">
       <div class="hero-slideshow-mobile">
-        <img src="/images/dal-bhiji.jpg" alt="Dal Bhiji - Fresh Namkeen from Hariram" class="hero-slide-mobile active"/>
-        <img src="/images/premium.jpg" alt="Premium Shahi Dal Bhiji" class="hero-slide-mobile"/>
-        <img src="/images/chana-dal.jpg" alt="Masala Chana Dal" class="hero-slide-mobile"/>
+        <img src="/images/aloo_bhujia.png" alt="Aloo Bhujia - Fresh Namkeen from Hariram" class="hero-slide-mobile active"/>
+        <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal" class="hero-slide-mobile"/>
+        <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 Gift Hamper" class="hero-slide-mobile"/>
+        <img src="/images/masala_moongfali.png" alt="Masala Moongfali" class="hero-slide-mobile"/>
       </div>
       <div class="hero-mobile-overlay"></div>
       <div class="hero-mobile-badge">
-        <span>🏆</span> Authentic Namkeen · Mustard Oil Only
+        <span>✦</span> Pure Mustard Oil · Small Batch · FSSAI Licensed
       </div>
     </div>
 
@@ -52,12 +52,13 @@
     <div class="hero-overlay"></div>
     <div id="hero-parallax">
       <div class="hero-slideshow">
-        <img src="/images/dal-bhiji.jpg" alt="Dal Bhiji - Traditional UP Namkeen by Hariram" class="hero-slide active"/>
-        <img src="/images/premium.jpg" alt="Premium Shahi Dal Bhiji" class="hero-slide"/>
-        <img src="/images/chana-dal.jpg" alt="Masala Chana Dal" class="hero-slide"/>
+        <img src="/images/aloo_bhujia.png" alt="Aloo Bhujia - Premium Namkeen by Hariram" class="hero-slide active"/>
+        <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal - Studio Shot" class="hero-slide"/>
+        <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 Gift Hamper" class="hero-slide"/>
+        <img src="/images/masala_moongfali.png" alt="Masala Moongfali Peanuts" class="hero-slide"/>
+        <img src="/images/top_angle_masala_chana_dal.png" alt="Masala Chana Dal Top View" class="hero-slide"/>
       </div>
     </div>
-    
   </div>
 
   <a href="#craft" class="hero-scroll-hint" aria-label="Scroll down">

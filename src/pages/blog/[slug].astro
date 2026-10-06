@@ -16,24 +16,126 @@ const { post } = Astro.props;
 const { Content } = post;
 ---
 
-<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
+<BaseLayout title={`${post.frontmatter.title} — Hariram Namkeen`} description={post.frontmatter.description}>
   <Header />
 
   <main class="article">
-    <p class="eyebrow">HARIRAM STORIES</p>
-    <h1>{post.frontmatter.title}</h1>
-    <p class="date">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', {dateStyle:'long'})}</p>
-    <article class="content"><Content /></article>
+    <div class="article-inner">
+      <a href="/blog" class="back-link">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Stories
+      </a>
+      <header class="article-header">
+        <div class="sec-tag"><span>✦</span> HARIRAM STORIES</div>
+        <h1>{post.frontmatter.title}</h1>
+        <p class="date">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-IN', {dateStyle:'long'})}</p>
+      </header>
+      <article class="content"><Content /></article>
+    </div>
   </main>
 
   <Footer />
 </BaseLayout>
 
 <style>
-.article{padding:140px 6vw 80px;background:#f8f0df;color:#4b1717;min-height:100vh}
-.eyebrow{color:#9b6b2f;letter-spacing:.25em;font-size:.75rem}
-h1{font-family:serif;font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;max-width:900px}
-.date{color:#9b6b2f}
-.content{max-width:760px;margin:60px auto;font-size:1.1rem;line-height:1.9}
-.content :global(h2){margin-top:40px}
+.article {
+  padding: 140px 0 100px;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.article-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: transform .2s, color .2s;
+}
+
+.back-link:hover {
+  transform: translateX(-4px);
+  color: var(--gold-l);
+}
+
+.article-header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.15);
+  padding-bottom: 36px;
+}
+
+h1 {
+  font-family: var(--F);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--text);
+  margin: 16px 0 20px;
+}
+
+.date {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.content {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--text-dim);
+}
+
+.content :global(h2) {
+  font-family: var(--F);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 48px 0 16px;
+}
+
+.content :global(h3) {
+  font-family: var(--F);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold-l);
+  margin: 36px 0 12px;
+}
+
+.content :global(p) {
+  margin-bottom: 24px;
+}
+
+.content :global(strong) {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.content :global(ul), .content :global(ol) {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.content :global(li) {
+  margin-bottom: 10px;
+}
+
+.content :global(blockquote) {
+  border-left: 3px solid var(--gold);
+  padding-left: 24px;
+  margin: 36px 0;
+  font-style: italic;
+  font-family: var(--F);
+  font-size: 20px;
+  color: var(--text);
+}
 </style>

@@ -1,14 +1,14 @@
 ---
-// Products.astro
-// Product cards with:
-//   - 3D tilt on mousemove (GSAP)
-//   - Ingredient overlay on hover (CSS)
-//   - Staggered entrance via ScrollTrigger
+// Products.astro — v2
+// Product cards featuring new studio photography
+// Aloo Bhujia replaces the "Coming Soon" placeholder
+// Masala Chana Dal uses new high-res studio shots
+// 360° video badge on Aloo Bhujia card
 ---
 
 <section class="products" id="products">
   <div class="sec-bg-text" aria-hidden="true">नमकीन</div>
-  <div style="max-width:1200px;margin:0 auto;padding:0 40px;position:relative;z-index:1;">
+  <div class="container">
     <div class="products-head">
       <div>
         <div class="sec-tag">Our Products</div>
@@ -19,6 +19,37 @@
     </div>
     <div class="products-grid">
 
+      <!-- Aloo Bhujia (NEW - with 360° video) -->
+      <div class="pcard" data-tilt id="pcard-bhujia">
+        <div class="pcard-img">
+          <img src="/images/aloo_bhujia.png" alt="Aloo Bhujia"/>
+          <span class="pbadge">New Launch</span>
+          <div class="pcard-ingredients">
+            <div class="ing-title">What's inside</div>
+            <div class="ing-item">Potato Flakes & Besan</div>
+            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Turmeric & Red Chilli</div>
+            <div class="ing-item">Ajwain & Cumin</div>
+            <div class="ing-item">Rock Salt</div>
+          </div>
+          <div class="pcard-video-wrap">
+            <video src="/videos/aloo_bhujia_rotating_shoot.mp4" playsinline loop muted preload="metadata"></video>
+          </div>
+          <button class="pcard-360-badge" aria-label="Toggle 360° view">360° View</button>
+        </div>
+        <div class="pinfo">
+          <h3>Aloo Bhujia</h3>
+          <div class="pinfo-hi">आलू भुजिया</div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">Crispy</span></div>
+          <div class="pweight">⚖ 250g</div>
+          <div class="pfoot">
+            <div class="pprice">₹100 <span>/ 250g</span></div>
+            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dal Bhiji -->
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/dal-bhiji.jpg" alt="Dal Bhiji"/>
@@ -27,7 +58,7 @@
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal</div>
             <div class="ing-item">Kachi Ghani Mustard Oil</div>
-            <div class="ing-item">Turmeric &amp; Cumin</div>
+            <div class="ing-item">Turmeric & Cumin</div>
             <div class="ing-item">Rock Salt</div>
             <div class="ing-item">Bay Leaf</div>
           </div>
@@ -44,6 +75,7 @@
         </div>
       </div>
 
+      <!-- Shahi Dal Bhiji -->
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/premium.jpg" alt="Shahi Dal Bhiji"/>
@@ -68,9 +100,10 @@
         </div>
       </div>
 
+      <!-- Masala Chana Dal (upgraded photo) -->
       <div class="pcard" data-tilt>
         <div class="pcard-img">
-          <img src="/images/chana-dal.jpg" alt="Masala Chana Dal"/>
+          <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal"/>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Chana Dal (Bengal Gram)</div>
@@ -92,18 +125,28 @@
         </div>
       </div>
 
-
+      <!-- Masala Peanuts (Masala Moongfali - NEW Studio Photo) -->
       <div class="pcard" data-tilt>
-        <div class="pcard-img" style="background:#f9f9f9;">
-          <div class="placeholder" style="background:linear-gradient(135deg,#f0f0f0,#e8e8e8);color:#ccc;">⏳</div>
+        <div class="pcard-img">
+          <img src="/images/masala_moongfali.png" alt="Masala Moongfali (Peanuts)"/>
+          <span class="pbadge">Crunchy Special</span>
+          <div class="pcard-ingredients">
+            <div class="ing-title">What's inside</div>
+            <div class="ing-item">Select Groundnuts (Peanuts)</div>
+            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Hing &amp; Kashmiri Chilli</div>
+            <div class="ing-item">Black Salt &amp; Amchur</div>
+            <div class="ing-item">Hand-Ground Spices</div>
+          </div>
         </div>
         <div class="pinfo">
-          <h3>Coming Soon</h3>
-          <div class="pinfo-hi">जल्द आ रहा है</div>
-          <div class="ptags"><span class="ptag">New Recipe</span><span class="ptag">In Kitchen</span></div>
-          <div class="pweight">⚖ ???</div>
+          <h3>Masala Peanuts</h3>
+          <div class="pinfo-hi">मसाला मूंगफली</div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">Crunchy</span></div>
+          <div class="pweight">⚖ 250g</div>
           <div class="pfoot">
-            <div class="pprice" style="font-size:16px;color:var(--muted);font-style:italic;">Testing...</div>
+            <div class="pprice">₹100 <span>/ 250g</span></div>
+            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -123,3 +166,30 @@
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // 360° video toggle for Aloo Bhujia
+  (() => {
+    const card = document.getElementById('pcard-bhujia');
+    if (!card) return;
+    const badge = card.querySelector('.pcard-360-badge');
+    const videoWrap = card.querySelector('.pcard-video-wrap');
+    const video = videoWrap?.querySelector('video');
+    if (!badge || !video) return;
+
+    let active = false;
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      active = !active;
+      if (active) {
+        card.classList.add('video-active');
+        video.play();
+        badge.textContent = '✕ Close';
+      } else {
+        card.classList.remove('video-active');
+        video.pause();
+        badge.textContent = '360° View';
+      }
+    });
+  })();
+</script>

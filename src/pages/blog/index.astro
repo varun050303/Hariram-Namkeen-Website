@@ -9,39 +9,160 @@ const posts = Object.values(import.meta.glob('../../content/blog/*.md', { eager:
   .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 ---
 
-<BaseLayout>
+<BaseLayout title="Stories & Craft — Hariram Namkeen" description="Stories behind our namkeen, pure mustard oil traditions, and authentic recipes from Muzaffarnagar.">
   <Header />
   <main class="blog-page">
-    <section class="blog-hero">
-      <p class="eyebrow">HARIRAM STORIES</p>
-      <h1>Tradition,<br/><span>Ingredients & Honest Food</span></h1>
-      <p class="intro">Stories behind our namkeen, the ingredients we choose, and the traditional methods that shape every batch from our kitchen in Muzaffarnagar.</p>
-    </section>
+    <div class="blog-page-inner">
+      <section class="blog-hero">
+        <div class="sec-tag"><span>✦</span> HARIRAM STORIES</div>
+        <h1>Tradition, Ingredients<br/><em>&amp; Honest Food.</em></h1>
+        <p class="intro">The philosophy behind our craft, our insistence on pure Kachi Ghani mustard oil, and the heritage that shapes every batch in our Muzaffarnagar kitchen.</p>
+      </section>
 
-    <section class="blog-grid">
-      {posts.map((post) => (
-        <article class="blog-card">
-          <div class="top-line"></div>
-          <div class="card-body">
-            <p class="date">{new Date(post.pubDate).toLocaleDateString('en-IN')}</p>
-            <h2>{post.title}</h2>
-            <p>{post.description}</p>
-            <a href={`/blog/${post.slug}`}>Read story →</a>
-          </div>
-        </article>
-      ))}
-    </section>
+      <section class="blog-grid">
+        {posts.map((post) => (
+          <article class="blog-card" data-tilt>
+            <div class="top-line"></div>
+            <div class="card-body">
+              <span class="date">{new Date(post.pubDate).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+              <a href={`/blog/${post.slug}`} class="read-link">
+                Read story
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
-.blog-page{min-height:100vh;padding:8rem 6vw 5rem;background:#f8f0df;color:#4b1717}
-.blog-hero{max-width:850px;margin-bottom:4rem}.eyebrow{letter-spacing:.3em;font-size:.75rem;color:#9b6b2f}
-h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1;font-family:serif;margin:1rem 0}h1 span{color:#8b2525}
-.intro{max-width:620px;font-size:1.1rem;line-height:1.8;opacity:.85}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2rem}
-.blog-card{background:#fff8ea;border:1px solid rgba(139,37,37,.15);border-radius:24px;overflow:hidden;transition:.3s}.blog-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(75,23,23,.12)}
-.top-line{height:6px;background:#8b2525}.card-body{padding:2rem}.date{color:#9b6b2f;font-size:.85rem}h2{font-size:1.45rem;line-height:1.3}a{color:#8b2525;text-decoration:none;font-weight:600}
-@media(max-width:768px){.blog-page{padding:6rem 5vw 3rem}}
+.blog-page {
+  min-height: 100vh;
+  padding: 140px 0 100px;
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+}
+
+.blog-page-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.blog-hero {
+  max-width: 800px;
+  margin-bottom: 64px;
+}
+
+.blog-hero h1 {
+  font-family: var(--F);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--text);
+  margin: 16px 0 24px;
+}
+
+.blog-hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 600px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 32px;
+}
+
+.blog-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 168, 67, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform .4s var(--ease-out), border-color .3s, box-shadow .4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 168, 67, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--gold-glow-s);
+}
+
+.top-line {
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-d), var(--gold-l));
+}
+
+.card-body {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.date {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-family: var(--F);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.card-body p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-l);
+  text-decoration: none;
+  transition: gap .2s, color .2s;
+}
+
+.read-link:hover {
+  color: var(--gold);
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .blog-page {
+    padding: 100px 0 60px;
+  }
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

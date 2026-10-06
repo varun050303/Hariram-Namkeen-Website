@@ -1,5 +1,6 @@
 ---
-// ReelSection.astro
+// ReelSection.astro — v2
+// 3 video reels: 2 original + 1 new aloo bhujia rotating shoot
 ---
 
 <section class="reel-section">
@@ -10,7 +11,7 @@
       <!-- Reel 1 -->
       <div class="reel-container">
         <div class="reel-thumbnail">
-          <img src="/images/reel-thumbnail.jpg" alt="Instagram Reel Thumbnail" loading="lazy" />
+          <img src="/images/dal-bhiji.jpg" alt="Reel 1 - Customer Unboxing" loading="lazy" />
           <button class="reel-play-btn" aria-label="Play Reel">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </button>
@@ -23,7 +24,7 @@
       <!-- Reel 2 -->
       <div class="reel-container">
         <div class="reel-thumbnail">
-          <img src="/images/reel-thumbnail.jpg" alt="Instagram Reel Thumbnail 2" loading="lazy" />
+          <img src="/images/premium.jpg" alt="Reel 2 - Premium Unboxing" loading="lazy" />
           <button class="reel-play-btn" aria-label="Play Reel">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </button>
@@ -32,162 +33,46 @@
           <video src="/videos/hariram_namkeen_reel_2.mp4" playsinline loop muted preload="metadata" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;"></video>
         </div>
       </div>
-      <!-- Reel 3 (Static Image) -->
+
+      <!-- Reel 3 - Aloo Bhujia 360° Shoot -->
       <div class="reel-container">
-        <img src="/images/hariram_namkeen_rview.jpg" alt="Customer Reaction" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;" />
+        <div class="reel-thumbnail">
+          <img src="/images/aloo_bhujia.png" alt="Aloo Bhujia 360° Product Shoot" loading="lazy" />
+          <button class="reel-play-btn" aria-label="Play Reel">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="reel-embed-wrapper hidden">
+          <video src="/videos/aloo_bhujia_rotating_shoot.mp4" playsinline loop muted preload="metadata" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;"></video>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<style>
-  .reel-section {
-    padding: 100px 0;
-    background: var(--dark);
-    text-align: center;
-  }
-  .reel-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .reel-heading {
-    font-family: var(--F);
-    font-size: clamp(32px, 4vw, 48px);
-    font-weight: 900;
-    color: var(--cream);
-    margin-bottom: 40px;
-  }
-  .reel-heading em {
-    color: var(--gold);
-    font-style: italic;
-  }
-  .reels-grid {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .reel-container {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    aspect-ratio: 9/16;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(200, 147, 26, 0.2);
-    background: var(--maroon-d);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-  .reel-thumbnail {
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    z-index: 2;
-  }
-  .reel-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-  }
-  .reel-thumbnail:hover img {
-    opacity: 1;
-  }
-  .reel-play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
-    background: var(--gold);
-    color: var(--dark);
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    box-shadow: 0 4px 15px rgba(200, 147, 26, 0.4);
-  }
-  .reel-play-btn svg {
-    width: 28px;
-    height: 28px;
-    margin-left: 4px;
-  }
-  .reel-thumbnail:hover .reel-play-btn {
-    transform: translate(-50%, -50%) scale(1.1);
-    background: var(--gold-l);
-  }
-  .reel-embed-wrapper {
-    width: 100%;
-    height: 100%;
-    background: #000;
-  }
-  .reel-embed-wrapper.hidden {
-    display: none;
-  }
-  /* Instagram iframe resets */
-  :global(.instagram-media) {
-    margin: 0 !important;
-    min-width: 100% !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-</style>
-
 <script is:inline>
-  (function initReels() {
-    const containers = document.querySelectorAll('.reel-container');
-    
-    // Toggle mute when user clicks the video
-    containers.forEach(container => {
-      const video = container.querySelector('video');
-      if (video) {
-        container.addEventListener('click', () => {
-          video.muted = !video.muted;
-        });
-      }
+  // Reel play/pause toggle
+  (() => {
+    document.querySelectorAll('.reel-container').forEach(container => {
+      const thumbnail = container.querySelector('.reel-thumbnail');
+      const embedWrapper = container.querySelector('.reel-embed-wrapper');
+      const video = embedWrapper?.querySelector('video');
+      if (!thumbnail || !embedWrapper || !video) return;
+
+      thumbnail.addEventListener('click', () => {
+        thumbnail.style.display = 'none';
+        embedWrapper.classList.remove('hidden');
+        video.muted = false;
+        video.play();
+      });
+
+      video.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
     });
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const container = entry.target;
-          const thumb = container.querySelector('.reel-thumbnail');
-          const wrapper = container.querySelector('.reel-embed-wrapper');
-          const video = wrapper.querySelector('video');
-          
-          if (!video) return;
-
-          if (entry.isIntersecting) {
-            // Hide thumbnail and play video
-            if (thumb) thumb.style.display = 'none';
-            if (wrapper) wrapper.classList.remove('hidden');
-            
-            // Browsers require autoplaying videos to be muted
-            video.play().catch(err => console.log('Autoplay blocked by browser:', err));
-          } else {
-            // Pause video when out of view to save performance
-            if (!video.paused) {
-              video.pause();
-            }
-          }
-        });
-      }, { threshold: 0.5 }); // Trigger when 50% of the video is visible
-
-      containers.forEach(container => observer.observe(container));
-    }
   })();
 </script>
-
