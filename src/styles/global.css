@@ -1373,7 +1373,7 @@ body.cursor-hover #cursor-ring {
 }
 
 .hamper-inner {
-  max-width: var(--max-w);
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
   position: relative;
@@ -1894,7 +1894,7 @@ body.cursor-hover #cursor-ring {
 }
 
 .process-inner {
-  max-width: var(--max-w);
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
@@ -2031,7 +2031,7 @@ body.cursor-hover #cursor-ring {
 }
 
 .reel-inner {
-  max-width: var(--max-w);
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
   text-align: center;
@@ -2166,7 +2166,7 @@ body.cursor-hover #cursor-ring {
 }
 
 .gd-inner {
-  max-width: var(--max-w);
+  max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
   position: relative;
