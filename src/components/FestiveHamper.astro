@@ -1,84 +1,152 @@
 ---
-// FestiveHamper.astro — v2
-// Showcases the Hariram Special 4 gift platter
-// ₹499 with Free All-India Delivery
-// Includes: Aloo Bhujia, Masala Chana Dal, Dal Biji, Light Malka / Masala Moongfali
+// FestiveHamper.astro — v2 Warm Royal Heritage Edition
+// Showcases the Hariram Special 4 Tasting Box (800g)
+// ₹499 with Free All-India Delivery & Zero Hidden Charges
 ---
 
 <section class="hamper-section" id="hamper">
   <div class="hamper-inner">
-    <div class="sec-tag"><span>✦</span> शाही उपहार · Special Festive Tasting Box</div>
-    <h2 class="sec-title">The Hariram <em>Special 4.</em></h2>
-    <p class="sec-sub">Our signature four-variety tasting box — authentic Muzaffarnagar namkeen handcrafted in pure Kachi Ghani mustard oil. Delivered fresh right to your doorstep anywhere in India.</p>
+    <div class="sec-tag"><span>✦</span> शाही उपहार · India's Most Honest Namkeen Box</div>
+    <h2 class="sec-title">The Hariram <em>Special 4 Box.</em></h2>
+    <p class="sec-sub">800g of pure mustard-oil artisanal namkeen. No delivery charges, no hidden fees. Handcrafted in Muzaffarnagar and delivered fresh to any pin code in India.</p>
+
+    <!-- ── VALUE HOOK COMPARISON BANNER ────────────────────── -->
+    <div class="hook-banner-strip">
+      <div class="hbs-item">
+        <span class="hbs-icon">🚚</span>
+        <div>
+          <strong>No Delivery Fees</strong>
+          <span>100% Free Shipping all over India</span>
+        </div>
+      </div>
+      <div class="hbs-divider"></div>
+      <div class="hbs-item">
+        <span class="hbs-icon">🛡️</span>
+        <div>
+          <strong>No Hidden Charges</strong>
+          <span>Taxes &amp; sturdy packaging included</span>
+        </div>
+      </div>
+      <div class="hbs-divider"></div>
+      <div class="hbs-item">
+        <span class="hbs-icon">⚖️</span>
+        <div>
+          <strong>Total 800g Net Weight</strong>
+          <span>4 full 200g packs = ~₹62 / 100g</span>
+        </div>
+      </div>
+      <div class="hbs-divider"></div>
+      <div class="hbs-item">
+        <span class="hbs-icon">🌿</span>
+        <div>
+          <strong>100% Kachi Ghani Oil</strong>
+          <span>Zero palm oil, zero chemical preservatives</span>
+        </div>
+      </div>
+    </div>
 
     <div class="hamper-grid">
-      <div class="hamper-gallery" id="hamper-gallery">
-        <img src="/images/hariram_special_4_top_view.png" alt="Hariram Special 4 - Top View" class="active"/>
-        <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 - Portrait View"/>
-        <img src="/images/hariram_special_4_top_view_wide_angle.png" alt="Hariram Special 4 - Wide Angle"/>
-        <div class="hamper-badge">
-          <span>₹499 Only</span> · Free All-India Delivery
+      <!-- Left: Interactive Gallery -->
+      <div class="hamper-gallery-wrap">
+        <div class="hamper-gallery" id="hamper-gallery">
+          <img src="/images/hariram_special_4_top_view.png" alt="Hariram Special 4 - Top View Platter" class="active"/>
+          <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 - Portrait View with Brass Decanter"/>
+          <img src="/images/hariram_special_4_top_view_wide_angle.png" alt="Hariram Special 4 - Wide Angle Table Presentation"/>
+          <div class="hamper-badge">
+            <span>₹499 Only</span> · Free All-India Delivery
+          </div>
+        </div>
+
+        <!-- Thumbnails for quick switching -->
+        <div class="hamper-thumbs" id="hamper-thumbs">
+          <button class="h-thumb active" data-img="0">
+            <img src="/images/hariram_special_4_top_view.png" alt="Platter Top View" />
+          </button>
+          <button class="h-thumb" data-img="1">
+            <img src="/images/hariram_special_4_v2.png" alt="Royal Presentation" />
+          </button>
+          <button class="h-thumb" data-img="2">
+            <img src="/images/hariram_special_4_top_view_wide_angle.png" alt="Wide Table Presentation" />
+          </button>
         </div>
       </div>
 
+      <!-- Right: Value Details & Contents -->
       <div class="hamper-details">
         <div class="hamper-price-card">
           <div class="hamper-price-left">
-            <div class="hamper-price-label">Special 4-Variety Box</div>
-            <div class="hamper-price-val">₹499 <span class="hamper-price-allin">all inclusive</span></div>
+            <div class="hamper-price-label">Launch Special Tasting Box</div>
+            <div class="hamper-price-val">₹499 <span class="hamper-price-allin">Net Payable</span></div>
           </div>
           <div class="hamper-shipping-badge">
             <span class="shipping-icon">🚚</span>
             <div>
               <strong>FREE DELIVERY</strong>
-              <span>All Over India 🇮🇳</span>
+              <span>Any Pin Code in India 🇮🇳</span>
             </div>
           </div>
         </div>
 
-        <h3>Four signature namkeens,<br/><em>one irresistible box.</em></h3>
+        <h3>4 Signature Namkeens.<br/><em>800g of Pure Craft.</em></h3>
         <p class="hamper-desc">
-          Each box brings together four handcrafted namkeens cooked slow in pure Kachi Ghani mustard oil with home-ground spices. Zero palm oil, zero chemical preservatives — pure authentic taste.
+          Most brands charge you for courier, add taxes at checkout, and cut costs using palm oil. 
+          At Hariram Namkeen, <strong>₹499 is the pure product price</strong>. Every rupee goes directly into real ingredients: cold-pressed mustard oil, high-protein pulses, and home-ground spices.
         </p>
 
+        <!-- The 4 Varieties Breakdown -->
         <div class="hamper-contents">
           <div class="hamper-item">
             <span class="hamper-item-icon">🥔</span>
-            <div>
-              <strong>Aloo Bhujia</strong>
-              <span class="hamper-item-sub">Crispy, spiced potato &amp; besan</span>
+            <div class="hamper-item-info">
+              <div class="h-name-row">
+                <strong>Aloo Bhujia</strong>
+                <span class="h-weight">~200g</span>
+              </div>
+              <span class="hamper-item-sub">Crispy potato flakes &amp; besan in pure mustard oil</span>
             </div>
           </div>
+
           <div class="hamper-item">
             <span class="hamper-item-icon">🥜</span>
-            <div>
-              <strong>Masala Chana Dal</strong>
-              <span class="hamper-item-sub">Crunchy Bengal gram &amp; chaat masala</span>
+            <div class="hamper-item-info">
+              <div class="h-name-row">
+                <strong>Masala Chana Dal</strong>
+                <span class="h-weight">~200g</span>
+              </div>
+              <span class="hamper-item-sub">Protein-rich roasted Bengal gram with tangy chaat masala</span>
             </div>
           </div>
+
           <div class="hamper-item">
             <span class="hamper-item-icon">🍛</span>
-            <div>
-              <strong>Dal Biji</strong>
-              <span class="hamper-item-sub">Heritage moong dal classic</span>
+            <div class="hamper-item-info">
+              <div class="h-name-row">
+                <strong>Dal Biji</strong>
+                <span class="h-weight">~200g</span>
+              </div>
+              <span class="hamper-item-sub">The classic Muzaffarnagar moong dal heritage recipe</span>
             </div>
           </div>
+
           <div class="hamper-item hamper-choice">
             <span class="hamper-item-icon">🫘</span>
-            <div>
-              <strong>Light Malka / Masala Moongfali</strong>
-              <span class="hamper-item-sub">Choose your favourite crunch</span>
+            <div class="hamper-item-info">
+              <div class="h-name-row">
+                <strong>Light Malka / Masala Moongfali</strong>
+                <span class="h-weight">~200g</span>
+              </div>
+              <span class="hamper-item-sub">Choose your favourite extra crunch!</span>
             </div>
           </div>
         </div>
 
         <div class="hamper-cta">
-          <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Hariram%20Special%204%20Box%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20order%20details." target="_blank" rel="noopener noreferrer" class="btn-p" data-magnetic>
-            Order Special 4 @ ₹499
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Hariram%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="btn-p" data-magnetic>
+            Order Special 4 @ ₹499 (Free Delivery)
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#products" class="btn-wa" data-magnetic>
-            View All Products
+            View Individual Packs
           </a>
         </div>
       </div>
@@ -87,25 +155,44 @@
 </section>
 
 <script is:inline>
-  // Hamper gallery auto-cycle
+  // Hamper gallery thumbnail switcher & auto-cycle
   (() => {
     const gallery = document.getElementById('hamper-gallery');
+    const thumbs = document.querySelectorAll('#hamper-thumbs .h-thumb');
     if (!gallery) return;
     const imgs = gallery.querySelectorAll('img');
     if (imgs.length < 2) return;
     let idx = 0;
-    
-    setInterval(() => {
-      imgs[idx].classList.remove('active');
-      idx = (idx + 1) % imgs.length;
-      imgs[idx].classList.add('active');
-    }, 4000);
+    let timer = null;
 
-    // Click to advance
-    gallery.addEventListener('click', () => {
+    function setSlide(newIdx) {
       imgs[idx].classList.remove('active');
-      idx = (idx + 1) % imgs.length;
+      thumbs[idx]?.classList.remove('active');
+
+      idx = (newIdx + imgs.length) % imgs.length;
+
       imgs[idx].classList.add('active');
+      thumbs[idx]?.classList.add('active');
+    }
+
+    thumbs.forEach((thumb, i) => {
+      thumb.addEventListener('click', () => {
+        setSlide(i);
+        restartTimer();
+      });
     });
+
+    function startTimer() {
+      timer = setInterval(() => {
+        setSlide(idx + 1);
+      }, 5000);
+    }
+
+    function restartTimer() {
+      if (timer) clearInterval(timer);
+      startTimer();
+    }
+
+    startTimer();
   })();
 </script>
