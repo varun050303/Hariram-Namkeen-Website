@@ -1,43 +1,52 @@
 ---
-// FestiveHamper.astro — v2 Warm Royal Heritage Edition
+// FestiveHamper.astro — Professional Gourmet Edition
 // Showcases the Hariram Special 4 Tasting Box (800g)
 // ₹499 with Free All-India Delivery & Zero Hidden Charges
+// Zero emojis — 100% fine-line SVG iconography
 ---
 
 <section class="hamper-section" id="hamper">
   <div class="hamper-inner">
     <div class="sec-tag"><span>✦</span> शाही उपहार · India's Most Honest Namkeen Box</div>
     <h2 class="sec-title">The Hariram <em>Special 4 Box.</em></h2>
-    <p class="sec-sub">800g of pure mustard-oil artisanal namkeen. No delivery charges, no hidden fees. Handcrafted in Muzaffarnagar and delivered fresh to any pin code in India.</p>
+    <p class="sec-sub">800g of pure mustard-oil artisanal namkeen. No delivery charges, no hidden fees. Handcrafted in Muzaffarnagar and delivered fresh to any pin code across India.</p>
 
-    <!-- ── VALUE HOOK COMPARISON BANNER ────────────────────── -->
+    <!-- ── VALUE HOOK COMPARISON BANNER STRIP ────────────── -->
     <div class="hook-banner-strip">
       <div class="hbs-item">
-        <span class="hbs-icon">🚚</span>
+        <span class="hbs-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/><path d="M17 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 15.52 8H14v10Z"/></svg>
+        </span>
         <div>
           <strong>No Delivery Fees</strong>
-          <span>100% Free Shipping all over India</span>
+          <span>100% Free Shipping to all Indian pin codes</span>
         </div>
       </div>
       <div class="hbs-divider"></div>
       <div class="hbs-item">
-        <span class="hbs-icon">🛡️</span>
+        <span class="hbs-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
         <div>
           <strong>No Hidden Charges</strong>
-          <span>Taxes &amp; sturdy packaging included</span>
+          <span>Taxes &amp; sturdy 5-ply protective packaging included</span>
         </div>
       </div>
       <div class="hbs-divider"></div>
       <div class="hbs-item">
-        <span class="hbs-icon">⚖️</span>
+        <span class="hbs-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+        </span>
         <div>
           <strong>Total 800g Net Weight</strong>
-          <span>4 full 200g packs = ~₹62 / 100g</span>
+          <span>4 full 200g packs = Just ~₹62 / 100g</span>
         </div>
       </div>
       <div class="hbs-divider"></div>
       <div class="hbs-item">
-        <span class="hbs-icon">🌿</span>
+        <span class="hbs-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+        </span>
         <div>
           <strong>100% Kachi Ghani Oil</strong>
           <span>Zero palm oil, zero chemical preservatives</span>
@@ -59,13 +68,13 @@
 
         <!-- Thumbnails for quick switching -->
         <div class="hamper-thumbs" id="hamper-thumbs">
-          <button class="h-thumb active" data-img="0">
+          <button class="h-thumb active" data-img="0" aria-label="View Platter Top View">
             <img src="/images/hariram_special_4_top_view.png" alt="Platter Top View" />
           </button>
-          <button class="h-thumb" data-img="1">
+          <button class="h-thumb" data-img="1" aria-label="View Royal Brass Presentation">
             <img src="/images/hariram_special_4_v2.png" alt="Royal Presentation" />
           </button>
-          <button class="h-thumb" data-img="2">
+          <button class="h-thumb" data-img="2" aria-label="View Wide Angle Presentation">
             <img src="/images/hariram_special_4_top_view_wide_angle.png" alt="Wide Table Presentation" />
           </button>
         </div>
@@ -79,10 +88,12 @@
             <div class="hamper-price-val">₹499 <span class="hamper-price-allin">Net Payable</span></div>
           </div>
           <div class="hamper-shipping-badge">
-            <span class="shipping-icon">🚚</span>
+            <span class="shipping-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/><path d="M17 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 15.52 8H14v10Z"/></svg>
+            </span>
             <div>
               <strong>FREE DELIVERY</strong>
-              <span>Any Pin Code in India 🇮🇳</span>
+              <span>Any Pin Code in India</span>
             </div>
           </div>
         </div>
@@ -93,10 +104,12 @@
           At Hariram Namkeen, <strong>₹499 is the pure product price</strong>. Every rupee goes directly into real ingredients: cold-pressed mustard oil, high-protein pulses, and home-ground spices.
         </p>
 
-        <!-- The 4 Varieties Breakdown -->
+        <!-- The 4 Varieties Breakdown with clean SVG icons -->
         <div class="hamper-contents">
           <div class="hamper-item">
-            <span class="hamper-item-icon">🥔</span>
+            <span class="hamper-item-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
             <div class="hamper-item-info">
               <div class="h-name-row">
                 <strong>Aloo Bhujia</strong>
@@ -107,7 +120,9 @@
           </div>
 
           <div class="hamper-item">
-            <span class="hamper-item-icon">🥜</span>
+            <span class="hamper-item-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
             <div class="hamper-item-info">
               <div class="h-name-row">
                 <strong>Masala Chana Dal</strong>
@@ -118,7 +133,9 @@
           </div>
 
           <div class="hamper-item">
-            <span class="hamper-item-icon">🍛</span>
+            <span class="hamper-item-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
             <div class="hamper-item-info">
               <div class="h-name-row">
                 <strong>Dal Biji</strong>
@@ -129,7 +146,9 @@
           </div>
 
           <div class="hamper-item hamper-choice">
-            <span class="hamper-item-icon">🫘</span>
+            <span class="hamper-item-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-d)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
             <div class="hamper-item-info">
               <div class="h-name-row">
                 <strong>Light Malka / Masala Moongfali</strong>

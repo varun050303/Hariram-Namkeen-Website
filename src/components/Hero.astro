@@ -1,108 +1,145 @@
 ---
-// Hero.astro — v2 Warm Royal Heritage Edition
-// Features:
-// 1. Infinite-looping Aloo Bhujia 360° studio shoot video in hero visual
-// 2. Interactive carousel switcher (Aloo Bhujia 360°, Special 4 800g Platter, Chana Dal, Dal Biji, Moongfali)
-// 3. Prominent ₹499 Super Hook Card (No delivery fees, No hidden charges, Pure product price, 800g total = 4 x 200g)
-// 4. Floating motion badges & glowing ambient micro-animations
+// Hero.astro — Professional Gourmet Luxury Edition
+// 1. Authoritative bold typography (Playfair Display 800 + Plus Jakarta Sans)
+// 2. Infinite-playing Aloo Bhujia 360° rotating video in arch-framed royal pedestal
+// 3. High-converting Royal Certificate Hook Card for ₹499 (800g, ₹0 delivery, zero hidden charges)
+// 4. Zero plain emojis — replaced with bespoke fine-line SVG vector icons
+// 5. Unique, non-repetitive product photography in carousel switcher
 ---
 
 <section class="hero" id="hero">
-  <!-- Warm ambient background glow -->
-  <div class="hero-ambient-glow" aria-hidden="true"></div>
+  <!-- Architectural background atmosphere -->
+  <div class="hero-arch-pattern" aria-hidden="true"></div>
+  <div class="hero-radial-glow" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-origin" id="h-origin">
-      <span class="hero-origin-dot"></span>
-      <span>Muzaffarnagar, UP · Authentic Heritage Craft</span>
+    <!-- Prestige Location & Heritage Tag -->
+    <div class="hero-prestige-tag" id="h-origin">
+      <span class="prestige-dot"></span>
+      <span class="prestige-text">Muzaffarnagar, UP · Authentic Heritage Kadhai</span>
     </div>
 
+    <!-- Bold, High-Contrast Main Headline -->
     <h1 class="hero-headline">
       <span class="split-line"><span class="split-inner" id="hl1">Authentic UP Namkeen.</span></span>
-      <span class="split-line"><em><span class="split-inner" id="hl2">Pure Mustard Oil.</span></em></span>
-      <span class="split-line"><span class="highlight-phrase"><span class="split-inner" id="hl3">Zero Shortcuts.</span></span></span>
+      <span class="split-line"><em class="headline-crimson"><span class="split-inner" id="hl2">Pure Mustard Oil.</span></em></span>
+      <span class="split-line"><span class="headline-gold"><span class="split-inner" id="hl3">Zero Shortcuts.</span></span></span>
     </h1>
 
     <p class="hero-sub" id="h-sub">
-      Slow-cooked in cold-pressed <strong>Kachi Ghani mustard oil</strong> with fresh stone-ground spices from our own kitchen. Zero palm oil. Zero chemical preservatives.
+      Slow-cooked in cold-pressed <strong>Kachi Ghani mustard oil</strong> with fresh stone-ground spices from our own kitchen. Zero palm oil. Zero chemical preservatives. Made fresh every week.
     </p>
 
-    <!-- ── THE BIGGEST HOOK: SPECIAL 4 BOX (₹499) ────────────────── -->
-    <div class="hero-hook-card" id="h-hook">
-      <div class="hh-ribbon-row">
-        <span class="hh-pill-launch">🔥 BIGGEST LAUNCH OFFER</span>
-        <span class="hh-pill-ship">🚚 FREE DELIVERY ALL OVER INDIA</span>
+    <!-- ── THE ₹499 ROYAL CERTIFICATE HOOK CARD ──────────────────── -->
+    <div class="hero-certificate-card" id="h-hook">
+      <div class="cert-corner tl">✦</div>
+      <div class="cert-corner tr">✦</div>
+      <div class="cert-corner bl">✦</div>
+      <div class="cert-corner br">✦</div>
+
+      <!-- Top Hook Badges -->
+      <div class="cert-badge-row">
+        <span class="cert-pill-launch">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Direct Kitchen Launch Offer
+        </span>
+        <span class="cert-pill-shipping">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/><path d="M17 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 15.52 8H14v10Z"/></svg>
+          Free All-India Express Delivery
+        </span>
       </div>
 
-      <div class="hh-main">
-        <div class="hh-pricing">
-          <div class="hh-box-title">The Hariram Special 4 Box</div>
-          <div class="hh-price-row">
-            <span class="hh-currency">₹</span>
-            <span class="hh-amount">499</span>
-            <span class="hh-allin">All-Inclusive</span>
+      <!-- Main Price & Weight Showcase -->
+      <div class="cert-showcase">
+        <div class="cert-price-col">
+          <div class="cert-box-title">The Hariram Special 4 Box</div>
+          <div class="cert-price-wrap">
+            <span class="cert-curr">₹</span>
+            <span class="cert-val">499</span>
+            <span class="cert-tax-note">All-Inclusive (No Added GST)</span>
           </div>
         </div>
 
-        <div class="hh-weight-box">
-          <span class="hh-weight-badge">TOTAL 800g</span>
-          <span class="hh-weight-sub">4 × 200g Fresh Packs</span>
+        <div class="cert-weight-badge">
+          <div class="cert-weight-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+          </div>
+          <div class="cert-weight-text">
+            <strong>TOTAL 800g</strong>
+            <span>4 × 200g Fresh Packs</span>
+          </div>
         </div>
       </div>
 
-      <!-- Value Hook Pillars -->
-      <div class="hh-pillars">
-        <div class="hh-pillar">
-          <div class="hh-p-icon">✓</div>
-          <div class="hh-p-text">
+      <!-- 4 Value Guarantee Pillars -->
+      <div class="cert-pillars-grid">
+        <div class="cert-pillar">
+          <div class="cert-p-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="cert-p-body">
             <strong>No Delivery Fees</strong>
-            <span>₹0 shipping to any pin code</span>
+            <span>₹0 shipping to any Indian pin code</span>
           </div>
         </div>
-        <div class="hh-pillar">
-          <div class="hh-p-icon">✓</div>
-          <div class="hh-p-text">
-            <strong>No Hidden Charges</strong>
-            <span>No extra GST or packing fee</span>
+
+        <div class="cert-pillar">
+          <div class="cert-p-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="cert-p-body">
+            <strong>Zero Hidden Charges</strong>
+            <span>No handling or surprise checkout costs</span>
           </div>
         </div>
-        <div class="hh-pillar">
-          <div class="hh-p-icon">✓</div>
-          <div class="hh-p-text">
+
+        <div class="cert-pillar">
+          <div class="cert-p-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="cert-p-body">
             <strong>Pure Product Value</strong>
-            <span>Only ~₹62 / 100g delivered!</span>
+            <span>Just ~₹62 / 100g delivered to your door</span>
           </div>
         </div>
-        <div class="hh-pillar">
-          <div class="hh-p-icon">✓</div>
-          <div class="hh-p-text">
-            <strong>4 Varieties (200g each)</strong>
+
+        <div class="cert-pillar">
+          <div class="cert-p-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="cert-p-body">
+            <strong>4 Fresh 200g Packs</strong>
             <span>Aloo Bhujia · Chana Dal · Dal Biji · Moongfali</span>
           </div>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="hh-actions">
-        <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20claim%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20order%20details." target="_blank" rel="noopener noreferrer" class="btn-hook-order" data-magnetic>
+      <!-- High-Impact Action CTAs -->
+      <div class="cert-action-bar">
+        <a 
+          href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-cert-primary" 
+          data-magnetic
+        >
           <span>Claim Special 4 Box @ ₹499 (Free Delivery)</span>
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#products" class="btn-hook-sec">Explore All Products</a>
+        <a href="#products" class="btn-cert-secondary">Explore Products</a>
       </div>
     </div>
-
   </div>
 
-  <!-- ── RIGHT COLUMN: CINEMATIC 360° VIDEO & INTERACTIVE CAROUSEL ── -->
-  <div class="hero-visual-wrap">
-    <div class="hero-media-card" id="hero-media-card">
+  <!-- ── HERO RIGHT: ARCH-FRAMED 360° VIDEO & INTERACTIVE SWITCHER ── -->
+  <div class="hero-visual-col">
+    <div class="hero-arch-card" id="hero-media-card">
 
-      <!-- Slides Container -->
-      <div class="hero-slides-viewport">
+      <!-- Viewport Frame -->
+      <div class="hero-arch-viewport">
 
-        <!-- Slide 1: Aloo Bhujia 360° Rotating Studio Video (Active by default) -->
-        <div class="hero-slide-pane active" data-slide="0">
+        <!-- Slide 0: Aloo Bhujia 360° Rotating Studio Video (Active on load) -->
+        <div class="arch-slide-pane active" data-slide="0">
           <video 
             src="/videos/aloo_bhujia_rotating_shoot.mp4" 
             autoplay 
@@ -110,149 +147,165 @@
             muted 
             playsinline 
             preload="auto"
-            class="hero-video-loop"
-            aria-label="360° rotating view of Hariram Aloo Bhujia"
+            class="arch-video"
+            aria-label="360° studio rotation of fresh Hariram Aloo Bhujia"
           ></video>
-          <div class="hero-media-overlay"></div>
-          <div class="hero-live-badge">
-            <span class="live-dot"></span>
-            <span>360° Studio Shoot · Aloo Bhujia</span>
+          <div class="arch-vignette"></div>
+
+          <!-- Studio Live Indicator -->
+          <div class="arch-meta-chip chip-top-left">
+            <span class="meta-pulse-dot"></span>
+            <span>360° Rotating Shoot</span>
           </div>
-          <div class="hero-floating-badge badge-top-right">
-            <span>🥔 Crispy Potato Flakes &amp; Besan</span>
+
+          <!-- Ingredient Callouts (Vector Icons) -->
+          <div class="arch-feature-chip chip-top-right">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Fresh Potato Flakes &amp; Besan</span>
           </div>
-          <div class="hero-floating-badge badge-bot-left">
-            <span>🔥 100% Pure Mustard Oil</span>
+
+          <div class="arch-feature-chip chip-bottom-left">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            <span>Pure Kachi Ghani Mustard Oil</span>
           </div>
         </div>
 
-        <!-- Slide 2: Special 4 Royal Platter (800g) -->
-        <div class="hero-slide-pane" data-slide="1">
-          <img src="/images/hariram_special_4_v2.png" alt="Hariram Special 4 Royal Gift Platter" loading="eager" />
-          <div class="hero-media-overlay"></div>
-          <div class="hero-live-badge">
-            <span>👑 4 Flavours · 800g Royal Platter</span>
+        <!-- Slide 1: Masala Chana Dal -->
+        <div class="arch-slide-pane" data-slide="1">
+          <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal Studio Shoot" loading="lazy" />
+          <div class="arch-vignette"></div>
+          <div class="arch-meta-chip chip-top-left">
+            <span>Masala Chana Dal · 200g</span>
           </div>
-          <div class="hero-floating-badge badge-top-right">
-            <span>₹499 Free All-India Delivery</span>
-          </div>
-        </div>
-
-        <!-- Slide 3: Masala Chana Dal -->
-        <div class="hero-slide-pane" data-slide="2">
-          <img src="/images/masala_chana_dal.png" alt="Masala Chana Dal" loading="lazy" />
-          <div class="hero-media-overlay"></div>
-          <div class="hero-live-badge">
-            <span>🥜 Masala Chana Dal · 200g</span>
-          </div>
-          <div class="hero-floating-badge badge-top-right">
-            <span>Hand-Ground Amchur &amp; Chaat Masala</span>
+          <div class="arch-feature-chip chip-top-right">
+            <span>High Protein · Stone-Ground Amchur</span>
           </div>
         </div>
 
-        <!-- Slide 4: Dal Biji -->
-        <div class="hero-slide-pane" data-slide="3">
-          <img src="/images/dal-bhiji.jpg" alt="Traditional Dal Biji" loading="lazy" />
-          <div class="hero-media-overlay"></div>
-          <div class="hero-live-badge">
-            <span>🍛 Dal Biji · Heritage Muzaffarnagar</span>
+        <!-- Slide 2: Traditional Dal Biji -->
+        <div class="arch-slide-pane" data-slide="2">
+          <img src="/images/dal-bhiji.jpg" alt="Traditional Moong Dal Dal Biji" loading="lazy" />
+          <div class="arch-vignette"></div>
+          <div class="arch-meta-chip chip-top-left">
+            <span>Dal Biji · Muzaffarnagar Classic</span>
+          </div>
+          <div class="arch-feature-chip chip-top-right">
+            <span>Moong Dal &amp; Heritage Spices</span>
           </div>
         </div>
 
-        <!-- Slide 5: Masala Moongfali -->
-        <div class="hero-slide-pane" data-slide="4">
+        <!-- Slide 3: Masala Moongfali -->
+        <div class="arch-slide-pane" data-slide="3">
           <img src="/images/masala_moongfali.png" alt="Masala Moongfali Peanuts" loading="lazy" />
-          <div class="hero-media-overlay"></div>
-          <div class="hero-live-badge">
-            <span>🫘 Masala Moongfali · Crunchy Peanuts</span>
+          <div class="arch-vignette"></div>
+          <div class="arch-meta-chip chip-top-left">
+            <span>Masala Moongfali · 200g</span>
+          </div>
+          <div class="arch-feature-chip chip-top-right">
+            <span>Kashmiri Chilli &amp; Roasted Peanuts</span>
+          </div>
+        </div>
+
+        <!-- Slide 4: Special 4 Platter Preview -->
+        <div class="arch-slide-pane" data-slide="4">
+          <img src="/images/hariram_special_4_top_view.png" alt="Hariram Special 4 Platter Top View" loading="lazy" />
+          <div class="arch-vignette"></div>
+          <div class="arch-meta-chip chip-top-left">
+            <span>The Special 4 Tasting Platter</span>
+          </div>
+          <div class="arch-feature-chip chip-top-right">
+            <span>₹499 All-Inclusive · Free Shipping</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Interactive Carousel Controller / Navigation -->
-      <div class="hero-carousel-controls">
-        <button class="carousel-arrow prev" id="hero-prev" aria-label="Previous slide">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+      <!-- Professional Carousel Controller -->
+      <div class="hero-arch-controls">
+        <button class="arch-nav-arrow prev" id="hero-prev" aria-label="Previous product">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
         </button>
 
-        <div class="carousel-pills" id="hero-pills">
-          <button class="c-pill active" data-index="0">🎥 Aloo Bhujia 360°</button>
-          <button class="c-pill" data-index="1">🎁 Special 4 (800g)</button>
-          <button class="c-pill" data-index="2">🥜 Chana Dal</button>
-          <button class="c-pill" data-index="3">🍛 Dal Biji</button>
-          <button class="c-pill" data-index="4">🫘 Moongfali</button>
+        <div class="arch-pills-bar" id="hero-pills">
+          <button class="arch-pill active" data-index="0">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+            Aloo Bhujia 360°
+          </button>
+          <button class="arch-pill" data-index="1">Chana Dal</button>
+          <button class="arch-pill" data-index="2">Dal Biji</button>
+          <button class="arch-pill" data-index="3">Moongfali</button>
+          <button class="arch-pill" data-index="4">Special 4 Box</button>
         </div>
 
-        <button class="carousel-arrow next" id="hero-next" aria-label="Next slide">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+        <button class="arch-nav-arrow next" id="hero-next" aria-label="Next product">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
 
     </div>
   </div>
 
-  <a href="#craft" class="hero-scroll-hint" aria-label="Scroll down">
-    <span class="hero-scroll-label">Scroll to Explore</span>
-    <span class="hero-scroll-arrow">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  <!-- Scroll Down Hint -->
+  <a href="#craft" class="hero-scroll-cue" aria-label="Scroll down to explore">
+    <span class="cue-label">Explore The Craft</span>
+    <span class="cue-arrow">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </span>
   </a>
 </section>
 
 <script is:inline>
-  // Hero Interactive Carousel Switcher
+  // Hero Arch Carousel Controller
   (() => {
-    const slides = document.querySelectorAll('.hero-slide-pane');
-    const pills = document.querySelectorAll('#hero-pills .c-pill');
+    const panes = document.querySelectorAll('.arch-slide-pane');
+    const pills = document.querySelectorAll('#hero-pills .arch-pill');
     const prevBtn = document.getElementById('hero-prev');
     const nextBtn = document.getElementById('hero-next');
-    if (!slides.length) return;
+    if (!panes.length) return;
 
-    let currentIndex = 0;
+    let current = 0;
     let timer = null;
 
-    function goToSlide(idx) {
-      slides[currentIndex].classList.remove('active');
-      pills[currentIndex]?.classList.remove('active');
+    function showSlide(idx) {
+      panes[current].classList.remove('active');
+      pills[current]?.classList.remove('active');
 
-      currentIndex = (idx + slides.length) % slides.length;
+      current = (idx + panes.length) % panes.length;
 
-      slides[currentIndex].classList.add('active');
-      pills[currentIndex]?.classList.add('active');
+      panes[current].classList.add('active');
+      pills[current]?.classList.add('active');
 
-      // If slide has video, ensure it plays
-      const vid = slides[currentIndex].querySelector('video');
+      // Video play state
+      const vid = panes[current].querySelector('video');
       if (vid && vid.paused) {
         vid.play().catch(() => {});
       }
     }
 
-    pills.forEach((pill, i) => {
-      pill.addEventListener('click', () => {
-        goToSlide(i);
-        resetTimer();
+    pills.forEach((p, i) => {
+      p.addEventListener('click', () => {
+        showSlide(i);
+        restartTimer();
       });
     });
 
     prevBtn?.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-      resetTimer();
+      showSlide(current - 1);
+      restartTimer();
     });
 
     nextBtn?.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-      resetTimer();
+      showSlide(current + 1);
+      restartTimer();
     });
 
     function startTimer() {
-      // Auto advance every 6 seconds if user is idle
       timer = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 6000);
+        showSlide(current + 1);
+      }, 6500);
     }
 
-    function resetTimer() {
+    function restartTimer() {
       if (timer) clearInterval(timer);
       startTimer();
     }
