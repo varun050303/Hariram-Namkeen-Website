@@ -71,6 +71,46 @@ import '../styles/global.css';
       const ScrollTrigger = window.ScrollTrigger;
       gsap.registerPlugin(ScrollTrigger);
 
+      // ── REDUCED MOTION ────────────────────────────────────────────
+      const mediaReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function applyReducedMotionState() {
+        const animTargets = [
+          '#hero-h1', '#hero-sub', '#hero-offer', '#hero-cta', '#hero-proof', '#hero-visual',
+          '[data-row]', '.oil-left > *', '[data-tilt]', '.platform-card',
+          '.craft-left > *', '.craft-diff-item', '.craft-vs-card', '.craft-quote',
+          '.story-img-main', '.story-quote-card', '.story-content > *', '.milestone',
+          '[data-step]', '.sec-title', '.platforms-hl', '.oil-hl',
+          '.gd-proclamation', '.gd-pillar', '.gd-bottom-quote'
+        ];
+        animTargets.forEach(sel => {
+          document.querySelectorAll(sel).forEach(el => {
+            gsap.set(el, { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'transform' });
+          });
+        });
+        document.querySelectorAll('.hl-mark, [data-step]').forEach(el => el.classList.add('lit'));
+        const procLine = document.getElementById('proc-line');
+        if (procLine) procLine.style.width = '100%';
+        const omegaCount = document.getElementById('omega-count');
+        if (omegaCount) omegaCount.textContent = '3.0x';
+        ScrollTrigger.getAll().forEach(st => st.kill());
+      }
+
+      if (mediaReducedMotion.matches) {
+        applyReducedMotionState();
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+          a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({behavior:'auto', block:'start'}); }
+          });
+        });
+        return;
+      }
+
+      mediaReducedMotion.addEventListener('change', e => {
+        if (e.matches) applyReducedMotionState();
+      });
+
     // ── CURSOR (quickTo for performance) ─────────────────────────
     (function() {
       if (window.innerWidth <= 768) return;
@@ -347,11 +387,7 @@ import '../styles/global.css';
       });
     });
 
-    // ── REDUCED MOTION ────────────────────────────────────────────
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.globalTimeline.timeScale(10);
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    }
+    // ── REDUCED MOTION: Handled at start of initPageAnimations ───
 
     }
 
