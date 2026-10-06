@@ -1,6 +1,8 @@
 # build output
 dist/
 node_modules/
+.astro/
+leads_campaign/
 
 # local env files
 .env
