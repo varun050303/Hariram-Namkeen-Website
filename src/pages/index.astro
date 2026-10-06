@@ -131,17 +131,17 @@ import '../styles/global.css';
 
     // ── HERO ENTRANCE ─────────────────────────────────────────────
     gsap.set(['#h-origin', '#h-sub', '#h-hook', '#hero-media-card',
-              '#hl1', '#hl2', '#hl3'], {opacity: 0});
-    gsap.set(['#hl1', '#hl2', '#hl3'], {y: '100%'});
+              '#hl1', '#hl2'], {opacity: 0});
+    gsap.set(['#hl1', '#hl2'], {y: '100%'});
     gsap.set(['#h-origin', '#h-sub', '#h-hook'], {y: 24});
     gsap.set('#hero-media-card', {y: 30, scale: 0.96});
 
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: .1 });
     heroTl
       .to('#h-origin',            {opacity: 1, y: 0, duration: .5})
-      .to(['#hl1','#hl2','#hl3'], {y: '0%', opacity: 1, duration: .9, stagger: .1, ease: 'expo.out'}, '-=.2')
-      .to('#h-sub',               {opacity: 1, y: 0, duration: .6}, '-=.4')
+      .to(['#hl1','#hl2'],        {y: '0%', opacity: 1, duration: .9, stagger: .1, ease: 'expo.out'}, '-=.2')
       .to('#h-hook',              {opacity: 1, y: 0, duration: .7, ease: 'back.out(1.2)'}, '-=.3')
+      .to('#h-sub',               {opacity: 1, y: 0, duration: .6}, '-=.4')
       .to('#hero-media-card',     {opacity: 1, y: 0, scale: 1, duration: .9, ease: 'expo.out'}, '-=.6');
 
     // Marquee now uses fixed CSS animation speed only (no scroll reaction).
