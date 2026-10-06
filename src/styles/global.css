@@ -581,7 +581,11 @@ body.cursor-hover #cursor-ring {
 .hero-hook-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hook-badge-text {
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: .06em;
@@ -591,7 +595,23 @@ body.cursor-hover #cursor-ring {
   border: 1.5px solid rgba(117, 24, 24, 0.22);
   padding: 5px 14px;
   border-radius: 99px;
-  width: fit-content;
+}
+
+.offer-ship-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #107C41 0%, #0B5B2E 100%);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 99px;
+  box-shadow: 0 4px 16px rgba(16, 124, 65, 0.4), 0 0 14px rgba(34, 197, 94, 0.35);
+  border: 1px solid #4ADE80;
+  animation: pulse-ship 2.5s ease-in-out infinite;
 }
 
 .hook-dot {
@@ -606,21 +626,21 @@ body.cursor-hover #cursor-ring {
 .hero-offer-main {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .offer-lead {
   font-family: var(--F);
-  font-size: clamp(22px, 2.5vw, 28px);
-  font-weight: 700;
+  font-size: clamp(24px, 2.7vw, 30px);
+  font-weight: 800;
   color: var(--text);
   line-height: 1.2;
 }
 
 .offer-price-row {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
   margin-top: 2px;
 }
@@ -634,36 +654,81 @@ body.cursor-hover #cursor-ring {
   letter-spacing: -0.02em;
 }
 
-.offer-weight {
-  font-size: 14.5px;
+.offer-net-badge {
+  font-size: 12.5px;
   font-weight: 700;
-  color: var(--text);
-  background: rgba(117, 24, 24, 0.08);
-  border: 1px solid rgba(117, 24, 24, 0.16);
+  color: #107C41;
+  background: #E8F8EE;
+  border: 1px solid #A6E7BE;
   padding: 4px 12px;
   border-radius: 8px;
 }
 
-.offer-ship {
-  font-size: 11.5px;
+.offer-ship-banner {
+  font-size: 12px;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--green);
-  background: var(--green-bg);
-  border: 1px solid var(--green-border);
-  padding: 4px 10px;
+  color: #8C1D1D;
+  background: rgba(140, 29, 29, 0.08);
+  border: 1px dashed rgba(140, 29, 29, 0.35);
+  padding: 4px 12px;
   border-radius: 99px;
-  animation: pulse-ship 2.5s ease-in-out infinite;
 }
 
-.hero-offer-sub {
-  font-size: 15.5px;
-  line-height: 1.65;
+/* ── HERO 4-PACK BREAKDOWN (CLEAN, INSTANT SCAN) ── */
+.hero-pack-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 12px;
+  margin: 6px 0 2px;
+}
+
+.hp-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid rgba(194, 127, 21, 0.25);
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(35, 15, 6, 0.04);
+}
+
+.hp-check {
+  color: #107C41;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.hp-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+}
+
+.hp-wt {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--maroon);
+  background: rgba(117, 24, 24, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.hp-choice {
+  border-color: rgba(194, 127, 21, 0.45);
+  background: #FFFDF8;
+}
+
+.hero-pack-summary {
+  font-size: 14.5px;
+  line-height: 1.6;
   color: var(--text-dim);
-  font-weight: 500;
-  margin: 0;
-  max-width: 560px;
+  margin: 2px 0 4px;
+}
+
+.hero-pack-summary strong {
+  color: var(--text);
 }
 
 .hero-cta-group {
@@ -749,27 +814,6 @@ body.cursor-hover #cursor-ring {
   z-index: 1;
 }
 
-/* Feathered gradient blend that seamlessly integrates the visual into the cream left column */
-.hero-visual-blend {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 140px;
-  background: linear-gradient(to right, var(--bg) 0%, rgba(250, 245, 235, 0.6) 20%, transparent 100%);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.hero-visual-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, rgba(15, 4, 1, 0.45) 100%),
-              linear-gradient(180deg, rgba(20, 6, 2, 0.3) 0%, transparent 25%, transparent 75%, rgba(20, 6, 2, 0.6) 100%);
-  z-index: 3;
-  pointer-events: none;
-}
-
 .hero-parallax-wrap {
   width: 100%;
   height: 100%;
@@ -788,7 +832,7 @@ body.cursor-hover #cursor-ring {
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.7s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -804,13 +848,14 @@ body.cursor-hover #cursor-ring {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(1.15) brightness(0.96);
-  transform: scale(1.02);
-  transition: transform 7s ease-out;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-.hero-visual-slide.active .hero-media-element {
-  transform: scale(1);
+.hero-video-el {
+  will-change: opacity;
 }
 
 /* Floating Live Studio Tag */
@@ -2163,59 +2208,145 @@ body.cursor-hover #cursor-ring {
   color: var(--maroon);
 }
 
-/* ── PROCESS SECTION ────────────────────────────────── */
+/* ── PROCESS SECTION (ARTISANAL 4-STEP CRAFTSMANSHIP) ── */
 .process-section {
   padding: var(--section-pad) 0;
   position: relative;
   overflow: hidden;
   background: var(--bg-alt);
+  border-top: 1px solid rgba(194, 127, 21, 0.2);
+  border-bottom: 1px solid rgba(194, 127, 21, 0.2);
+}
+
+.process-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.process-header {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto 52px;
+}
+
+.process-header .sec-tag {
+  color: var(--maroon);
+  background: rgba(117, 24, 24, 0.08);
+  border-color: rgba(117, 24, 24, 0.2);
+  margin: 0 auto 12px;
+}
+
+.process-header .sec-title {
+  color: #230E05;
+  font-family: var(--F);
+  font-size: clamp(34px, 4.4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.process-header .sec-title em {
+  color: var(--maroon);
+  font-style: italic;
+}
+
+.process-promise {
+  font-size: 16px;
+  font-style: italic;
+  color: #5C4535;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .process-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-top: 48px;
+  gap: 22px;
   position: relative;
 }
 
-.proc-step-card {
+.process-line {
+  position: absolute;
+  top: 52px;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: rgba(194, 127, 21, 0.2);
+  z-index: 0;
+}
+
+.process-line-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--maroon);
+  transition: width 0.4s ease;
+}
+
+.process-step {
   background: #FFFFFF;
-  border: 1px solid rgba(194, 127, 21, 0.18);
+  border: 1.5px solid rgba(194, 127, 21, 0.22);
   border-radius: 20px;
-  padding: 32px 24px;
-  box-shadow: 0 6px 20px rgba(35, 15, 6, 0.04);
-  transition: transform .3s;
+  padding: 30px 22px;
+  box-shadow: 0 10px 28px rgba(35, 15, 6, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
-.proc-step-card:hover {
-  transform: translateY(-4px);
+.process-step:hover {
+  transform: translateY(-5px);
+  border-color: var(--maroon);
+  box-shadow: 0 16px 36px rgba(117, 24, 24, 0.12);
 }
 
-.proc-num {
+.step-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(117, 24, 24, 0.08);
+  border: 1.5px solid rgba(117, 24, 24, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.step-num {
   font-family: var(--F);
-  font-size: 36px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--maroon);
-  line-height: 1;
-  margin-bottom: 16px;
 }
 
-.proc-title {
+.step-icon-wrap {
+  margin-bottom: 14px;
+}
+
+.step-icon-wrap svg {
+  stroke: var(--gold-d);
+}
+
+.step-title {
   font-family: var(--F);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
-  color: var(--text);
+  color: #230E05;
   margin-bottom: 10px;
+  line-height: 1.25;
 }
 
-.proc-desc {
-  font-size: 14.5px;
-  color: var(--text-dim);
+.step-body {
+  font-size: 14px;
+  color: #5C4535;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* ── REELS SECTION (CINEMA DARK) ────────────────────── */
+/* ── REELS SECTION (CINEMA SHOWCASE) ────────────────── */
 .reel-section {
   padding: var(--section-pad) 0;
   background: radial-gradient(circle at 50% 30%, #350A0A 0%, #200404 70%, #120202 100%);
@@ -2225,16 +2356,23 @@ body.cursor-hover #cursor-ring {
 }
 
 .reel-inner {
-  max-width: var(--container);
+  max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--gutter);
+  text-align: center;
+}
+
+.reel-tag {
+  color: var(--gold-l);
+  border-color: rgba(226, 158, 40, 0.4);
+  background: rgba(226, 158, 40, 0.12);
+  margin: 0 auto 14px;
 }
 
 .reel-heading {
   font-family: var(--F);
   font-size: clamp(32px, 4.5vw, 56px);
   color: #FFFFFF;
-  text-align: center;
   margin-bottom: 48px;
 }
 
@@ -2251,56 +2389,46 @@ body.cursor-hover #cursor-ring {
 
 .reel-container {
   aspect-ratio: 9/16;
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(194, 127, 21, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(226, 158, 40, 0.35);
   background: #000;
 }
 
-.reel-thumbnail {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-}
-
-.reel-thumbnail img {
+.reel-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.reel-play-btn {
+.reel-badge {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: rgba(117, 24, 24, 0.9);
+  bottom: 16px;
+  left: 16px;
+  background: rgba(20, 6, 2, 0.82);
   backdrop-filter: blur(8px);
-  color: #fff;
-  display: flex;
+  border: 1px solid rgba(226, 158, 40, 0.35);
+  color: #FAF5EB;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 99px;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  transition: transform .3s;
+  gap: 6px;
+  z-index: 2;
 }
 
-.reel-play-btn svg { width: 24px; height: 24px; margin-left: 3px; }
-
-.reel-thumbnail:hover .reel-play-btn {
-  transform: translate(-50%, -50%) scale(1.15);
+.reel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E53935;
+  box-shadow: 0 0 8px #E53935;
 }
-
-.reel-embed-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-.reel-embed-wrapper.hidden { display: none; }
 
 /* ── REVIEWS SECTION (WARM IVORY CREAM) ─────────────── */
 .reviews-section {
@@ -2328,64 +2456,263 @@ body.cursor-hover #cursor-ring {
 .r-author { font-size: 13px; font-weight: 700; color: var(--maroon); }
 .r-city { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
 
-/* ── GRAHAK DEV SECTION (TOASTED WARM SAND) ─────────── */
-.grahak-dev-section {
+/* ── GRAHAK DEV SECTION (REGAL INDIAN HERITAGE) ───────── */
+.gd-section {
   padding: var(--section-pad) 0;
-  background: var(--bg-alt);
-  border-top: 1px solid rgba(194, 127, 21, 0.15);
+  background: #FAF5EB;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(194, 127, 21, 0.2);
+  border-bottom: 1px solid rgba(194, 127, 21, 0.2);
+}
+
+.gd-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(140px, 20vw, 280px);
+  font-weight: 900;
+  color: rgba(194, 127, 21, 0.04);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+.gd-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 1;
 }
 
 .gd-proclamation {
   text-align: center;
   max-width: 760px;
-  margin: 0 auto 56px;
+  margin: 0 auto 52px;
+}
+
+.gd-tag {
+  color: var(--maroon);
+  background: rgba(117, 24, 24, 0.08);
+  border-color: rgba(117, 24, 24, 0.22);
+  margin: 0 auto 12px;
+}
+
+.gd-hindi-main {
+  font-size: clamp(38px, 5.2vw, 58px);
+  font-weight: 900;
+  color: #5B1212;
+  margin: 10px 0 6px;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.gd-transliteration {
+  font-family: var(--F);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--gold-d);
+  margin-bottom: 8px;
+}
+
+.gd-meaning {
+  font-size: 17px;
+  color: #4A3528;
+  font-weight: 600;
+  margin: 0;
 }
 
 .gd-pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 26px;
 }
 
 .gd-pillar {
   background: #FFFFFF;
-  border: 1px solid rgba(194, 127, 21, 0.22);
+  border: 1.5px solid rgba(194, 127, 21, 0.24);
   border-radius: 20px;
-  padding: 36px 28px;
-  box-shadow: 0 6px 20px rgba(35, 15, 6, 0.04);
+  padding: 38px 28px;
+  box-shadow: 0 10px 30px rgba(35, 15, 6, 0.05);
+  transition: transform .3s ease, border-color .3s ease;
 }
 
-.gd-pillar-icon { font-size: 32px; margin-bottom: 16px; }
-.gd-pillar h3 { font-family: var(--F); font-size: 22px; color: var(--text); margin-bottom: 10px; }
-.gd-pillar p { font-size: 14.5px; color: var(--text-dim); line-height: 1.6; }
-
-/* ── CTA SECTION (ROYAL KADHAI CRIMSON) ─────────────── */
-.cta-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #4A0E0E 0%, #681515 50%, #4A0E0E 100%);
-  text-align: center;
-  color: #FFFFFF;
-  border-top: 2px solid rgba(194, 127, 21, 0.4);
+.gd-pillar:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
 }
 
-.cta-box h2 {
+.gd-pillar-symbol {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(194, 127, 21, 0.12);
+  color: var(--maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.gd-pillar-title {
   font-family: var(--F);
-  font-size: clamp(32px, 4.5vw, 48px);
+  font-size: 22px;
+  color: #5B1212;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.gd-pillar-body {
+  font-size: 14.5px;
+  color: #5C4535;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.gd-bottom-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 56px;
+  text-align: center;
+}
+
+.gd-quote-hindi {
+  font-size: 21px;
+  font-weight: 800;
+  color: #5B1212;
+  margin: 0;
+}
+
+.gd-quote-eng {
+  font-family: var(--F);
+  font-size: 15px;
+  font-style: italic;
+  color: #7A5B45;
+  margin: 0;
+}
+
+.gd-quote-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  opacity: 0.5;
+  margin: 4px 0;
+}
+
+/* ── CTA SECTION (ROYAL KADHAI CRIMSON CARD) ─────────── */
+.cta-section {
+  padding: 80px 0 100px;
+  background: var(--bg);
+  position: relative;
+}
+
+.cta-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.cta-card {
+  background: radial-gradient(circle at 50% 20%, #521212 0%, #350808 65%, #1D0303 100%);
+  border: 2px solid rgba(226, 158, 40, 0.42);
+  border-radius: 32px;
+  padding: 56px 44px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 0 35px rgba(226, 158, 40, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-tag {
+  color: var(--gold-l);
+  background: rgba(226, 158, 40, 0.14);
+  border-color: rgba(226, 158, 40, 0.45);
+  margin: 0 auto 16px;
+}
+
+.cta-title {
+  font-family: var(--F);
+  font-size: clamp(30px, 4vw, 46px);
   color: #FFFFFF;
+  font-weight: 800;
+  line-height: 1.2;
   margin-bottom: 16px;
 }
 
-.cta-box h2 em { color: var(--gold-l); font-style: italic; }
-.cta-box p { font-size: 16.5px; color: #E2CCA8; margin-bottom: 28px; }
-.cta-box {
-  max-width: 700px;
-  margin: 0 auto;
+.cta-title em {
+  color: var(--gold-l);
+  font-style: italic;
+}
+
+.cta-title span {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: rgba(250, 245, 235, 0.92);
+  margin-top: 6px;
+}
+
+.cta-desc {
+  font-size: 16px;
+  color: rgba(250, 245, 235, 0.85);
+  max-width: 620px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-cta-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #042E13 !important;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 16px 32px;
+  border-radius: 99px;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
+  transition: all .3s var(--ease-out);
+}
+
+.btn-cta-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.55);
+}
+
+.btn-cta-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(194, 127, 21, 0.4);
-  border-radius: 28px;
-  padding: 48px 36px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 16px 28px;
+  border-radius: 99px;
+  backdrop-filter: blur(8px);
+  transition: all .3s;
+}
+
+.btn-cta-email:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--gold-l);
+  color: var(--gold-l) !important;
 }
 
 /* ── FOOTER ─────────────────────────────────────────── */
@@ -2587,6 +2914,19 @@ footer {
 
   .gd-pillars {
     grid-template-columns: 1fr;
+  }
+
+  .hero-pack-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-card {
+    padding: 40px 22px;
+  }
+
+  .btn-cta-wa, .btn-cta-email {
+    width: 100%;
+    justify-content: center;
   }
 
   .footer-top {

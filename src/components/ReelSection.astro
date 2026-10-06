@@ -1,49 +1,65 @@
 ---
-// ReelSection.astro — v2
-// 3 video reels: 2 original + 1 new aloo bhujia rotating shoot
+// ReelSection.astro — v2 Cinema Showcase
+// 3 videos autoplaying continuously in infinite loop without audio
 ---
 
 <section class="reel-section">
   <div class="reel-inner">
-    <h2 class="reel-heading">Unboxing orders. <em>Real reactions.</em></h2>
+    <div class="sec-tag reel-tag"><span>✦</span> Behind The Scenes &amp; Unboxing</div>
+    <h2 class="reel-heading">Kadhai to Kitchen. <em>Real Crunch.</em></h2>
     
     <div class="reels-grid">
-      <!-- Reel 1 -->
+      <!-- Reel 1: Customer Unboxing -->
       <div class="reel-container">
-        <div class="reel-thumbnail">
-          <img src="/images/dal-bhiji.jpg" alt="Reel 1 - Customer Unboxing" loading="lazy" />
-          <button class="reel-play-btn" aria-label="Play Reel">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="reel-embed-wrapper hidden">
-          <video src="/videos/hariram_namkeen_reel_1.mp4" playsinline loop muted preload="metadata" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;"></video>
+        <video 
+          src="/videos/hariram_namkeen_reel_1.mp4" 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="auto" 
+          class="reel-video"
+          aria-label="Fresh order unboxing reel"
+        ></video>
+        <div class="reel-badge">
+          <span class="reel-dot"></span>
+          <span>Order Unboxing</span>
         </div>
       </div>
 
-      <!-- Reel 2 -->
+      <!-- Reel 2: Kitchen & Packaging -->
       <div class="reel-container">
-        <div class="reel-thumbnail">
-          <img src="/images/premium.jpg" alt="Reel 2 - Premium Unboxing" loading="lazy" />
-          <button class="reel-play-btn" aria-label="Play Reel">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="reel-embed-wrapper hidden">
-          <video src="/videos/hariram_namkeen_reel_2.mp4" playsinline loop muted preload="metadata" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;"></video>
+        <video 
+          src="/videos/hariram_namkeen_reel_2.mp4" 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="auto" 
+          class="reel-video"
+          aria-label="Fresh packaging process reel"
+        ></video>
+        <div class="reel-badge">
+          <span class="reel-dot"></span>
+          <span>Kadhai Fresh Pack</span>
         </div>
       </div>
 
-      <!-- Reel 3 - Aloo Bhujia 360° Shoot -->
+      <!-- Reel 3: Aloo Bhujia 360° Studio Shoot -->
       <div class="reel-container">
-        <div class="reel-thumbnail">
-          <img src="/images/aloo_bhujia.png" alt="Aloo Bhujia 360° Product Shoot" loading="lazy" />
-          <button class="reel-play-btn" aria-label="Play Reel">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="reel-embed-wrapper hidden">
-          <video src="/videos/aloo_bhujia_rotating_shoot.mp4" playsinline loop muted preload="metadata" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;"></video>
+        <video 
+          src="/videos/aloo_bhujia_rotating_shoot.mp4" 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          preload="auto" 
+          class="reel-video"
+          aria-label="360° Aloo Bhujia close-up texture reel"
+        ></video>
+        <div class="reel-badge">
+          <span class="reel-dot"></span>
+          <span>360° Aloo Bhujia Texture</span>
         </div>
       </div>
     </div>
@@ -51,28 +67,11 @@
 </section>
 
 <script is:inline>
-  // Reel play/pause toggle
+  // Ensure all reel videos stay muted and autoplaying
   (() => {
-    document.querySelectorAll('.reel-container').forEach(container => {
-      const thumbnail = container.querySelector('.reel-thumbnail');
-      const embedWrapper = container.querySelector('.reel-embed-wrapper');
-      const video = embedWrapper?.querySelector('video');
-      if (!thumbnail || !embedWrapper || !video) return;
-
-      thumbnail.addEventListener('click', () => {
-        thumbnail.style.display = 'none';
-        embedWrapper.classList.remove('hidden');
-        video.muted = false;
-        video.play();
-      });
-
-      video.addEventListener('click', () => {
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      });
+    document.querySelectorAll('.reel-video').forEach(video => {
+      video.muted = true;
+      video.play().catch(() => {});
     });
   })();
 </script>

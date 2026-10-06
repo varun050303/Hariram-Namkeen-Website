@@ -1,38 +1,75 @@
 ---
-// Process.astro
-// 4-step process with:
-//   - Line draw animation tied to scroll (scrub)
-//   - Steps light up (.lit class) as line reaches them
+// Process.astro — Artisanal 4-Step Craftsmanship
+// Zero factory shortcuts — 100% kadhai transparency
 ---
 
 <section class="process-section" id="process">
-  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+  <div class="process-inner">
     <div class="process-header">
-      <div class="sec-tag" style="border-color:rgba(200,147,26,.3);background:rgba(200,147,26,.1);">How It's Made</div>
-      <h2 class="sec-title" style="color:var(--cream);margin-top:10px;">No factory. <em>Just craft.</em></h2>
-      <p class="process-promise">"The day we rush the process is the day the taste changes. We'd rather make less than make it wrong."</p>
+      <div class="sec-tag"><span>✦</span> The Artisanal Way</div>
+      <h2 class="sec-title">No Factory. <em>Just Craft.</em></h2>
+      <p class="process-promise">
+        "The day we rush the process is the day the taste changes. We would rather make less than make it wrong."
+      </p>
     </div>
+
     <div class="process-steps" id="proc-steps">
       <div class="process-line"><div class="process-line-fill" id="proc-line"></div></div>
+
       <div class="process-step" data-step>
-        <div class="step-circle">01</div>
-        <h4>Source Ingredients</h4>
-        <p>Dal, spices, Kachi Ghani mustard oil — locally sourced in Muzaffarnagar.</p>
+        <div class="step-badge">
+          <span class="step-num">01</span>
+        </div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="m10 15 5-3-5-3v6Z"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Source Ingredients</h3>
+        <p class="step-body">Grade-A dal, whole heritage spices, and pure cold-pressed Kachi Ghani mustard oil sourced fresh in Muzaffarnagar.</p>
       </div>
+
       <div class="process-step" data-step>
-        <div class="step-circle">02</div>
-        <h4>Prepare the Batch</h4>
-        <p>Our halwai preps fresh, small quantities only. Never bulk, never rushed.</p>
+        <div class="step-badge">
+          <span class="step-num">02</span>
+        </div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Prepare the Batch</h3>
+        <p class="step-body">Master halwais handcraft small 15–20kg batches in heavy iron kadhais. Never automated assembly lines, never rushed.</p>
       </div>
+
       <div class="process-step" data-step>
-        <div class="step-circle">03</div>
-        <h4>Taste &amp; Check</h4>
-        <p>Every batch is tasted before packing. Doesn't pass? Doesn't go out.</p>
+        <div class="step-badge">
+          <span class="step-num">03</span>
+        </div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Taste &amp; Quality Check</h3>
+        <p class="step-body">Every single batch is crunch-tested and tasted before packing. If it doesn't meet our heritage benchmark, it never leaves the kitchen.</p>
       </div>
+
       <div class="process-step" data-step>
-        <div class="step-circle">04</div>
-        <h4>Pack &amp; Ship</h4>
-        <p>FSSAI-compliant BOPP inner bags, kraft outer. Sealed fresh for you.</p>
+        <div class="step-badge">
+          <span class="step-num">04</span>
+        </div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Aroma-Locked Packaging</h3>
+        <p class="step-body">FSSAI-certified multi-layer moisture barrier foil bags sealed immediately to preserve kadhai-hot crispness until it reaches you.</p>
       </div>
     </div>
   </div>
