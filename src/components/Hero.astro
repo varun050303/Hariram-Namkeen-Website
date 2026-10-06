@@ -1,7 +1,7 @@
 ---
 // Hero.astro — Cinematic Edge-to-Edge Visual Showcase
 // Visual-first: Card-free, full-height visual pane with 360° rotating video & carousel
-// Punchy, high-converting offer copy with zero vague fluff
+// Balanced typography with cloudy frosted visual divider
 ---
 
 <section class="hero" id="hero">
@@ -9,63 +9,55 @@
   <div class="hero-arch-pattern" aria-hidden="true"></div>
   <div class="hero-radial-glow" aria-hidden="true"></div>
 
-  <!-- Left: Open, High-Impact Editorial Copy (Card-Free) -->
+  <!-- Left: Open, Elegant Editorial Copy (Card-Free) -->
   <div class="hero-content">
-    <!-- Prestige Heritage Origin Tag -->
+    <!-- Heritage Origin Tag -->
     <div class="hero-prestige-tag" id="h-origin">
       <span class="prestige-dot"></span>
-      <span class="prestige-text">Fresh From Muzaffarnagar Kadhai</span>
+      <span class="prestige-text">Muzaffarnagar, Uttar Pradesh</span>
     </div>
 
-    <!-- Direct, Punchy Headline: Made in Pure Yellow Mustard Oil -->
+    <!-- Refined, Balanced Headline (Not unnecessarily large) -->
     <h1 class="hero-headline">
       <span class="split-line"><span class="split-inner" id="hl1">Made in Pure Yellow Mustard Oil.</span></span>
-      <span class="split-line"><em class="headline-crimson"><span class="split-inner" id="hl2">Zero Palm Oil. Pure Kadhai Crunch.</span></em></span>
+      <span class="split-line"><em class="headline-crimson"><span class="split-inner" id="hl2">The Authentic UP Namkeen.</span></em></span>
     </h1>
 
-    <!-- ── THE PRIMARY VALUE HOOK (THE HARIRAM SPECIAL 4 BOX) ── -->
-    <div class="hero-offer-hook" id="h-hook">
-      <div class="hero-hook-badge">
-        <span class="hook-dot"></span>
-        <span class="hook-badge-text">Launch Special Tasting Offer</span>
-        <span class="offer-ship-highlight">⚡ Free All-India Delivery</span>
-      </div>
+    <p class="hero-sub" id="h-sub">
+      Slow-cooked in small batches with cold-pressed Kachi Ghani mustard oil and stone-ground spices. Zero palm oil. Zero preservatives.
+    </p>
 
+    <!-- ── THE HARIRAM SPECIAL 4 BOX HOOK ── -->
+    <div class="hero-offer-hook" id="h-hook">
       <div class="hero-offer-main">
-        <div class="offer-lead">The Hariram Special 4 Box</div>
+        <div class="offer-lead-row">
+          <span class="offer-lead">The Hariram Special 4 Box</span>
+          <span class="offer-ship-tag">Free Delivery Included</span>
+        </div>
         <div class="offer-price-row">
           <span class="offer-price">₹499</span>
-          <span class="offer-net-badge">Net Payable · No Hidden Fees</span>
-          <span class="offer-ship-banner">Free Delivery on Special 4 Box Only</span>
+          <span class="offer-wt-label">800g Total (4 × 200g Fresh Packs)</span>
         </div>
       </div>
 
-      <!-- Clean Visual Breakdown of what they get in 4 boxes -->
+      <!-- Clean 4-box breakdown chips -->
       <div class="hero-pack-breakdown">
         <div class="hp-item">
-          <span class="hp-check">✓</span>
           <span class="hp-name">Aloo Bhujia</span>
           <span class="hp-wt">200g</span>
         </div>
         <div class="hp-item">
-          <span class="hp-check">✓</span>
           <span class="hp-name">Masala Chana Dal</span>
           <span class="hp-wt">200g</span>
         </div>
         <div class="hp-item">
-          <span class="hp-check">✓</span>
           <span class="hp-name">Dal Biji</span>
           <span class="hp-wt">200g</span>
         </div>
         <div class="hp-item hp-choice">
-          <span class="hp-check">✓</span>
           <span class="hp-name">Light Malka / Moongfali</span>
           <span class="hp-wt">200g</span>
         </div>
-      </div>
-
-      <div class="hero-pack-summary">
-        <strong>Total: 800g Net Weight (4 × 200g Fresh Packs)</strong> · Just ~₹62 / 100g delivered to your door. Handcrafted fresh with stone-ground spices.
       </div>
 
       <div class="hero-cta-group" id="h-btns">
@@ -77,36 +69,34 @@
           data-magnetic
         >
           <span>Claim Special 4 Box @ ₹499 (Free Delivery)</span>
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#products" class="btn-hero-sec">View All Individual Packs ↓</a>
+        <a href="#products" class="btn-hero-sec">View All Snacks ↓</a>
       </div>
 
-      <!-- Trust Row (Zero delivery fees checkmark removed as free shipping applies strictly to Special 4 Box) -->
       <div class="hero-trust-row" id="h-trust">
         <span class="ht-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
-          100% Kachi Ghani Oil
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
+          100% Mustard Oil
         </span>
         <span class="ht-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
-          Zero Palm Oil Always
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
+          Zero Palm Oil
         </span>
         <span class="ht-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
-          Small-Batch Handcrafted
-        </span>
-        <span class="ht-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>
           FSSAI Certified
         </span>
       </div>
     </div>
   </div>
 
-  <!-- ── HERO RIGHT: EDGE-TO-EDGE CINEMATIC VISUAL SHOWCASE (CARD-FREE, VIGNETTE-FREE) ── -->
+  <!-- ── HERO RIGHT: EDGE-TO-EDGE CINEMATIC VISUAL WITH CLOUDY FROSTED BLEND ── -->
   <div class="hero-visual" id="hero-visual-pane">
-    <!-- Parallax Slide Container (Full Bleed, Zero Vignette) -->
+    <!-- Cloudy / Frosted Glass Mist Divider that seamlessly melts into the cream background -->
+    <div class="hero-visual-frost" aria-hidden="true"></div>
+
+    <!-- Parallax Slide Container (Full Bleed) -->
     <div id="hero-parallax" class="hero-parallax-wrap">
       <div class="hero-slideshow">
 
@@ -167,7 +157,7 @@
       </div>
     </div>
 
-    <!-- Floating Live Studio Badge (No Card, Frosted Glass) -->
+    <!-- Floating Live Studio Badge (Frosted Glass) -->
     <div class="hero-floating-studio-badge">
       <span class="live-pulse-dot"></span>
       <span class="badge-text">360° Studio View · Pure Yellow Mustard Oil</span>
@@ -176,7 +166,7 @@
     <!-- Sleek Floating Carousel Controller -->
     <div class="hero-visual-controls">
       <button class="hero-ctrl-arrow prev" id="hero-prev" aria-label="Previous slide">
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M15 19l-7-7 7-7"/></svg>
       </button>
 
       <div class="hero-ctrl-pills" id="hero-pills">
@@ -191,14 +181,14 @@
       </div>
 
       <button class="hero-ctrl-arrow next" id="hero-next" aria-label="Next slide">
-        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
   </div>
 
   <!-- Scroll Down Cue -->
   <a href="#craft" class="hero-scroll-cue" aria-label="Scroll down to explore">
-    <span class="cue-label">Explore The Craft</span>
+    <span class="cue-label">Scroll to Explore</span>
     <span class="cue-arrow">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </span>
