@@ -452,7 +452,7 @@ body.cursor-hover #cursor-ring {
 .hero {
   min-height: 90vh;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 0.8fr 1.2fr;
   align-items: stretch;
   position: relative;
   background: var(--bg);
@@ -488,10 +488,11 @@ body.cursor-hover #cursor-ring {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px 40px 48px var(--gutter);
-  gap: 18px;
+  padding: 32px 36px 40px var(--gutter);
+  gap: 16px;
   position: relative;
   z-index: 2;
+  max-width: 500px;
 }
 
 .hero-prestige-tag {
@@ -567,177 +568,188 @@ body.cursor-hover #cursor-ring {
   font-weight: 700;
 }
 
-/* ── THE FOCUSED PRIMARY CONVERSION HOOK (OPEN & CARD-FREE) ── */
+/* ── THE FOCUSED PRIMARY CONVERSION HOOK (UNIFIED BOX CARD) ── */
 .hero-offer-hook {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 540px;
-  margin-top: 4px;
+  gap: 14px;
+  max-width: 480px;
+  margin-top: 2px;
 }
 
-.hero-offer-main {
+.hero-box-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(194, 127, 21, 0.32);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 18px rgba(35, 15, 6, 0.04);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 
-.offer-lead-row {
+.hbc-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(194, 127, 21, 0.16);
 }
 
-.offer-lead {
+.hbc-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hbc-name {
   font-family: var(--F);
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;
 }
 
-.offer-ship-tag {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--maroon);
-  background: rgba(117, 24, 24, 0.08);
-  border: 1px solid rgba(117, 24, 24, 0.2);
-  padding: 3px 10px;
-  border-radius: 99px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
+.hbc-wt {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
-.offer-price-row {
+.hbc-price-wrap {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-top: 2px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 }
 
-.offer-price {
+.hbc-price {
   font-family: var(--F);
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 900;
   color: var(--maroon);
   line-height: 1;
-  letter-spacing: -0.02em;
 }
 
-.offer-wt-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-dim);
+.hbc-ship {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #128C7E;
+  background: rgba(18, 140, 126, 0.08);
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
 }
 
-/* ── HERO 4-PACK BREAKDOWN (CLEAN & COMPACT) ── */
-.hero-pack-breakdown {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px 10px;
-  margin: 2px 0 6px;
-}
-
-.hp-item {
+.hbc-menu-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: baseline;
   gap: 8px;
-  background: #FFFFFF;
-  border: 1px solid rgba(194, 127, 21, 0.22);
-  border-radius: 8px;
-  padding: 7px 12px;
-  box-shadow: 0 1px 4px rgba(35, 15, 6, 0.03);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  flex-wrap: wrap;
 }
 
-.hp-name {
-  font-size: 12.5px;
+.hbc-menu-label {
+  font-weight: 700;
+  color: var(--maroon);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  flex-shrink: 0;
+}
+
+.hbc-menu-items {
+  color: var(--text);
+}
+
+.hbc-menu-items strong {
   font-weight: 600;
   color: var(--text);
 }
 
-.hp-wt {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--maroon);
-  background: rgba(117, 24, 24, 0.06);
-  padding: 1px 6px;
-  border-radius: 4px;
-}
-
-.hp-choice {
-  border-color: rgba(194, 127, 21, 0.4);
-}
-
-.hero-cta-group {
+/* ── HERO ACTION AREA (ONE FOCUSED CTA + EDITORIAL LINK) ── */
+.hero-action-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin-top: 2px;
   flex-wrap: wrap;
 }
 
-.btn-hero-cta {
+.btn-hero-order {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 9px;
   background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-l) 100%);
-  color: #fff !important;
-  padding: 14px 26px;
-  border-radius: 99px;
-  font-size: 14.5px;
+  color: #FFFFFF !important;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: .02em;
-  box-shadow: 0 8px 24px rgba(117, 24, 24, 0.3);
-  transition: all .3s var(--ease-out);
-}
-
-.btn-hero-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(117, 24, 24, 0.4);
-}
-
-.btn-hero-sec {
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 20px;
+  padding: 13px 24px;
   border-radius: 99px;
-  border: 1.5px solid rgba(117, 24, 24, 0.22);
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--maroon);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  transition: all .3s;
+  box-shadow: 0 8px 24px rgba(117, 24, 24, 0.3);
+  transition: all .25s var(--ease-out);
+  white-space: nowrap;
 }
 
-.btn-hero-sec:hover {
-  border-color: var(--maroon);
-  background: var(--maroon);
-  color: #fff;
+.btn-hero-order:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(117, 24, 24, 0.42);
 }
 
-.hero-trust-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 4px;
-  flex-wrap: wrap;
+.btn-hero-order svg {
+  flex-shrink: 0;
 }
 
-.ht-item {
+.hero-link-explore {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 600;
   color: var(--text-muted);
+  text-decoration: none;
+  transition: all .2s;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(90, 53, 29, 0.35);
+  white-space: nowrap;
 }
 
-.ht-item svg {
-  color: var(--gold-d);
+.hero-link-explore:hover {
+  color: var(--maroon);
+  border-bottom-color: var(--maroon);
+  transform: translateX(2px);
+}
+
+.hero-link-explore svg {
+  transition: transform .2s;
+}
+
+.hero-link-explore:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── HERO TRUST INLINE NOTE ── */
+.hero-trust-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.hero-trust-inline .ht-sep {
+  color: rgba(194, 127, 21, 0.55);
+  user-select: none;
 }
 
 /* ── HERO RIGHT: EDGE-TO-EDGE CINEMATIC VISUAL SHOWCASE (CARD-FREE) ── */
@@ -2822,26 +2834,25 @@ footer {
     padding: 5px 10px;
   }
 
-  .offer-price-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  .hero-box-card {
+    padding: 14px 16px;
   }
 
-  .hero-cta-group {
+  .hero-action-group {
     flex-direction: column;
     width: 100%;
+    align-items: stretch;
+    gap: 12px;
   }
 
-  .btn-hero-cta, .btn-hero-sec {
+  .btn-hero-order {
     width: 100%;
     justify-content: center;
   }
 
-  .hook-banner-strip {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 18px 20px;
+  .hero-link-explore {
+    justify-content: center;
+    width: 100%;
   }
 
   .hamper-contents {
