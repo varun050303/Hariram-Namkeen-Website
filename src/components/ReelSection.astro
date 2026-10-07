@@ -1,23 +1,23 @@
 ---
-// ReelSection.astro — v2 Cinema Showcase
-// 3 videos autoplaying continuously in infinite loop without audio
+// ReelSection.astro — v3 Cinema Showcase
+// Reels load only when scrolled near and play only while visible
+// (the old version downloaded all three videos on first paint and played them forever).
 ---
 
 <section class="reel-section">
   <div class="reel-inner">
     <div class="sec-tag reel-tag"><span>✦</span> Behind The Scenes &amp; Unboxing</div>
     <h2 class="reel-heading">Kadhai to Kitchen. <em>Real Crunch.</em></h2>
-    
+
     <div class="reels-grid">
       <!-- Reel 1: Customer Unboxing -->
       <div class="reel-container">
-        <video 
-          src="/videos/hariram_namkeen_reel_1.mp4" 
-          autoplay 
-          loop 
-          muted 
-          playsinline 
-          preload="auto" 
+        <video
+          data-src="/videos/hariram_namkeen_reel_1.mp4"
+          loop
+          muted
+          playsinline
+          preload="none"
           class="reel-video"
           aria-label="Fresh order unboxing reel"
         ></video>
@@ -25,29 +25,27 @@
 
       <!-- Reel 2: Kitchen & Packaging -->
       <div class="reel-container">
-        <video 
-          src="/videos/hariram_namkeen_reel_2.mp4" 
-          autoplay 
-          loop 
-          muted 
-          playsinline 
-          preload="auto" 
+        <video
+          data-src="/videos/hariram_namkeen_reel_2.mp4"
+          loop
+          muted
+          playsinline
+          preload="none"
           class="reel-video"
           aria-label="Fresh packaging process reel"
         ></video>
       </div>
 
-      <!-- Reel 3: Aloo Bhujia 360° Studio Shoot -->
+      <!-- Reel 3: Aloo Bhujia Studio Texture Shoot -->
       <div class="reel-container">
-        <video 
-          src="/videos/aloo_bhujia_rotating_shoot.mp4" 
-          autoplay 
-          loop 
-          muted 
-          playsinline 
-          preload="auto" 
+        <video
+          data-src="/videos/aloo_bhujia_rotating_shoot.mp4"
+          loop
+          muted
+          playsinline
+          preload="none"
           class="reel-video"
-          aria-label="360° Aloo Bhujia close-up texture reel"
+          aria-label="Aloo Bhujia close-up texture reel"
         ></video>
       </div>
     </div>
@@ -55,11 +53,43 @@
 </section>
 
 <script is:inline>
-  // Ensure all reel videos stay muted and autoplaying
   (() => {
-    document.querySelectorAll('.reel-video').forEach(video => {
-      video.muted = true;
-      video.play().catch(() => {});
-    });
+    const vids = document.querySelectorAll('.reel-video');
+    if (!vids.length) return;
+
+    const load = (v) => {
+      if (!v.getAttribute('src') && v.dataset.src) {
+        v.src = v.dataset.src;
+        v.load();
+      }
+    };
+
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // No autoplay for reduced-motion users (or very old browsers): show controls instead
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      vids.forEach((v) => {
+        v.controls = true;
+        v.preload = 'metadata';
+        load(v);
+      });
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target: v, isIntersecting }) => {
+          if (isIntersecting) {
+            load(v);
+            v.muted = true;
+            v.play().catch(() => {});
+          } else {
+            v.pause();
+          }
+        });
+      },
+      { rootMargin: '200px 0px', threshold: 0.2 }
+    );
+    vids.forEach((v) => io.observe(v));
   })();
 </script>

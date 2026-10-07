@@ -20,6 +20,7 @@ import Reviews    from '../components/Reviews.astro';
 import CTA        from '../components/CTA.astro';
 import GrahakDev  from '../components/GrahakDev.astro';
 import Footer     from '../components/Footer.astro';
+import MobileOrderBar from '../components/MobileOrderBar.astro';
 
 import '../styles/global.css';
 ---
@@ -45,6 +46,7 @@ import '../styles/global.css';
   <GrahakDev />
   <CTA />
   <Footer />
+  <MobileOrderBar />
 </BaseLayout>
 
 <!--
@@ -211,23 +213,44 @@ import '../styles/global.css';
 
     // ── PINNED OIL TRUTH ─────────────────────────────────────────
     const rows = gsap.utils.toArray('[data-row]');
-    const rowsTl = gsap.timeline({ paused:true });
-    rows.forEach((row, i) => {
-      rowsTl.fromTo(row,
-        { opacity:0, x:28 },
-        { opacity:1, x:0, duration:.45, ease:'power2.out' },
-        i * .12
-      );
+    const omegaEl = document.getElementById('omega-count');
+    const oilMM = gsap.matchMedia();
+
+    // Desktop: pinned, scroll-scrubbed comparison
+    oilMM.add('(min-width: 1025px)', () => {
+      const rowsTl = gsap.timeline({ paused:true });
+      rows.forEach((row, i) => {
+        rowsTl.fromTo(row,
+          { opacity:0, x:28 },
+          { opacity:1, x:0, duration:.45, ease:'power2.out' },
+          i * .12
+        );
+      });
+      ScrollTrigger.create({
+        trigger: '#oil-truth',
+        start: 'top top', end: '+=200%',
+        pin: true, anticipatePin: 1, scrub: .5,
+        animation: rowsTl,
+        onUpdate: self => {
+          if (omegaEl) omegaEl.textContent = (self.progress * 3).toFixed(1) + 'x';
+        }
+      });
     });
-    ScrollTrigger.create({
-      trigger: '#oil-truth',
-      start: 'top top', end: '+=200%',
-      pin: true, anticipatePin: 1, scrub: .5,
-      animation: rowsTl,
-      onUpdate: self => {
-        const count = (self.progress * 3).toFixed(1);
-        document.getElementById('omega-count').textContent = count + 'x';
-      }
+
+    // Tablet / phone: the stacked section is taller than the screen, so pinning it freezes
+    // the top half and hides the comparison table below the fold. Reveal it normally instead.
+    oilMM.add('(max-width: 1024px)', () => {
+      gsap.fromTo(rows,
+        { opacity:0, x:28 },
+        { opacity:1, x:0, duration:.5, stagger:.12, ease:'power2.out',
+          scrollTrigger:{ trigger:'#compare-table', start:'top 85%', once:true } }
+      );
+      const counter = { v: 0 };
+      gsap.to(counter, {
+        v: 3, duration: 1.6, ease: 'power1.out',
+        scrollTrigger:{ trigger:'.oil-stats', start:'top 90%', once:true },
+        onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
+      });
     });
     gsap.fromTo('.oil-left > *',
       { opacity:0, y:32 },
@@ -242,7 +265,10 @@ import '../styles/global.css';
       { opacity:1, y:0, scale:1, duration:.7, stagger:.1, ease:'expo.out',
         scrollTrigger:{ trigger:'.products-grid', start:'top 80%', once:true } }
     );
-    pcards.forEach(card => {
+    // Touch browsers fire a synthetic mousemove on tap but never a mouseleave,
+    // which left cards tilted and buttons shifted. Only wire these on real hover devices.
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    if (canHover) pcards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left - r.width/2)  / r.width;
@@ -264,7 +290,7 @@ import '../styles/global.css';
     });
 
     // ── MAGNETIC BUTTONS ──────────────────────────────────────────
-    document.querySelectorAll('[data-magnetic]').forEach(el => {
+    if (canHover) document.querySelectorAll('[data-magnetic]').forEach(el => {
       el.addEventListener('mousemove', e => {
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width/2;
@@ -277,11 +303,13 @@ import '../styles/global.css';
     });
 
     // ── PLATFORM CARDS ENTRANCE ───────────────────────────────────
-    gsap.fromTo('.platform-card',
-      { opacity:0, y:32 },
-      { opacity:1, y:0, duration:.6, stagger:.08, ease:'back.out(1.5)',
-        scrollTrigger:{ trigger:'.platforms-grid', start:'top 80%', once:true } }
-    );
+    if (document.querySelector('.platforms-grid')) {
+      gsap.fromTo('.platform-card',
+        { opacity:0, y:32 },
+        { opacity:1, y:0, duration:.6, stagger:.08, ease:'back.out(1.5)',
+          scrollTrigger:{ trigger:'.platforms-grid', start:'top 80%', once:true } }
+      );
+    }
 
     // ── CRAFT SECTION ─────────────────────────────────────────────
     gsap.fromTo('.craft-left > *',

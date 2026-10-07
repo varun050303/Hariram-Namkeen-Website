@@ -8,7 +8,7 @@
   <div class="hamper-inner">
     <div class="sec-tag hamper-tag"><span>✦</span> शाही उपहार · Artisanal Kadhai Tasting Box</div>
     <h2 class="sec-title">The Hariram <em>Special 4 Box</em></h2>
-    <p class="sec-sub">4 fresh 200g signature packs (800g total). Pure Kachi Ghani mustard oil, zero palm oil, and zero hidden charges.</p>
+    <p class="sec-sub">4 fresh 200g signature packs (800g total). Pure yellow mustard oil, zero palm oil, and zero hidden charges.</p>
 
     <!-- ── SLEEK SINGLE-LINE TRUST RIBBON (COMPACT & DIGNIFIED) ── -->
     <div class="hamper-trust-ribbon">
@@ -29,7 +29,7 @@
       <span class="htr-sep">·</span>
       <div class="htr-item">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-        <span>100% Kachi Ghani Mustard Oil</span>
+        <span>100% Yellow Mustard Oil</span>
       </div>
     </div>
 
@@ -38,24 +38,78 @@
       <!-- Left: Interactive Gallery (Proportional & Compact) -->
       <div class="hamper-gallery-wrap">
         <div class="hamper-gallery" id="hamper-gallery">
-          <img src="/images/hariram_special_4_top_view.webp" alt="Hariram Special 4 - Top View Platter" class="active" loading="lazy" width="1024" height="1024"/>
-          <img src="/images/hariram_special_4_v2.webp" alt="Hariram Special 4 - Portrait View with Brass Decanter" loading="lazy" width="768" height="1365"/>
-          <img src="/images/hariram_special_4_top_view_wide_angle.webp" alt="Hariram Special 4 - Wide Angle Table Presentation" loading="lazy" width="768" height="1365"/>
-          <div class="hamper-badge">
+          <!-- Slide 0: The Hariram Special 4 Box Platter (Single photo of the box) -->
+          <img 
+            src="/images/hariram_special_4_top_view.webp" 
+            alt="The Hariram Special 4 Box (800g)" 
+            class="active" 
+            data-img="0"
+            loading="lazy" 
+            width="1024" 
+            height="1024"
+          />
+          <!-- Slide 1: Aloo Bhujia Pack -->
+          <img 
+            src="/images/aloo_bhujia.webp" 
+            alt="Aloo Bhujia (200g Pack)" 
+            data-img="1"
+            loading="lazy" 
+            width="768" 
+            height="1365"
+          />
+          <!-- Slide 2: Masala Chana Dal Pack -->
+          <img 
+            src="/images/masala_chana_dal.webp" 
+            alt="Masala Chana Dal (200g Pack)" 
+            data-img="2"
+            loading="lazy" 
+            width="900" 
+            height="1600"
+          />
+          <!-- Slide 3: Dal Biji Pack -->
+          <img 
+            src="/images/dal-bhiji.jpg" 
+            alt="Dal Biji (200g Pack)" 
+            data-img="3"
+            loading="lazy" 
+            width="1800" 
+            height="1200"
+          />
+          <!-- Slide 4: Spicy Malka Pack -->
+          <img 
+            src="/images/masala_malka.webp" 
+            alt="Spicy Malka (200g Pack)" 
+            data-img="4"
+            loading="lazy" 
+            width="1376" 
+            height="768"
+          />
+          <div class="hamper-badge" id="hamper-badge">
             <span>Special 4 Box</span> · ₹499 Delivered
           </div>
         </div>
 
-        <!-- Thumbnails for quick switching -->
+        <!-- Thumbnails: Full Box + 4 Individual Packs -->
         <div class="hamper-thumbs" id="hamper-thumbs">
-          <button class="h-thumb active" data-img="0" aria-label="View Platter Top View">
-            <img src="/images/hariram_special_4_top_view.webp" alt="Platter Top View" loading="lazy" width="120" height="120"/>
+          <button type="button" class="h-thumb active" data-img="0" aria-label="View Full Special 4 Box Platter" title="Special 4 Box">
+            <img src="/images/hariram_special_4_top_view.webp" alt="Full Special 4 Box" loading="lazy" width="80" height="80"/>
+            <span class="h-thumb-tag">Full Box</span>
           </button>
-          <button class="h-thumb" data-img="1" aria-label="View Royal Brass Presentation">
-            <img src="/images/hariram_special_4_v2.webp" alt="Royal Presentation" loading="lazy" width="120" height="120"/>
+          <button type="button" class="h-thumb" data-img="1" aria-label="View Aloo Bhujia Pack" title="Aloo Bhujia">
+            <img src="/images/aloo_bhujia.webp" alt="Aloo Bhujia Pack" loading="lazy" width="80" height="80"/>
+            <span class="h-thumb-tag">Bhujia</span>
           </button>
-          <button class="h-thumb" data-img="2" aria-label="View Wide Angle Presentation">
-            <img src="/images/hariram_special_4_top_view_wide_angle.webp" alt="Wide Table Presentation" loading="lazy" width="120" height="120"/>
+          <button type="button" class="h-thumb" data-img="2" aria-label="View Masala Chana Dal Pack" title="Masala Chana Dal">
+            <img src="/images/masala_chana_dal.webp" alt="Masala Chana Dal Pack" loading="lazy" width="80" height="80"/>
+            <span class="h-thumb-tag">Chana</span>
+          </button>
+          <button type="button" class="h-thumb" data-img="3" aria-label="View Dal Biji Pack" title="Dal Biji">
+            <img src="/images/dal-bhiji.jpg" alt="Dal Biji Pack" loading="lazy" width="80" height="80"/>
+            <span class="h-thumb-tag">Dal Biji</span>
+          </button>
+          <button type="button" class="h-thumb" data-img="4" aria-label="View Spicy Malka Pack" title="Spicy Malka">
+            <img src="/images/masala_malka.webp" alt="Spicy Malka Pack" loading="lazy" width="80" height="80"/>
+            <span class="h-thumb-tag">Malka</span>
           </button>
         </div>
       </div>
@@ -71,18 +125,26 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/><path d="M17 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 15.52 8H14v10Z"/></svg>
             <div>
               <strong>Free Delivery</strong>
-              <span>All India Pin Codes</span>
+              <span>Across India · serviceable PIN codes</span>
             </div>
           </div>
         </div>
 
         <p class="hamper-desc">
-          Pure ingredient price with zero hidden fees. Handcrafted in heavy iron kadhais with cold-pressed Kachi Ghani mustard oil and stone-ground spices.
+          Pure ingredient price with zero hidden fees. Handcrafted in heavy iron kadhais with cold-pressed yellow mustard oil and stone-ground spices.
         </p>
 
-        <!-- The 4 Varieties Breakdown with clean SVG icons -->
-        <div class="hamper-contents">
-          <div class="hamper-item">
+        <!-- Interactive Pack Selector Header -->
+        <div class="hamper-chips-header">
+          <span class="hamper-chips-title">✦ Click any pack to preview:</span>
+          <button type="button" class="hamper-reset-pill active" id="hamper-reset-pill" data-img="0" aria-label="View Full 4-Box Platter">
+            <span>Show Full Box (800g)</span>
+          </button>
+        </div>
+
+        <!-- The 4 Varieties Breakdown with clean SVG icons (Interactive Chips) -->
+        <div class="hamper-contents" id="hamper-chips">
+          <div class="hamper-item" data-img="1" role="button" tabindex="0" aria-label="Preview Aloo Bhujia pack">
             <span class="hamper-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
             </span>
@@ -95,7 +157,7 @@
             </div>
           </div>
 
-          <div class="hamper-item">
+          <div class="hamper-item" data-img="2" role="button" tabindex="0" aria-label="Preview Masala Chana Dal pack">
             <span class="hamper-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
             </span>
@@ -108,7 +170,7 @@
             </div>
           </div>
 
-          <div class="hamper-item">
+          <div class="hamper-item" data-img="3" role="button" tabindex="0" aria-label="Preview Dal Biji pack">
             <span class="hamper-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
             </span>
@@ -121,13 +183,13 @@
             </div>
           </div>
 
-          <div class="hamper-item hamper-choice">
+          <div class="hamper-item hamper-choice" data-img="4" role="button" tabindex="0" aria-label="Preview Spicy Malka pack">
             <span class="hamper-item-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
             </span>
             <div class="hamper-item-info">
               <div class="h-name-row">
-                <strong>Light Malka / Moongfali</strong>
+                <strong>Spicy Malka / Moongfali</strong>
                 <span class="h-weight">200g</span>
               </div>
               <span class="hamper-item-sub">Your choice of slow-roasted crunch</span>
@@ -156,56 +218,87 @@
 </section>
 
 <script is:inline>
-  // Hamper gallery thumbnail switcher & auto-cycle (respects prefers-reduced-motion)
+  // Hamper gallery interactive pack switcher
   (() => {
     const gallery = document.getElementById('hamper-gallery');
-    const thumbs = document.querySelectorAll('#hamper-thumbs .h-thumb');
     if (!gallery) return;
     const imgs = gallery.querySelectorAll('img');
-    if (imgs.length < 2) return;
-    let idx = 0;
-    let timer = null;
-    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    const badge = document.getElementById('hamper-badge');
+    const thumbs = document.querySelectorAll('#hamper-thumbs .h-thumb');
+    const chips = document.querySelectorAll('#hamper-chips .hamper-item');
+    const resetPill = document.getElementById('hamper-reset-pill');
+
+    const badgeTexts = [
+      '<span>Special 4 Box</span> · ₹499 Delivered',
+      '<span>Aloo Bhujia</span> · 200g Pack (In Box)',
+      '<span>Masala Chana Dal</span> · 200g Pack (In Box)',
+      '<span>Dal Biji</span> · 200g Pack (In Box)',
+      '<span>Spicy Malka</span> · 200g Pack (In Box)'
+    ];
+
+    let current = 0;
 
     function setSlide(newIdx) {
-      imgs[idx].classList.remove('active');
-      thumbs[idx]?.classList.remove('active');
+      if (newIdx < 0 || newIdx >= imgs.length) return;
+      current = newIdx;
 
-      idx = (newIdx + imgs.length) % imgs.length;
+      // Update active image
+      imgs.forEach((img, i) => {
+        img.classList.toggle('active', i === current);
+      });
 
-      imgs[idx].classList.add('active');
-      thumbs[idx]?.classList.add('active');
+      // Update badge
+      if (badge && badgeTexts[current]) {
+        badge.innerHTML = badgeTexts[current];
+      }
+
+      // Update thumbs
+      thumbs.forEach((thumb) => {
+        const idx = parseInt(thumb.getAttribute('data-img'), 10);
+        thumb.classList.toggle('active', idx === current);
+      });
+
+      // Update chips on the right (indices 1 to 4)
+      chips.forEach((chip) => {
+        const idx = parseInt(chip.getAttribute('data-img'), 10);
+        chip.classList.toggle('active', idx === current);
+      });
+
+      // Update reset pill (index 0)
+      if (resetPill) {
+        resetPill.classList.toggle('active', current === 0);
+      }
     }
 
-    thumbs.forEach((thumb, i) => {
-      thumb.addEventListener('click', () => {
-        setSlide(i);
-        restartTimer();
+    // Chips click handler
+    chips.forEach((chip) => {
+      const idx = parseInt(chip.getAttribute('data-img'), 10);
+      const onSelect = () => {
+        if (current === idx) {
+          // Clicking again toggles back to full box
+          setSlide(0);
+        } else {
+          setSlide(idx);
+        }
+      };
+      chip.addEventListener('click', onSelect);
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect();
+        }
       });
     });
 
-    function startTimer() {
-      if (prefersReducedMotion && prefersReducedMotion.matches) return;
-      timer = setInterval(() => {
-        setSlide(idx + 1);
-      }, 5000);
-    }
+    // Thumbs click handler
+    thumbs.forEach((thumb) => {
+      const idx = parseInt(thumb.getAttribute('data-img'), 10);
+      thumb.addEventListener('click', () => setSlide(idx));
+    });
 
-    function restartTimer() {
-      if (timer) clearInterval(timer);
-      startTimer();
+    // Reset pill click handler
+    if (resetPill) {
+      resetPill.addEventListener('click', () => setSlide(0));
     }
-
-    if (prefersReducedMotion && prefersReducedMotion.addEventListener) {
-      prefersReducedMotion.addEventListener('change', (e) => {
-        if (e.matches) {
-          if (timer) clearInterval(timer);
-        } else {
-          restartTimer();
-        }
-      });
-    }
-
-    startTimer();
   })();
 </script>

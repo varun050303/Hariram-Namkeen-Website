@@ -1,0 +1,45 @@
+---
+// MobileOrderBar.astro — sticky bottom order bar, phones only (CSS shows it at <=768px).
+// Appears once the hero button scrolls out of view; hides again on the Special 4 Box
+// section, the final CTA banner and the footer, which already have their own order buttons.
+const waUrl =
+  'https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details.';
+---
+
+<div class="m-order-bar" id="m-order-bar">
+  <div class="m-order-info">
+    <strong>₹499</strong>
+    <span>Special 4 Box · Free delivery</span>
+  </div>
+  <a href={waUrl} target="_blank" rel="noopener noreferrer" class="m-order-btn">Order now</a>
+</div>
+
+<script is:inline>
+  (() => {
+    const bar = document.getElementById('m-order-bar');
+    const heroCta = document.getElementById('hero-cta');
+    if (!bar || !heroCta || !('IntersectionObserver' in window)) return;
+
+    let heroVisible = true;
+    const overlapping = new Set();
+
+    const update = () => bar.classList.toggle('show', !heroVisible && overlapping.size === 0);
+
+    new IntersectionObserver((entries) => {
+      heroVisible = entries[0].isIntersecting;
+      update();
+    }).observe(heroCta);
+
+    const hideOver = [
+      document.getElementById('hamper'),
+      document.querySelector('.cta-section'),
+      document.querySelector('footer'),
+    ].filter(Boolean);
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? overlapping.add(e.target) : overlapping.delete(e.target)));
+      update();
+    });
+    hideOver.forEach((el) => io.observe(el));
+  })();
+</script>

@@ -1502,20 +1502,28 @@ body.cursor-hover #cursor-ring {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
-  transition: opacity .65s ease-in-out;
+  transition: opacity .4s ease-in-out, transform .4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(0.96);
+  background: radial-gradient(circle at center, #230d07 0%, #0d0301 100%);
+}
+
+.hamper-gallery img[data-img="0"] {
+  object-fit: cover;
+  transform: none;
 }
 
 .hamper-gallery img.active {
   opacity: 1;
+  transform: scale(1);
 }
 
 .hamper-badge {
   position: absolute;
   top: 16px;
   left: 16px;
-  background: rgba(20, 6, 2, 0.85);
+  background: rgba(20, 6, 2, 0.88);
   backdrop-filter: blur(8px);
   color: #FFFFFF;
   font-size: 11px;
@@ -1527,6 +1535,7 @@ body.cursor-hover #cursor-ring {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(226, 158, 40, 0.45);
   z-index: 2;
+  transition: all .25s ease;
 }
 
 .hamper-badge span {
@@ -1535,12 +1544,14 @@ body.cursor-hover #cursor-ring {
 
 .hamper-thumbs {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .h-thumb {
-  width: 62px;
-  height: 62px;
+  position: relative;
+  width: 58px;
+  height: 58px;
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.15);
@@ -1552,14 +1563,15 @@ body.cursor-hover #cursor-ring {
 }
 
 .h-thumb:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   border-color: rgba(226, 158, 40, 0.6);
+  transform: translateY(-2px);
 }
 
 .h-thumb.active {
   border-color: var(--gold-l);
   opacity: 1;
-  box-shadow: 0 4px 16px rgba(226, 158, 40, 0.4);
+  box-shadow: 0 4px 16px rgba(226, 158, 40, 0.45);
   transform: translateY(-2px);
 }
 
@@ -1567,6 +1579,26 @@ body.cursor-hover #cursor-ring {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.h-thumb-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(18, 5, 2, 0.92);
+  font-size: 8.5px;
+  font-weight: 800;
+  color: rgba(250, 245, 235, 0.9);
+  text-align: center;
+  padding: 1.5px 0;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.h-thumb.active .h-thumb-tag {
+  background: var(--maroon);
+  color: #fff;
 }
 
 .hamper-price-card {
@@ -1678,6 +1710,46 @@ body.cursor-hover #cursor-ring {
   margin-bottom: 24px;
 }
 
+.hamper-chips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hamper-chips-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hamper-reset-pill {
+  font-family: var(--B);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(250, 245, 235, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(226, 158, 40, 0.35);
+  border-radius: 99px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.hamper-reset-pill:hover,
+.hamper-reset-pill.active {
+  background: rgba(226, 158, 40, 0.22);
+  border-color: var(--gold-l);
+  color: #FFFFFF;
+}
+
 .hamper-item {
   display: flex;
   align-items: flex-start;
@@ -1688,11 +1760,20 @@ body.cursor-hover #cursor-ring {
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transition: all .25s ease;
+  cursor: pointer;
+  user-select: none;
 }
 
 .hamper-item:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(226, 158, 40, 0.55);
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(226, 158, 40, 0.65);
+  transform: translateY(-2px);
+}
+
+.hamper-item.active {
+  background: rgba(226, 158, 40, 0.18);
+  border-color: var(--gold-l);
+  box-shadow: 0 6px 20px rgba(226, 158, 40, 0.3), 0 0 0 1px var(--gold-l);
   transform: translateY(-2px);
 }
 
@@ -1706,6 +1787,15 @@ body.cursor-hover #cursor-ring {
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
+  transition: all .2s ease;
+}
+
+.hamper-item.active .hamper-item-icon {
+  background: var(--gold-l);
+}
+
+.hamper-item.active .hamper-item-icon svg {
+  stroke: #140602;
 }
 
 .hamper-item-icon svg {
@@ -2683,5 +2773,379 @@ footer {
   }
   .pulse, [class*="pulse"] {
     animation: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS PASS — added Oct 2026
+   Everything below is additive; delete this block to revert it.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Anchor jumps shouldn't hide section titles under the fixed header */
+#craft, #products, #hamper, #story, #process, #grahak-dev { scroll-margin-top: 72px; }
+
+/* Reviews grid: never wider than the screen on small phones */
+.reviews-grid { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+
+/* Mobile menu: real viewport height on iOS/Android address-bar browsers,
+   and not focusable / not casting a shadow while closed */
+.mobile-nav {
+  height: 100vh;
+  height: 100dvh;
+  visibility: hidden;
+  transition: right .4s var(--ease-out), visibility 0s linear .4s;
+}
+.mobile-nav.open {
+  visibility: visible;
+  transition: right .4s var(--ease-out), visibility 0s;
+}
+
+/* Touch screens: no hover, so ingredients open on tap (see Products.astro) */
+.pcard.ing-open .pcard-ingredients { opacity: 1; pointer-events: auto; }
+
+@media (hover: none) {
+  .pcard:hover {
+    transform: none;
+    border-color: rgba(194, 127, 21, 0.18);
+    box-shadow: 0 10px 28px rgba(35, 15, 6, 0.06);
+  }
+  .pcard:hover .pcard-img img { transform: none; }
+  .pcard:hover .pcard-ingredients { opacity: 0; pointer-events: none; }
+  .pcard.ing-open .pcard-ingredients { opacity: 1; pointer-events: auto; }
+}
+
+/* Sticky order bar (markup in MobileOrderBar.astro) */
+.m-order-bar { display: none; }
+
+@media (max-width: 768px) {
+  /* Film-grain overlay forces a full-screen blend pass on every frame; invisible at 2.5% anyway */
+  body::after { display: none; }
+
+  /* ── Hero ── */
+  .hero-trust-inline { font-size: 13px; gap: 6px 10px; }
+  .hbc-wt, .hbc-menu-row { font-size: 14px; }
+
+  /* ── Header touch targets ── */
+  .mobile-menu-btn { padding: 12px; }
+  .mobile-nav-close { padding: 10px; }
+
+  /* ── Oil Truth ── */
+  .oil-stats { flex-wrap: wrap; gap: 20px 28px; }
+  .compare-wrap { padding: 16px; }
+  .c-head-col { font-size: 11px; }
+  .c-cell { font-size: 12.5px; align-items: flex-start; }
+
+  /* ── Products: swipeable row instead of a 3,400px-tall stack ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78%, 300px);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 4px var(--gutter) 18px;
+    scrollbar-width: none;
+  }
+  .products-grid::-webkit-scrollbar { display: none; }
+  .pcard { scroll-snap-align: start; }
+  .ing-item { font-size: 14px; }
+  .pweight { font-size: 13px; }
+  .ptags { flex-wrap: wrap; }
+  .ptag { font-size: 12px; }
+  .porder {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 22px;
+    font-size: 13px;
+  }
+  .products-coming-soon {
+    flex-direction: column;
+    text-align: center;
+    padding: 26px 20px;
+    gap: 16px;
+  }
+  .pcs-btn { margin-left: 0; width: 100%; text-align: center; padding: 14px 22px; }
+
+  /* ── Special 4 Box section ── */
+  .hamper-trust-ribbon {
+    border-radius: 18px;
+    padding: 12px 16px;
+    gap: 8px 14px;
+    justify-content: flex-start;
+  }
+  .htr-sep { display: none; }
+  .htr-item { font-size: 13px; }
+  .hamper-price-card { flex-wrap: wrap; }
+  .hamper-item-sub { font-size: 13px; }
+  .hamper-shipping-badge span { font-size: 12px; }
+
+  /* ── Story: quote card sat half off-screen (right: -20px) ── */
+  .story-quote-card {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    max-width: none;
+    margin: -28px 12px 0;
+  }
+
+  /* ── Reels: swipe row instead of three stacked 440px videos ── */
+  .reels-grid {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    gap: 14px;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 4px var(--gutter) 16px;
+    scrollbar-width: none;
+  }
+  .reels-grid::-webkit-scrollbar { display: none; }
+  .reel-container {
+    flex: 0 0 68%;
+    max-width: 260px;
+    width: auto;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    scroll-snap-align: start;
+  }
+
+  /* ── Sticky order bar ── */
+  .m-order-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 490;
+    /* right padding keeps the button clear of the chat bubble */
+    padding: 10px 84px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    background: rgba(63, 14, 14, 0.97);
+    border-top: 1.5px solid rgba(226, 158, 40, 0.55);
+    box-shadow: 0 -8px 24px rgba(35, 15, 6, 0.25);
+    transform: translateY(110%);
+    transition: transform .3s var(--ease-out);
+    pointer-events: none;
+  }
+  .m-order-bar.show { transform: translateY(0); pointer-events: auto; }
+  .m-order-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    color: #FAF5EB;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 0;
+  }
+  .m-order-info strong {
+    font-family: var(--F);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold-l);
+  }
+  .m-order-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 99px;
+    background: linear-gradient(135deg, #F0B342, #D48C18);
+    color: #260A0A !important;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  /* room for the bar so it never covers the last lines of the footer */
+  footer { padding-bottom: 96px; }
+}
+
+@media (max-width: 480px) {
+  .hero-box-card { padding: 16px 18px; }
+  .hbc-name { font-size: 18px; }
+  .hbc-price { font-size: 46px; }
+  .hero-hindi { font-size: 18px; }
+  .btn-hero-order { padding: 16px 20px; font-size: 15px; }
+  .hero-carousel-card { height: 320px; }
+  .hc-name-badge { font-size: 14.5px; padding: 7px 16px; }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO BLURRED BACKGROUND VIDEO & CAROUSEL CARD
+   ════════════════════════════════════════════════════════════════════ */
+
+.hero-bg-video-wrap {
+  position: absolute;
+  inset: -12px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(5px);
+  transform: scale(1.02);
+  opacity: 0.65;
+}
+
+.hero-bg-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, rgba(250, 245, 235, 0.76) 0%, rgba(250, 245, 235, 0.45) 45%, rgba(250, 245, 235, 0.15) 100%);
+  pointer-events: none;
+}
+
+/* ── Hero Right: One Complete Image & Name Carousel Card ── */
+.hero-carousel-card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 520px;
+  border-radius: 24px;
+  border: 1.5px solid rgba(194, 127, 21, 0.45);
+  box-shadow: 
+    0 24px 54px rgba(35, 15, 6, 0.18),
+    0 4px 18px rgba(194, 127, 21, 0.12);
+  overflow: hidden;
+  background: #FFFDF9;
+  z-index: 2;
+}
+
+.hero-carousel-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .65s cubic-bezier(0.25, 1, 0.5, 1), transform .65s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+.hero-carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.hc-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Name badge — one complete image and its name only */
+.hc-name-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 3;
+  background: rgba(63, 14, 14, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(226, 158, 40, 0.6);
+  border-radius: 99px;
+  padding: 10px 24px;
+  box-shadow: 0 10px 28px rgba(35, 15, 6, 0.38);
+  font-family: var(--F);
+  font-size: 20px;
+  font-weight: 700;
+  color: #FAF5EB;
+  letter-spacing: .02em;
+}
+
+/* Dot indicators */
+.hc-dots {
+  position: absolute;
+  bottom: 28px;
+  right: 24px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(250, 245, 235, 0.65);
+  border: 1.5px solid rgba(63, 14, 14, 0.65);
+  cursor: pointer;
+  transition: all .25s ease;
+  padding: 0;
+}
+
+.hc-dot.active {
+  width: 28px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #F0B342, #D48C18);
+  border-color: #FAF5EB;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero-bg-video {
+    filter: blur(4px);
+    opacity: 0.62;
+  }
+  .hero-bg-video-overlay {
+    background: linear-gradient(180deg, rgba(250, 245, 235, 0.78) 0%, rgba(250, 245, 235, 0.45) 50%, rgba(250, 245, 235, 0.2) 100%);
+  }
+  .hero-carousel-card {
+    height: 380px;
+    max-width: 100%;
+    border-radius: 18px;
+  }
+  .hc-name-badge {
+    bottom: 16px;
+    left: 16px;
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+  .hc-dots {
+    bottom: 20px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-carousel-card {
+    height: 320px;
+  }
+  .hc-name-badge {
+    font-size: 14.5px;
+    padding: 7px 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-carousel-card {
+    height: 540px;
+    max-width: 600px;
   }
 }

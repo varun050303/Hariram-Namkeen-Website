@@ -1,9 +1,8 @@
 ---
 // Products.astro — v2
-// Product cards featuring new studio photography
-// Aloo Bhujia replaces the "Coming Soon" placeholder
-// Masala Chana Dal uses new high-res studio shots
-// 360° video badge on Aloo Bhujia card
+// Product cards featuring studio photography
+// Masala Chana Dal features Best Seller badge
+// All cards include Mustard Oil & No Preservatives tags
 ---
 
 <section class="products" id="products">
@@ -13,13 +12,13 @@
       <div>
         <div class="sec-tag">Our Products</div>
         <h2 class="sec-title">Made right. <em>Priced honestly.</em></h2>
-        <p class="sec-sub">Hover any product to see what's inside. Every SKU — pure mustard oil.</p>
+        <p class="sec-sub">Hover or tap any product to see what's inside. Every SKU — pure mustard oil.</p>
       </div>
-      <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="view-all">Order Online ↗</a>
+      <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20place%20an%20order.%20Please%20share%20available%20products%20and%20prices." target="_blank" rel="noopener noreferrer" class="view-all">Order Online ↗</a>
     </div>
     <div class="products-grid">
 
-      <!-- Aloo Bhujia (NEW - with 360° video) -->
+      <!-- Aloo Bhujia -->
       <div class="pcard" data-tilt id="pcard-bhujia">
         <div class="pcard-img">
           <img src="/images/aloo_bhujia.webp" alt="Aloo Bhujia" loading="lazy" width="768" height="1365"/>
@@ -27,24 +26,20 @@
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Potato Flakes & Besan</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
             <div class="ing-item">Turmeric & Red Chilli</div>
             <div class="ing-item">Ajwain & Cumin</div>
             <div class="ing-item">Rock Salt</div>
           </div>
-          <div class="pcard-video-wrap">
-            <video src="/videos/aloo_bhujia_rotating_shoot.mp4" poster="/images/aloo_bhujia_video_poster.webp" loop muted playsinline preload="metadata"></video>
-          </div>
-          <button class="pcard-360-badge" aria-label="Toggle 360° view">360° View</button>
         </div>
         <div class="pinfo">
           <h3>Aloo Bhujia</h3>
           <div class="pinfo-hi">आलू भुजिया</div>
-          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">Crispy</span></div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">No Preservatives</span></div>
           <div class="pweight">Net Wt. 250g</div>
           <div class="pfoot">
             <div class="pprice">₹100 <span>/ 250g</span></div>
-            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Aloo%20Bhujia.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -53,11 +48,10 @@
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/dal-bhiji.jpg" alt="Dal Bhiji" loading="lazy" width="1800" height="1200"/>
-          <span class="pbadge">Best Seller</span>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
             <div class="ing-item">Turmeric & Cumin</div>
             <div class="ing-item">Rock Salt</div>
             <div class="ing-item">Bay Leaf</div>
@@ -70,7 +64,7 @@
           <div class="pweight">Net Wt. 250g</div>
           <div class="pfoot">
             <div class="pprice">₹125 <span>/ 250g</span></div>
-            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Dal%20Bhiji.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -82,7 +76,7 @@
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal + Sev</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
             <div class="ing-item">Whole Cashews</div>
             <div class="ing-item">Raisins &amp; Dried Coconut</div>
             <div class="ing-item">Premium Spice Blend</div>
@@ -91,11 +85,11 @@
         <div class="pinfo">
           <h3>Shahi Dal Bhiji</h3>
           <div class="pinfo-hi">शाही दाल भीजी</div>
-          <div class="ptags"><span class="ptag">Dry Fruits</span><span class="ptag">Premium</span></div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">No Preservatives</span></div>
           <div class="pweight">Net Wt. 250g</div>
           <div class="pfoot">
             <div class="pprice">₹200 <span>/ 250g</span></div>
-            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Shahi%20Dal%20Bhiji.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -104,10 +98,11 @@
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/masala_chana_dal.webp" alt="Masala Chana Dal" loading="lazy" width="900" height="1600"/>
+          <span class="pbadge">Best Seller</span>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Chana Dal (Bengal Gram)</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
             <div class="ing-item">Chilli &amp; Coriander</div>
             <div class="ing-item">Amchur (Dry Mango)</div>
             <div class="ing-item">Chat Masala</div>
@@ -116,11 +111,11 @@
         <div class="pinfo">
           <h3>Masala Chana Dal</h3>
           <div class="pinfo-hi">मसाला चना दाल</div>
-          <div class="ptags"><span class="ptag">High Protein</span><span class="ptag">Spicy</span></div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">No Preservatives</span></div>
           <div class="pweight">Net Wt. 250g</div>
           <div class="pfoot">
             <div class="pprice">₹100 <span>/ 250g</span></div>
-            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Masala%20Chana%20Dal.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -133,7 +128,7 @@
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Select Groundnuts (Peanuts)</div>
-            <div class="ing-item">Kachi Ghani Mustard Oil</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
             <div class="ing-item">Hing &amp; Kashmiri Chilli</div>
             <div class="ing-item">Black Salt &amp; Amchur</div>
             <div class="ing-item">Hand-Ground Spices</div>
@@ -142,11 +137,37 @@
         <div class="pinfo">
           <h3>Masala Peanuts</h3>
           <div class="pinfo-hi">मसाला मूंगफली</div>
-          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">Crunchy</span></div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">No Preservatives</span></div>
           <div class="pweight">Net Wt. 250g</div>
           <div class="pfoot">
             <div class="pprice">₹100 <span>/ 250g</span></div>
-            <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Masala%20Peanuts.%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spicy Malka (NEW) -->
+      <div class="pcard" data-tilt>
+        <div class="pcard-img">
+          <img src="/images/masala_malka.webp" alt="Spicy Malka" loading="lazy" width="1376" height="768"/>
+          <span class="pbadge">New Launch</span>
+          <div class="pcard-ingredients">
+            <div class="ing-title">What's inside</div>
+            <div class="ing-item">Whole Malka (Masoor Dal)</div>
+            <div class="ing-item">Yellow Mustard Oil</div>
+            <div class="ing-item">Kashmiri Chilli &amp; Amchur</div>
+            <div class="ing-item">Black Salt &amp; Cumin</div>
+            <div class="ing-item">Secret UP Chaat Spices</div>
+          </div>
+        </div>
+        <div class="pinfo">
+          <h3>Spicy Malka</h3>
+          <div class="pinfo-hi">स्पाइसी मलका</div>
+          <div class="ptags"><span class="ptag">Mustard Oil</span><span class="ptag">No Preservatives</span></div>
+          <div class="pweight">Net Wt. 250g · ₹400 / kg</div>
+          <div class="pfoot">
+            <div class="pprice">₹100 <span>/ 250g</span></div>
+            <a href="https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20Spicy%20Malka%20(Rs.%20400%2Fkg).%20Please%20share%20payment%20and%20delivery%20details." target="_blank" rel="noopener noreferrer" class="porder">Order ↗</a>
           </div>
         </div>
       </div>
@@ -170,28 +191,13 @@
 </section>
 
 <script is:inline>
-  // 360° video toggle for Aloo Bhujia
+  // Touch screens have no hover: tap a product photo to open / close its ingredient list
   (() => {
-    const card = document.getElementById('pcard-bhujia');
-    if (!card) return;
-    const badge = card.querySelector('.pcard-360-badge');
-    const videoWrap = card.querySelector('.pcard-video-wrap');
-    const video = videoWrap?.querySelector('video');
-    if (!badge || !video) return;
-
-    let active = false;
-    badge.addEventListener('click', (e) => {
-      e.stopPropagation();
-      active = !active;
-      if (active) {
-        card.classList.add('video-active');
-        video.play();
-        badge.textContent = '✕ Close';
-      } else {
-        card.classList.remove('video-active');
-        video.pause();
-        badge.textContent = '360° View';
-      }
+    if (!window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.pcard-img').forEach((img) => {
+      img.addEventListener('click', () => {
+        img.closest('.pcard')?.classList.toggle('ing-open');
+      });
     });
   })();
 </script>

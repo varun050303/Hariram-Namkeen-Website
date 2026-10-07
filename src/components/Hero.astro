@@ -4,9 +4,22 @@
 ---
 
 <section class="hero" id="hero">
-  <!-- Subtle architectural background ambience -->
-  <div class="hero-arch-pattern" aria-hidden="true"></div>
-  <div class="hero-radial-glow" aria-hidden="true"></div>
+  <!-- Blurred ambient video background -->
+  <div class="hero-bg-video-wrap" aria-hidden="true">
+    <video
+      id="hero-bg-video"
+      class="hero-bg-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="/videos/aloo_bhujia_hero_widescreen.mp4" type="video/mp4" />
+      <source src="/videos/aloo_bhujia_rotating_shoot.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-bg-video-overlay"></div>
+  </div>
 
   <div class="hero-inner">
     <!-- Left column: Editorial Value Proposition -->
@@ -42,7 +55,7 @@
             <strong>Aloo Bhujia</strong> · 
             <strong>Masala Chana Dal</strong> · 
             <strong>Dal Biji</strong> · 
-            <strong>Light Malka / Masala Moongfali</strong>
+            <strong>Spicy Malka / Masala Moongfali</strong>
           </span>
         </div>
       </div>
@@ -72,19 +85,197 @@
       </div>
     </div>
 
-    <!-- Right column: ONE static image in a rounded gold-bordered card -->
+    <!-- Right column: One complete image and name carousel card -->
     <div class="hero-visual" id="hero-visual">
-      <div class="hero-image-card">
-        <img 
-          src="/images/hariram_special_4_top_view.webp" 
-          alt="Hariram Special 4 Box - 4 varieties (800g) fried in yellow mustard oil" 
-          class="hero-card-img"
-          loading="eager"
-          fetchpriority="high"
-          width="1024"
-          height="1024"
-        />
+      <div class="hero-carousel-card" id="hero-carousel">
+        <div class="hero-carousel-slides">
+          <!-- Slide 1: Aloo Bhujia -->
+          <div class="hero-carousel-slide active" data-slide="0">
+            <img 
+              src="/images/aloo_bhujia.webp" 
+              alt="Aloo Bhujia" 
+              class="hc-slide-img" 
+              loading="eager" 
+              width="768" 
+              height="1365" 
+            />
+            <div class="hc-name-badge">Aloo Bhujia</div>
+          </div>
+
+          <!-- Slide 2: Masala Chana Dal -->
+          <div class="hero-carousel-slide" data-slide="1">
+            <img 
+              src="/images/masala_chana_dal.webp" 
+              alt="Masala Chana Dal" 
+              class="hc-slide-img" 
+              loading="lazy" 
+              width="900" 
+              height="1600" 
+            />
+            <div class="hc-name-badge">Masala Chana Dal</div>
+          </div>
+
+          <!-- Slide 3: Dal Biji -->
+          <div class="hero-carousel-slide" data-slide="2">
+            <img 
+              src="/images/dal-bhiji.jpg" 
+              alt="Dal Biji" 
+              class="hc-slide-img" 
+              loading="lazy" 
+              width="1800" 
+              height="1200" 
+            />
+            <div class="hc-name-badge">Dal Biji</div>
+          </div>
+
+          <!-- Slide 4: Masala Moongfali -->
+          <div class="hero-carousel-slide" data-slide="3">
+            <img 
+              src="/images/masala_moongfali.webp" 
+              alt="Masala Moongfali" 
+              class="hc-slide-img" 
+              loading="lazy" 
+              width="1200" 
+              height="896" 
+            />
+            <div class="hc-name-badge">Masala Moongfali</div>
+          </div>
+
+          <!-- Slide 5: Shahi Dal Biji -->
+          <div class="hero-carousel-slide" data-slide="4">
+            <img 
+              src="/images/premium.jpg" 
+              alt="Shahi Dal Biji" 
+              class="hc-slide-img" 
+              loading="lazy" 
+              width="1536" 
+              height="1024" 
+            />
+            <div class="hc-name-badge">Shahi Dal Biji</div>
+          </div>
+
+          <!-- Slide 6: Spicy Malka -->
+          <div class="hero-carousel-slide" data-slide="5">
+            <img 
+              src="/images/masala_malka.webp" 
+              alt="Spicy Malka" 
+              class="hc-slide-img" 
+              loading="lazy" 
+              width="1376" 
+              height="768" 
+            />
+            <div class="hc-name-badge">Spicy Malka</div>
+          </div>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="hc-dots" id="hc-dots">
+          <button class="hc-dot active" data-index="0" aria-label="Slide 1: Aloo Bhujia"></button>
+          <button class="hc-dot" data-index="1" aria-label="Slide 2: Masala Chana Dal"></button>
+          <button class="hc-dot" data-index="2" aria-label="Slide 3: Dal Biji"></button>
+          <button class="hc-dot" data-index="3" aria-label="Slide 4: Masala Moongfali"></button>
+          <button class="hc-dot" data-index="4" aria-label="Slide 5: Shahi Dal Biji"></button>
+          <button class="hc-dot" data-index="5" aria-label="Slide 6: Spicy Malka"></button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // Hero background video controller: ensure video plays actively and visibly
+  (() => {
+    const v = document.getElementById('hero-bg-video');
+    if (!v) return;
+
+    v.muted = true;
+    v.defaultMuted = true;
+
+    const playVideo = () => {
+      const p = v.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // If browser policy prevents unprompted autoplay, play on first user interaction
+          const unlock = () => {
+            v.play().catch(() => {});
+            ['click', 'scroll', 'touchstart'].forEach(evt => document.removeEventListener(evt, unlock));
+          };
+          ['click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, unlock, { once: true }));
+        });
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', playVideo);
+    } else {
+      playVideo();
+    }
+
+    // Only pause when hero is completely scrolled off-screen
+    const hero = document.getElementById('hero');
+    if ('IntersectionObserver' in window && hero) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      }, { threshold: 0 }).observe(hero);
+    }
+  })();
+
+  // Hero Carousel Logic (cycles through 5 snacks with complete image and name only)
+  (() => {
+    const card = document.getElementById('hero-carousel');
+    if (!card) return;
+    const slides = card.querySelectorAll('.hero-carousel-slide');
+    const dots = card.querySelectorAll('.hc-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer = null;
+
+    function goTo(idx) {
+      slides[current]?.classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current]?.classList.add('active');
+      dots[current]?.classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(next, 3500);
+    }
+    function stopAuto() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goTo(i); startAuto(); });
+    });
+
+    // Touch swipe support
+    let startX = 0;
+    card.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      stopAuto();
+    }, { passive: true });
+
+    card.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0) prev(); else next();
+      }
+      startAuto();
+    }, { passive: true });
+
+    card.addEventListener('mouseenter', stopAuto);
+    card.addEventListener('mouseleave', startAuto);
+
+    startAuto();
+  })();
+</script>
