@@ -41,6 +41,13 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="preload"
+    as="font"
+    type="font/woff2"
+    crossorigin
+    href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTLYgEM86xRbPQ.woff2"
+  />
+  <link
+    rel="preload"
     as="style"
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
   />
@@ -51,6 +58,14 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 
   <!-- Critical Above-the-Fold Layout (Instant reserved space, prevents Frame 0 height:0 CLS) -->
   <style is:inline>
+    @font-face {
+      font-family: 'Playfair Display Fallback';
+      src: local('Georgia');
+      ascent-override: 95%;
+      descent-override: 25%;
+      line-gap-override: 0%;
+      size-adjust: 104%;
+    }
     #header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; height: 76px; }
     .hero {
       min-height: calc(100vh - 72px);
@@ -73,6 +88,13 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       position: relative;
       z-index: 2;
       min-height: 540px;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
+      font-size: clamp(38px, 4.2vw, 56px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
     .hero-visual { min-height: 540px; width: 100%; display: flex; align-items: center; justify-content: center; }
     .hero-carousel-card { position: relative; width: 100%; max-width: 600px; height: 540px; }
@@ -191,17 +213,19 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   })();
   </script>
 
-  <!--Start of Tawk.to Script-->
+  <!--Start of Tawk.to Script (deferred to prevent iframe layout shift)-->
   <script type="text/javascript" is:inline>
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    }, 2000);
+  });
   </script>
   <!--End of Tawk.to Script-->
 </body>
