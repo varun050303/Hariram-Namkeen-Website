@@ -21,8 +21,9 @@ export async function onRequestPost({ request, env }) {
     const d = JSON.parse(raw);
     if (!ALLOWED_EVENTS.has(d.event)) return new Response(null, { status: 400 });
 
-    if (env.DB) {
-      await env.DB.prepare(
+    const db = env.DB || env.hariram_analytics;
+    if (db) {
+      await db.prepare(
         `INSERT INTO events
            (ts, event, source, path, ref, utm_source, utm_medium, utm_campaign, device, country, sid)
          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)`

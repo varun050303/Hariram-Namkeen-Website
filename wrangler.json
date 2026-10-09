@@ -1,0 +1,17 @@
+{
+  "name": "hariram-namkeen",
+  "compatibility_date": "2024-10-01",
+  "pages_build_output_dir": "dist",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hariram-analytics",
+      "database_id": "af8d7576-016e-4fe2-acd4-5dfb41049b43"
+    },
+    {
+      "binding": "hariram_analytics",
+      "database_name": "hariram-analytics",
+      "database_id": "af8d7576-016e-4fe2-acd4-5dfb41049b43"
+    }
+  ]
+}
