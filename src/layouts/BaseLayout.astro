@@ -49,6 +49,44 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     rel="stylesheet"
   />
 
+  <!-- Critical Above-the-Fold Layout (Instant reserved space, prevents Frame 0 height:0 CLS) -->
+  <style is:inline>
+    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; height: 76px; }
+    .hero {
+      min-height: calc(100vh - 72px);
+      min-height: calc(100dvh - 72px);
+      position: relative;
+      background: #FAF5EB;
+      padding: 84px clamp(20px, 4vw, 48px) 48px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 48px;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      min-height: 540px;
+    }
+    .hero-visual { min-height: 540px; width: 100%; display: flex; align-items: center; justify-content: center; }
+    .hero-carousel-card { position: relative; width: 100%; max-width: 600px; height: 540px; }
+    @media (max-width: 1024px) {
+      .hero { min-height: auto; padding-top: 84px; padding-bottom: 36px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; min-height: auto; }
+      .hero-visual { min-height: auto; }
+      .hero-carousel-card { height: 380px; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .hero-carousel-card { height: 320px; }
+    }
+  </style>
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
