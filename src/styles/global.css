@@ -48,7 +48,7 @@
   --bg-dark-alt: #320A0A;
   
   /* Typography */
-  --F: 'Playfair Display', Georgia, serif;
+  --F: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
   --B: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --H: 'Noto Sans Devanagari', sans-serif;
   
@@ -60,6 +60,16 @@
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+ 
+/* ── CLS Font Metric Override (Matches Georgia to Playfair Display) ── */
+@font-face {
+  font-family: 'Playfair Display Fallback';
+  src: local('Georgia');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 104%;
 }
 
 *, *::before, *::after {
@@ -451,6 +461,7 @@ body.cursor-hover #cursor-ring {
 /* ── HERO SECTION ───────────────────────────────────── */
 .hero {
   min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
   position: relative;
   background: var(--bg);
   padding: 84px var(--gutter) 48px;
@@ -2991,6 +3002,7 @@ footer {
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
+  background: var(--bg);
 }
 
 .hero-bg-video {
