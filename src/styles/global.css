@@ -503,6 +503,7 @@ body.cursor-hover #cursor-ring {
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  min-height: 540px;
 }
 
 .hero-content {
@@ -719,6 +720,7 @@ body.cursor-hover #cursor-ring {
   justify-content: center;
   z-index: 1;
   width: 100%;
+  min-height: 540px;
 }
 
 .hero-image-card {
@@ -2635,6 +2637,11 @@ footer {
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 32px;
+    min-height: auto;
+  }
+
+  .hero-visual {
+    min-height: auto;
   }
 
   .hero-content {
