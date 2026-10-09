@@ -71,6 +71,83 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 <body>
   <slot />
 
+  <!-- First-party analytics: anonymous, cookie-less events -> /api/track (see analytics/README.md) -->
+  <script is:inline>
+  (() => {
+    try {
+      const KEY = 'hn_ctx';
+      let ctx = null;
+      try { ctx = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
+      const isNewSession = !ctx;
+      if (!ctx) {
+        const q = new URLSearchParams(location.search);
+        let refHost = '';
+        try { refHost = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+        if (refHost === location.hostname) refHost = '';
+        ctx = {
+          sid: Math.random().toString(36).slice(2, 10),
+          ref: refHost,
+          utm_source: q.get('utm_source') || '',
+          utm_medium: q.get('utm_medium') || '',
+          utm_campaign: q.get('utm_campaign') || ''
+        };
+        try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
+      }
+      const device = window.matchMedia('(max-width: 768px)').matches ? 'mobile' : 'desktop';
+
+      const send = (event, source) => {
+        const body = JSON.stringify({ event, source, path: location.pathname, device, ...ctx });
+        if (navigator.sendBeacon) navigator.sendBeacon('/api/track', body);
+        else fetch('/api/track', { method: 'POST', body, keepalive: true }).catch(() => {});
+        // also forwarded if Cloudflare Zaraz is ever switched on
+        if (window.zaraz && window.zaraz.track) { try { window.zaraz.track(event, { source }); } catch (e) {} }
+      };
+
+      // Which button was tapped (label via data-track, otherwise inferred from where it sits)
+      const sourceOf = (el) => {
+        const tagged = el.closest('[data-track]');
+        if (tagged) return tagged.getAttribute('data-track');
+        if (el.closest('.m-order-bar')) return 'mobile_bar';
+        if (el.closest('.mobile-nav')) return 'mobile_menu';
+        if (el.closest('#header')) return 'header';
+        if (el.closest('#hero')) return 'hero';
+        const card = el.closest('.pcard');
+        if (card) { const n = card.querySelector('h3'); return 'product:' + (n ? n.textContent.trim().slice(0, 30) : 'unknown'); }
+        if (el.closest('#products')) return 'products_section';
+        if (el.closest('#hamper')) return 'hamper';
+        if (el.closest('#contact')) return 'cta_banner';
+        if (el.closest('footer')) return 'footer';
+        return 'other';
+      };
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a[href*="wa.me"]');
+        if (a) send('whatsapp_click', sourceOf(a));
+      }, true);
+
+      if (isNewSession) send('landing', 'page');
+
+      // How far people scroll: each section counted once per session
+      if ('IntersectionObserver' in window) {
+        const seen = new Set();
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting && !seen.has(en.target.id)) {
+              seen.add(en.target.id);
+              send('section_view', en.target.id);
+              io.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        ['oil-truth', 'products', 'hamper', 'story'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) io.observe(el);
+        });
+      }
+    } catch (e) { /* analytics must never break the page */ }
+  })();
+  </script>
+
   <!--Start of Tawk.to Script-->
   <script type="text/javascript" is:inline>
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
