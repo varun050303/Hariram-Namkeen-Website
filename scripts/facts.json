@@ -1,0 +1,51 @@
+{
+  "voice": "Warm, proud, direct and quietly confident. Written in first person plural (we) like a real family kitchen in Muzaffarnagar, not a corporate copywriter. Explain our own choices (the oil, the batch, the frying) in first person. Never compare ourselves to other brands, never name competitors, never talk about 'big brands' or 'mass-market' products. Never salesy or arrogant.",
+  "facts": [
+    "Hariram Namkeen is a early stage family-run namkeen kitchen in Muzaffarnagar, Uttar Pradesh, India.",
+    "Every product is made in yellow mustard oil (peeli sarson ka tel). We never use palm oil.",
+    "We use no preservatives.",
+    "We prepare in small batches of 15-20 kg by our halwais, and we prepare to order, not in bulk stock.",
+    "Every batch is crunch-tested and tasted before it is packed.",
+    "Orders are packed in our Muzaffarnagar kitchen and shipped across India.",
+    "The Special 4 Box: 4 varieties (Aloo Bhujia, Masala Chana Dal, Dal Biji, Masala Moongfali), 4 packs of 200g (800g total), Rs 499, free delivery across India.",
+    "Prices per kg: Aloo Bhujia Rs 400, Masala Chana Dal Rs 400, Masala Moongfali Rs 400, Dal Biji Rs 500.",
+    "Orders are taken on WhatsApp: +91 63961 22920.",
+    "Our belief: oil is something the body needs, so instead of avoiding it we chose a good one, yellow mustard oil.",
+    "What customers tell us most: the taste is good, and the aroma when the packet opens is distinctive. they are able to eat namkeen without worrying about health concern",
+    "Our values: Grahak Dev Tulya (the customer is treated with respect), honesty about what goes in the kadhai, and purity."
+  ],
+  "allowedNumbers": [
+    400,
+    500,
+    499,
+    200,
+    800
+  ],
+  "bannedPatterns": [
+    "kachi\\s*ghani",
+    "kacchi\\s*ghani",
+    "kachchi\\s*ghani",
+    "cold[- ]?press",
+    "unrefined",
+    "foil",
+    "food[- ]grade",
+    "pouch",
+    "press(ed|ing)? (our|the) (own )?(mustard )?oil",
+    "own (mustard )?oil",
+    "haldiram",
+    "bikaji",
+    "balaji",
+    "mass[- ]market",
+    "industrial",
+    "heart",
+    "immunity",
+    "cure",
+    "diabet",
+    "weight loss",
+    "medicin",
+    "nutrition(al)? (value|benefit)",
+    "world'?s best",
+    "ground (fresh )?(in[- ]house|daily)",
+    "stone[- ]ground"
+  ]
+}

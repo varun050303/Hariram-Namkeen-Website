@@ -1,34 +1,67 @@
 [
   {
-    "id": "oil-choice",
-    "angle": "Big namkeen brands have generally used palm or refined vegetable oil from the start for cost and shelf life. Hariram deliberately chose Kachi Ghani mustard oil instead, despite the higher cost"
+    "id": "diwali-namkeen-gift-box",
+    "query": "namkeen gift box for Diwali",
+    "angle": "A practical guide to gifting namkeen at Diwali: who it suits (family, neighbours, teams, clients), what the Special 4 Box contains and why 4 varieties works as a gift."
   },
   {
-    "id": "kachi-ghani",
-    "angle": "What 'Kachi Ghani' mustard oil actually means (cold-pressed, unrefined) versus refined oil, and why it matters for taste and health"
+    "id": "yellow-mustard-oil-namkeen",
+    "query": "mustard oil namkeen",
+    "angle": "What it means that our namkeen is made in yellow mustard oil: the aroma, the sharpness, and why we chose it, told in first person. No health claims."
   },
   {
-    "id": "how-its-made",
-    "angle": "The 4-step small-batch process: source ingredients, prep the batch, taste and check, pack and ship. Why rushing changes the taste"
+    "id": "no-palm-oil-namkeen",
+    "query": "namkeen without palm oil",
+    "angle": "How to read a namkeen packet: what to look for in the oil line, and why we decided never to use palm oil. Explain our choice only, name no other brand."
   },
   {
-    "id": "rajasthan-up-blend",
-    "angle": "Namkeen as a tradition traces back to Rajasthan; Hariram blends that heritage with UP (Uttar Pradesh) style preparation, made fresh in Muzaffarnagar"
+    "id": "corporate-diwali-gifting-small-teams",
+    "query": "corporate Diwali gifts for small teams",
+    "angle": "How a small company can gift Diwali snacks to 10-50 people: ordering early, one delivery address, and what to ask a food supplier (FSSAI licence, ingredients)."
   },
   {
-    "id": "spice-blend",
-    "angle": "Why fresh-ground, in-house spice blends taste different from the pre-mixed industrial masala used by mass-market brands"
+    "id": "dal-biji-explained",
+    "query": "dal biji namkeen",
+    "angle": "What Dal Biji is, how it is made, and how to eat it, told as a Muzaffarnagar kitchen explains it."
   },
   {
-    "id": "omega3-oil",
-    "angle": "The health angle: mustard oil's omega-3 profile compared to refined palm/sunflower oil used by mass brands"
+    "id": "aloo-bhujia-guide",
+    "query": "aloo bhujia",
+    "angle": "A guide to Aloo Bhujia: what makes it crisp, how we make ours in yellow mustard oil, and ways to enjoy it."
+  },
+  {
+    "id": "masala-chana-dal-guide",
+    "query": "masala chana dal",
+    "angle": "A guide to Masala Chana Dal: the crunch, the masala, and how it differs from the other namkeens in our box."
+  },
+  {
+    "id": "masala-moongfali-guide",
+    "query": "masala moongfali",
+    "angle": "A guide to Masala Moongfali: how peanuts take on mustard-oil frying and masala, and when it is best eaten."
+  },
+  {
+    "id": "small-batch-kadhai-process",
+    "query": "small batch namkeen",
+    "angle": "A walk through one batch: ingredients, halwais, iron kadhais, 15-20 kg batches, and the crunch-and-taste check before packing."
+  },
+  {
+    "id": "muzaffarnagar-namkeen",
+    "query": "Muzaffarnagar namkeen",
+    "angle": "Namkeen from Muzaffarnagar: who we are, where we cook, and how we ship to the rest of India."
+  },
+  {
+    "id": "how-to-keep-namkeen-crisp",
+    "query": "how to keep namkeen crisp",
+    "angle": "General, practical tips for keeping any namkeen crisp at home (airtight container, away from moisture and heat). No shelf-life numbers."
+  },
+  {
+    "id": "customer-reactions",
+    "query": "namkeen reviews",
+    "angle": "What customers tell us after the first order: taste and aroma. Use only the reactions listed in the facts; do not invent quotes or names."
   },
   {
     "id": "grahak-dev",
+    "query": "grahak dev tulya",
     "angle": "The 'Grahak Dev Tulya' philosophy (customer is equal to God) and what it means in how orders are packed and treated"
-  },
-  {
-    "id": "customer-story",
-    "angle": "Turn a real customer reaction into a short story-style post (use one of the testimonials on the site as inspiration, don't invent new ones)"
   }
 ]
