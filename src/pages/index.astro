@@ -62,7 +62,7 @@ import '../styles/global.css';
     function initPageAnimations() {
       if (!window.gsap || !window.ScrollTrigger) {
         if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initPageAnimations, { once: true });
+          window.addEventListener('load', initPageAnimations, { once: true });
         } else {
           setTimeout(initPageAnimations, 50);
         }
@@ -74,6 +74,12 @@ import '../styles/global.css';
       const gsap = window.gsap;
       const ScrollTrigger = window.ScrollTrigger;
       gsap.registerPlugin(ScrollTrigger);
+
+      // GreenSock official mobile optimization: prevent forced reflows on mobile scroll & address bar resize
+      ScrollTrigger.config({
+        ignoreMobileResize: true,
+        limitCallbacks: true
+      });
 
       // ── REDUCED MOTION ────────────────────────────────────────────
       const mediaReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -389,10 +395,20 @@ import '../styles/global.css';
 
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPageAnimations);
+    if (document.readyState === 'complete') {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(initPageAnimations, { timeout: 1500 });
+      } else {
+        setTimeout(initPageAnimations, 100);
+      }
     } else {
-      initPageAnimations();
+      window.addEventListener('load', () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(initPageAnimations, { timeout: 1500 });
+        } else {
+          setTimeout(initPageAnimations, 100);
+        }
+      }, { once: true });
     }
   })();
 </script>
