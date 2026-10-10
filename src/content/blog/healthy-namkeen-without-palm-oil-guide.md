@@ -38,6 +38,8 @@ Traditional North Indian namkeen—especially from the culinary corridors of Utt
 - **Natural Omega-3**: Unlike refined vegetable oils, cold-pressed mustard oil has an ideal balance of Omega-3 to Omega-6 fatty acids, supporting heart and metabolic health.
 - **Natural Pungency & Digestibility**: Yellow mustard oil has a gentler, more golden aroma than black mustard oil, imparting a crisp crunch while stimulating natural gastric juices for easy digestion.
 
+> **The Taste & Health Challenge**: *"Try finding another namkeen made in pure yellow mustard oil — you won't. Every major packaged brand in India switched to industrial palm oil to cut costs and sit in warehouses. We are India’s dedicated brand reviving 100% pure cold-pressed yellow mustard oil namkeen, made fresh in small batches."*
+
 ---
 
 ## 2. The Preservative Trap: TBHQ and Warehouse Staling

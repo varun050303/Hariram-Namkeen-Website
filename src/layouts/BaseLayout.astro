@@ -22,6 +22,12 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/images/logo.png" />
 
+  <!-- Local SEO Geotags: Muzaffarnagar, Uttar Pradesh -->
+  <meta name="geo.region" content="IN-UP" />
+  <meta name="geo.placename" content="Muzaffarnagar" />
+  <meta name="geo.position" content="29.4727;77.7085" />
+  <meta name="ICBM" content="29.4727, 77.7085" />
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
@@ -127,7 +133,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         "url": "https://hariramnamkeen.com",
         "logo": "https://hariramnamkeen.com/images/logo.png",
         "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil. Small-batch, fresh on demand, zero palm oil, zero chemical preservatives.",
-        "slogan": "Pure Yellow Mustard Oil Snacks. No Palm Oil. Fresh in Small Batches.",
+        "slogan": "Try finding another namkeen made in pure yellow mustard oil — you won't. India’s dedicated brand reviving 100% pure yellow mustard oil namkeen.",
         "telephone": "+91-6396122920",
         "knowsAbout": [
           "Healthy Namkeen",
@@ -172,6 +178,14 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Hariram Namkeen is prepared exclusively in 100% pure cold-pressed yellow mustard oil (kachi ghani). It contains zero palm oil, zero chemical preservatives (TBHQ-free), zero artificial colorings, and is cooked fresh in small batches on demand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there other namkeen brands in India made in pure yellow mustard oil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Try finding another namkeen made in pure yellow mustard oil — you won't. Every major packaged brand in India switched to industrial palm oil or refined cottonseed oil to cut costs and sit in warehouses. Hariram Namkeen is India’s dedicated brand reviving 100% pure cold-pressed yellow mustard oil namkeen, made fresh in small batches on demand."
             }
           },
           {
