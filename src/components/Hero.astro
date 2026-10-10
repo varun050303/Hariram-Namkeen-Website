@@ -9,11 +9,11 @@
     <video
       id="hero-bg-video"
       class="hero-bg-video"
-      autoplay
       muted
       loop
       playsinline
-      preload="auto"
+      preload="none"
+      poster="/images/aloo_bhujia_video_poster.webp"
     >
       <source src="/videos/aloo_bhujia_hero_widescreen.mp4" type="video/mp4" />
       <source src="/videos/aloo_bhujia_rotating_shoot.mp4" type="video/mp4" />
@@ -206,11 +206,13 @@
       }
     };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', playVideo);
-    } else {
-      playVideo();
-    }
+    // On mobile screens (<= 768px), don't download heavy 2MB video in background
+    // Display the poster image to guarantee sub-second mobile FCP and LCP!
+    if (window.innerWidth <= 768) return;
+
+    window.addEventListener('load', () => {
+      setTimeout(playVideo, 1200);
+    }, { once: true });
 
     // Only pause when hero is completely scrolled off-screen
     const hero = document.getElementById('hero');

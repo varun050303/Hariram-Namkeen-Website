@@ -39,17 +39,13 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <!-- Fonts: Optimized and preloaded for minimal CLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Preload Critical LCP Hero Image for Instant Mobile Paint -->
   <link
     rel="preload"
-    as="font"
-    type="font/woff2"
-    crossorigin
-    href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTLYgEM86xRbPQ.woff2"
-  />
-  <link
-    rel="preload"
-    as="style"
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    as="image"
+    type="image/webp"
+    href="/images/aloo_bhujia.webp"
+    fetchpriority="high"
   />
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
@@ -117,9 +113,6 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     }
   </style>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
 
   <!-- Structured Data: Rich Knowledge Graph (Organization, Brand, FoodEstablishment & FAQPage for AI and SEO) -->
   <script type="application/ld+json">
@@ -305,6 +298,8 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     }, 2000);
   });
   </script>
-  <!--End of Tawk.to Script-->
+  <!-- GSAP: Loaded at bottom of body to ensure zero FCP delay -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
 </body>
 </html>
