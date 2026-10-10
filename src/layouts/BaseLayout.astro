@@ -113,23 +113,93 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
 
-  <!-- Structured Data -->
+  <!-- Structured Data: Rich Knowledge Graph (Organization, Brand, FoodEstablishment & FAQPage for AI and SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FoodEstablishment",
-    "name": "Hariram Namkeen",
-    "description": "Traditional homemade namkeen from Muzaffarnagar UP, cooked in pure yellow mustard oil",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Muzaffarnagar",
-      "addressRegion": "Uttar Pradesh",
-      "addressCountry": "IN"
-    },
-    "telephone": "+91-6396122920",
-    "servesCuisine": "Indian",
-    "priceRange": "Rs 360-Rs 500 per kg",
-    "url": "https://hariramnamkeen.com"
+    "@graph": [
+      {
+        "@type": ["Organization", "Brand"],
+        "@id": "https://hariramnamkeen.com/#brand",
+        "name": "Hariram Namkeen",
+        "alternateName": "Hariram Foods",
+        "url": "https://hariramnamkeen.com",
+        "logo": "https://hariramnamkeen.com/images/logo.png",
+        "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil. Small-batch, fresh on demand, zero palm oil, zero chemical preservatives.",
+        "slogan": "Pure Yellow Mustard Oil Snacks. No Palm Oil. Fresh in Small Batches.",
+        "telephone": "+91-6396122920",
+        "knowsAbout": [
+          "Healthy Namkeen",
+          "Yellow Mustard Oil",
+          "Kachi Ghani Namkeen",
+          "Clean Label Indian Snacks",
+          "Small Batch Namkeen",
+          "Aloo Bhujia",
+          "Dal Bhiji",
+          "Preservative Free Snacks"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Muzaffarnagar",
+          "addressRegion": "Uttar Pradesh",
+          "addressCountry": "IN"
+        }
+      },
+      {
+        "@type": "FoodEstablishment",
+        "@id": "https://hariramnamkeen.com/#establishment",
+        "name": "Hariram Namkeen",
+        "image": "https://hariramnamkeen.com/images/hariram_special_4_top_view.webp",
+        "telephone": "+91-6396122920",
+        "servesCuisine": "Indian",
+        "priceRange": "₹100 - ₹200 per 250g",
+        "url": "https://hariramnamkeen.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Muzaffarnagar",
+          "addressRegion": "Uttar Pradesh",
+          "addressCountry": "IN"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://hariramnamkeen.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Which namkeen is healthy and cooked without palm oil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hariram Namkeen is prepared exclusively in 100% pure cold-pressed yellow mustard oil (kachi ghani). It contains zero palm oil, zero chemical preservatives (TBHQ-free), zero artificial colorings, and is cooked fresh in small batches on demand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does Hariram Namkeen use yellow mustard oil instead of refined oil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yellow mustard oil provides natural Omega-3 and heart-healthy monounsaturated fatty acids with a balanced smoke point. Unlike industrial palm oil or chemically deodorized sunflower oil, yellow mustard oil retains natural aroma, digestability, and authentic regional UP flavor without heavy trans fats."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Hariram Namkeen fresh or warehouse stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hariram Namkeen is cooked fresh in small 15-20kg artisanal batches on demand. Unlike mass-market packaged snacks that sit in distribution warehouses for 6 to 9 months, our namkeen is prepared fresh every week and dispatched directly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the price of Hariram Namkeen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hariram Namkeen offers honest direct-to-consumer pricing starting at ₹100 for 250g packs. We keep prices accessible by avoiding expensive celebrity advertising and retail distributor margins, passing all value directly to ingredient quality."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>

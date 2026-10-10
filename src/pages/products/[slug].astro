@@ -1,0 +1,639 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { products, type Product } from '../../data/products';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props as { product: Product };
+
+const canonicalURL = `https://hariramnamkeen.com/products/${product.slug}`;
+const shareImage = product.image.startsWith('http') ? product.image : `https://hariramnamkeen.com${product.image}`;
+const pageTitle = `${product.name} (${product.hindiName}) — Pure Yellow Mustard Oil Namkeen | Hariram`;
+const pageDescription = `Buy fresh, small-batch ${product.name} prepared in 100% pure cold-pressed yellow mustard oil. Zero palm oil, zero chemical preservatives, authentic UP taste. ₹${product.price} for ${product.weight}.`;
+
+const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} image={product.image}>
+  <!-- Schema.org Product Structured Data for Google Rich Snippets & AI Crawlers -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${product.name} (${product.hindiName})`,
+    "image": [shareImage],
+    "description": product.description,
+    "sku": `HN-${product.slug.toUpperCase()}`,
+    "brand": {
+      "@type": "Brand",
+      "name": "Hariram Namkeen"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Hariram Namkeen",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Muzaffarnagar",
+        "addressRegion": "Uttar Pradesh",
+        "addressCountry": "IN"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": canonicalURL,
+      "priceCurrency": "INR",
+      "price": product.price,
+      "priceValidUntil": "2027-12-31",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Hariram Namkeen"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "84",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Cooking Medium",
+        "value": "100% Pure Yellow Mustard Oil"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Preservatives",
+        "value": "0% Preservatives, No TBHQ"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Batch Size",
+        "value": "Small artisanal batch (15-20kg)"
+      }
+    ]
+  })} />
+
+  <Header />
+
+  <main class="product-page">
+    <div class="product-page-inner">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="sep">/</span>
+        <a href="/#products">Products</a>
+        <span class="sep">/</span>
+        <span class="curr">{product.name}</span>
+      </nav>
+
+      <div class="product-layout">
+        <!-- Visual Column -->
+        <div class="product-visual">
+          <div class="visual-card">
+            <img src={product.image} alt={`${product.name} - Hariram Namkeen`} class="main-img" width="1200" height="900" />
+            {product.badge && <span class="p-badge">{product.badge}</span>}
+            <div class="oil-badge-overlay">
+              <span class="drop-icon">✦</span> 100% Yellow Mustard Oil · Zero Palm Oil
+            </div>
+          </div>
+
+          <div class="trust-bar-mini">
+            <div class="tb-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>FSSAI Certified</span>
+            </div>
+            <div class="tb-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c-1.5 2-4 5.5-4 9a4 4 0 0 0 8 0c0-3.5-2.5-7-4-9z"/><path d="M5 21h14"/></svg>
+              <span>Fresh Weekly Batches</span>
+            </div>
+            <div class="tb-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>No Preservatives</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Column -->
+        <div class="product-details">
+          <div class="sec-tag"><span>✦</span> शुद्ध सरसों का तेल · ARTISANAL CRAFT</div>
+          <h1 class="p-title">{product.name} <span class="p-hindi">{product.hindiName}</span></h1>
+          <p class="p-tagline">{product.tagline}</p>
+
+          <div class="price-box">
+            <div class="p-price">₹{product.price} <span class="p-unit">/ {product.weight}</span></div>
+            <div class="p-shipping-badge">Direct from Muzaffarnagar Kitchen</div>
+          </div>
+
+          <p class="p-long-desc">{product.longDescription}</p>
+
+          <!-- Why Mustard Oil Highlight -->
+          <div class="oil-callout">
+            <div class="oc-title">
+              <span class="oc-icon">✦</span> Why We Never Use Palm Oil For This
+            </div>
+            <p class="oc-body">
+              Most brands cook snacks in industrial refined palm oil to save cost and extend shelf-life for months. We cook our {product.name} exclusively in cold-pressed yellow mustard oil. You get genuine crispness, rich Omega-3, and zero throat burning or acidity.
+            </p>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="ing-section">
+            <h3 class="sec-mini-title">Ingredients (100% Clean Label)</h3>
+            <div class="ing-grid">
+              {product.ingredients.map((ing) => (
+                <div class="ing-chip">
+                  <span class="check">✓</span> {ing}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Health & Freshness Benefits -->
+          <div class="benefits-section">
+            <h3 class="sec-mini-title">Why It Stands Out</h3>
+            <ul class="benefits-list">
+              {product.healthBenefits.map((b) => (
+                <li>
+                  <span class="star-icon">✦</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Taste Profile -->
+          <div class="taste-box">
+            <div class="tb-label">Flavour &amp; Texture:</div>
+            <div class="tb-val">{product.tasteProfile}</div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="action-wrap">
+            <a
+              href={`https://wa.me/916396122920?text=${encodeURIComponent(product.whatsappMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="order-btn"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.4 5.83c0 4.54-3.7 8.24-8.24 8.24-1.44 0-2.86-.38-4.11-1.09l-.29-.17-3.12.82.83-3.04-.19-.31a8.13 8.13 0 0 1-1.25-4.45c0-4.54 3.69-8.24 8.25-8.24m4.52 11.63c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.49-1.4-1.74-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.32-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.31 3.8 2.53 1.09 2.53.73 2.99.69.45-.04 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/>
+              </svg>
+              <span>Order on WhatsApp (₹{product.price})</span>
+            </a>
+            <div class="guarantee-text">
+              <span>✦</span> Freshly prepared in batch. Dispatched directly from Muzaffarnagar kitchen.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Products -->
+      <section class="more-products">
+        <div class="more-header">
+          <div class="sec-tag"><span>✦</span> DISCOVER MORE</div>
+          <h2>Pair with other heritage favourites</h2>
+        </div>
+        <div class="more-grid">
+          {otherProducts.map((p) => (
+            <a href={`/products/${p.slug}`} class="more-card">
+              <div class="mc-img">
+                <img src={p.image} alt={p.name} loading="lazy" width="600" height="400" />
+                {p.badge && <span class="mc-badge">{p.badge}</span>}
+              </div>
+              <div class="mc-info">
+                <h4>{p.name}</h4>
+                <div class="mc-hi">{p.hindiName}</div>
+                <div class="mc-price">₹{p.price} <span>/ {p.weight}</span></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.product-page {
+  padding: 130px 0 100px;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.product-page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+.breadcrumb a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb .sep {
+  opacity: 0.4;
+}
+.breadcrumb .curr {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Visual Column */
+.product-visual {
+  position: sticky;
+  top: 100px;
+}
+.visual-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(200, 147, 26, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+.visual-card .main-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.visual-card:hover .main-img {
+  transform: scale(1.02);
+}
+.p-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--crimson);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 99px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.oil-badge-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent, rgba(14, 10, 8, 0.95));
+  padding: 24px 20px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.drop-icon {
+  color: var(--gold-bright);
+}
+
+.trust-bar-mini {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+}
+.tb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--cream);
+  font-weight: 600;
+}
+.tb-item svg {
+  color: var(--gold);
+}
+
+/* Details Column */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.p-title {
+  font-family: var(--F);
+  font-size: clamp(32px, 3.5vw, 44px);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.15;
+  margin: 0;
+}
+.p-hindi {
+  display: block;
+  font-family: var(--H);
+  font-size: 0.55em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.p-tagline {
+  font-size: 17px;
+  color: rgba(253, 243, 227, 0.85);
+  line-height: 1.5;
+  margin: 0;
+}
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.p-price {
+  font-family: var(--F);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--gold-bright);
+}
+.p-unit {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-weight: 500;
+}
+.p-shipping-badge {
+  font-size: 12px;
+  color: rgba(253, 243, 227, 0.7);
+  background: rgba(200, 147, 26, 0.12);
+  border: 1px solid rgba(200, 147, 26, 0.25);
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-weight: 600;
+}
+.p-long-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(253, 243, 227, 0.8);
+  margin: 0;
+}
+
+/* Oil Callout */
+.oil-callout {
+  background: rgba(184, 51, 42, 0.08);
+  border: 1px solid rgba(184, 51, 42, 0.25);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.oc-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.oc-icon {
+  color: var(--crimson);
+}
+.oc-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(253, 243, 227, 0.85);
+  margin: 0;
+}
+
+.sec-mini-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px;
+}
+.ing-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ing-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 147, 26, 0.2);
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 13px;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ing-chip .check {
+  color: #25D366;
+  font-weight: bold;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.benefits-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(253, 243, 227, 0.8);
+}
+.star-icon {
+  color: var(--gold);
+  font-size: 11px;
+}
+
+.taste-box {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+}
+.tb-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.tb-val {
+  font-size: 14px;
+  color: var(--cream);
+  font-style: italic;
+}
+
+.action-wrap {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #25D366;
+  color: #0b2212;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.order-btn:hover {
+  background: #2ee672;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+}
+.guarantee-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.guarantee-text span {
+  color: var(--gold);
+}
+
+/* More Products */
+.more-products {
+  margin-top: 90px;
+  padding-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.more-header {
+  margin-bottom: 32px;
+}
+.more-header h2 {
+  font-family: var(--F);
+  font-size: clamp(24px, 3vw, 32px);
+  color: var(--cream);
+  margin-top: 8px;
+}
+.more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.more-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.more-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 147, 26, 0.3);
+}
+.mc-img {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.mc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.more-card:hover .mc-img img {
+  transform: scale(1.05);
+}
+.mc-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--crimson);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+.mc-info {
+  padding: 16px;
+}
+.mc-info h4 {
+  font-family: var(--F);
+  font-size: 18px;
+  color: var(--cream);
+  margin: 0;
+}
+.mc-hi {
+  font-family: var(--H);
+  font-size: 13px;
+  color: var(--gold);
+  margin: 2px 0 8px;
+}
+.mc-price {
+  font-weight: 700;
+  color: var(--gold-bright);
+  font-size: 16px;
+}
+.mc-price span {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+@media (max-width: 900px) {
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .product-visual {
+    position: static;
+  }
+  .visual-card .main-img {
+    height: 340px;
+  }
+  .more-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
