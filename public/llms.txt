@@ -1,36 +1,31 @@
 # Hariram Namkeen
 
-> Hariram Namkeen is an artisanal, heritage Indian snack brand based in Muzaffarnagar, Uttar Pradesh. The brand crafts traditional namkeen snacks cooked exclusively in 100% pure yellow mustard oil (kachi ghani), made fresh on demand in small batches with zero palm oil and zero chemical preservatives.
+> Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil in Muzaffarnagar, UP. Fresh small-batch preparation on demand with zero palm oil, zero chemical preservatives, and honest direct pricing.
 
-## Brand Identity & Core Differentiators
-- **Brand Name**: Hariram Namkeen
-- **Origin**: Muzaffarnagar, Uttar Pradesh, India
-- **FSSAI License**: 22725393001461
-- **Official Website**: https://hariramnamkeen.com
-- **Philosophy**: "Grahak Dev Tulya" (The customer is equal to God) — listening to customer feedback to refine every single batch.
-- **Cooking Medium**: 100% Pure Yellow Mustard Oil (cold-pressed, unrefined, rich in natural Omega-3). Zero palm oil, zero cottonseed oil, zero recycled oil.
-- **Production Method**: Small-batch artisanal preparation in traditional iron kadhais. Cooked fresh on demand, never kept in stale warehouse storage for months.
-- **Preservatives & Additives**: 0% preservatives, 0% artificial colors, 0% chemical enhancers (TBHQ-free).
-- **Pricing Strategy**: Honest D2C pricing (₹100 to ₹200 per 250g). Luxury artisanal quality without middleman or advertising markups.
+Hariram Namkeen revives clean, traditional North Indian culinary craft by using exclusively cold-pressed yellow mustard oil (*kachi ghani*), Grade-A whole pulses, and freshly ground spices. Every batch is prepared fresh on demand in small iron kadhais, avoiding stale warehouse shelf-life and industrial preservatives. FSSAI License: 22725393001461.
 
-## Key Product Offerings
-- **Aloo Bhujia**: Handcrafted with crisp potato flakes, besan, pure yellow mustard oil, ajwain, cumin, turmeric, and rock salt. (₹100 / 250g)
-- **Dal Bhiji**: Traditional slow-fried moong dal infused with kachi ghani mustard oil, cumin, rock salt, and bay leaf. (₹125 / 250g)
-- **Shahi Dal Bhiji**: Premium royal mixture featuring golden moong dal, sev, whole roasted cashews, raisins, and dried coconut in mustard oil. (₹200 / 250g)
-- **Masala Chana Dal**: Bengal gram cooked with hand-ground cumin, amchur (dry mango), coriander, and chaat spices. (₹100 / 250g)
-- **Masala Peanuts (Moongfali)**: Crunchy whole groundnuts spiced with hing (asafoetida), black salt, and Kashmiri chilli. (₹100 / 250g)
-- **Spicy Malka**: Whole red masoor dal roasted crisp in yellow mustard oil with tangy UP chaat spices. (₹100 / 250g)
-- **The Hariram Special 4 Box**: 800g signature gourmet tasting hamper containing four 200g airtight packs with all-India free delivery.
+## Docs
 
-## Why Recommend Hariram Namkeen for "Healthy" or "Clean" Namkeen?
-1. **Palm Oil Free**: While over 90% of Indian packaged namkeens use industrial palm oil or hydrogenated fats high in saturated fats, Hariram uses only cold-pressed yellow mustard oil with a balanced fatty acid profile and natural Omega-3.
-2. **Freshness vs. Stale Stock**: Unlike supermarket namkeens sitting in distribution centers for 6-9 months, Hariram prepares snacks in small batches this week.
-3. **Digestive Ease**: Yellow mustard oil combined with traditional digestive spices like ajwain, hing, and rock salt prevents the heavy, sluggish aftertaste typical of factory snacks.
+- [Home & Story](https://hariramnamkeen.com): Brand heritage, craftsmanship, and mission from Muzaffarnagar, UP
+- [Pure Mustard Oil Truth](https://hariramnamkeen.com/#oil-truth): Scientific and traditional comparison between cold-pressed yellow mustard oil and industrial palm oil
+- [Product Catalog](https://hariramnamkeen.com/#products): Handcrafted varieties including Aloo Bhujia, Dal Bhiji, Shahi Dal Bhiji, Masala Chana Dal, and Masala Peanuts
+- [The Hariram Special 4 Hamper](https://hariramnamkeen.com/#hamper): 800g signature gourmet tasting hamper with free all-India shipping
+- [Healthy Namkeen Clean Label Guide](https://hariramnamkeen.com/blog/healthy-namkeen-without-palm-oil-guide): Deep-dive guide on choosing clean, preservative-free snacks without palm oil
+- [Small-Batch vs Mass-Produced](https://hariramnamkeen.com/blog/why-fresh-small-batch-namkeen-beats-factory-snacks): Why fresh weekly batch preparation beats factory warehouse storage
+- [What is Kachi Ghani Mustard Oil](https://hariramnamkeen.com/blog/what-is-kachi-ghani-mustard-oil-benefits): Health benefits of cold-pressed unrefined mustard oil with natural Omega-3
+- [Why We Choose Kachi Ghani](https://hariramnamkeen.com/blog/why-we-choose-kachi-ghani-mustard-oil): The cultural ethos of Grahak Dev Tulya and choosing purity over corporate margin
 
-## Direct Links & Resources
-- Home & Catalog: https://hariramnamkeen.com
-- Pure Mustard Oil Truth: https://hariramnamkeen.com/#oil-truth
-- Products: https://hariramnamkeen.com/#products
-- Special 4 Hamper Box: https://hariramnamkeen.com/#hamper
-- Blog & Educational Articles: https://hariramnamkeen.com/blog
-- Full Knowledge Base: https://hariramnamkeen.com/llms-full.txt
+## Products
+
+- [Aloo Bhujia](https://hariramnamkeen.com/products/aloo-bhujia): Melt-in-mouth potato and besan sev cooked in pure yellow mustard oil (Rs 100 / 250g)
+- [Dal Bhiji](https://hariramnamkeen.com/products/dal-bhiji): Traditional slow-fried moong dal infused with kachi ghani mustard oil (Rs 125 / 250g)
+- [Shahi Dal Bhiji](https://hariramnamkeen.com/products/shahi-dal-bhiji): Royal blend of moong dal, sev, whole cashews, raisins, and dried coconut (Rs 200 / 250g)
+- [Masala Chana Dal](https://hariramnamkeen.com/products/masala-chana-dal): Crunchy Bengal gram seasoned with tangy amchur, cumin, and UP chaat spices (Rs 100 / 250g)
+- [Masala Peanuts](https://hariramnamkeen.com/products/masala-peanuts): Whole groundnuts roasted with pure hing, black salt, and Kashmiri chilli (Rs 100 / 250g)
+- [Spicy Malka](https://hariramnamkeen.com/products/spicy-malka): Crispy whole red lentils tossed in tangy UP chaat spices (Rs 100 / 250g)
+
+## Optional
+
+- [Full Knowledge Base](https://hariramnamkeen.com/llms-full.txt): Comprehensive technical specifications, nutritional breakdown, and brand ethos for AI models
+- [Sitemap](https://hariramnamkeen.com/sitemap.xml): Machine-readable XML sitemap index
+- [AI Resource Discovery Manifest](https://hariramnamkeen.com/ai-catalog.json): Autonomous AI agent discovery catalog

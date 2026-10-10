@@ -51,7 +51,7 @@ export const products: Product[] = [
     tagline: 'Traditional slow-fried moong dal infused with kachi ghani mustard oil and heritage spices.',
     price: 125,
     weight: '250g',
-    image: '/images/dal-bhiji.jpg',
+    image: '/images/dal-bhiji.webp',
     description: 'Heritage Uttar Pradesh style moong dal snack. Slow-roasted in pure yellow mustard oil for maximum crunch and natural protein richness.',
     longDescription: 'A timeless staple of Muzaffarnagar and Western UP households, Dal Bhiji requires patience and master halwai intuition. We soak select Grade-A moong dal, drain it thoroughly, and flash-fry it in pure yellow mustard oil at exact temperature curves. Lightly seasoned with hand-crushed roasted cumin, whole bay leaves, and Himalayan rock salt.',
     ingredients: [
@@ -78,7 +78,7 @@ export const products: Product[] = [
     tagline: 'Royal gourmet blend of crispy moong dal, fine sev, whole cashews, and coconut slices.',
     price: 200,
     weight: '250g',
-    image: '/images/premium.jpg',
+    image: '/images/premium.webp',
     badge: 'Royal Gourmet',
     description: 'Our most celebratory creation. Crisp moong dal and fine besan sev tossed with buttery whole cashews, raisins, dried coconut slivers, and royal spices.',
     longDescription: 'Shahi Dal Bhiji is crafted for festive gatherings and discerning namkeen connoisseurs. We fold slow-fried moong dal and fine artisanal besan sev together with premium whole roasted cashews, sun-dried raisins, and thinly sliced dry coconut. Cooked entirely in cold-pressed yellow mustard oil, it offers an aristocratic interplay of savory crunch and delicate fruit sweetness without cloying heaviness.',

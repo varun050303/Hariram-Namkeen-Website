@@ -54,7 +54,15 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
   />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
 
   <!-- Critical Above-the-Fold Layout (Instant reserved space, prevents Frame 0 height:0 CLS) -->
   <style is:inline>

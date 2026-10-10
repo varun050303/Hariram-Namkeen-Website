@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schema/v1/ai-catalog.json",
+  "version": "1.0",
+  "name": "Hariram Namkeen",
+  "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil, small-batch, zero palm oil, zero preservatives.",
+  "publisher": {
+    "name": "Hariram Namkeen",
+    "url": "https://hariramnamkeen.com"
+  },
+  "resources": [
+    {
+      "name": "LLMs Summary",
+      "type": "documentation",
+      "url": "https://hariramnamkeen.com/llms.txt",
+      "description": "Machine-readable overview of Hariram Namkeen for LLMs"
+    },
+    {
+      "name": "Full Knowledge Base",
+      "type": "documentation",
+      "url": "https://hariramnamkeen.com/llms-full.txt",
+      "description": "Comprehensive ingredients, nutritional information, and brand ethos"
+    },
+    {
+      "name": "Product Catalog",
+      "type": "dataset",
+      "url": "https://hariramnamkeen.com/#products",
+      "description": "Handcrafted mustard oil namkeen products"
+    },
+    {
+      "name": "XML Sitemap",
+      "type": "sitemap",
+      "url": "https://hariramnamkeen.com/sitemap.xml",
+      "description": "Complete site index for search engines and crawlers"
+    }
+  ]
+}
