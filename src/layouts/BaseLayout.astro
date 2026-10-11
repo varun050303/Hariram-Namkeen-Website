@@ -8,6 +8,11 @@ const {
   image = "/images/hariram_special_4_top_view.webp",
 } = Astro.props;
 
+import { GOOGLE_ADS_CONFIG, isGoogleAdsConfigured } from '../config/googleAds';
+
+const gadsActive = isGoogleAdsConfigured();
+const { tagId, conversionSendTo } = GOOGLE_ADS_CONFIG;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hariramnamkeen.com');
 const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 ---
@@ -21,6 +26,20 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/images/logo.png" />
+
+  {gadsActive && (
+    <>
+      <!-- Google tag (gtag.js) -->
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(tagId)}`}></script>
+      <script is:inline define:vars={{ tagId, conversionSendTo }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', tagId);
+        window.__GADS_SEND_TO__ = conversionSendTo;
+      </script>
+    </>
+  )}
 
   <!-- Local SEO Geotags: Muzaffarnagar, Uttar Pradesh -->
   <meta name="geo.region" content="IN-UP" />
@@ -315,5 +334,82 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <!-- GSAP: Loaded at bottom of body to ensure zero FCP delay -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
+  <!-- Google Ads WhatsApp Click Conversion Tracking -->
+  <script is:inline>
+  (() => {
+    document.addEventListener('click', (e) => {
+      const link = e.target && e.target.closest
+        ? e.target.closest('a[data-wa-click], a[href*="wa.me"], a[href*="api.whatsapp.com"]')
+        : null;
+      if (!link) return;
+
+      const sendTo = window.__GADS_SEND_TO__;
+
+      // Rule 1: If Google Ads is unconfigured, placeholder, or gtag not loaded: load nothing and fire nothing
+      if (
+        !sendTo ||
+        typeof window.gtag !== 'function' ||
+        sendTo === 'AW-XXXXXXXXXX/LABEL' ||
+        sendTo.indexOf('XXXXXXXXXX') !== -1 ||
+        sendTo.indexOf('/LABEL') !== -1
+      ) {
+        return; // Standard native navigation proceeds immediately without delay
+      }
+
+      // Rule 3: Never fire twice per click
+      if (link.__wa_in_flight) {
+        e.preventDefault();
+        return;
+      }
+      link.__wa_in_flight = true;
+
+      // For modified or non-left clicks (middle click, Cmd/Ctrl-click), fire conversion without preventing native browser navigation
+      if (e.button > 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+        try {
+          window.gtag('event', 'conversion', { send_to: sendTo });
+        } catch (err) {}
+        link.__wa_in_flight = false;
+        return;
+      }
+
+      const url = link.href;
+      const target = link.target;
+      let navigated = false;
+
+      const openWhatsApp = () => {
+        if (navigated) return;
+        navigated = true;
+        link.__wa_in_flight = false;
+
+        if (target === '_blank') {
+          const win = window.open(url, '_blank', 'noopener,noreferrer');
+          if (!win || win.closed || typeof win.closed === 'undefined') {
+            window.location.href = url;
+          }
+        } else {
+          window.location.href = url;
+        }
+      };
+
+      // Rule 3: Never delay opening WhatsApp by more than ~300 ms
+      const safetyTimer = setTimeout(openWhatsApp, 280);
+
+      try {
+        e.preventDefault();
+        // Rule 3: Fire one conversion event. Counts a WhatsApp CLICK only, not a sale (no monetary value).
+        window.gtag('event', 'conversion', {
+          send_to: sendTo,
+          event_callback: () => {
+            clearTimeout(safetyTimer);
+            openWhatsApp();
+          }
+        });
+      } catch (err) {
+        clearTimeout(safetyTimer);
+        openWhatsApp();
+      }
+    }, false);
+  })();
+  </script>
 </body>
 </html>

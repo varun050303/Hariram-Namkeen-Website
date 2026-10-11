@@ -3,7 +3,7 @@
 // Appears once the hero button scrolls out of view; hides again on the Special 4 Box
 // section, the final CTA banner and the footer, which already have their own order buttons.
 const waUrl =
-  'https://wa.me/916396122920?text=Hi%20Hariram%20Namkeen%2C%20I%20want%20to%20order%20the%20Special%204%20Box%20(800g)%20for%20Rs.499%20with%20Free%20All-India%20Delivery.%20Please%20share%20payment%20and%20delivery%20details.';
+  'https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___.%20Ref%3A%20GAds';
 ---
 
 <div class="m-order-bar" id="m-order-bar">
@@ -11,7 +11,7 @@ const waUrl =
     <strong>₹499</strong>
     <span>Special 4 Box · Free delivery</span>
   </div>
-  <a href={waUrl} target="_blank" rel="noopener noreferrer" class="m-order-btn">Order now</a>
+  <a href={waUrl} target="_blank" rel="noopener noreferrer" class="m-order-btn" data-wa-click>Order now</a>
 </div>
 
 <script is:inline>
