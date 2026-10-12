@@ -8,10 +8,21 @@ const {
   image = "/images/hariram_special_4_top_view.webp",
 } = Astro.props;
 
-import { GOOGLE_ADS_CONFIG, isGoogleAdsConfigured } from '../config/googleAds';
+import {
+  GOOGLE_TAG_CONFIG,
+  isGoogleTagConfigured,
+  isGaConfigured,
+  isAnyGoogleTagActive,
+} from '../config/googleAds';
 
-const gadsActive = isGoogleAdsConfigured();
-const { tagId, conversionSendTo } = GOOGLE_ADS_CONFIG;
+const adsTagActive = isGoogleTagConfigured();
+const gaActive = isGaConfigured();
+const anyTagActive = isAnyGoogleTagActive();
+
+const adsTagId = GOOGLE_TAG_CONFIG.adsTagId;
+const gaMeasurementId = GOOGLE_TAG_CONFIG.gaMeasurementId;
+const conversionSendTo = GOOGLE_TAG_CONFIG.conversionSendTo;
+const primaryTagId = adsTagActive ? adsTagId : gaMeasurementId;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hariramnamkeen.com');
 const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
@@ -32,16 +43,21 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <meta name="author" content="Hariram Namkeen" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-  {gadsActive && (
+  {anyTagActive && (
     <>
       <!-- Google tag (gtag.js) -->
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(tagId)}`}></script>
-      <script is:inline define:vars={{ tagId, conversionSendTo }}>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(primaryTagId)}`}></script>
+      <script is:inline define:vars={{ adsTagActive, adsTagId, gaActive, gaMeasurementId, conversionSendTo }}>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = window.gtag || gtag;
         gtag('js', new Date());
-        gtag('config', tagId);
+        if (adsTagActive) {
+          gtag('config', adsTagId);
+        }
+        if (gaActive) {
+          gtag('config', gaMeasurementId);
+        }
         window.__GADS_SEND_TO__ = conversionSendTo;
       </script>
     </>
@@ -447,9 +463,20 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         : null;
       if (!link) return;
 
+      // Track WhatsApp lead in Google Analytics 4
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'engagement',
+            event_label: 'whatsapp_order',
+            transport_type: 'beacon'
+          });
+        } catch (err) {}
+      }
+
       const sendTo = window.__GADS_SEND_TO__;
 
-      // Rule 1: If Google Ads is unconfigured, placeholder, or gtag not loaded: load nothing and fire nothing
+      // Rule 1: If Google Ads conversion is unconfigured, placeholder, or gtag not loaded: proceed natively
       if (
         !sendTo ||
         typeof window.gtag !== 'function' ||
