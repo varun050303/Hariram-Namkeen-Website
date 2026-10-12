@@ -26,31 +26,39 @@ export const GOOGLE_ADS_CONFIG = {
   tagId:
     getEnv('PUBLIC_GADS_TAG_ID') ||
     getEnv('GOOGLE_ADS_TAG_ID') ||
-    'AW-XXXXXXXXXX',
+    'AW-18507413408',
   conversionSendTo:
     getEnv('PUBLIC_GADS_CONVERSION_SEND_TO') ||
     getEnv('GOOGLE_ADS_CONVERSION_SEND_TO') ||
-    'AW-XXXXXXXXXX/LABEL',
+    'AW-18507413408/LABEL',
 };
 
 /**
- * Returns true only if both tagId and conversionSendTo are valid non-placeholder values.
+ * Returns true if the Google Tag ID is a valid configured tag (e.g. AW-18507413408).
  */
-export function isGoogleAdsConfigured(
-  tagId = GOOGLE_ADS_CONFIG.tagId,
+export function isGoogleTagConfigured(tagId = GOOGLE_ADS_CONFIG.tagId): boolean {
+  if (!tagId) return false;
+  return tagId.startsWith('AW-') && !tagId.includes('XXXXXXXXXX');
+}
+
+/**
+ * Returns true if Google Ads tag is active so that the gtag.js script renders in <head>.
+ */
+export function isGoogleAdsConfigured(tagId = GOOGLE_ADS_CONFIG.tagId): boolean {
+  return isGoogleTagConfigured(tagId);
+}
+
+/**
+ * Returns true only if conversion send_to has a specific conversion action label.
+ */
+export function isConversionSendToConfigured(
   sendTo = GOOGLE_ADS_CONFIG.conversionSendTo
 ): boolean {
-  if (!tagId || !sendTo) return false;
-
-  const isPlaceholderTag =
-    tagId === 'AW-XXXXXXXXXX' ||
-    tagId.includes('XXXXXXXXXX') ||
-    !tagId.startsWith('AW-');
-
-  const isPlaceholderSendTo =
-    sendTo === 'AW-XXXXXXXXXX/LABEL' ||
-    sendTo.includes('XXXXXXXXXX') ||
-    sendTo.endsWith('/LABEL');
-
-  return !isPlaceholderTag && !isPlaceholderSendTo;
+  if (!sendTo) return false;
+  return (
+    sendTo.startsWith('AW-') &&
+    !sendTo.includes('XXXXXXXXXX') &&
+    !sendTo.endsWith('/LABEL') &&
+    sendTo.includes('/')
+  );
 }

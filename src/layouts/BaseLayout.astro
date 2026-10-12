@@ -39,6 +39,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       <script is:inline define:vars={{ tagId, conversionSendTo }}>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        window.gtag = window.gtag || gtag;
         gtag('js', new Date());
         gtag('config', tagId);
         window.__GADS_SEND_TO__ = conversionSendTo;
