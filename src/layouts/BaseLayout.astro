@@ -459,7 +459,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   (() => {
     document.addEventListener('click', (e) => {
       const link = e.target && e.target.closest
-        ? e.target.closest('a[data-wa-click], a[href*="wa.me"], a[href*="api.whatsapp.com"]')
+        ? e.target.closest('a[data-wa-click]')
         : null;
       if (!link) return;
 

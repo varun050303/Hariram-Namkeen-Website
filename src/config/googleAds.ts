@@ -34,7 +34,7 @@ export const GOOGLE_TAG_CONFIG = {
   conversionSendTo:
     getEnv('PUBLIC_GADS_CONVERSION_SEND_TO') ||
     getEnv('GOOGLE_ADS_CONVERSION_SEND_TO') ||
-    'AW-18507413408/LABEL',
+    'AW-18507413408/2LB4CJKnmJodEKDvgvlE',
 };
 
 // Backwards-compatible export
