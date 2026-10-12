@@ -22,3 +22,5 @@ We chose a different path. Kachi Ghani mustard oil is expensive, and because it 
 The craft of making namkeen originally traces its roots back to the dry sands of Rajasthan. At Hariram, we take that beautiful Rajasthani heritage and blend it with our own robust, spiced UP-style preparation right here in our Muzaffarnagar kitchen.
 
 We make our namkeen in small, careful batches. Every spice we use is ground fresh in-house daily, rather than using pre-packaged industrial masalas. With our FSSAI license (Lic. 22725393001461), we ensure that honesty and hygiene go hand in hand. When you eat clean, you can taste the difference.
+
+> ✦ **Explore Our Mustard Oil Specialties**: Try our iconic **[Dal Bhiji](/products/dal-bhiji)**, crunchy **[Masala Chana Dal](/products/masala-chana-dal)**, or **[The Special 4 Box](/#hamper)** delivered fresh to your door.

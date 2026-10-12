@@ -22,3 +22,5 @@ Namkeen making is a beautiful tradition that originally traces its roots back to
 To do justice to this fusion, we never use pre-mixed, factory-made masalas. Instead, we source whole spices and grind them fresh in-house daily. Every single pack of our namkeen is prepared in small batches, right here in Muzaffarnagar. We are fully FSSAI licensed (Lic. 22725393001461), combining traditional home-kitchen care with strict quality standards.
 
 We don't claim to be the biggest, nor do we make grand promises. We simply offer you honest, small-batch namkeen made with real Kachi Ghani mustard oil and freshly ground spices. From our home to yours, we hope you taste the care in every bite.
+
+> ✦ **Taste Pure Kachi Ghani Cooking**: Check out our **[Aloo Bhujia](/products/aloo-bhujia)**, **[Dal Bhiji](/products/dal-bhiji)**, or get the complete tasting experience with **[The Special 4 Box (800g)](/#hamper)**.

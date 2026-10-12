@@ -25,7 +25,7 @@ Before any batch is sealed, our halwais crunch-test and taste it. Only when the 
 
 Our kitchen runs on the principle of Grahak Dev Tulya—treating the customer with genuine respect. That respect begins with purity in our ingredients and care over the flame.
 
-Whether it is our Aloo Bhujia (Rs 400 per kg), Masala Chana Dal (Rs 400 per kg), Masala Moongfali (Rs 400 per kg), or Dal Biji (Rs 500 per kg), each recipe receives the exact same discipline. For people who want to try our favorites together, we pack The Special 4 Box: four 200g packs containing Aloo Bhujia, Masala Chana Dal, Dal Biji, and Masala Moongfali (800g total) for Rs 499, with free delivery across India. We take every order directly on WhatsApp at +91 63961 22920, frying and sending our fresh mustard oil namkeen straight from our home to yours.
+Whether it is our [Aloo Bhujia](/products/aloo-bhujia) (Rs 400 per kg), [Masala Chana Dal](/products/masala-chana-dal) (Rs 400 per kg), [Masala Moongfali](/products/masala-peanuts) (Rs 400 per kg), or [Dal Biji](/products/dal-bhiji) (Rs 500 per kg), each recipe receives the exact same discipline. For people who want to try our favorites together, we pack [The Special 4 Box](/#hamper): four 200g packs containing Aloo Bhujia, Masala Chana Dal, Dal Biji, and Masala Moongfali (800g total) for Rs 499, with free delivery across India. We take every order directly on WhatsApp at +91 63961 22920, frying and sending our fresh mustard oil namkeen straight from our home to yours.
 
 ## Questions people ask
 

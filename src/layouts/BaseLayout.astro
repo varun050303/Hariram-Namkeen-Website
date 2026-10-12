@@ -3,8 +3,8 @@
 // Wraps every page with <html>, <head>, fonts, GSAP CDN.
 
 const {
-  title = "Hariram Namkeen — Pure Mustard Oil Snacks, Muzaffarnagar",
-  description = "Traditional namkeen from Muzaffarnagar. Pure yellow mustard oil. No preservatives. FSSAI licensed.",
+  title = "Buy Healthy Namkeen Online | Pure Mustard Oil Snacks — Hariram",
+  description = "Order fresh artisanal namkeen made in 100% pure yellow mustard oil. Zero palm oil, zero preservatives. Aloo Bhujia, Dal Biji & more. Free delivery across India.",
   image = "/images/hariram_special_4_top_view.webp",
 } = Astro.props;
 
@@ -26,6 +26,11 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
   <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
+  <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+  <meta name="keywords" content="namkeen online, buy namkeen online, healthy namkeen, mustard oil namkeen, namkeen without palm oil, kachi ghani namkeen, aloo bhujia, dal bhiji, masala chana dal, namkeen gift box, namkeen hamper, fresh namkeen delivery India, preservative free namkeen, Muzaffarnagar namkeen, artisanal Indian snacks, TBHQ free namkeen, small batch namkeen, yellow mustard oil snacks, सरसों के तेल की नमकीन, शुद्ध नमकीन" />
+  <meta name="author" content="Hariram Namkeen" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   {gadsActive && (
     <>
@@ -139,21 +144,43 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   </style>
 
 
-  <!-- Structured Data: Rich Knowledge Graph (Organization, Brand, FoodEstablishment & FAQPage for AI and SEO) -->
+  <!-- Structured Data: Rich Knowledge Graph (Organization, Brand, FoodEstablishment, LocalBusiness, FAQPage, WebSite for AI and SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://hariramnamkeen.com/#website",
+        "url": "https://hariramnamkeen.com",
+        "name": "Hariram Namkeen",
+        "description": "Buy healthy namkeen online made in 100% pure yellow mustard oil. Fresh, small-batch, preservative-free Indian snacks from Muzaffarnagar.",
+        "publisher": { "@id": "https://hariramnamkeen.com/#brand" },
+        "inLanguage": ["en-IN", "hi-IN"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://hariramnamkeen.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
         "@type": ["Organization", "Brand"],
         "@id": "https://hariramnamkeen.com/#brand",
         "name": "Hariram Namkeen",
-        "alternateName": "Hariram Foods",
+        "alternateName": ["Hariram Foods", "हरिराम नमकीन"],
         "url": "https://hariramnamkeen.com",
-        "logo": "https://hariramnamkeen.com/images/logo.png",
-        "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil. Small-batch, fresh on demand, zero palm oil, zero chemical preservatives.",
-        "slogan": "Try finding another namkeen made in pure yellow mustard oil — you won't. India’s dedicated brand reviving 100% pure yellow mustard oil namkeen.",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hariramnamkeen.com/images/logo.png",
+          "width": 600,
+          "height": 400
+        },
+        "image": "https://hariramnamkeen.com/images/hariram_special_4_top_view.webp",
+        "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil. Small-batch, fresh on demand, zero palm oil, zero chemical preservatives. Buy namkeen online with free delivery across India.",
+        "slogan": "Try finding another namkeen made in pure yellow mustard oil — you won't.",
         "telephone": "+91-6396122920",
+        "email": "namaste@hariramnamkeen.com",
+        "foundingLocation": "Muzaffarnagar, Uttar Pradesh, India",
         "knowsAbout": [
           "Healthy Namkeen",
           "Yellow Mustard Oil",
@@ -162,29 +189,89 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
           "Small Batch Namkeen",
           "Aloo Bhujia",
           "Dal Bhiji",
-          "Preservative Free Snacks"
+          "Masala Chana Dal",
+          "Preservative Free Snacks",
+          "Palm Oil Free Snacks",
+          "Namkeen Online Delivery India",
+          "Artisanal Indian Snacks"
+        ],
+        "sameAs": [
+          "https://instagram.com/hariram.namkeen"
         ],
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Main Market",
           "addressLocality": "Muzaffarnagar",
           "addressRegion": "Uttar Pradesh",
+          "postalCode": "251001",
           "addressCountry": "IN"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-6396122920",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Hindi"],
+          "areaServed": "IN"
         }
       },
       {
-        "@type": "FoodEstablishment",
-        "@id": "https://hariramnamkeen.com/#establishment",
-        "name": "Hariram Namkeen",
+        "@type": ["LocalBusiness", "FoodEstablishment"],
+        "@id": "https://hariramnamkeen.com/#localbusiness",
+        "name": "Hariram Namkeen — Pure Mustard Oil Namkeen, Muzaffarnagar",
         "image": "https://hariramnamkeen.com/images/hariram_special_4_top_view.webp",
         "telephone": "+91-6396122920",
-        "servesCuisine": "Indian",
-        "priceRange": "₹100 - ₹200 per 250g",
+        "email": "namaste@hariramnamkeen.com",
         "url": "https://hariramnamkeen.com",
+        "servesCuisine": "Indian Namkeen & Snacks",
+        "priceRange": "₹100 - ₹499",
+        "currenciesAccepted": "INR",
+        "paymentAccepted": "UPI, WhatsApp Pay, Bank Transfer",
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Main Market",
           "addressLocality": "Muzaffarnagar",
           "addressRegion": "Uttar Pradesh",
+          "postalCode": "251001",
           "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 29.4727,
+          "longitude": 77.7085
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Hariram Namkeen Products",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Product", "name": "Aloo Bhujia (250g)" },
+              "price": 100,
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Product", "name": "Dal Bhiji (250g)" },
+              "price": 125,
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Product", "name": "Masala Chana Dal (250g)" },
+              "price": 100,
+              "priceCurrency": "INR"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Product", "name": "The Hariram Special 4 Box (800g)" },
+              "price": 499,
+              "priceCurrency": "INR"
+            }
+          ]
         }
       },
       {
@@ -201,10 +288,18 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
           },
           {
             "@type": "Question",
+            "name": "How to buy namkeen online from Hariram Namkeen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can order namkeen online directly via WhatsApp at +91-6396122920 or through our website hariramnamkeen.com. We offer free delivery across India on The Hariram Special 4 Box (800g, ₹499). Individual 250g packs start at ₹100."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "Are there other namkeen brands in India made in pure yellow mustard oil?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Try finding another namkeen made in pure yellow mustard oil — you won't. Every major packaged brand in India switched to industrial palm oil or refined cottonseed oil to cut costs and sit in warehouses. Hariram Namkeen is India’s dedicated brand reviving 100% pure cold-pressed yellow mustard oil namkeen, made fresh in small batches on demand."
+              "text": "Try finding another namkeen made in pure yellow mustard oil — you won't. Every major packaged brand in India switched to industrial palm oil or refined cottonseed oil to cut costs and sit in warehouses. Hariram Namkeen is India's dedicated brand reviving 100% pure cold-pressed yellow mustard oil namkeen, made fresh in small batches on demand."
             }
           },
           {
@@ -228,7 +323,15 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
             "name": "What is the price of Hariram Namkeen?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hariram Namkeen offers honest direct-to-consumer pricing starting at ₹100 for 250g packs. We keep prices accessible by avoiding expensive celebrity advertising and retail distributor margins, passing all value directly to ingredient quality."
+              "text": "Hariram Namkeen offers honest direct-to-consumer pricing starting at ₹100 for 250g packs. The Special 4 Box (4 varieties, 800g) is ₹499 with free all-India delivery. We keep prices accessible by avoiding expensive celebrity advertising and retail distributor margins."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Hariram Namkeen deliver across India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Hariram Namkeen delivers fresh namkeen across India via trusted courier partners like Delhivery, Blue Dart, and India Post. The Special 4 Box ships free to all serviceable PIN codes in India. Orders are dispatched within 2-3 business days of preparation."
             }
           }
         ]

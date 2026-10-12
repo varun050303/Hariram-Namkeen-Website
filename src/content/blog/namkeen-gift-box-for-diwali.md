@@ -20,13 +20,13 @@ A selection of savoury snacks fits naturally across different festive gatherings
 
 ## Inside the Special 4 Box
 
-For those seeking a balanced namkeen gift box for Diwali, we created the Special 4 Box. It contains four distinct varieties: Aloo Bhujia, Masala Chana Dal, Dal Biji, and Masala Moongfali. Each comes in a 200g pack, making an 800g total box for Rs 499, with free delivery across India.
-
+For those seeking a balanced namkeen gift box for Diwali, we created [The Special 4 Box](/#hamper). It contains four distinct varieties: Aloo Bhujia, Masala Chana Dal, Dal Biji, and Masala Moongfali. Each comes in a 200g pack, making an 800g total box for Rs 499, with free delivery across India.
+ 
 Having four varieties works well because every person enjoys a different bite:
-- **Aloo Bhujia**: Light, crisp strands that suit all ages.
-- **Masala Chana Dal**: A firm, spiced crunch that pairs well with evening tea.
-- **Dal Biji**: A traditional savoury mix layered with flavours.
-- **Masala Moongfali**: Crunchy peanuts tossed in spices.
+- **[Aloo Bhujia](/products/aloo-bhujia)**: Light, crisp potato and besan sev that suits all age groups.
+- **[Masala Chana Dal](/products/masala-chana-dal)**: A firm, spiced crunch that pairs well with evening festive tea.
+- **[Dal Biji](/products/dal-bhiji)**: A traditional savoury mix layered with heritage UP spices.
+- **[Masala Moongfali](/products/masala-peanuts)**: Crunchy whole peanuts tossed in hing and black salt.
 
 Four separate packs ensure that every guest finds something they enjoy, and each pack stays crisp until opened.
 

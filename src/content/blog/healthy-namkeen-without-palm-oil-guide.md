@@ -62,10 +62,11 @@ Healthy food is food that is cooked fresh. At **Hariram Namkeen**, we cook our s
 
 A healthy namkeen should nourish, not just fill. The best healthy choices are based on whole pulses and legumes rather than refined maida or bleached starches:
 
-1. **Moong Dal (Dal Bhiji)**: Light, easily digestible, and naturally packed with plant protein and potassium.
-2. **Bengal Gram (Masala Chana Dal)**: Plump, high in dietary fiber, with a low glycemic response that keeps energy levels steady.
-3. **Whole Lentils (Spicy Malka)**: Red masoor lentils roasted until featherlight, delivering iron, zinc, and crackling crunch.
-4. **Roasted Groundnuts (Masala Peanuts)**: Whole peanuts seasoned with natural hing and black salt, providing healthy fats and sustained satiety.
+1. **Moong Dal ([Dal Bhiji](/products/dal-bhiji))**: Light, easily digestible, and naturally packed with plant protein and potassium.
+2. **Bengal Gram ([Masala Chana Dal](/products/masala-chana-dal))**: Plump, high in dietary fiber, with a low glycemic response that keeps energy levels steady.
+3. **Whole Lentils ([Spicy Malka](/products/spicy-malka))**: Red masoor lentils roasted until featherlight, delivering iron, zinc, and crackling crunch.
+4. **Roasted Groundnuts ([Masala Peanuts](/products/masala-peanuts))**: Whole peanuts seasoned with natural hing and black salt, providing healthy fats and sustained satiety.
+5. **Potato Sev ([Aloo Bhujia](/products/aloo-bhujia))**: A clean-label interpretation of India's favorite sev, crafted in pure mustard oil without synthetic additives.
 
 ---
 
@@ -78,3 +79,5 @@ If you love Indian namkeen and want to protect your health, follow these three s
 3. **Verify the Spice Label**: Real rock salt (*sendha namak*), black salt, hing, ajwain, and whole cumin should replace chemical flavour enhancers.
 
 At **Hariram Namkeen**, we built our entire kitchen around these exact principles. Honest ingredients, pure yellow mustard oil, small batches, and fair pricing. Because you deserve namkeen that honours both your palate and your body.
+
+> 📦 **Taste the Clean-Label Difference**: Want to sample our artisanal varieties cooked fresh in pure yellow mustard oil? Explore **[The Hariram Special 4 Box (800g)](/#hamper)** with free home delivery across India.

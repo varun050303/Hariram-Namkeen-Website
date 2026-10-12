@@ -62,7 +62,7 @@ At Hariram Namkeen, our foundational pillar is **ग्राहक देव �
 
 We actively ask our customers for their honest review after every delivery. That feedback doesn't get filed away in a spreadsheet—**it goes straight into the kitchen**. 
 - If a customer mentions that a batch could use a touch more tanginess, the halwai calibrates the amchur balance on the very next batch.
-- If a family requests an extra-crispy Dal Bhiji, we fine-tune our soaking and frying curves.
+- If a family requests an extra-crispy [Dal Bhiji](/products/dal-bhiji), we fine-tune our soaking and frying curves.
 
 Every batch we prepare is an evolution of the last.
 
@@ -77,3 +77,5 @@ We believe that fresh, pure-oil namkeen should be on every Indian family's eveni
 By selling direct from our Muzaffarnagar kitchen to your doorstep, we cut out distributors, retail middlemen, and astronomical advertising budgets. Our prices—**₹100 to ₹125 for 250g**—reflect the actual cost of Grade-A pulses and pure cold-pressed yellow mustard oil. 
 
 Nothing added. Nothing hidden. Just pure namkeen, prepared as it was always meant to be.
+
+> 📦 **Experience Artisanal Freshness**: Order fresh from the kadhai today. Try our bestsellers like **[Aloo Bhujia](/products/aloo-bhujia)**, **[Masala Chana Dal](/products/masala-chana-dal)**, or **[The Special 4 Box](/#hamper)** with free all-India shipping.

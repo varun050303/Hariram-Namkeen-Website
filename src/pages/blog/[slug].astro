@@ -14,9 +14,75 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = post;
+
+const canonicalURL = `https://hariramnamkeen.com/blog/${post.frontmatter.slug}`;
+const pageTitle = `${post.frontmatter.title} — Hariram Namkeen Blog`;
+const pubDateISO = new Date(post.frontmatter.pubDate).toISOString();
 ---
 
-<BaseLayout title={`${post.frontmatter.title} — Hariram Namkeen`} description={post.frontmatter.description}>
+<BaseLayout title={pageTitle} description={post.frontmatter.description}>
+  <!-- Article Structured Data for Google Rich Snippets -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.frontmatter.title,
+    "description": post.frontmatter.description,
+    "url": canonicalURL,
+    "datePublished": pubDateISO,
+    "dateModified": pubDateISO,
+    "author": {
+      "@type": "Organization",
+      "@id": "https://hariramnamkeen.com/#brand",
+      "name": "Hariram Namkeen",
+      "url": "https://hariramnamkeen.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Hariram Namkeen",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hariramnamkeen.com/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL
+    },
+    "inLanguage": "en-IN",
+    "isPartOf": {
+      "@type": "Blog",
+      "@id": "https://hariramnamkeen.com/blog",
+      "name": "Hariram Stories — Namkeen, Mustard Oil & Honest Food",
+      "url": "https://hariramnamkeen.com/blog"
+    }
+  })} />
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hariramnamkeen.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://hariramnamkeen.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.frontmatter.title,
+        "item": canonicalURL
+      }
+    ]
+  })} />
+
   <Header />
 
   <main class="article">
