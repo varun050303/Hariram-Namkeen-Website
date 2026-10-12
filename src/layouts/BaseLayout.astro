@@ -376,9 +376,9 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         ctx = {
           sid: Math.random().toString(36).slice(2, 10),
           ref: refHost,
-          utm_source: q.get('utm_source') || '',
-          utm_medium: q.get('utm_medium') || '',
-          utm_campaign: q.get('utm_campaign') || ''
+          utm_source: q.get('utm_source') || (q.get('gclid') ? 'google_ads' : ''),
+          utm_medium: q.get('utm_medium') || (q.get('gclid') ? 'cpc' : ''),
+          utm_campaign: q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : '')
         };
         try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
       }
