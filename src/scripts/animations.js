@@ -120,31 +120,23 @@ export function initAnimations() {
     }
   });
 
-  // ── PINNED OIL TRUTH + COMPARE ROWS STAGGER IN ───────────────
-  // The compare rows animate in as you scroll through the pinned section
+  // ── OIL TRUTH (COMPARISON & STATS ANIMATIONS) ─────────────────
   const rows = gsap.utils.toArray('[data-row]');
-  const rowsTl = gsap.timeline({ paused: true });
-  rows.forEach((row, i) => {
-    rowsTl.fromTo(row,
-      { opacity: 0, x: 28 },
-      { opacity: 1, x: 0, duration: .45, ease: 'power2.out' },
-      i * .12
-    );
-  });
+  const omegaEl = document.getElementById('omega-count');
 
-  ScrollTrigger.create({
-    trigger: '#oil-truth',
-    start: 'top top',
-    end: '+=200%',
-    pin: true,
-    anticipatePin: 1,
-    scrub: .5,
-    animation: rowsTl,
-    onUpdate: self => {
-      // animate oil counter
-      const count = (self.progress * 3).toFixed(1);
-      document.getElementById('omega-count').textContent = count + 'x';
+  gsap.fromTo(rows,
+    { opacity: 0, x: 28 },
+    {
+      opacity: 1, x: 0, duration: .5, stagger: .1, ease: 'power2.out',
+      scrollTrigger: { trigger: '#compare-table', start: 'top 85%', once: true }
     }
+  );
+
+  const counter = { v: 0 };
+  gsap.to(counter, {
+    v: 3, duration: 1.6, ease: 'power1.out',
+    scrollTrigger: { trigger: '.oil-stats', start: 'top 90%', once: true },
+    onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
   });
 
   // ── OIL LEFT CONTENT REVEAL ───────────────────────────────────
@@ -152,7 +144,7 @@ export function initAnimations() {
     { opacity: 0, y: 32 },
     {
       opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power2.out',
-      scrollTrigger: { trigger: '#oil-truth', start: 'top 70%', once: true }
+      scrollTrigger: { trigger: '#oil-truth', start: 'top 75%', once: true }
     }
   );
 

@@ -187,51 +187,34 @@ import '../styles/global.css';
 
     // Marquee now uses fixed CSS animation speed only (no scroll reaction).
 
-    // ── PINNED OIL TRUTH ─────────────────────────────────────────
+    // ── OIL TRUTH (COMPARISON & STATS ANIMATIONS) ─────────────────
     const rows = gsap.utils.toArray('[data-row]');
     const omegaEl = document.getElementById('omega-count');
-    const oilMM = gsap.matchMedia();
 
-    // Desktop: pinned, scroll-scrubbed comparison
-    oilMM.add('(min-width: 1025px)', () => {
-      const rowsTl = gsap.timeline({ paused:true });
-      rows.forEach((row, i) => {
-        rowsTl.fromTo(row,
-          { opacity:0, x:28 },
-          { opacity:1, x:0, duration:.45, ease:'power2.out' },
-          i * .12
-        );
-      });
-      ScrollTrigger.create({
-        trigger: '#oil-truth',
-        start: 'top top', end: '+=200%',
-        pin: true, anticipatePin: 1, scrub: .5,
-        animation: rowsTl,
-        onUpdate: self => {
-          if (omegaEl) omegaEl.textContent = (self.progress * 3).toFixed(1) + 'x';
-        }
-      });
+    // Comparison rows stagger in smoothly
+    gsap.fromTo(rows,
+      { opacity: 0, x: 28 },
+      {
+        opacity: 1, x: 0, duration: .5, stagger: .1, ease: 'power2.out',
+        scrollTrigger: { trigger: '#compare-table', start: 'top 85%', once: true }
+      }
+    );
+
+    // Omega counter animation
+    const counter = { v: 0 };
+    gsap.to(counter, {
+      v: 3, duration: 1.6, ease: 'power1.out',
+      scrollTrigger: { trigger: '.oil-stats', start: 'top 90%', once: true },
+      onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
     });
 
-    // Tablet / phone: the stacked section is taller than the screen, so pinning it freezes
-    // the top half and hides the comparison table below the fold. Reveal it normally instead.
-    oilMM.add('(max-width: 1024px)', () => {
-      gsap.fromTo(rows,
-        { opacity:0, x:28 },
-        { opacity:1, x:0, duration:.5, stagger:.12, ease:'power2.out',
-          scrollTrigger:{ trigger:'#compare-table', start:'top 85%', once:true } }
-      );
-      const counter = { v: 0 };
-      gsap.to(counter, {
-        v: 3, duration: 1.6, ease: 'power1.out',
-        scrollTrigger:{ trigger:'.oil-stats', start:'top 90%', once:true },
-        onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
-      });
-    });
+    // Oil left content reveal
     gsap.fromTo('.oil-left > *',
-      { opacity:0, y:32 },
-      { opacity:1, y:0, duration:.8, stagger:.15, ease:'power2.out',
-        scrollTrigger:{ trigger:'#oil-truth', start:'top 70%', once:true } }
+      { opacity: 0, y: 32 },
+      {
+        opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power2.out',
+        scrollTrigger: { trigger: '#oil-truth', start: 'top 75%', once: true }
+      }
     );
 
     // ── PRODUCT CARDS: STAGGER + 3D TILT ─────────────────────────
@@ -358,7 +341,7 @@ import '../styles/global.css';
     );
 
     // ── SECTION HEADINGS FADE UP ──────────────────────────────────
-    document.querySelectorAll('.sec-title, .platforms-hl, .oil-hl').forEach(el => {
+    document.querySelectorAll('.sec-title, .platforms-hl').forEach(el => {
       gsap.fromTo(el,
         { opacity:0, y:28 },
         { opacity:1, y:0, duration:.8, ease:'power3.out',

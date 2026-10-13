@@ -1060,12 +1060,17 @@ body.cursor-hover #cursor-ring {
 #oil-truth-wrap {
   background: var(--bg-dark);
   color: var(--text-on-dark);
+  position: relative;
+  z-index: 2;
 }
 
 #oil-truth {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
   padding: var(--section-pad) 0;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .oil-bg-text {
@@ -3008,6 +3013,8 @@ footer {
 
 /* Anchor jumps shouldn't hide section titles under the fixed header */
 #craft,
+#oil-truth,
+#oil-truth-wrap,
 #products,
 #hamper,
 #story,
