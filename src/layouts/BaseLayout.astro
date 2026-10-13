@@ -260,33 +260,49 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
           "latitude": 29.4727,
           "longitude": 77.7085
         },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Hariram Namkeen Products",
-          "itemListElement": [
+        "hasMenu": {
+          "@type": "Menu",
+          "name": "Hariram Namkeen Selection",
+          "hasMenuItem": [
             {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Product", "name": "Aloo Bhujia (250g)" },
-              "price": 100,
-              "priceCurrency": "INR"
+              "@type": "MenuItem",
+              "name": "Aloo Bhujia (250g)",
+              "description": "Crispy potato and besan sev cooked in 100% pure yellow mustard oil",
+              "offers": {
+                "@type": "Offer",
+                "price": 100,
+                "priceCurrency": "INR"
+              }
             },
             {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Product", "name": "Dal Bhiji (250g)" },
-              "price": 125,
-              "priceCurrency": "INR"
+              "@type": "MenuItem",
+              "name": "Dal Bhiji (250g)",
+              "description": "Slow-roasted moong dal infused with kachi ghani mustard oil",
+              "offers": {
+                "@type": "Offer",
+                "price": 125,
+                "priceCurrency": "INR"
+              }
             },
             {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Product", "name": "Masala Chana Dal (250g)" },
-              "price": 100,
-              "priceCurrency": "INR"
+              "@type": "MenuItem",
+              "name": "Masala Chana Dal (250g)",
+              "description": "Crunchy roasted chana dal seasoned with authentic spices",
+              "offers": {
+                "@type": "Offer",
+                "price": 100,
+                "priceCurrency": "INR"
+              }
             },
             {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Product", "name": "The Hariram Special 4 Box (800g)" },
-              "price": 499,
-              "priceCurrency": "INR"
+              "@type": "MenuItem",
+              "name": "The Hariram Special 4 Box (800g)",
+              "description": "Curated selection of 4 signature varieties with free delivery across India",
+              "offers": {
+                "@type": "Offer",
+                "price": 499,
+                "priceCurrency": "INR"
+              }
             }
           ]
         }
