@@ -9,6 +9,26 @@ import '../styles/global.css';
   title="Fresh Namkeen Delivery Across India | Shipping — Hariram"
   description="Fresh artisanal namkeen delivered across India in 2-5 business days. Pure yellow mustard oil, zero palm oil. Free shipping on Special 4 Box orders."
 >
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hariramnamkeen.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shipping & Delivery Policy",
+        "item": "https://hariramnamkeen.com/shipping"
+      }
+    ]
+  })} />
+
   <Header />
 
   <main class="policy-page">

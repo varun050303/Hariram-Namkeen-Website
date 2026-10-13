@@ -9,6 +9,26 @@ import '../styles/global.css';
   title="Privacy Policy & Customer Security | Hariram Namkeen"
   description="Learn how Hariram Namkeen protects your personal data, WhatsApp order details, and payment information under Indian digital privacy laws."
 >
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hariramnamkeen.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy Policy",
+        "item": "https://hariramnamkeen.com/privacy"
+      }
+    ]
+  })} />
+
   <Header />
 
   <main class="policy-page">

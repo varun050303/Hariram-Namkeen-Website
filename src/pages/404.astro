@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Hariram Namkeen"
+  description="The page you are looking for does not exist. Explore our authentic mustard oil namkeen varieties or return to home."
+>
+  <Header />
+
+  <main class="error-page">
+    <div class="error-inner">
+      <div class="error-badge"><span>✦</span> 404 ERROR</div>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-desc">
+        The page you are looking for may have been moved, removed, or never existed. 
+        Don't worry — our kitchen in Muzaffarnagar is still frying fresh batches in 100% pure yellow mustard oil!
+      </p>
+
+      <div class="error-actions">
+        <a href="/" class="btn-primary">
+          Return to Home
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="/#products" class="btn-secondary">
+          Explore Namkeen Varieties
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+.error-page {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px clamp(20px, 4vw, 40px) 100px;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+}
+
+.error-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.error-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 148, 59, 0.12);
+  color: #B28329;
+  border: 1px solid rgba(197, 148, 59, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+.error-title {
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.error-desc {
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.65;
+  color: var(--text-muted, #666);
+  margin-bottom: 36px;
+}
+
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #7B1113;
+  color: #FAF5EB;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #5c0d0e;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+</style>

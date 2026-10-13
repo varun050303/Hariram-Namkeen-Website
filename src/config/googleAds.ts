@@ -16,8 +16,11 @@ const getEnv = (key: string): string => {
   if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env[key]) {
     return import.meta.env[key];
   }
-  if (typeof process !== 'undefined' && process.env && process.env[key]) {
-    return process.env[key];
+  const proc = typeof globalThis !== 'undefined'
+    ? (globalThis as { process?: { env?: Record<string, string | undefined> } }).process
+    : undefined;
+  if (proc?.env && proc.env[key]) {
+    return proc.env[key]!;
   }
   return '';
 };

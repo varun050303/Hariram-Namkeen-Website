@@ -9,6 +9,26 @@ import '../styles/global.css';
   title="100% Freshness Guarantee & Refund Policy | Hariram Namkeen"
   description="Our zero-risk freshness guarantee. Quick cancellations, damaged transit replacements, and instant UPI refunds on Hariram Namkeen orders across India."
 >
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://hariramnamkeen.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Returns & Refund Policy",
+        "item": "https://hariramnamkeen.com/returns"
+      }
+    ]
+  })} />
+
   <Header />
 
   <main class="policy-page">

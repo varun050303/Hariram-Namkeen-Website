@@ -1,36 +1,27 @@
 {
-  "$schema": "https://agenticresourcediscovery.org/schema/v1/ai-catalog.json",
-  "version": "1.0",
-  "name": "Hariram Namkeen",
-  "description": "Artisanal healthy Indian namkeen cooked in 100% pure yellow mustard oil, small-batch, zero palm oil, zero preservatives.",
-  "publisher": {
-    "name": "Hariram Namkeen",
-    "url": "https://hariramnamkeen.com"
-  },
-  "resources": [
+  "specVersion": "1.0",
+  "entries": [
     {
-      "name": "LLMs Summary",
-      "type": "documentation",
+      "identifier": "urn:air:hariramnamkeen:docs:llms-overview",
+      "displayName": "Hariram Namkeen Brand and Catalog Summary",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://hariramnamkeen.com/llms.txt",
-      "description": "Machine-readable overview of Hariram Namkeen for LLMs"
+      "representativeQueries": [
+        "Buy pure mustard oil namkeen online in India",
+        "Clean label palm oil free namkeen brands",
+        "Hariram Namkeen WhatsApp order and hamper price"
+      ]
     },
     {
-      "name": "Full Knowledge Base",
-      "type": "documentation",
+      "identifier": "urn:air:hariramnamkeen:docs:llms-full",
+      "displayName": "Hariram Namkeen Complete Knowledge Base & Specifications",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://hariramnamkeen.com/llms-full.txt",
-      "description": "Comprehensive ingredients, nutritional information, and brand ethos"
-    },
-    {
-      "name": "Product Catalog",
-      "type": "dataset",
-      "url": "https://hariramnamkeen.com/#products",
-      "description": "Handcrafted mustard oil namkeen products"
-    },
-    {
-      "name": "XML Sitemap",
-      "type": "sitemap",
-      "url": "https://hariramnamkeen.com/sitemap.xml",
-      "description": "Complete site index for search engines and crawlers"
+      "representativeQueries": [
+        "Yellow mustard oil health benefits vs palm oil in snacks",
+        "Aloo Bhujia and Dal Biji ingredients nutrition facts",
+        "Muzaffarnagar traditional namkeen heritage and recipes"
+      ]
     }
   ]
 }
