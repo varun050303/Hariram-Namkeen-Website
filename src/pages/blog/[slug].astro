@@ -1,18 +1,35 @@
 ---
+import type { MarkdownInstance } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
 
+interface BlogPostFrontmatter {
+  title: string;
+  description: string;
+  pubDate: string | Date;
+  slug: string;
+  topic?: string;
+  faq?: Array<{ q: string; a: string }>;
+  [key: string]: any;
+}
+
+export type BlogPost = MarkdownInstance<BlogPostFrontmatter>;
+
 export async function getStaticPaths() {
-  const posts = import.meta.glob('../../content/blog/*.md', { eager: true });
+  const posts = import.meta.glob<BlogPost>('../../content/blog/*.md', { eager: true });
   return Object.values(posts).map((post) => ({
     params: { slug: post.frontmatter.slug },
     props: { post }
   }));
 }
 
-const { post } = Astro.props;
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props as Props;
 const { Content } = post;
 
 const canonicalURL = `https://hariramnamkeen.com/blog/${post.frontmatter.slug}/`;

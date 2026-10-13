@@ -1,10 +1,21 @@
 ---
+import type { MarkdownInstance } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/global.css';
 
-const posts = Object.values(import.meta.glob('../../content/blog/*.md', { eager: true }))
+interface BlogPostFrontmatter {
+  title: string;
+  description: string;
+  pubDate: string | Date;
+  slug: string;
+  topic?: string;
+  faq?: Array<{ q: string; a: string }>;
+  [key: string]: any;
+}
+
+const posts = Object.values(import.meta.glob<MarkdownInstance<BlogPostFrontmatter>>('../../content/blog/*.md', { eager: true }))
   .map((post) => post.frontmatter)
   .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 ---
