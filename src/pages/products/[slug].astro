@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { product } = Astro.props as { product: Product };
 
-const canonicalURL = `https://hariramnamkeen.com/products/${product.slug}`;
+const canonicalURL = `https://hariramnamkeen.com/products/${product.slug}/`;
 const shareImage = product.image.startsWith('http') ? product.image : `https://hariramnamkeen.com${product.image}`;
 const pageTitle = `${product.name} (${product.hindiName}) — Pure Yellow Mustard Oil Namkeen | Hariram`;
 const pageDescription = `Buy fresh, small-batch ${product.name} prepared in 100% pure cold-pressed yellow mustard oil. Zero palm oil, zero chemical preservatives, authentic UP taste. ₹${product.price} for ${product.weight}.`;

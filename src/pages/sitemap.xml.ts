@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
     const slug = post.frontmatter?.slug || '';
     const pubDate = post.frontmatter?.pubDate ? new Date(post.frontmatter.pubDate).toISOString().split('T')[0] : '2026-10-10';
     return {
-      loc: `${siteUrl}/blog/${slug}`,
+      loc: `${siteUrl}/blog/${slug}/`,
       lastmod: pubDate,
       changefreq: 'monthly',
       priority: '0.8',
@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
   // Dedicated Product Pages
   const { products } = await import('../data/products');
   const productUrls = products.map((product) => ({
-    loc: `${siteUrl}/products/${product.slug}`,
+    loc: `${siteUrl}/products/${product.slug}/`,
     lastmod: '2026-10-10',
     changefreq: 'weekly',
     priority: '0.9',
@@ -28,10 +28,10 @@ export const GET: APIRoute = async () => {
   // Static Pages
   const staticUrls = [
     { loc: `${siteUrl}/`, lastmod: '2026-10-10', changefreq: 'daily', priority: '1.0' },
-    { loc: `${siteUrl}/blog`, lastmod: '2026-10-10', changefreq: 'weekly', priority: '0.8' },
-    { loc: `${siteUrl}/shipping`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
-    { loc: `${siteUrl}/returns`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
-    { loc: `${siteUrl}/privacy`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
+    { loc: `${siteUrl}/blog/`, lastmod: '2026-10-10', changefreq: 'weekly', priority: '0.8' },
+    { loc: `${siteUrl}/shipping/`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
+    { loc: `${siteUrl}/returns/`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
+    { loc: `${siteUrl}/privacy/`, lastmod: '2026-10-10', changefreq: 'monthly', priority: '0.5' },
   ];
 
   const allUrls = [...staticUrls, ...productUrls, ...blogUrls];
