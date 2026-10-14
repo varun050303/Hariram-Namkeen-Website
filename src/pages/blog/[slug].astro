@@ -11,7 +11,7 @@ interface BlogPostFrontmatter {
   pubDate: string | Date;
   slug: string;
   topic?: string;
-  faq?: Array<{ q: string; a: string }>;
+  faq?: Array<{ q?: string; a?: string; question?: string; answer?: string }>;
   [key: string]: any;
 }
 
@@ -35,15 +35,19 @@ const { Content } = post;
 const canonicalURL = `https://hariramnamkeen.com/blog/${post.frontmatter.slug}/`;
 const pageTitle = `${post.frontmatter.title} — Hariram Namkeen Blog`;
 const pubDateISO = new Date(post.frontmatter.pubDate).toISOString();
+const blogKeywords = Array.isArray(post.frontmatter.tags) && post.frontmatter.tags.length > 0
+  ? [...post.frontmatter.tags, 'healthy namkeen', 'mustard oil namkeen', 'no palm oil snacks', 'hariram namkeen'].join(', ')
+  : 'healthy namkeen, mustard oil namkeen, no palm oil snacks, yellow mustard oil, hariram namkeen';
 ---
 
-<BaseLayout title={pageTitle} description={post.frontmatter.description}>
+<BaseLayout title={pageTitle} description={post.frontmatter.description} keywords={blogKeywords}>
   <!-- Article Structured Data for Google Rich Snippets -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": post.frontmatter.title,
     "description": post.frontmatter.description,
+    "keywords": blogKeywords,
     "url": canonicalURL,
     "datePublished": pubDateISO,
     "dateModified": pubDateISO,
@@ -99,6 +103,21 @@ const pubDateISO = new Date(post.frontmatter.pubDate).toISOString();
       }
     ]
   })} />
+
+  {post.frontmatter.faq && post.frontmatter.faq.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": post.frontmatter.faq.map((item: any) => ({
+        "@type": "Question",
+        "name": item.question || item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer || item.a
+        }
+      }))
+    })} />
+  )}
 
   <Header />
 

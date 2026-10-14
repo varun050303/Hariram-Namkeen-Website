@@ -11,7 +11,7 @@ interface BlogPostFrontmatter {
   pubDate: string | Date;
   slug: string;
   topic?: string;
-  faq?: Array<{ q: string; a: string }>;
+  faq?: Array<{ q?: string; a?: string; question?: string; answer?: string }>;
   [key: string]: any;
 }
 
@@ -20,7 +20,7 @@ const posts = Object.values(import.meta.glob<MarkdownInstance<BlogPostFrontmatte
   .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 ---
 
-<BaseLayout title="Stories & Craft — Hariram Namkeen" description="Stories behind our namkeen, pure mustard oil traditions, and authentic recipes from Muzaffarnagar.">
+<BaseLayout title="Stories & Craft — Hariram Namkeen" description="Stories behind our namkeen, pure mustard oil traditions, and authentic recipes from Muzaffarnagar." keywords="healthy namkeen guide, mustard oil namkeen stories, namkeen without palm oil, palmolein oil vs mustard oil, clean label indian snacks, diwali corporate gifting snacks, small batch namkeen, muzaffarnagar snacks">
   <!-- Blog Collection Structured Data for Google & AI Engines -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",

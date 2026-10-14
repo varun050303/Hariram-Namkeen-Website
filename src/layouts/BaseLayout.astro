@@ -6,6 +6,7 @@ const {
   title = "Buy Healthy Namkeen Online | Pure Mustard Oil Snacks — Hariram",
   description = "Order fresh artisanal namkeen made in 100% pure yellow mustard oil. Zero palm oil, zero preservatives. Aloo Bhujia, Dal Biji & more. Free delivery across India.",
   image = "/images/hariram_special_4_top_view.webp",
+  keywords = "namkeen online, buy namkeen online, healthy namkeen, mustard oil namkeen, namkeen without palm oil, yellow mustard oil namkeen, aloo bhujia, dal biji, dal bhiji, masala chana dal, masala moongfali, spicy malka, namkeen gift box, namkeen hamper, fresh namkeen delivery India, preservative free namkeen, Muzaffarnagar namkeen, artisanal Indian snacks, TBHQ free namkeen, small batch namkeen, yellow mustard oil snacks, सरसों के तेल की नमकीन, शुद्ध नमकीन",
 } = Astro.props;
 
 import {
@@ -40,7 +41,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
   <link rel="alternate" hreflang="en" href={canonicalURL} />
   <link rel="alternate" hreflang="x-default" href={canonicalURL} />
-  <meta name="keywords" content="namkeen online, buy namkeen online, healthy namkeen, mustard oil namkeen, namkeen without palm oil, kachi ghani namkeen, aloo bhujia, dal bhiji, masala chana dal, namkeen gift box, namkeen hamper, fresh namkeen delivery India, preservative free namkeen, Muzaffarnagar namkeen, artisanal Indian snacks, TBHQ free namkeen, small batch namkeen, yellow mustard oil snacks, सरसों के तेल की नमकीन, शुद्ध नमकीन" />
+  <meta name="keywords" content={keywords} />
   <meta name="author" content="Hariram Namkeen" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
@@ -202,16 +203,23 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         "knowsAbout": [
           "Healthy Namkeen",
           "Yellow Mustard Oil",
-          "Kachi Ghani Namkeen",
+          "Mustard Oil Namkeen",
+          "Namkeen Without Palm Oil",
+          "Zero Palm Oil Snacks",
+          "TBHQ Free Namkeen",
           "Clean Label Indian Snacks",
           "Small Batch Namkeen",
           "Aloo Bhujia",
-          "Dal Bhiji",
+          "Dal Biji",
           "Masala Chana Dal",
+          "Masala Moongfali",
+          "Spicy Malka",
+          "Shahi Dal Biji",
           "Preservative Free Snacks",
           "Palm Oil Free Snacks",
           "Namkeen Online Delivery India",
-          "Artisanal Indian Snacks"
+          "Artisanal Indian Snacks",
+          "Peeli Sarson Ka Tel Namkeen"
         ],
         "sameAs": [
           "https://instagram.com/hariram.namkeen"

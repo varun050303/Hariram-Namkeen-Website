@@ -62,7 +62,7 @@ At Hariram Namkeen, our foundational pillar is **ग्राहक देव �
 
 We actively ask our customers for their honest review after every delivery. That feedback doesn't get filed away in a spreadsheet—**it goes straight into the kitchen**. 
 - If a customer mentions that a batch could use a touch more tanginess, the halwai calibrates the amchur balance on the very next batch.
-- If a family requests an extra-crispy [Dal Bhiji](/products/dal-bhiji), we fine-tune our soaking and frying curves.
+- If a family requests an extra-crispy [Dal Biji](/products/dal-bhiji), we fine-tune our soaking and frying curves.
 
 Every batch we prepare is an evolution of the last.
 

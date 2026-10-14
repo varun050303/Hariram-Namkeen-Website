@@ -132,11 +132,17 @@ export function initAnimations() {
     }
   );
 
-  const counter = { v: 0 };
-  gsap.to(counter, {
-    v: 3, duration: 1.6, ease: 'power1.out',
-    scrollTrigger: { trigger: '.oil-stats', start: 'top 90%', once: true },
-    onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
+  ScrollTrigger.create({
+    trigger: '.oil-stats',
+    start: 'top 90%',
+    once: true,
+    onEnter: () => {
+      const counter = { v: 1.0 };
+      gsap.to(counter, {
+        v: 3, duration: 1.4, ease: 'power1.out',
+        onUpdate: () => { if (omegaEl) omegaEl.textContent = counter.v.toFixed(1) + 'x'; }
+      });
+    }
   });
 
   // ── OIL LEFT CONTENT REVEAL ───────────────────────────────────

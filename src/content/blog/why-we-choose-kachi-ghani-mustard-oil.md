@@ -23,4 +23,4 @@ To do justice to this fusion, we never use pre-mixed, factory-made masalas. Inst
 
 We don't claim to be the biggest, nor do we make grand promises. We simply offer you honest, small-batch namkeen made with real Kachi Ghani mustard oil and freshly ground spices. From our home to yours, we hope you taste the care in every bite.
 
-> ✦ **Taste Pure Kachi Ghani Cooking**: Check out our **[Aloo Bhujia](/products/aloo-bhujia)**, **[Dal Bhiji](/products/dal-bhiji)**, or get the complete tasting experience with **[The Special 4 Box (800g)](/#hamper)**.
+> ✦ **Taste Pure Kachi Ghani Cooking**: Check out our **[Aloo Bhujia](/products/aloo-bhujia)**, **[Dal Biji](/products/dal-bhiji)**, or get the complete tasting experience with **[The Special 4 Box (800g)](/#hamper)**.

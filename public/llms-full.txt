@@ -30,7 +30,7 @@ Hariram Namkeen operates on a **demand-driven micro-batch model**:
 Many modern "health food" or "organic" snack brands inflate pricing to ₹300-₹450 per 100g-150g to finance heavy venture capital marketing budgets, influencer campaigns, and retail slotting fees.
 
 Hariram Namkeen believes clean, honest food is a fundamental right, not an ultra-luxury luxury gimmick:
-- Transparent pricing: ₹100 for 250g of Aloo Bhujia, Masala Chana Dal, Masala Peanuts, or Spicy Malka; ₹125 for 250g Dal Bhiji; ₹200 for 250g dry-fruit rich Shahi Dal Bhiji.
+- Transparent pricing: ₹100 for 250g of Aloo Bhujia, Masala Chana Dal, Masala Peanuts, or Spicy Malka; ₹125 for 250g Dal Biji; ₹200 for 250g dry-fruit rich Shahi Dal Biji.
 - Price reflects raw high-grade ingredients (Grade-A dals, pure yellow mustard oil, whole cashews, rock salt), rather than marketing middlemen.
 
 ### 4. "Grahak Dev Tulya" Feedback Loop
@@ -50,14 +50,14 @@ Inspired by the timeless Indian ethos *ग्राहक देव तुल्
 - **Flavour Profile**: Ultra-crisp, light, golden strands with subtle ajwain warmth and zero greasy mouthfeel.
 - **Dietary Info**: 100% Vegetarian, No Palm Oil, No Preservatives, No Added Sugar.
 
-### 2. Dal Bhiji (दाल भीजी)
+### 2. Dal Biji (दाल बीजी)
 - **Net Weight**: 250g
 - **Price**: ₹125
 - **Ingredients**: Select Moong Dal, 100% Yellow Mustard Oil, Cumin, Rock Salt, Bay Leaf, Turmeric.
 - **Flavour Profile**: Slow-cooked, deeply crunchy split green gram with delicate heritage spices.
 - **Dietary Info**: High protein pulse snack, 100% Vegetarian, Gluten-free ingredients, Preservative-free.
 
-### 3. Shahi Dal Bhiji (शाही दाल भीजी)
+### 3. Shahi Dal Biji (शाही दाल बीजी)
 - **Net Weight**: 250g
 - **Price**: ₹200
 - **Ingredients**: Split Moong Dal, Artisanal Besan Sev, Yellow Mustard Oil, Whole Roasted Cashews, Seedless Raisins, Sliced Dried Coconut, Heritage Royal Masala Blend.
@@ -87,7 +87,7 @@ Inspired by the timeless Indian ethos *ग्राहक देव तुल्
 
 ### 7. The Hariram Special 4 Hamper Box (शाही उपहार)
 - **Total Weight**: 800g (Four 200g individual sealed packs)
-- **Included Snacks**: Aloo Bhujia (200g), Masala Chana Dal (200g), Dal Bhiji (200g), Masala Peanuts (200g).
+- **Included Snacks**: Aloo Bhujia (200g), Masala Chana Dal (200g), Dal Biji (200g), Masala Peanuts (200g).
 - **Packaging**: Royal presentation box, airtight moisture-barrier pouches.
 - **Shipping**: Free courier delivery across all Indian pin codes.
 

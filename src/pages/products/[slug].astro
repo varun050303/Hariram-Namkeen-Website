@@ -16,13 +16,28 @@ const { product } = Astro.props as { product: Product };
 
 const canonicalURL = `https://hariramnamkeen.com/products/${product.slug}/`;
 const shareImage = product.image.startsWith('http') ? product.image : `https://hariramnamkeen.com${product.image}`;
-const pageTitle = `${product.name} (${product.hindiName}) — Pure Yellow Mustard Oil Namkeen | Hariram`;
-const pageDescription = `Buy fresh, small-batch ${product.name} prepared in 100% pure cold-pressed yellow mustard oil. Zero palm oil, zero chemical preservatives, authentic UP taste. ₹${product.price} for ${product.weight}.`;
+const pageTitle = `Buy ${product.name} Online (${product.hindiName}) — Pure Yellow Mustard Oil Namkeen | Hariram`;
+const pageDescription = `Buy fresh, small-batch ${product.name} online prepared in 100% pure yellow mustard oil. Zero palm oil, zero chemical preservatives, authentic UP taste. ₹${product.price} for ${product.weight}.`;
+
+const productKeywords = [
+  `buy ${product.name.toLowerCase()} online`,
+  `${product.name.toLowerCase()} without palm oil`,
+  `${product.name.toLowerCase()} mustard oil`,
+  product.name.toLowerCase(),
+  product.hindiName,
+  'mustard oil namkeen',
+  'healthy namkeen without palm oil',
+  'yellow mustard oil namkeen',
+  'preservative free namkeen',
+  'clean label snacks india',
+  'muzaffarnagar namkeen',
+  'hariram namkeen'
+].join(', ');
 
 const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} image={product.image}>
+<BaseLayout title={pageTitle} description={pageDescription} image={product.image} keywords={productKeywords}>
   <!-- Schema.org Product Structured Data for Google Rich Snippets & AI Crawlers -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -31,6 +46,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3
     "image": [shareImage],
     "description": product.description,
     "sku": `HN-${product.slug.toUpperCase()}`,
+    "keywords": productKeywords,
     "brand": {
       "@type": "Brand",
       "name": "Hariram Namkeen"
@@ -234,7 +250,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3
               <span class="oc-icon">✦</span> Why We Never Use Palm Oil For This
             </div>
             <p class="oc-body">
-              Most brands cook snacks in industrial refined palm oil to save cost and extend shelf-life for months. We cook our {product.name} exclusively in cold-pressed yellow mustard oil. You get genuine crispness, rich Omega-3, and zero throat burning or acidity.
+              Most brands cook snacks in industrial refined palm oil to save cost and extend shelf-life for months. We cook our {product.name} exclusively in 100% pure yellow mustard oil. You get genuine crispness, rich Omega-3, and zero throat burning or acidity.
             </p>
           </div>
 
