@@ -49,7 +49,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3
       "@type": "Offer",
       "url": canonicalURL,
       "priceCurrency": "INR",
-      "price": product.price,
+      "price": String(product.price),
       "priceValidUntil": "2027-12-31",
       "itemCondition": "https://schema.org/NewCondition",
       "availability": "https://schema.org/InStock",
