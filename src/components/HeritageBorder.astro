@@ -1,0 +1,127 @@
+---
+// HeritageBorder.astro
+// Continuous ethnic geometric border ribbon inspired by traditional Indian textiles & packaging bands (Images 2 & 3).
+// Seamlessly looping horizontal marquee powered by GSAP.
+interface Props {
+  class?: string;
+  id?: string;
+  height?: number;
+}
+const { class: className = '', id = 'heritage-border-ribbon', height = 32 } = Astro.props;
+
+// 30 repeating 72px tiles = 2160px per strip for seamless wide-screen loops
+const repeatCount = 30;
+const stripWidth = repeatCount * 72; // 2160px
+const tileId = `hb-tile-${id}`;
+---
+
+<div class={`heritage-border-wrap ${className}`} id={id} aria-hidden="true" style={`--hb-height: ${height}px;`}>
+  <div class="heritage-border-track" data-strip-width={stripWidth}>
+    <!-- Strip 1 -->
+    <div class="heritage-border-strip" style={`width: ${stripWidth}px;`}>
+      <svg class="heritage-border-svg" width={stripWidth} height={height} viewBox={`0 0 ${stripWidth} 36`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <g id={tileId}>
+            <!-- Top Sawtooth Triangles (12 per 72px) -->
+            <polygon points="0,0 3,6 6,0" fill="var(--maroon)" />
+            <polygon points="6,0 9,6 12,0" fill="var(--maroon)" />
+            <polygon points="12,0 15,6 18,0" fill="var(--maroon)" />
+            <polygon points="18,0 21,6 24,0" fill="var(--maroon)" />
+            <polygon points="24,0 27,6 30,0" fill="var(--maroon)" />
+            <polygon points="30,0 33,6 36,0" fill="var(--maroon)" />
+            <polygon points="36,0 39,6 42,0" fill="var(--maroon)" />
+            <polygon points="42,0 45,6 48,0" fill="var(--maroon)" />
+            <polygon points="48,0 51,6 54,0" fill="var(--maroon)" />
+            <polygon points="54,0 57,6 60,0" fill="var(--maroon)" />
+            <polygon points="60,0 63,6 66,0" fill="var(--maroon)" />
+            <polygon points="66,0 69,6 72,0" fill="var(--maroon)" />
+
+            <!-- Top Gold Rail -->
+            <line x1="0" y1="6.5" x2="72" y2="6.5" stroke="var(--gold)" stroke-width="1" />
+
+            <!-- Left Hourglass Chevrons -->
+            <polygon points="8,10 14,18 8,26" fill="var(--maroon)" />
+            <polygon points="15,10 10,18 15,26" fill="var(--gold)" />
+
+            <!-- Center Concentric Folk Diamond (Image 2/3) -->
+            <polygon points="36,8 50,18 36,28 22,18" stroke="var(--maroon)" stroke-width="1.5" fill="#FFFDF9" />
+            <polygon points="36,11 46,18 36,25 26,18" fill="var(--gold)" />
+            <polygon points="36,14 41,18 36,22 31,18" fill="var(--maroon)" />
+            <circle cx="36" cy="18" r="1.5" fill="#FFFDF9" />
+
+            <!-- Right Hourglass Chevrons -->
+            <polygon points="57,10 62,18 57,26" fill="var(--gold)" />
+            <polygon points="64,10 58,18 64,26" fill="var(--maroon)" />
+
+            <!-- Bottom Gold Rail -->
+            <line x1="0" y1="29.5" x2="72" y2="29.5" stroke="var(--gold)" stroke-width="1" />
+
+            <!-- Bottom Sawtooth Triangles (12 per 72px) -->
+            <polygon points="0,36 3,30 6,36" fill="var(--maroon)" />
+            <polygon points="6,36 9,30 12,36" fill="var(--maroon)" />
+            <polygon points="12,36 15,30 18,36" fill="var(--maroon)" />
+            <polygon points="18,36 21,30 24,36" fill="var(--maroon)" />
+            <polygon points="24,36 27,30 30,36" fill="var(--maroon)" />
+            <polygon points="30,36 33,30 36,36" fill="var(--maroon)" />
+            <polygon points="36,36 39,30 42,36" fill="var(--maroon)" />
+            <polygon points="42,36 45,30 48,36" fill="var(--maroon)" />
+            <polygon points="48,36 51,30 54,36" fill="var(--maroon)" />
+            <polygon points="54,36 57,30 60,36" fill="var(--maroon)" />
+            <polygon points="60,36 63,30 66,36" fill="var(--maroon)" />
+            <polygon points="66,36 69,30 72,36" fill="var(--maroon)" />
+          </g>
+        </defs>
+
+        {Array.from({ length: repeatCount }).map((_, i) => (
+          <use href={`#${tileId}`} x={i * 72} y="0" />
+        ))}
+      </svg>
+    </div>
+
+    <!-- Strip 2 (Identical for seamless infinite loop) -->
+    <div class="heritage-border-strip" aria-hidden="true" style={`width: ${stripWidth}px;`}>
+      <svg class="heritage-border-svg" width={stripWidth} height={height} viewBox={`0 0 ${stripWidth} 36`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        {Array.from({ length: repeatCount }).map((_, i) => (
+          <use href={`#${tileId}`} x={i * 72} y="0" />
+        ))}
+      </svg>
+    </div>
+
+    <!-- Strip 3 (Buffer for ultrawide screens) -->
+    <div class="heritage-border-strip" aria-hidden="true" style={`width: ${stripWidth}px;`}>
+      <svg class="heritage-border-svg" width={stripWidth} height={height} viewBox={`0 0 ${stripWidth} 36`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        {Array.from({ length: repeatCount }).map((_, i) => (
+          <use href={`#${tileId}`} x={i * 72} y="0" />
+        ))}
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    function initBorderMarquee() {
+      const tracks = document.querySelectorAll('.heritage-border-track:not([data-animated])');
+      if (tracks.length === 0) return;
+      if (window.gsap) {
+        tracks.forEach(track => {
+          track.setAttribute('data-animated', 'true');
+          const stripWidth = parseFloat(track.dataset.stripWidth) || 2160;
+          window.gsap.to(track, {
+            x: -stripWidth,
+            duration: 110,
+            ease: 'none',
+            repeat: -1
+          });
+        });
+      } else {
+        setTimeout(initBorderMarquee, 60);
+      }
+    }
+    if (document.readyState === 'loading') {
+      window.addEventListener('load', initBorderMarquee, { once: true });
+    } else {
+      initBorderMarquee();
+    }
+  })();
+</script>

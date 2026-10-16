@@ -1,0 +1,222 @@
+---
+// HeritageMandala.astro
+// Intricate Indian folk embroidery medallion inspired by Awadhi/Phulkari royal textiles (Image 1).
+// Completely redesigned to eliminate rigid "long arrows" in favor of sculpted royal lotus crests,
+// ornate diagonal needlework jewels, concentric diamond garlands, radial embroidery stitch hatching,
+// and a 16-point sawtooth starburst crown.
+// Engineered for GSAP: builds from scratch with stroke drawing & blossoming reveal, followed by continuous kinetic motion.
+
+interface Props {
+  class?: string;
+  id?: string;
+}
+const { class: className = '', id = 'hero-mandala' } = Astro.props;
+---
+
+<div class={`hero-mandala-wrap ${className}`} id={id} aria-hidden="true">
+  <svg class="hero-mandala-svg" viewBox="-320 -320 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Folk Embroidered "X" Cross-Stitch Motif (Image 1 Quad Clusters) -->
+      <g id="folk-cross-motif">
+        <!-- Center gold diamond with core dot -->
+        <polygon points="0,-8 8,0 0,8 -8,0" fill="var(--gold)" stroke="#162544" stroke-width="0.8" />
+        <circle cx="0" cy="0" r="2" fill="#FAF5EB" />
+        <!-- Top arm cluster -->
+        <polygon points="0,-20 6,-14 0,-8 -6,-14" fill="var(--maroon)" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="0,-23 3,-20 -3,-20" fill="var(--gold)" />
+        <!-- Bottom arm cluster -->
+        <polygon points="0,8 6,14 0,20 -6,14" fill="var(--maroon)" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="0,23 3,20 -3,20" fill="var(--gold)" />
+        <!-- Left arm cluster -->
+        <polygon points="-8,0 -14,-6 -20,0 -14,6" fill="#162544" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="-23,0 -20,-3 -20,3" fill="var(--gold)" />
+        <!-- Right arm cluster -->
+        <polygon points="8,0 14,-6 20,0 14,6" fill="#162544" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="23,0 20,-3 20,3" fill="var(--gold)" />
+        <!-- 4 Corner needlework accent beads -->
+        <circle cx="-10" cy="-10" r="1.5" fill="var(--gold)" />
+        <circle cx="10" cy="-10" r="1.5" fill="var(--gold)" />
+        <circle cx="-10" cy="10" r="1.5" fill="var(--gold)" />
+        <circle cx="10" cy="10" r="1.5" fill="var(--gold)" />
+      </g>
+
+      <!-- Ornate Cardinal Royal Lotus Crest (Replaces rigid straight arrows with an embroidered petal crest) -->
+      <g id="mandala-cardinal-crest">
+        <!-- Contoured petal body -->
+        <path d="M0,68 C-18,88 -22,118 -15,148 L-18,158 L0,178 L18,158 L15,148 C22,118 18,88 0,68 Z" 
+              stroke="var(--gold)" stroke-width="1.6" fill="rgba(250, 245, 235, 0.75)" />
+        
+        <!-- Inner decorative stitch contour -->
+        <path d="M0,78 C-11,96 -13,118 -9,142 L0,160 L9,142 C13,118 11,96 0,78 Z" 
+              stroke="rgba(22, 37, 68, 0.4)" stroke-width="1" stroke-dasharray="2,3" fill="none" />
+        
+        <!-- Nested Embroidered Diamonds inside the crest -->
+        <polygon points="0,92 6,100 0,108 -6,100" fill="var(--maroon)" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="0,114 7,124 0,134 -7,124" fill="#162544" stroke="var(--gold)" stroke-width="0.8" />
+        <polygon points="0,138 6,146 0,154 -6,146" fill="var(--gold)" />
+        <circle cx="0" cy="124" r="1.8" fill="#FAF5EB" />
+
+        <!-- Flanking needlework sawteeth along outer petal curvature -->
+        <polygon points="-16,102 -21,107 -16,112" fill="var(--maroon)" />
+        <polygon points="-16,120 -21,125 -16,130" fill="var(--gold)" />
+        <polygon points="-15,138 -20,143 -15,148" fill="var(--maroon)" />
+
+        <polygon points="16,102 21,107 16,112" fill="var(--maroon)" />
+        <polygon points="16,120 21,125 16,130" fill="var(--gold)" />
+        <polygon points="15,138 20,143 15,148" fill="var(--maroon)" />
+
+        <!-- Crest Tip Chevron & Triple Finial Beads -->
+        <path d="M-10,160 L0,172 L10,160" stroke="var(--maroon)" stroke-width="1.8" fill="none" />
+        <circle cx="0" cy="178" r="2.4" fill="var(--gold)" />
+        <circle cx="-7" cy="166" r="1.5" fill="var(--maroon)" />
+        <circle cx="7" cy="166" r="1.5" fill="var(--maroon)" />
+      </g>
+
+      <!-- Diagonal Folk Needlework Jewel (Graduated diamond cluster with chevron wings - NO arrow shaft) -->
+      <g id="mandala-diagonal-jewel">
+        <!-- Connecting dashed guide -->
+        <line x1="0" y1="68" x2="0" y2="152" stroke="rgba(194, 127, 21, 0.45)" stroke-width="1" stroke-dasharray="2,3" />
+        
+        <!-- Primary center folk diamond -->
+        <polygon points="0,112 11,124 0,136 -11,124" fill="rgba(117, 24, 24, 0.2)" stroke="var(--maroon)" stroke-width="1.4" />
+        <polygon points="0,117 7,124 0,131 -7,124" fill="#162544" stroke="var(--gold)" stroke-width="0.8" />
+        <circle cx="0" cy="124" r="2" fill="var(--gold)" />
+
+        <!-- Secondary top diamond -->
+        <polygon points="0,88 7,96 0,104 -7,96" fill="var(--gold)" stroke="var(--maroon)" stroke-width="0.8" />
+        <circle cx="0" cy="96" r="1.5" fill="#FAF5EB" />
+
+        <!-- Flanking Folk Chevron Wings (Image 1 style) -->
+        <path d="M-13,116 L-6,124 L-13,132" stroke="var(--gold)" stroke-width="1.2" fill="none" />
+        <path d="M13,116 L6,124 L13,132" stroke="var(--gold)" stroke-width="1.2" fill="none" />
+        <circle cx="-16" cy="124" r="1.3" fill="var(--maroon)" />
+        <circle cx="16" cy="124" r="1.3" fill="var(--maroon)" />
+
+        <!-- Tip Accent Finial -->
+        <polygon points="0,140 4,146 0,152 -4,146" fill="var(--maroon)" />
+        <circle cx="0" cy="156" r="2.2" fill="var(--gold)" />
+      </g>
+
+      <!-- Outermost 16-Point Multi-Tier Sawtooth Crown Unit (Image 1 star rim) -->
+      <g id="mandala-outer-crown-unit">
+        <!-- Deep sharp star tooth -->
+        <polygon points="-16,236 0,278 16,236" stroke="var(--gold)" stroke-width="1.6" fill="rgba(250, 245, 235, 0.9)" />
+        <!-- Nested inner chevron triangle -->
+        <polygon points="-10,240 0,266 10,240" fill="var(--maroon)" stroke="#162544" stroke-width="0.9" />
+        <!-- Center accent diamond -->
+        <polygon points="0,245 4,253 0,261 -4,253" fill="var(--gold)" />
+        <!-- Radiating tip bead -->
+        <circle cx="0" cy="283" r="2.4" fill="var(--maroon)" />
+        <circle cx="0" cy="283" r="1.1" fill="var(--gold)" />
+      </g>
+
+      <!-- Radial Embroidered Stitch Hatching Unit (Image 1 textile texture) -->
+      <g id="mandala-needle-hatch-unit">
+        <line x1="-6" y1="206" x2="-2" y2="228" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round" />
+        <line x1="-3" y1="205" x2="1" y2="229" stroke="#162544" stroke-width="1" stroke-linecap="round" />
+        <line x1="0" y1="204" x2="4" y2="230" stroke="var(--maroon)" stroke-width="1.2" stroke-linecap="round" />
+        <line x1="3" y1="205" x2="7" y2="229" stroke="var(--gold)" stroke-width="1.1" stroke-linecap="round" />
+        <line x1="6" y1="206" x2="10" y2="228" stroke="#162544" stroke-width="1" stroke-linecap="round" />
+      </g>
+    </defs>
+
+    <!-- ══════════════════════════════════════════════════════
+         LAYER 1: OUTER LIVING KINETIC GROUP (Continuous Slow Clockwise Spin)
+         ══════════════════════════════════════════════════════ -->
+    <g class="mandala-layer-outer">
+      <!-- Outermost Dotted Orbit Circle -->
+      <circle class="mandala-circle-path" r="298" stroke="rgba(194, 127, 21, 0.45)" stroke-width="1.2" stroke-dasharray="3,5" />
+      <!-- Rim Enclosing Circles -->
+      <circle class="mandala-circle-path" r="280" stroke="var(--maroon)" stroke-width="1.4" />
+      <circle class="mandala-circle-path" r="236" stroke="var(--gold)" stroke-width="1.8" />
+
+      <!-- 16 Multi-Tier Sawtooth Star Crowns -->
+      {Array.from({ length: 16 }).map((_, i) => (
+        <g class="mandala-outer-crown" transform={`rotate(${i * 22.5})`}>
+          <use href="#mandala-outer-crown-unit" />
+        </g>
+      ))}
+
+      <!-- 16 Needlework Hatch Stitch Clusters along outer ring (Authentic Folk Texture) -->
+      {Array.from({ length: 16 }).map((_, i) => (
+        <g class="mandala-needle-hatch" transform={`rotate(${i * 22.5 + 11.25})`}>
+          <use href="#mandala-needle-hatch-unit" />
+        </g>
+      ))}
+
+      <!-- 8 Intermediate Folk Cross-Stitch Clusters in the outer quadrants -->
+      {Array.from({ length: 8 }).map((_, i) => (
+        <g class="mandala-cross-cluster" transform={`rotate(${i * 45 + 22.5}) translate(0, -188)`}>
+          <use href="#folk-cross-motif" />
+        </g>
+      ))}
+    </g>
+
+    <!-- ══════════════════════════════════════════════════════
+         LAYER 2: MID LIVING STRUCTURAL GROUP (Breathing Harmonic Pulse)
+         ══════════════════════════════════════════════════════ -->
+    <g class="mandala-layer-mid">
+      <!-- Mid Concentric Structural Stitch Circles -->
+      <circle class="mandala-circle-path" r="178" stroke="#162544" stroke-width="1.2" stroke-dasharray="4,4" />
+      <circle class="mandala-circle-path" r="146" stroke="var(--gold)" stroke-width="1.5" />
+      <circle class="mandala-circle-path" r="110" stroke="var(--maroon)" stroke-width="1.4" stroke-dasharray="3,3" />
+      <circle class="mandala-circle-path" r="76" stroke="var(--gold)" stroke-width="1.2" />
+
+      <!-- 4 Cardinal Embroidered Royal Lotus Crests (Replaced straight arrows) -->
+      <g class="mandala-pillar-cardinal" transform="rotate(0)"><use href="#mandala-cardinal-crest" /></g>
+      <g class="mandala-pillar-cardinal" transform="rotate(90)"><use href="#mandala-cardinal-crest" /></g>
+      <g class="mandala-pillar-cardinal" transform="rotate(180)"><use href="#mandala-cardinal-crest" /></g>
+      <g class="mandala-pillar-cardinal" transform="rotate(270)"><use href="#mandala-cardinal-crest" /></g>
+
+      <!-- 4 Diagonal Folk Needlework Jewels (Replaced straight arrows) -->
+      <g class="mandala-pillar-diagonal" transform="rotate(45)"><use href="#mandala-diagonal-jewel" /></g>
+      <g class="mandala-pillar-diagonal" transform="rotate(135)"><use href="#mandala-diagonal-jewel" /></g>
+      <g class="mandala-pillar-diagonal" transform="rotate(225)"><use href="#mandala-diagonal-jewel" /></g>
+      <g class="mandala-pillar-diagonal" transform="rotate(315)"><use href="#mandala-diagonal-jewel" /></g>
+
+      <!-- Concentric Diamond Garland Garland (Mid Ring Ringlet) -->
+      {Array.from({ length: 16 }).map((_, i) => (
+        <g class="mandala-garland-diamond" transform={`rotate(${i * 22.5}) translate(0, -126)`}>
+          <polygon points="0,-6 5,0 0,6 -5,0" fill="var(--maroon)" stroke="var(--gold)" stroke-width="0.8" />
+          <circle cx="0" cy="0" r="1.3" fill="#FAF5EB" />
+        </g>
+      ))}
+    </g>
+
+    <!-- ══════════════════════════════════════════════════════
+         LAYER 3: INNER LIVING KINETIC GROUP (Continuous Counter-Clockwise Counter-Rotation)
+         ══════════════════════════════════════════════════════ -->
+    <g class="mandala-layer-inner">
+      <circle class="mandala-circle-path" r="56" stroke="var(--gold)" stroke-width="1.6" />
+      <circle class="mandala-circle-path" r="44" stroke="var(--maroon)" stroke-width="1.3" stroke-dasharray="2,3" />
+
+      <!-- 8-Petal Royal Star Rosette (Image 1 inner rosette) -->
+      {Array.from({ length: 8 }).map((_, i) => (
+        <g class="mandala-rosette-petal" transform={`rotate(${i * 45})`}>
+          <!-- Outer diamond petal -->
+          <polygon points="0,15 11,30 0,48 -11,30" stroke="var(--maroon)" stroke-width="1.4" fill="rgba(194, 127, 21, 0.22)" />
+          <!-- Inner chevron petal -->
+          <polygon points="0,21 6,30 0,42 -6,30" fill="#162544" stroke="var(--gold)" stroke-width="0.8" />
+          <!-- Golden eye bead -->
+          <circle cx="0" cy="30" r="2.4" fill="var(--gold)" />
+          <circle cx="0" cy="30" r="1" fill="#FAF5EB" />
+        </g>
+      ))}
+    </g>
+
+    <!-- ══════════════════════════════════════════════════════
+         LAYER 4: SACRED CORE EYE (Genesis Anchor & Shimmer Pulse)
+         ══════════════════════════════════════════════════════ -->
+    <g class="mandala-core">
+      <circle r="22" fill="rgba(117, 24, 24, 0.2)" stroke="var(--maroon)" stroke-width="2" />
+      <circle r="15" fill="#FAF5EB" stroke="var(--gold)" stroke-width="1.8" />
+      <circle r="8" fill="var(--maroon)" />
+      <circle r="3.5" fill="var(--gold)" />
+
+      <!-- 8 Radial Hub Dots -->
+      {Array.from({ length: 8 }).map((_, i) => (
+        <circle cx={12 * Math.cos(i * Math.PI / 4)} cy={12 * Math.sin(i * Math.PI / 4)} r="1.5" fill="var(--gold)" />
+      ))}
+    </g>
+  </svg>
+</div>

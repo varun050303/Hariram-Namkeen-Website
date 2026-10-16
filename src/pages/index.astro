@@ -22,6 +22,8 @@ import GrahakDev  from '../components/GrahakDev.astro';
 import HomeFAQ    from '../components/HomeFAQ.astro';
 import Footer     from '../components/Footer.astro';
 import MobileOrderBar from '../components/MobileOrderBar.astro';
+import QuickViewModal from '../components/QuickViewModal.astro';
+import HeritageBorder from '../components/HeritageBorder.astro';
 
 import '../styles/global.css';
 ---
@@ -36,23 +38,35 @@ import '../styles/global.css';
   <main id="main-content">
     <Hero />
     <Marquee />
+    <HeritageBorder id="border-after-marquee" class="section-end-border" height={22} />
     <Craft />
+    <HeritageBorder id="border-after-craft" class="section-end-border" height={22} />
     <OilTruth />
+    <HeritageBorder id="border-after-oil" class="section-end-border" height={22} />
     <Products />
+    <HeritageBorder id="border-after-products" class="section-end-border" height={22} />
     <FestiveHamper />
+    <HeritageBorder id="border-after-hamper" class="section-end-border" height={22} />
     <!-- <Platforms /> -->
     <Story />
+    <HeritageBorder id="border-after-story" class="section-end-border" height={22} />
     <Process />
+    <HeritageBorder id="border-after-process" class="section-end-border" height={22} />
     <ReelSection />
+    <HeritageBorder id="border-after-reels" class="section-end-border" height={22} />
     <Reviews />
+    <HeritageBorder id="border-after-reviews" class="section-end-border" height={22} />
     <GrahakDev />
+    <HeritageBorder id="border-after-grahak" class="section-end-border" height={22} />
     <HomeFAQ />
+    <HeritageBorder id="border-after-faq" class="section-end-border" height={22} />
     <CTA />
+    <HeritageBorder id="border-after-cta" class="section-end-border" height={22} />
   </main>
   <Footer />
   <MobileOrderBar />
+  <QuickViewModal />
 </BaseLayout>
-
 <!--
   GSAP Animations
   is:inline tells Astro NOT to bundle/process this — it runs
@@ -190,9 +204,36 @@ import '../styles/global.css';
       onLeaveBack: () => document.getElementById('header').classList.remove('scrolled'),
     });
 
-    // Above-the-fold hero elements render statically with zero late JS shifts.
+    // ── HERITAGE BORDER RIBBON (CONTINUOUS SEAMLESS GLIDE) ────────
+    const borderTracks = document.querySelectorAll('.heritage-border-track');
+    borderTracks.forEach(track => {
+      if (track.dataset.animated) return;
+      track.setAttribute('data-animated', 'true');
+      const stripWidth = parseFloat(track.dataset.stripWidth) || 2160;
+      gsap.to(track, {
+        x: -stripWidth,
+        duration: 110,
+        ease: 'none',
+        repeat: -1
+      });
+    });
 
-    // Marquee now uses fixed CSS animation speed only (no scroll reaction).
+    // ── HERO PARALLAX ON VISUAL ──────────────────────────────────
+    const heroParallax = document.getElementById('hero-parallax');
+    if (heroParallax) {
+      gsap.to(heroParallax, {
+        yPercent: 14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+
+    // Marquee uses fixed CSS animation speed only (no scroll reaction).
 
     // ── OIL TRUTH (COMPARISON & STATS ANIMATIONS) ─────────────────
     const rows = gsap.utils.toArray('[data-row]');
@@ -261,18 +302,8 @@ import '../styles/global.css';
       });
     });
 
-    // ── MAGNETIC BUTTONS ──────────────────────────────────────────
-    if (canHover) document.querySelectorAll('[data-magnetic]').forEach(el => {
-      el.addEventListener('mousemove', e => {
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width/2;
-        const y = e.clientY - r.top  - r.height/2;
-        gsap.to(el, { x: x*.1, y: y*.1, duration:.4, ease:'power2.out' });
-      });
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, { x:0, y:0, duration:.5, ease:'power2.out' });
-      });
-    });
+    // ── MAGNETIC BUTTONS (Removed to eliminate button jiggle animation) ──
+
 
     // ── PLATFORM CARDS ENTRANCE ───────────────────────────────────
     if (document.querySelector('.platforms-grid')) {

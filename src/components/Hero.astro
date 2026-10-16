@@ -1,289 +1,237 @@
 ---
-// Hero.astro — Focused Special 4 Box Conversion Hero
-// Hariram Namkeen: 4 varieties, 800g, ₹499, free delivery across India, yellow mustard oil.
+// Hero.astro
+// Animation: headline line-by-line reveal, parallax on hero-visual
+// All driven by GSAP timeline in animations.js (heroTl)
+// Mobile: shows namkeen image as background + namkeen-first messaging
+import HeritageBorder from "./HeritageBorder.astro";
 ---
 
 <section class="hero" id="hero">
-  <!-- Blurred ambient video background -->
-  <div class="hero-bg-video-wrap" aria-hidden="true">
-    <video
-      id="hero-bg-video"
-      class="hero-bg-video"
-      muted
-      loop
-      playsinline
-      preload="none"
-      poster="/images/aloo_bhujia_video_poster.webp"
-    >
-      <source src="/videos/aloo_bhujia_hero_widescreen.mp4" type="video/mp4" />
-      <source src="/videos/aloo_bhujia_rotating_shoot.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-bg-video-overlay"></div>
-  </div>
+  <div class="hero-content">
+    <div class="hero-origin" id="h-origin">
+      <span class="hero-origin-dot"></span>
+      Muzaffarnagar, UP
+    </div>
 
-  <div class="hero-inner">
-    <!-- Left column: Editorial Value Proposition -->
-    <div class="hero-content">
-      <!-- 1. H1 Trust Headline + UP Hindi Line -->
-      <div class="hero-headline-wrap">
-        <div class="hero-eyebrow-badge">
-          <span>✦</span> India’s 1st Brand Dedicated to 100% Yellow Mustard Oil
-        </div>
-        <h1 class="hero-headline" id="hero-h1">
-          Namkeen made in <br class="headline-br" /><em class="hl-oil">yellow mustard oil.</em>
-        </h1>
-        <p class="hero-hindi">पीली सरसों के तेल में बनी नमकीन</p>
+    <h1 class="hero-headline">
+      <span class="split-line"
+        ><span class="split-inner" id="hl1">We Make Namkeen In</span></span
+      >
+      <span class="split-line"
+        ><em><span class="split-inner" id="hl2">Yellow Mustard Oil.</span></em
+        ></span
+      >
+      <span class="split-line"
+        ><span class="gold"
+          ><span class="split-inner" id="hl3">No shortcuts. No compromise.</span
+          ></span
+        ></span
+      >
+    </h1>
+
+    <p class="hero-sub" id="h-sub">
+      Handcrafted in small batches. Kachi Ghani mustard oil. No palm oil. No
+      preservatives.
+    </p>
+
+    <!-- Mobile-only hero image (visible only on small screens) -->
+    <div class="hero-mobile-img">
+      <div class="hero-slideshow-mobile">
+        <img
+          src="/images/aloo_bhujia.webp"
+          alt="Aloo Bhujia - Pure Mustard Oil Namkeen"
+          class="hero-slide-mobile active"
+          width="600"
+          height="1066"
+        />
+        <img
+          src="/images/hariram_special_4_top_view.webp"
+          alt="The Hariram Special 4 Box - Top View"
+          class="hero-slide-mobile"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        />
+        <img
+          src="/images/masala_chana_dal.webp"
+          alt="Crispy Masala Chana Dal"
+          class="hero-slide-mobile"
+          width="700"
+          height="1244"
+          loading="lazy"
+        />
+        <img
+          src="/images/masala_moongfali.webp"
+          alt="Roasted Masala Moongfali"
+          class="hero-slide-mobile"
+          width="800"
+          height="597"
+          loading="lazy"
+        />
+        <img
+          src="/images/premium.webp"
+          alt="Premium Shahi Dal Bhiji"
+          class="hero-slide-mobile"
+          width="900"
+          height="600"
+          loading="lazy"
+        />
       </div>
-
-      <!-- 2. Subline (Concise, no duplicate lines) -->
-      <p class="hero-sub" id="hero-sub">
-        <strong>Zero palm oil. Fresh in small batches.</strong>
-        <span class="hero-sub-challenge">“Try finding another namkeen made in pure yellow mustard oil — you won't.”</span>
-      </p>
-
-      <!-- 3. Offer block (The Royal Maroon Card with Gold Price) -->
-      <div class="hero-box-card" id="hero-offer">
-        <div class="hbc-header">
-          <div class="hbc-title-wrap">
-            <span class="hbc-name">The Special 4 Box</span>
-            <span class="hbc-wt">4 varieties · 800g (4 × 200g)</span>
-          </div>
-          <div class="hbc-price-wrap">
-            <span class="hbc-price">₹499</span>
-            <span class="hbc-ship">Free Delivery Across India</span>
-          </div>
-        </div>
-        <div class="hbc-menu-row">
-          <span class="hbc-menu-label">Includes:</span>
-          <span class="hbc-menu-items">
-            <strong>Aloo Bhujia</strong> · 
-            <strong>Masala Chana Dal</strong> · 
-            <strong>Dal Biji</strong> · 
-            <strong>Spicy Malka / Masala Moongfali</strong>
-          </span>
-        </div>
+      <div class="hero-mobile-overlay"></div>
+      <div class="hero-mobile-badge">
+        <span>🌿</span> No Onion No Garlic (100% Jain Friendly) &middot; Mustard Oil
+        Only
       </div>
+    </div>
 
-      <!-- 4. One primary button (Gold CTA) -->
-      <div class="hero-cta-wrap" id="hero-cta">
-        <a 
-          href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___.%20Ref%3A%20GAds" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="btn-hero-order" 
-          data-magnetic
-          data-wa-click
+    <div class="hero-btns" id="h-btns">
+      <a href="#products" class="hero-btn-primary"> Explore Namkeen &rarr; </a>
+      <a
+        href="https://wa.me/916396122920"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-wa-link"
+        id="hero-cta"
+        data-wa-click
+      >
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          ><path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+          ></path></svg
         >
-          <!-- WhatsApp Icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          <span>Order the 4-Box, ₹499</span>
-        </a>
-      </div>
+        <span>Order on WhatsApp</span>
+      </a>
+    </div>
 
-      <!-- 5. Proof row (Fried fresh to order enlarged) -->
-      <div class="hero-trust-inline" id="hero-proof">
-        <span class="trust-highlight">✦ Fried fresh to order</span>
-        <span class="ht-sep">·</span>
-        <span>Muzaffarnagar Craft</span>
-        <span class="ht-sep">·</span>
-        <span>Zero Palm Oil</span>
+    <!-- Editorial Integrated Product Offer (No bordered rectangle, subtle gold divider) -->
+    <div class="hero-offer-editorial" id="h-offer-card">
+      <div class="hoe-divider" aria-hidden="true">
+        <span class="hoe-divider-line"></span>
+        <span class="hoe-divider-diamond">
+          <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
+            <polygon points="12,0 20,6 12,12 4,6" fill="var(--maroon)"
+            ></polygon>
+            <polygon points="12,2 17,6 12,10 7,6" fill="var(--gold)"></polygon>
+            <circle cx="12" cy="6" r="1.5" fill="#FAF5EB"></circle>
+          </svg>
+        </span>
+        <span class="hoe-divider-line"></span>
+      </div>
+      <div class="hoe-tag">The Hariram 4 &middot; Special Box</div>
+      <h2 class="hoe-title">Four favourites. One box.</h2>
+      <p class="hoe-snacks">
+        Aloo Bhujia &middot; Chana Dal &middot; Dal Biji &middot; Spicy Malka
+      </p>
+      <div class="hoe-meta-row">
+        <div class="hoe-pricing">
+          <span class="hoe-price">&#8377;499</span>
+          <span class="hoe-shipping">Free delivery across India</span>
+        </div>
+        <a href="#hamper" class="hoe-link"> Explore the Special Box &rarr; </a>
       </div>
     </div>
 
-    <!-- Right column: One complete image and name carousel card -->
-    <div class="hero-visual" id="hero-visual">
-      <div class="hero-carousel-card" id="hero-carousel">
-        <div class="hero-carousel-slides">
-          <!-- Slide 1: Aloo Bhujia -->
-          <div class="hero-carousel-slide active" data-slide="0">
-            <img 
-              src="/images/aloo_bhujia.webp" 
-              alt="Hariram Aloo Bhujia — crispy potato sev namkeen cooked in pure yellow mustard oil, Muzaffarnagar" 
-              class="hc-slide-img" 
-              loading="eager" 
-              fetchpriority="high"
-              width="768" 
-              height="1365" 
-            />
-            <div class="hc-name-badge">Aloo Bhujia</div>
-          </div>
+    <!-- Simplified Single Restrained Benefit Line -->
+    <div class="hero-benefits-line" id="h-trust">
+      <span class="hero-jain-tag"
+        >🌿 No Onion No Garlic (100% Jain Friendly)</span
+      >
+    </div>
+  </div>
 
-          <!-- Slide 2: Masala Chana Dal -->
-          <div class="hero-carousel-slide" data-slide="1">
-            <img 
-              src="/images/masala_chana_dal.webp" 
-              alt="Hariram Masala Chana Dal — crunchy Bengal gram namkeen in kachi ghani yellow mustard oil" 
-              class="hc-slide-img" 
-              loading="lazy" 
-              width="900" 
-              height="1600" 
-            />
-            <div class="hc-name-badge">Masala Chana Dal</div>
-          </div>
-
-          <!-- Slide 3: Dal Biji -->
-          <div class="hero-carousel-slide" data-slide="2">
-            <img 
-              src="/images/dal-bhiji.webp" 
-              alt="Hariram Dal Biji — traditional Muzaffarnagar moong dal namkeen in pure mustard oil" 
-              class="hc-slide-img" 
-              loading="lazy" 
-              width="900" 
-              height="600" 
-            />
-            <div class="hc-name-badge">Dal Biji</div>
-          </div>
-
-          <!-- Slide 4: Masala Moongfali -->
-          <div class="hero-carousel-slide" data-slide="3">
-            <img 
-              src="/images/masala_moongfali.webp" 
-              alt="Hariram Masala Moongfali — roasted peanuts in yellow mustard oil with hing and chaat masala" 
-              class="hc-slide-img" 
-              loading="lazy" 
-              width="1200" 
-              height="896" 
-            />
-            <div class="hc-name-badge">Masala Moongfali</div>
-          </div>
-
-          <!-- Slide 5: Shahi Dal Biji -->
-          <div class="hero-carousel-slide" data-slide="4">
-            <img 
-              src="/images/premium.webp" 
-              alt="Hariram Shahi Dal Biji — premium moong dal mix with cashews, raisins, and coconut" 
-              class="hc-slide-img" 
-              loading="lazy" 
-              width="900" 
-              height="600" 
-            />
-            <div class="hc-name-badge">Shahi Dal Biji</div>
-          </div>
-
-          <!-- Slide 6: Spicy Malka -->
-          <div class="hero-carousel-slide" data-slide="5">
-            <img 
-              src="/images/masala_malka.webp" 
-              alt="Hariram Spicy Malka — crispy whole masoor lentils in UP chaat spices and mustard oil" 
-              class="hc-slide-img" 
-              loading="lazy" 
-              width="1376" 
-              height="768" 
-            />
-            <div class="hc-name-badge">Spicy Malka</div>
-          </div>
-        </div>
-
-        <!-- Carousel Dots -->
-        <div class="hc-dots" id="hc-dots">
-          <button class="hc-dot active" data-index="0" aria-label="Slide 1: Aloo Bhujia"></button>
-          <button class="hc-dot" data-index="1" aria-label="Slide 2: Masala Chana Dal"></button>
-          <button class="hc-dot" data-index="2" aria-label="Slide 3: Dal Biji"></button>
-          <button class="hc-dot" data-index="3" aria-label="Slide 4: Masala Moongfali"></button>
-          <button class="hc-dot" data-index="4" aria-label="Slide 5: Shahi Dal Biji"></button>
-          <button class="hc-dot" data-index="5" aria-label="Slide 6: Spicy Malka"></button>
-        </div>
+  <div class="hero-visual">
+    <div class="hero-overlay"></div>
+    <div id="hero-parallax">
+      <div class="hero-slideshow">
+        <img
+          src="/images/aloo_bhujia.webp"
+          alt="Aloo Bhujia - Pure Mustard Oil Namkeen"
+          class="hero-slide active"
+          width="600"
+          height="1066"
+        />
+        <img
+          src="/images/hariram_special_4_top_view.webp"
+          alt="The Hariram Special 4 Box - Top View"
+          class="hero-slide"
+          width="1024"
+          height="1024"
+          loading="lazy"
+        />
+        <img
+          src="/images/masala_chana_dal.webp"
+          alt="Crispy Masala Chana Dal"
+          class="hero-slide"
+          width="700"
+          height="1244"
+          loading="lazy"
+        />
+        <img
+          src="/images/masala_moongfali.webp"
+          alt="Roasted Masala Moongfali"
+          class="hero-slide"
+          width="800"
+          height="597"
+          loading="lazy"
+        />
+        <img
+          src="/images/premium.webp"
+          alt="Premium Shahi Dal Bhiji"
+          class="hero-slide"
+          width="900"
+          height="600"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>
+
+  <a href="#craft" class="hero-scroll-hint" aria-label="Scroll down">
+    <span class="hero-scroll-label">Scroll</span>
+    <span class="hero-scroll-arrow">
+      <svg
+        width="16"
+        height="16"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"></path></svg
+      >
+    </span>
+  </a>
+
+  <!-- Continuous Ethnic Geometric Border Ribbon (Images 2 & 3) -->
+  <HeritageBorder
+    id="hero-bottom-border"
+    class="hero-bottom-border"
+    height={30}
+  />
 </section>
 
 <script is:inline>
-  // Hero background video controller: ensure video plays actively and visibly
   (() => {
-    const v = document.getElementById('hero-bg-video');
-    if (!v) return;
-
-    v.muted = true;
-    v.defaultMuted = true;
-
-    const playVideo = () => {
-      const p = v.play();
-      if (p !== undefined) {
-        p.catch(() => {
-          // If browser policy prevents unprompted autoplay, play on first user interaction
-          const unlock = () => {
-            v.play().catch(() => {});
-            ['click', 'scroll', 'touchstart'].forEach(evt => document.removeEventListener(evt, unlock));
-          };
-          ['click', 'scroll', 'touchstart'].forEach(evt => document.addEventListener(evt, unlock, { once: true }));
-        });
-      }
-    };
-
-    // On mobile screens (<= 768px), don't download heavy 2MB video in background
-    // Display the poster image to guarantee sub-second mobile FCP and LCP!
-    if (window.innerWidth <= 768) return;
-
-    window.addEventListener('load', () => {
-      setTimeout(playVideo, 1200);
-    }, { once: true });
-
-    // Only pause when hero is completely scrolled off-screen
-    const hero = document.getElementById('hero');
-    if ('IntersectionObserver' in window && hero) {
-      new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          v.play().catch(() => {});
-        } else {
-          v.pause();
+    const desktopSlides = document.querySelectorAll(".hero-slide");
+    const mobileSlides = document.querySelectorAll(".hero-slide-mobile");
+    let currentSlide = 0;
+    if (desktopSlides.length > 0) {
+      setInterval(() => {
+        desktopSlides[currentSlide]?.classList.remove("active");
+        if (mobileSlides.length > 0 && mobileSlides[currentSlide]) {
+          mobileSlides[currentSlide].classList.remove("active");
         }
-      }, { threshold: 0 }).observe(hero);
+
+        currentSlide = (currentSlide + 1) % desktopSlides.length;
+
+        desktopSlides[currentSlide]?.classList.add("active");
+        if (mobileSlides.length > 0 && mobileSlides[currentSlide]) {
+          mobileSlides[currentSlide].classList.add("active");
+        }
+      }, 4000);
     }
-  })();
-
-  // Hero Carousel Logic (cycles through 5 snacks with complete image and name only)
-  (() => {
-    const card = document.getElementById('hero-carousel');
-    if (!card) return;
-    const slides = card.querySelectorAll('.hero-carousel-slide');
-    const dots = card.querySelectorAll('.hc-dot');
-    if (!slides.length) return;
-
-    let current = 0;
-    let timer = null;
-
-    function goTo(idx) {
-      slides[current]?.classList.remove('active');
-      dots[current]?.classList.remove('active');
-      current = (idx + slides.length) % slides.length;
-      slides[current]?.classList.add('active');
-      dots[current]?.classList.add('active');
-    }
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    function startAuto() {
-      stopAuto();
-      timer = setInterval(next, 3500);
-    }
-    function stopAuto() {
-      if (timer) { clearInterval(timer); timer = null; }
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { goTo(i); startAuto(); });
-    });
-
-    // Touch swipe support
-    let startX = 0;
-    card.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      stopAuto();
-    }, { passive: true });
-
-    card.addEventListener('touchend', (e) => {
-      const diffX = e.changedTouches[0].clientX - startX;
-      if (Math.abs(diffX) > 40) {
-        if (diffX > 0) prev(); else next();
-      }
-      startAuto();
-    }, { passive: true });
-
-    card.addEventListener('mouseenter', stopAuto);
-    card.addEventListener('mouseleave', startAuto);
-
-    startAuto();
   })();
 </script>

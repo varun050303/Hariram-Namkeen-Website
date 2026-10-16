@@ -75,10 +75,10 @@ export function initAnimations() {
   });
 
   // ── HERO ENTRANCE ─────────────────────────────────────────────
-  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-trust',
+  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust',
     '#hl1', '#hl2', '#hl3'], { opacity: 0 });
   gsap.set(['#hl1', '#hl2', '#hl3'], { y: '110%' });
-  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-trust'], { y: 24 });
+  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust'], { y: 24 });
 
   gsap.set('.hero-stat', { opacity: 0, y: 20 });
 
@@ -92,8 +92,21 @@ export function initAnimations() {
     .to('#h-sub', { opacity: 1, y: 0, duration: .8 }, '-=.6')
     .to('#h-pill', { opacity: 1, y: 0, duration: .6 }, '-=.5')
     .to('#h-btns', { opacity: 1, y: 0, duration: .6 }, '-=.5')
+    .to('#h-offer-card', { opacity: 1, y: 0, duration: .6 }, '-=.4')
     .to('#h-trust', { opacity: 1, y: 0, duration: .6 }, '-=.4')
     .to('.hero-stat', { opacity: 1, y: 0, duration: .5, stagger: .08 }, '-=.6');
+
+  // ── HERITAGE BORDER RIBBON CONTINUOUS DRIFT ──────────────────
+  const borderTracks = document.querySelectorAll('.heritage-border-track');
+  borderTracks.forEach(track => {
+    const stripWidth = parseFloat(track.dataset.stripWidth) || 2160;
+    gsap.to(track, {
+      x: -stripWidth,
+      duration: 110,
+      ease: 'none',
+      repeat: -1
+    });
+  });
 
   // ── HERO PARALLAX (scrub = true is most reliable) ─────────────
   gsap.to('#hero-parallax', {
@@ -185,18 +198,8 @@ export function initAnimations() {
     });
   });
 
-  // ── MAGNETIC BUTTONS ──────────────────────────────────────────
-  document.querySelectorAll('[data-magnetic]').forEach(el => {
-    el.addEventListener('mousemove', e => {
-      const r = el.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      gsap.to(el, { x: x * .32, y: y * .32, duration: .3, ease: 'power2.out' });
-    });
-    el.addEventListener('mouseleave', () => {
-      gsap.to(el, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.5)' });
-    });
-  });
+  // ── MAGNETIC BUTTONS (Removed to eliminate button jiggle animation) ──
+
 
   // ── PLATFORM CARDS ENTRANCE ───────────────────────────────────
   gsap.fromTo('.platform-card',

@@ -88,23 +88,15 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <!-- Fonts: Optimized and preloaded for minimal CLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Preload Critical LCP Hero Image for Instant Mobile Paint -->
   <link
-    rel="preload"
-    as="image"
-    type="image/webp"
-    href="/images/aloo_bhujia.webp"
-    fetchpriority="high"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
     media="print"
     onload="this.media='all'"
   />
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </noscript>
@@ -121,44 +113,34 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     }
     #header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; height: 76px; }
     .hero {
-      min-height: calc(100vh - 72px);
-      min-height: calc(100dvh - 72px);
-      position: relative;
-      background: #FAF5EB;
-      padding: 84px clamp(20px, 4vw, 48px) 48px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-    .hero-inner {
+      min-height: calc(100vh - 76px);
+      min-height: calc(100dvh - 76px);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 48px;
-      max-width: 1440px;
-      width: 100%;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      padding-top: 76px;
       position: relative;
-      z-index: 2;
-      min-height: 540px;
     }
+    .hero-mobile-img { display: none; }
     .hero-headline {
       font-family: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
-      font-size: clamp(38px, 4.2vw, 56px);
-      line-height: 1.15;
+      font-size: clamp(36px, 4.8vw, 60px);
+      line-height: 1.18;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
     }
-    .hero-visual { min-height: 540px; width: 100%; display: flex; align-items: center; justify-content: center; }
-    .hero-carousel-card { position: relative; width: 100%; max-width: 600px; height: 540px; }
-    @media (max-width: 1024px) {
-      .hero { min-height: auto; padding-top: 84px; padding-bottom: 36px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 32px; min-height: auto; }
-      .hero-visual { min-height: auto; }
-      .hero-carousel-card { height: 380px; max-width: 100%; }
-    }
-    @media (max-width: 480px) {
-      .hero-carousel-card { height: 320px; }
+    @media (max-width: 768px) {
+      .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 100px;
+        padding-bottom: 40px;
+        min-height: auto;
+        max-height: none;
+      }
+      .hero-visual { display: none; }
+      .hero-mobile-img { display: block; }
     }
   </style>
 

@@ -1,6 +1,7 @@
 ---
 // Header.astro — v2 Dark Luxury
 // Transparent → frosted dark glass on scroll
+import HeritageBorder from './HeritageBorder.astro';
 ---
 
 <header id="header">
@@ -27,6 +28,9 @@
       <span class="hamburger-line"></span>
     </button>
   </div>
+
+  <!-- Designer Folk Border Strip on bottom of navigation panel -->
+  <HeritageBorder id="header-bottom-border" class="header-bottom-border" height={16} />
 
   <!-- Mobile slide-out menu -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>

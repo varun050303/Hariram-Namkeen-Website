@@ -1,0 +1,764 @@
+---
+// QuickViewModal.astro — Global "Nutrition & Ingredients" Quick-View Modal
+// + Centralized D2C Order Trigger Hook.
+//
+// Mount ONCE per page (index.astro and products/[slug].astro both mount this).
+// Public API (attached to window for cross-component access):
+//   window.openHariramQuickView(slug)        — opens modal for specified product slug
+//   window.closeHariramQuickView()           — closes modal
+//   window.triggerHariramOrder({ item, price, shipping, source? }) — centralized order trigger
+//   Any element with [data-qv-open="slug"]   — opens modal with zero JS configuration
+import { products, BOX_OFFER } from '../data/products';
+
+// Build dictionary for instant zero-latency client lookup, including alias slugs
+const qvEntries: [string, any][] = [];
+
+products.forEach((p) => {
+  const item = {
+    slug: p.slug,
+    name: p.name,
+    shortName: p.shortName,
+    hindiName: p.hindiName,
+    badge: p.badge || '',
+    base: p.ingredients.base,
+    spices: p.ingredients.spices,
+    oil: p.ingredients.oil,
+    inBox: p.inBox,
+    url: `/products/${p.slug}/`,
+    nutrition: {
+      energyKcal: p.nutritionPer100g.energyKcal,
+      proteinG: p.nutritionPer100g.proteinG,
+      mufaFatG: p.nutritionPer100g.mufaFatG,
+      transFatG: p.nutritionPer100g.transFatG,
+      cholesterolMg: p.nutritionPer100g.cholesterolMg,
+      carbsG: p.nutritionPer100g.carbsG,
+      totalFatG: p.nutritionPer100g.totalFatG,
+    },
+  };
+
+  qvEntries.push([p.slug, item]);
+  qvEntries.push([p.id, item]);
+
+  // Backward-compatible alias entries
+  if (p.slug === 'dal-biji') qvEntries.push(['dal-bhiji', item]);
+  if (p.slug === 'chana-dal') qvEntries.push(['masala-chana-dal', item]);
+  if (p.slug === 'shahi-dal-biji') qvEntries.push(['shahi-dal-bhiji', item]);
+});
+
+const qvData = Object.fromEntries(qvEntries);
+
+const box = {
+  name: BOX_OFFER.name,
+  weight: BOX_OFFER.weight,
+  price: BOX_OFFER.price,
+  shipping: BOX_OFFER.shipping,
+};
+---
+
+<div id="hariram-quickview-modal" class="qv-modal-root" aria-hidden="true" role="presentation">
+  <div class="qv-backdrop" data-qv-close aria-hidden="true"></div>
+
+  <div
+    class="qv-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="qv-title"
+    aria-describedby="qv-desc"
+    tabindex="-1"
+  >
+    <!-- Modal Close Button -->
+    <button
+      type="button"
+      class="qv-close-btn"
+      id="qv-close"
+      data-qv-close
+      aria-label="Close nutrition quick view"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Header Section with Sarson Amber & Dark Charcoal Accents -->
+    <header class="qv-header">
+      <div class="qv-badges-wrap">
+        <span class="qv-badge" id="qv-badge" hidden></span>
+        <span class="qv-tag-satvik">100% Satvik</span>
+      </div>
+      <p class="qv-hindi" id="qv-hindi" lang="hi"></p>
+      <h2 class="qv-title font-serif-editorial" id="qv-title"></h2>
+      <p class="qv-promise" id="qv-desc">
+        <span class="qv-sparkle" aria-hidden="true">✦</span>
+        <span>Fried in 100% Yellow Mustard Oil · Zero Palm Oil · Zero Preservatives · No Onion No Garlic (100% Jain Friendly)</span>
+      </p>
+    </header>
+
+    <div class="qv-content">
+      <!-- 4-Column Macro Metric Strip -->
+      <section class="qv-macros-section" aria-label="Nutritional Highlights">
+        <div class="qv-macros-grid" id="qv-macros" role="list">
+          <div class="qv-macro-card" role="listitem">
+            <span class="qv-macro-val" id="qv-kcal">—</span>
+            <span class="qv-macro-lbl">Energy / 100g</span>
+          </div>
+
+          <div class="qv-macro-card" role="listitem">
+            <span class="qv-macro-val" id="qv-protein">—</span>
+            <span class="qv-macro-lbl">Protein</span>
+          </div>
+
+          <div class="qv-macro-card qv-macro-card--mufa" role="listitem">
+            <span class="qv-macro-val" id="qv-mufa">—</span>
+            <span class="qv-macro-lbl">Healthy MUFA</span>
+            <span class="qv-macro-sub">Mustard Oil Fat</span>
+          </div>
+
+          <div class="qv-macro-card qv-macro-card--zero" role="listitem">
+            <span class="qv-macro-val" id="qv-trans">0.0g</span>
+            <span class="qv-macro-lbl">Trans Fat</span>
+            <span class="qv-macro-sub">0.0mg Cholest.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transparency Ingredients Breakdown -->
+      <section class="qv-ingredients-section" aria-label="Authentic Ingredients">
+        <h3 class="qv-section-label">Authentic Ingredient Breakdown</h3>
+        <dl class="qv-dl">
+          <div class="qv-dl-row">
+            <dt>Base</dt>
+            <dd id="qv-base"></dd>
+          </div>
+          <div class="qv-dl-row">
+            <dt>Spices</dt>
+            <dd id="qv-spices"></dd>
+          </div>
+          <div class="qv-dl-row">
+            <dt>Frying Medium</dt>
+            <dd>
+              <strong>100% Cold-Pressed Yellow Mustard Oil (Peeli Sarson)</strong>.
+              Zero palm oil, zero cottonseed oil, zero TBHQ.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Clean-Label Guarantee Strip -->
+      <div class="qv-guarantee-strip">
+        <span class="qv-guar-item">✓ Real Hing & Rock Salt</span>
+        <span class="qv-guar-sep">•</span>
+        <span class="qv-guar-item">✓ Zero Chemical Pre-Mix</span>
+        <span class="qv-guar-sep">•</span>
+        <span class="qv-guar-item">✓ Iron Kadhai Hand-Fried</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <footer class="qv-actions">
+        <button type="button" class="qv-btn-order" id="qv-order">
+          <span>Get in 4-Pack Box · ₹{BOX_OFFER.price} (Free Delivery)</span>
+          <span class="qv-arrow" aria-hidden="true">→</span>
+        </button>
+        <a class="qv-link-page" id="qv-page-link" href="/">
+          <span>Full Product Page & Detailed Nutrition</span>
+          <span class="qv-arrow" aria-hidden="true">→</span>
+        </a>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ qvData, box }}>
+  // ─────────────────────────────────────────────────────────────────────────
+  // WHATSAPP DISPATCH CONFIGURATION
+  // Single central number for order routing. Format: CountryCode + Number.
+  // ─────────────────────────────────────────────────────────────────────────
+  const WHATSAPP_NUMBER = '916396122920';
+
+  (() => {
+    const root = document.getElementById('hariram-quickview-modal');
+    if (!root) return;
+
+    const dialog = root.querySelector('.qv-dialog');
+    const $ = (id) => document.getElementById(id);
+
+    let currentSlug = null;
+    let lastFocusedElement = null;
+    let previousBodyOverflow = '';
+
+    const fmt1 = (val) => (typeof val === 'number' ? (Math.round(val * 10) / 10).toFixed(1) : '—');
+
+    function populateModal(item) {
+      if (!item) return;
+
+      const badgeEl = $('qv-badge');
+      if (badgeEl) {
+        badgeEl.textContent = item.badge || '';
+        badgeEl.hidden = !item.badge;
+      }
+
+      const hindiEl = $('qv-hindi');
+      if (hindiEl) hindiEl.textContent = item.hindiName || '';
+
+      const titleEl = $('qv-title');
+      if (titleEl) titleEl.textContent = item.name || '';
+
+      const baseEl = $('qv-base');
+      if (baseEl) baseEl.textContent = item.base || '';
+
+      const spicesEl = $('qv-spices');
+      if (spicesEl) spicesEl.textContent = item.spices || '';
+
+      const pageLink = $('qv-page-link');
+      if (pageLink) pageLink.setAttribute('href', item.url || '/');
+
+      if (item.nutrition) {
+        $('qv-kcal').textContent = Math.round(item.nutrition.energyKcal) + ' kcal';
+        $('qv-protein').textContent = fmt1(item.nutrition.proteinG) + 'g';
+        $('qv-mufa').textContent = fmt1(item.nutrition.mufaFatG) + 'g';
+        $('qv-trans').textContent = fmt1(item.nutrition.transFatG) + 'g';
+      }
+    }
+
+    window.openHariramQuickView = function (slug) {
+      if (!slug) return;
+      const cleanSlug = slug.replace(/^\/products\//, '').replace(/\/$/, '');
+      const item = qvData[cleanSlug] || qvData[slug];
+      if (!item) return;
+
+      currentSlug = cleanSlug;
+      populateModal(item);
+
+      lastFocusedElement = document.activeElement;
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
+      root.classList.add('is-open');
+      root.setAttribute('aria-hidden', 'false');
+      if (dialog) dialog.scrollTop = 0;
+
+      const closeBtn = $('qv-close');
+      if (closeBtn) closeBtn.focus({ preventScroll: true });
+    };
+
+    window.closeHariramQuickView = function () {
+      if (!root.classList.contains('is-open')) return;
+      root.classList.remove('is-open');
+      root.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = previousBodyOverflow;
+      currentSlug = null;
+
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus({ preventScroll: true });
+      }
+    };
+
+    // Event Delegation: Open modal from any element with [data-qv-open="slug"]
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest && e.target.closest('[data-qv-open]');
+      if (trigger) {
+        e.preventDefault();
+        const slug = trigger.getAttribute('data-qv-open');
+        window.openHariramQuickView(slug);
+        return;
+      }
+
+      // Close modal on backdrop click or close button
+      if (e.target.closest && e.target.closest('[data-qv-close]')) {
+        e.preventDefault();
+        window.closeHariramQuickView();
+      }
+    });
+
+    // Keyboard Accessibility: Esc closes modal, Tab loops inside modal
+    document.addEventListener('keydown', (e) => {
+      if (!root.classList.contains('is-open')) return;
+
+      if (e.key === 'Escape') {
+        window.closeHariramQuickView();
+        return;
+      }
+
+      if (e.key === 'Tab' && dialog) {
+        const focusable = dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Primary Modal CTA: Triggers the 4-pack box with current snack noted
+    const orderBtn = $('qv-order');
+    if (orderBtn) {
+      orderBtn.addEventListener('click', () => {
+        const item = currentSlug ? qvData[currentSlug] : null;
+        const itemName =
+          box.name +
+          ' (' +
+          box.weight +
+          ')' +
+          (item && item.inBox ? ' — incl. ' + item.shortName : '');
+
+        window.closeHariramQuickView();
+        window.triggerHariramOrder({
+          item: itemName,
+          price: box.price,
+          shipping: box.shipping,
+          source: 'quickview_modal',
+        });
+      });
+    }
+  })();
+
+  // ═════════════════════════════════════════════════════════════════════════
+  // CENTRALIZED ORDER TRIGGER HOOK — window.triggerHariramOrder()
+  //
+  // Every checkout/order CTA on the site routes through this function.
+  //
+  // PART 3 PAYMENT GATEWAY PLUG-AND-PLAY HOOK:
+  // When ready to switch from WhatsApp to the in-website payment modal, simply define:
+  //   window.openHariramCheckout = function(payload) { ... }
+  // where payload = { item, price, shipping, total, source }.
+  // This function will automatically detect it and open the in-website payment modal,
+  // making the transition seamless with ZERO changes to any CTA buttons.
+  // ═════════════════════════════════════════════════════════════════════════
+  window.triggerHariramOrder = function (opts) {
+    const o = opts || {};
+    const price = Number(o.price);
+    const shipping = Number(o.shipping || 0);
+    const total = price + shipping;
+    if (!o.item || !isFinite(total)) return;
+
+    const source = o.source || 'd2c_trigger';
+
+    // ── Part 3 In-Website Payment Gateway Hook ───────────────────────────
+    if (typeof window.openHariramCheckout === 'function') {
+      window.openHariramCheckout({
+        item: o.item,
+        price,
+        shipping,
+        total,
+        source,
+      });
+      return;
+    }
+
+    // ── Pre-filled WhatsApp Order Message ────────────────────────────────
+    const deliveryText = shipping > 0 ? 'Incl. ₹' + shipping + ' Shipping' : 'Free Delivery';
+    let text =
+      'Namaste Hariram Namkeen! I want to order:\n' +
+      '• Item: ' + o.item + '\n' +
+      '• Amount: ₹' + total + ' (' + deliveryText + ')\n' +
+      'Please share the instant payment link to confirm my dispatch.';
+
+    // Preserve tracking & campaign attribution if present
+    try {
+      const ctx = JSON.parse(sessionStorage.getItem('hn_ctx') || 'null');
+      if (ctx && ctx.utm_source) {
+        text += '\nRef: ' + (ctx.utm_source === 'google_ads' ? 'GAds' : ctx.utm_source);
+      }
+    } catch (err) {}
+
+    const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+
+    // Open WhatsApp via simulated link click to trigger conversion listeners
+    const link = document.createElement('a');
+    link.href = waUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('data-wa-click', '');
+    link.setAttribute('data-track', source);
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+</script>
+
+<style is:global>
+  /* ── Quick-View Modal Styles: Warm Khadi Parchment & Kadhai Charcoal ── */
+  .qv-modal-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.28s;
+  }
+
+  .qv-modal-root.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+  }
+
+  .qv-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(24, 21, 18, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .qv-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-y: auto;
+    background: var(--bg-parchment, #F6F0E4);
+    border-radius: 24px 24px 0 0;
+    border: 1px solid rgba(212, 136, 23, 0.4);
+    border-bottom: 0;
+    box-shadow: 0 -16px 60px rgba(24, 21, 18, 0.45);
+    transform: translateY(32px);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    color: var(--text-primary, #181512);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  .qv-modal-root.is-open .qv-dialog {
+    transform: translateY(0);
+  }
+
+  @media (min-width: 640px) {
+    .qv-modal-root {
+      align-items: center;
+      padding: 24px;
+    }
+    .qv-dialog {
+      border-radius: 24px;
+      border-bottom: 1px solid rgba(212, 136, 23, 0.4);
+      box-shadow: 0 24px 80px rgba(24, 21, 18, 0.5);
+    }
+  }
+
+  /* Close Button */
+  .qv-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(246, 240, 228, 0.15);
+    color: #F6F0E4;
+    border: 1px solid rgba(246, 240, 228, 0.25);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .qv-close-btn:hover {
+    background: rgba(246, 240, 228, 0.28);
+    transform: scale(1.05);
+  }
+
+  /* Header */
+  .qv-header {
+    position: relative;
+    padding: 28px 64px 22px 24px;
+    background: linear-gradient(135deg, #181512 0%, #292019 100%);
+    color: #F6F0E4;
+    border-bottom: 2px solid rgba(212, 136, 23, 0.4);
+  }
+
+  .qv-badges-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .qv-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: var(--sarson-amber, #D48817);
+    color: #181512;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .qv-badge[hidden] {
+    display: none;
+  }
+
+  .qv-tag-satvik {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: rgba(6, 95, 70, 0.3);
+    border: 1px solid rgba(5, 150, 105, 0.5);
+    color: #6EE7B7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .qv-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--sarson-amber, #D48817);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .qv-title {
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 700;
+    line-height: 1.18;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+
+  .qv-promise {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgba(246, 240, 228, 0.88);
+  }
+
+  .qv-sparkle {
+    color: var(--sarson-amber, #D48817);
+    font-size: 14px;
+  }
+
+  /* Body Content */
+  .qv-content {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* 4-Column Macro Grid */
+  .qv-macros-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .qv-macro-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 3px;
+    padding: 12px 6px;
+    background: #FFFFFF;
+    border: 1px solid rgba(24, 21, 18, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(24, 21, 18, 0.04);
+  }
+
+  .qv-macro-val {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary, #181512);
+  }
+
+  .qv-macro-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted, #6E655C);
+    line-height: 1.2;
+  }
+
+  .qv-macro-sub {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--text-muted, #6E655C);
+  }
+
+  /* Amber MUFA Card */
+  .qv-macro-card--mufa {
+    background: #FFF8EB;
+    border-color: rgba(212, 136, 23, 0.55);
+  }
+
+  .qv-macro-card--mufa .qv-macro-val {
+    color: #9A5A0A;
+  }
+
+  .qv-macro-card--mufa .qv-macro-sub {
+    color: #B45309;
+    font-weight: 700;
+  }
+
+  /* Emerald Zero Trans Fat Card */
+  .qv-macro-card--zero {
+    background: #F0FDF4;
+    border-color: rgba(5, 150, 105, 0.45);
+  }
+
+  .qv-macro-card--zero .qv-macro-val {
+    color: #065F46;
+  }
+
+  .qv-macro-card--zero .qv-macro-sub {
+    color: #047857;
+    font-weight: 700;
+  }
+
+  /* Ingredients Breakdown */
+  .qv-section-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cta-terracotta, #B83B2A);
+    margin-bottom: 10px;
+  }
+
+  .qv-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid rgba(24, 21, 18, 0.08);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+
+  .qv-dl-row dt {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted, #6E655C);
+    margin-bottom: 2px;
+  }
+
+  .qv-dl-row dd {
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text-secondary, #4A433C);
+  }
+
+  .qv-dl-row dd strong {
+    color: var(--text-primary, #181512);
+  }
+
+  /* Guarantee Strip */
+  .qv-guarantee-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #065F46;
+    background: #ECFDF5;
+    border: 1px dashed rgba(5, 150, 105, 0.4);
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+
+  .qv-guar-sep {
+    color: rgba(5, 150, 105, 0.4);
+  }
+
+  /* Action Buttons */
+  .qv-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .qv-btn-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 52px;
+    padding: 14px 22px;
+    border-radius: 99px;
+    background: var(--cta-terracotta, #B83B2A);
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(184, 59, 42, 0.35);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .qv-btn-order:hover {
+    background: var(--cta-terracotta-hover, #962D1F);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(184, 59, 42, 0.45);
+  }
+
+  .qv-link-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: 99px;
+    background: transparent;
+    color: var(--text-secondary, #4A433C);
+    border: 1.5px solid rgba(24, 21, 18, 0.18);
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .qv-link-page:hover {
+    background: #FFFFFF;
+    color: var(--text-primary, #181512);
+    border-color: var(--text-primary, #181512);
+  }
+
+  .qv-arrow {
+    font-size: 16px;
+    transition: transform 0.15s ease;
+  }
+
+  .qv-btn-order:hover .qv-arrow,
+  .qv-link-page:hover .qv-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 440px) {
+    .qv-macros-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .qv-modal-root,
+    .qv-dialog {
+      transition: none !important;
+    }
+  }
+</style>
