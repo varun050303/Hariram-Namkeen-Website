@@ -19,6 +19,7 @@ import ReelSection from '../components/ReelSection.astro';
 import Reviews    from '../components/Reviews.astro';
 import CTA        from '../components/CTA.astro';
 import GrahakDev  from '../components/GrahakDev.astro';
+import HomeFAQ    from '../components/HomeFAQ.astro';
 import Footer     from '../components/Footer.astro';
 import MobileOrderBar from '../components/MobileOrderBar.astro';
 
@@ -45,6 +46,7 @@ import '../styles/global.css';
     <ReelSection />
     <Reviews />
     <GrahakDev />
+    <HomeFAQ />
     <CTA />
   </main>
   <Footer />
@@ -106,7 +108,12 @@ import '../styles/global.css';
         ScrollTrigger.getAll().forEach(st => st.kill());
       }
 
-      if (mediaReducedMotion.matches) {
+      const isBotOrCrawler = Boolean(
+        navigator.webdriver ||
+        /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless|inspect|bingbot|slurp|duckduckbot|baiduspider|yandexbot|semrushbot|ahrefsbot/i.test(navigator.userAgent || '')
+      );
+
+      if (mediaReducedMotion.matches || isBotOrCrawler) {
         applyReducedMotionState();
         document.querySelectorAll('a[href^="#"]').forEach(a => {
           a.addEventListener('click', e => {

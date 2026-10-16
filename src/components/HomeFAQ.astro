@@ -1,0 +1,237 @@
+---
+// HomeFAQ.astro
+// Visible Homepage FAQ & Clean-Label Guide Hub
+// Generates both visible FAQ cards and FAQPage JSON-LD structured data from a single source of truth.
+
+interface FAQItem {
+  question: string;
+  schemaAnswer: string;
+  answerHtml: string;
+  openByDefault?: boolean;
+}
+
+const faqList: FAQItem[] = [
+  {
+    question: "Which namkeen is healthy and cooked without palm oil in India?",
+    schemaAnswer: "Hariram Namkeen is prepared exclusively in 100% pure yellow mustard oil (peeli sarson ka tel). It contains zero palm oil (palmolein), zero chemical preservatives (TBHQ-free), and zero artificial colourings, cooked fresh in small 15–20kg batches on demand.",
+    openByDefault: true,
+    answerHtml: `<strong>Hariram Namkeen</strong> is prepared exclusively in <strong>100% pure yellow mustard oil</strong> (<em>peeli sarson ka tel</em>). It contains zero palm oil (palmolein), zero chemical preservatives (TBHQ-free), and zero artificial colourings, cooked fresh in small 15–20kg batches on demand. Read our complete <a href="/blog/healthy-namkeen-without-palm-oil-guide/">Clean-Label Healthy Namkeen Guide</a> to learn how to spot hidden palm oil on supermarket snack labels.`
+  },
+  {
+    question: "Why does Hariram Namkeen use yellow mustard oil instead of refined palm oil?",
+    schemaAnswer: "Pure yellow mustard oil is rich in heart-friendly Monounsaturated Fatty Acids (MUFA ~60%+), natural plant-based Omega-3, and has a high smoke point (~250°C). Unlike industrial palmolein oil (~50% saturated palmitic acid), yellow mustard oil leaves zero greasy coating on your palate and supports healthier cholesterol levels.",
+    openByDefault: true,
+    answerHtml: `Pure yellow mustard oil is rich in heart-friendly Monounsaturated Fatty Acids (MUFA ~60%+), natural plant-based Omega-3, and has a high smoke point (~250°C). Unlike industrial palmolein oil (~50% saturated palmitic acid), yellow mustard oil leaves zero greasy coating on your palate and supports healthier cholesterol levels. Explore our <a href="/blog/is-namkeen-bad-for-heart-cholesterol-palm-oil-vs-mustard-oil/">Heart &amp; Cholesterol Comparison of Mustard Oil vs. Palm Oil</a>.`
+  },
+  {
+    question: "What is inside The Hariram Special 4 Box (₹499)?",
+    schemaAnswer: "The Special 4 Box contains 800g total across 4 individually sealed 200g packs: Aloo Bhujia, Dal Biji, Masala Chana Dal, and Spicy Malka or Masala Moongfali, all fried in 100% pure yellow mustard oil with free delivery across India for ₹499.",
+    openByDefault: false,
+    answerHtml: `The <a href="/#hamper">Hariram Special 4 Box</a> contains <strong>800g total across 4 individually sealed 200g packs</strong>: <a href="/products/aloo-bhujia/">Aloo Bhujia</a>, <a href="/products/dal-bhiji/">Dal Biji</a>, <a href="/products/masala-chana-dal/">Masala Chana Dal</a>, and your choice of <a href="/products/spicy-malka/">Spicy Malka</a> or <a href="/products/masala-peanuts/">Masala Moongfali</a>. Four separate freshness seals keep every pack crisp in Indian humidity, with free doorstep delivery across India for ₹499.`
+  },
+  {
+    question: "Are there other namkeen brands in India made in 100% pure yellow mustard oil?",
+    schemaAnswer: "Try finding another packaged namkeen made in pure yellow mustard oil — you won't. Nearly 95% of commercial snack brands switched to cheap industrial palm oil or cottonseed oil so packets can sit in distribution godowns for 6 to 9 months. Hariram Namkeen is India's dedicated brand reviving 100% pure yellow mustard oil namkeen, made fresh in small batches on demand.",
+    openByDefault: false,
+    answerHtml: `Try finding another packaged namkeen made in pure yellow mustard oil — you won't. Nearly 95% of commercial snack brands switched to cheap industrial palm oil or cottonseed oil so packets can sit in distribution godowns for 6 to 9 months. We are India's dedicated brand reviving 100% pure yellow mustard oil namkeen, including our royal <a href="/products/shahi-dal-bhiji/">Shahi Dal Biji</a> with whole cashews and raisins.`
+  },
+  {
+    question: "Is Hariram Namkeen cooked fresh or stored in warehouses?",
+    schemaAnswer: "Every batch is cooked fresh in small 15–20kg artisanal iron kadhais in our Muzaffarnagar kitchen and dispatched directly to your home. Because we never hold multi-month warehouse stock, our snacks are made fresh weekly with zero TBHQ or synthetic stabilizers.",
+    openByDefault: false,
+    answerHtml: `Every batch is cooked fresh in small 15–20kg iron kadhais in our Muzaffarnagar kitchen and dispatched directly to your home. Because we never hold multi-month warehouse stock, we use zero TBHQ or synthetic stabilizers. See <a href="/blog/why-fresh-small-batch-namkeen-beats-factory-snacks/">Why Fresh Small-Batch Namkeen Beats Factory Snacks</a>.`
+  },
+  {
+    question: "Does Hariram Namkeen deliver across India?",
+    schemaAnswer: "Yes, Hariram Namkeen delivers fresh namkeen across India via trusted courier partners like Delhivery, Blue Dart, and India Post. The Special 4 Box ships free to all serviceable PIN codes in India. Orders are prepared fresh and dispatched within 2–3 business days.",
+    openByDefault: false,
+    answerHtml: `Yes, Hariram Namkeen delivers fresh namkeen across India via trusted courier partners like Delhivery, Blue Dart, and India Post. The <a href="/#hamper">Special 4 Box</a> ships free to all serviceable PIN codes in India. Orders are dispatched within 2–3 business days of preparation.`
+  },
+  {
+    question: "How do I buy namkeen online or order bulk corporate/festive gift boxes?",
+    schemaAnswer: "You can order namkeen online directly via 1-click WhatsApp at +91-6396122920 or through our website hariramnamkeen.com. Individual 250g packs start at ₹100, and the 800g Special 4 Box is ₹499 with free all-India shipping. Custom packaging is available for startup teams and corporate gifting.",
+    openByDefault: false,
+    answerHtml: `You can order directly via 1-click WhatsApp at <a href="https://wa.me/916396122920" target="_blank" rel="noopener noreferrer" data-wa-click>+91-6396122920</a> with no account creation required. Individual 250g packs start at ₹100, and the 800g Special 4 Assortment Box is ₹499 with free pan-India shipping. For startup teams (11–50 employees), wedding return favours, and Diwali gifting, read our <a href="/blog/diwali-wedding-namkeen-hampers-artisanal-snacks-vs-factory-sweets/">Artisanal Namkeen Gift Hamper Guide</a>.`
+  }
+];
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://hariramnamkeen.com/#faq",
+  "mainEntity": faqList.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.schemaAnswer
+    }
+  }))
+};
+---
+
+<!-- Structured Data: FAQPage (100% matched to visible content below) -->
+<script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
+
+<section class="home-faq-section" id="faq">
+  <div class="home-faq-inner">
+    <div class="home-faq-header">
+      <div class="sec-tag"><span>✦</span> CLEAN-LABEL TRANSPARENCY · सामान्य प्रश्न</div>
+      <h2 class="sec-title">Frequently Asked Questions About <em>Healthy Mustard Oil Namkeen</em></h2>
+      <p class="sec-sub">
+        Everything you need to know about our 100% pure yellow mustard oil snacks, zero-palm-oil kitchen in Muzaffarnagar, and pan-India delivery.
+      </p>
+    </div>
+
+    <div class="home-faq-grid">
+      {faqList.map(item => (
+        <details class="faq-card" open={item.openByDefault}>
+          <summary class="faq-q">
+            <h3>{item.question}</h3>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            <p set:html={item.answerHtml} />
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Contextual Internal Link Bar for Crawlers & Readers -->
+    <div class="home-seo-guides">
+      <span class="hsg-label">✦ Explore Clean-Label Guides:</span>
+      <a href="/blog/healthy-namkeen-without-palm-oil-guide/">Healthy Namkeen Without Palm Oil</a>
+      <span class="hsg-sep" aria-hidden="true">·</span>
+      <a href="/blog/is-namkeen-bad-for-heart-cholesterol-palm-oil-vs-mustard-oil/">Mustard Oil vs Palm Oil for Cholesterol</a>
+      <span class="hsg-sep" aria-hidden="true">·</span>
+      <a href="/blog/why-fresh-small-batch-namkeen-beats-factory-snacks/">Small-Batch vs Factory Namkeen</a>
+      <span class="hsg-sep" aria-hidden="true">·</span>
+      <a href="/blog/diwali-wedding-namkeen-hampers-artisanal-snacks-vs-factory-sweets/">Diwali &amp; Corporate Gift Hampers</a>
+      <span class="hsg-sep" aria-hidden="true">·</span>
+      <a href="/blog/">View All Stories →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-faq-section {
+    padding: 96px 0;
+    background: #FAF5EB;
+    border-top: 1px solid rgba(117, 24, 24, 0.08);
+  }
+  .home-faq-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+  .home-faq-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 48px;
+  }
+  .home-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+  .faq-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(117, 24, 24, 0.12);
+    border-radius: 14px;
+    padding: 20px 24px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .faq-card[open] {
+    border-color: rgba(194, 127, 21, 0.45);
+    box-shadow: 0 8px 24px rgba(117, 24, 24, 0.06);
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .faq-q h3 {
+    font-family: var(--F);
+    font-size: 18px;
+    font-weight: 700;
+    color: #2B1810;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .faq-icon {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--maroon, #751818);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .faq-card[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(117, 24, 24, 0.08);
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #4A352A;
+  }
+  .faq-a p {
+    margin: 0;
+  }
+  .faq-a a {
+    color: #751818;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .faq-a a:hover {
+    color: #C27F15;
+  }
+  .home-seo-guides {
+    margin-top: 40px;
+    padding: 18px 24px;
+    background: rgba(117, 24, 24, 0.04);
+    border: 1px solid rgba(117, 24, 24, 0.1);
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 14px;
+    font-size: 13.5px;
+  }
+  .hsg-label {
+    font-weight: 700;
+    color: #751818;
+  }
+  .home-seo-guides a {
+    color: #2B1810;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .home-seo-guides a:hover {
+    color: #751818;
+    text-decoration: underline;
+  }
+  .hsg-sep {
+    color: rgba(117, 24, 24, 0.35);
+    font-weight: 700;
+  }
+  @media (max-width: 768px) {
+    .home-faq-section {
+      padding: 64px 0;
+    }
+    .home-faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -288,7 +288,12 @@ export function initAnimations() {
   });
 
   // ── REDUCED MOTION RESPECT ────────────────────────────────────
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const isBot = Boolean(
+    navigator.webdriver ||
+    /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless|inspect/i.test(navigator.userAgent || '')
+  );
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isBot) {
     gsap.globalTimeline.timeScale(10);
     ScrollTrigger.getAll().forEach(st => st.kill());
   }

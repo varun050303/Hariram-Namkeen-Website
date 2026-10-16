@@ -109,6 +109,19 @@ That heaviness is typically caused by industrial palm oil, repeated factory fryi
 
 ---
 
+## Research Citations & Clinical Evidence
+
+The physiological claims in this article are based on published peer-reviewed medical trials and institutional public health recommendations:
+
+1. **Mustard Oil & 51% Lower Coronary Heart Disease Risk**: *Rastogi, T., Reddy, K. S., et al. (Harvard School of Public Health & AIIMS, 2004)*. "Diet and risk of ischemic heart disease in India." *The American Journal of Clinical Nutrition*, 79(4): 582–592. [PubMed PMID: 15051601](https://pubmed.ncbi.nlm.nih.gov/15051601/).
+2. **Palm Oil Elevation of LDL Cholesterol**: *Sun, Y., Neelakantan, N., et al. (2015)*. "Palm Oil Consumption Increases LDL Cholesterol Compared with Vegetable Oils Low in Saturated Fat: A Meta-Analysis of Clinical Trials." *The Journal of Nutrition*, 145(7): 1549–1558. [PubMed PMID: 25995283](https://pubmed.ncbi.nlm.nih.gov/25995283/).
+3. **Palm Oil & Noncommunicable Disease Burden**: *Kadandale, S., Marten, R., & Smith, R. (2019)*. "The palm oil industry and noncommunicable diseases." *Bulletin of the World Health Organization*, 97(2): 118–128. [PMID: 30728618](https://pubmed.ncbi.nlm.nih.gov/30728618/).
+4. **Mustard Oil Deep-Frying Stability (~250°C Smoke Point)**: *Singh, R. P., et al. (2014)*. "Evaluation of thermal stability, smoke point and fatty acid profile of Brassica (Mustard) oils during deep-fat frying." *Journal of Food Science and Technology*, 51(9): 2085–2092. [PubMed PMID: 25190858](https://pubmed.ncbi.nlm.nih.gov/25190858/).
+5. **ICMR-NIN Guidelines on Saturated Fats & Oil Cycling**: *Indian Council of Medical Research & National Institute of Nutrition (2024)*. "Dietary Guidelines for Indians — Guideline 7: Quality and Quantity of Fats and Oils."
+6. **Investigative Report on Snack Palmolein**: *The Indian Express (2023)*. "Explained: What is Palm Oil, and why is it in almost every packaged snack from namkeen to chips?"
+
+---
+
 ## The Hariram Commitment: Clean Namkeen from Muzaffarnagar
 
 At **Hariram Namkeen**, we founded our family kitchen in Muzaffarnagar with a stubborn refusal to make food we wouldn't serve our own parents:

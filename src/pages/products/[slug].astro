@@ -314,7 +314,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3
         </div>
         <div class="more-grid">
           {otherProducts.map((p) => (
-            <a href={`/products/${p.slug}`} class="more-card">
+            <a href={`/products/${p.slug}/`} class="more-card">
               <div class="mc-img">
                 <img src={p.image} alt={p.name} loading="lazy" width="600" height="400" />
                 {p.badge && <span class="mc-badge">{p.badge}</span>}
