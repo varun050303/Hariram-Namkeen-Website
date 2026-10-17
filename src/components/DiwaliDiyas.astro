@@ -1,0 +1,638 @@
+---
+// DiwaliDiyas.astro — Festive Diwali Hanging Diyas with Natural Pendulum Swing
+// Featuring ornamental brass chains, illuminated clay diyas, marigold blossoms (gainda phool), and soft golden glow.
+// Left Side: Grand, longer strings with larger illuminated handcrafted diyas.
+// Right Side: Delicate, shorter strings with compact, dainty diyas.
+interface Props {
+  position?: 'left' | 'right' | 'both';
+  class?: string;
+}
+
+const { position = 'both', class: className = '' } = Astro.props;
+---
+
+<div class={`diwali-diyas-wrapper ${className}`} aria-hidden="true" role="presentation">
+  <!-- Shared SVG Gradients Defs -->
+  <svg class="diwali-svg-defs" width="0" height="0" viewBox="0 0 0 0" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+    <defs>
+      <linearGradient id="chainGradMain" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#5C2605"/>
+        <stop offset="25%" stop-color="#A16215"/>
+        <stop offset="50%" stop-color="#FCD34D"/>
+        <stop offset="75%" stop-color="#A16215"/>
+        <stop offset="100%" stop-color="#5C2605"/>
+      </linearGradient>
+      <radialGradient id="marigoldGradL" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FEF08A"/>
+        <stop offset="25%" stop-color="#FDE047"/>
+        <stop offset="55%" stop-color="#F59E0B"/>
+        <stop offset="85%" stop-color="#D97706"/>
+        <stop offset="100%" stop-color="#9A3412"/>
+      </radialGradient>
+      <radialGradient id="diyaBowlGradGrand" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#B44512"/>
+        <stop offset="35%" stop-color="#832808"/>
+        <stop offset="75%" stop-color="#551703"/>
+        <stop offset="100%" stop-color="#2E0A01"/>
+      </radialGradient>
+      <linearGradient id="diyaRimGradGrand" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#9A3412"/>
+        <stop offset="20%" stop-color="#D97706"/>
+        <stop offset="50%" stop-color="#FDE047"/>
+        <stop offset="80%" stop-color="#D97706"/>
+        <stop offset="100%" stop-color="#9A3412"/>
+      </linearGradient>
+      <linearGradient id="flameOuterGradGrand" x1="0.5" y1="0" x2="0.5" y2="1">
+        <stop offset="0%" stop-color="#FFFDF0"/>
+        <stop offset="18%" stop-color="#FEF08A"/>
+        <stop offset="50%" stop-color="#F59E0B"/>
+        <stop offset="82%" stop-color="#EA580C"/>
+        <stop offset="100%" stop-color="#B45309"/>
+      </linearGradient>
+      <linearGradient id="flameInnerGradGrand" x1="0.5" y1="0" x2="0.5" y2="1">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="35%" stop-color="#FFFBEB"/>
+        <stop offset="75%" stop-color="#FEF08A"/>
+        <stop offset="100%" stop-color="#F59E0B"/>
+      </linearGradient>
+      <radialGradient id="diyaAuraGradGrand" cx="50%" cy="45%" r="50%">
+        <stop offset="0%" stop-color="rgba(253, 224, 71, 0.65)"/>
+        <stop offset="35%" stop-color="rgba(245, 158, 11, 0.38)"/>
+        <stop offset="70%" stop-color="rgba(234, 88, 12, 0.12)"/>
+        <stop offset="100%" stop-color="rgba(234, 88, 12, 0)"/>
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <!-- ══════════════════════════════════════════════════════════
+       DESKTOP & LAPTOP PRESENTATION (> 960px)
+       ══════════════════════════════════════════════════════════ -->
+  <div class="diwali-desktop-cluster">
+    { (position === 'both' || position === 'left') && (
+      <div class="diwali-corner diwali-corner-left">
+        <!-- Background subtle festive mandala watermark -->
+        <svg class="diwali-mandala" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="110" stroke="var(--gold, #C8931A)" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.32"/>
+          <circle cx="120" cy="120" r="88" stroke="var(--gold, #C8931A)" stroke-width="0.7" opacity="0.28"/>
+          <circle cx="120" cy="120" r="62" stroke="var(--maroon, #751818)" stroke-width="0.8" opacity="0.22"/>
+          <g stroke="var(--gold, #C8931A)" stroke-width="0.7" opacity="0.26">
+            <path d="M120 10 L120 230 M10 120 L230 120 M42 42 L198 198 M42 198 L198 42"/>
+            <circle cx="120" cy="32" r="5"/>
+            <circle cx="120" cy="208" r="5"/>
+            <circle cx="32" cy="120" r="5"/>
+            <circle cx="208" cy="120" r="5"/>
+          </g>
+        </svg>
+
+        <!-- Left Cluster Strand 1 (Outer edge companion): Marigold + Silhouette Diya -->
+        <div class="diya-strand diya-strand-l1">
+          <svg class="diya-svg" viewBox="0 0 50 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="25" y1="0" x2="25" y2="215" stroke="url(#chainGradMain)" stroke-width="1.6"/>
+            <circle cx="25" cy="28" r="3" fill="url(#chainGradMain)"/>
+            <circle cx="25" cy="28" r="1.3" fill="#FFFDF0"/>
+            <circle cx="25" cy="65" r="3" fill="url(#chainGradMain)"/>
+            <circle cx="25" cy="65" r="1.3" fill="#FFFDF0"/>
+            <circle cx="25" cy="145" r="3" fill="url(#chainGradMain)"/>
+            <circle cx="25" cy="145" r="1.3" fill="#FFFDF0"/>
+            <circle cx="25" cy="180" r="3" fill="url(#chainGradMain)"/>
+            <circle cx="25" cy="180" r="1.3" fill="#FFFDF0"/>
+            <circle cx="25" cy="214" r="3.8" stroke="url(#chainGradMain)" stroke-width="1.6" fill="none"/>
+
+            <!-- Marigold Flower (Upper) -->
+            <g transform="translate(25, 96)" class="marigold-flower">
+              <circle cx="1" cy="2" r="13" fill="rgba(35, 15, 6, 0.18)"/>
+              <circle cx="0" cy="0" r="13" fill="url(#marigoldGradL)"/>
+              <path d="M-9 -4 Q0 -13 9 -4 Q13 6 0 12 Q-13 6 -9 -4 Z" fill="#F59E0B" opacity="0.85"/>
+              <path d="M-5 -7 Q7 -9 10 0 Q5 10 -4 8 Q-11 2 -5 -7 Z" fill="#FBBF24" opacity="0.9"/>
+              <circle cx="0" cy="0" r="7.5" fill="#F59E0B"/>
+              <circle cx="0" cy="0" r="4" fill="#D97706"/>
+              <circle cx="0" cy="0" r="1.8" fill="#78350F"/>
+            </g>
+
+            <!-- Silhouette Diya (Lower) -->
+            <g transform="translate(7, 216)" class="silhouette-diya">
+              <path d="M 2 16 C 2 25 9 30 18 30 C 27 30 34 25 34 16 C 27 18 18 18 2 16 Z" fill="#8B3D1B"/>
+              <ellipse cx="18" cy="16" rx="15" ry="3.2" fill="#6A2508"/>
+              <path d="M 18 2 C 21 8 23 11 23 14 C 23 17 21 19 18 19 C 15 19 13 17 13 14 C 13 11 15 8 18 2 Z" fill="#F59E0B"/>
+              <path d="M 18 6 C 20 9 21 12 21 14 C 21 16 19 17 18 17 C 17 17 15 16 15 14 C 15 12 16 9 18 6 Z" fill="#FEF08A"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Left Cluster Strand 2 (THE GRAND ILLUMINATED DIYA - BIGGER WITH LONGER STRING) -->
+        <div class="diya-strand diya-strand-center diya-strand-l2">
+          <svg class="diya-svg" viewBox="0 0 90 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Long Brass Chain: stops cleanly at ring y=308, NEVER crosses into flame -->
+            <line x1="45" y1="0" x2="45" y2="308" stroke="url(#chainGradMain)" stroke-width="2"/>
+            <g fill="url(#chainGradMain)">
+              <circle cx="45" cy="32" r="3.8"/>
+              <circle cx="45" cy="32" r="1.6" fill="#FFFDF0"/>
+              <circle cx="45" cy="78" r="3.8"/>
+              <circle cx="45" cy="78" r="1.6" fill="#FFFDF0"/>
+              <circle cx="45" cy="125" r="4.2"/>
+              <circle cx="45" cy="125" r="1.8" fill="#FFFDF0"/>
+              <circle cx="45" cy="215" r="4"/>
+              <circle cx="45" cy="215" r="1.7" fill="#FFFDF0"/>
+              <circle cx="45" cy="262" r="4.2"/>
+              <circle cx="45" cy="262" r="1.8" fill="#FFFDF0"/>
+              <!-- Hanging Ring directly above the flame tip -->
+              <circle cx="45" cy="308" r="5" stroke="url(#chainGradMain)" stroke-width="2" fill="none"/>
+            </g>
+
+            <!-- Festive Marigold Blossom threaded along the brass chain -->
+            <g transform="translate(45, 168)" class="marigold-flower">
+              <circle cx="1" cy="2" r="16" fill="rgba(35, 15, 6, 0.2)"/>
+              <circle cx="0" cy="0" r="16" fill="url(#marigoldGradL)"/>
+              <path d="M-11 -5 Q0 -16 11 -5 Q16 8 0 14 Q-16 8 -11 -5 Z" fill="#F59E0B" opacity="0.85"/>
+              <path d="M-7 -9 Q9 -11 13 0 Q7 12 -4 10 Q-14 3 -7 -9 Z" fill="#FBBF24" opacity="0.9"/>
+              <circle cx="0" cy="0" r="9" fill="#F59E0B"/>
+              <circle cx="0" cy="0" r="5" fill="#D97706"/>
+              <circle cx="0" cy="0" r="2.2" fill="#78350F"/>
+            </g>
+
+            <!-- Ambient Luminous Aura radiating around flame -->
+            <ellipse cx="45" cy="350" rx="46" ry="54" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
+            <!-- Warm underglow beneath the terracotta bowl -->
+            <ellipse cx="45" cy="422" rx="38" ry="12" fill="rgba(245, 158, 11, 0.42)" class="diya-underglow"/>
+
+            <!-- Diya Bowl Body, Rim & Oil Cavity -->
+            <g class="diya-bowl-assembly">
+              <path
+                d="M 8 376 C 8 404 24 416 45 416 C 66 416 82 404 82 376 C 68 382 45 383 8 376 Z"
+                fill="url(#diyaBowlGradGrand)"
+                filter="drop-shadow(0 7px 16px rgba(35, 15, 6, 0.38))"
+              />
+              <ellipse cx="45" cy="376" rx="37" ry="8.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.8"/>
+              <ellipse cx="45" cy="377" rx="31" ry="5.8" fill="#381003"/>
+              <ellipse cx="45" cy="377.5" rx="22" ry="3.6" fill="#6E2308"/>
+              <path d="M 28 377.5 Q 45 381.5 62 377.5 Q 45 379.5 28 377.5 Z" fill="#FBBF24" opacity="0.65"/>
+            </g>
+
+            <!-- Living Golden Teardrop Flame: rendered ON TOP, rooted in the oil cavity -->
+            <g class="diya-flame-motion">
+              <path
+                d="M 45 313 C 58 332 63 346 63 358 C 63 373 55 381 45 381 C 35 381 27 373 27 358 C 27 346 32 332 45 313 Z"
+                fill="url(#flameOuterGradGrand)"
+                filter="drop-shadow(0 0 10px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 20px rgba(234, 88, 12, 0.48))"
+              />
+              <path
+                d="M 45 328 C 53 342 57 351 57 360 C 57 371 52 377 45 377 C 38 377 33 371 33 360 C 33 351 37 342 45 328 Z"
+                fill="url(#flameInnerGradGrand)"
+              />
+              <ellipse cx="45" cy="362" rx="4" ry="7.5" fill="#FFFFFF" opacity="0.95"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    )}
+
+    { (position === 'both' || position === 'right') && (
+      <div class="diwali-corner diwali-corner-right">
+        <!-- Background subtle festive mandala watermark (smaller scale) -->
+        <svg class="diwali-mandala" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" stroke="var(--gold, #C8931A)" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.28"/>
+          <circle cx="100" cy="100" r="70" stroke="var(--gold, #C8931A)" stroke-width="0.7" opacity="0.22"/>
+          <circle cx="100" cy="100" r="50" stroke="var(--maroon, #751818)" stroke-width="0.7" opacity="0.18"/>
+          <g stroke="var(--gold, #C8931A)" stroke-width="0.6" opacity="0.22">
+            <path d="M100 10 L100 190 M10 100 L190 100 M36 36 L164 164 M36 164 L164 36"/>
+            <circle cx="100" cy="25" r="4"/>
+            <circle cx="100" cy="175" r="4"/>
+            <circle cx="25" cy="100" r="4"/>
+            <circle cx="175" cy="100" r="4"/>
+          </g>
+        </svg>
+
+        <!-- Right cluster strand 1 (Marigold Accent Garland - SMALL & SHORT) -->
+        <div class="diya-strand diya-strand-r1">
+          <svg class="diya-svg" viewBox="0 0 40 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="0" x2="20" y2="120" stroke="url(#chainGradMain)" stroke-width="1.4"/>
+            <circle cx="20" cy="26" r="2.6" fill="url(#chainGradMain)"/>
+            <circle cx="20" cy="26" r="1.1" fill="#FFFDF0"/>
+            <circle cx="20" cy="68" r="2.6" fill="url(#chainGradMain)"/>
+            <circle cx="20" cy="68" r="1.1" fill="#FFFDF0"/>
+
+            <!-- Small Marigold blossom -->
+            <g transform="translate(20, 120)" class="marigold-flower">
+              <circle cx="1" cy="2" r="11" fill="rgba(35, 15, 6, 0.16)"/>
+              <circle cx="0" cy="0" r="11" fill="url(#marigoldGradL)"/>
+              <circle cx="0" cy="0" r="6.5" fill="#F59E0B"/>
+              <circle cx="0" cy="0" r="3.5" fill="#D97706"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Right cluster strand 2 (COMPACT ILLUMINATED DIYA - SMALLER & SHORTER STRING) -->
+        <div class="diya-strand diya-strand-center diya-strand-r2">
+          <svg class="diya-svg" viewBox="0 0 60 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Short delicate chain ending cleanly at the ring above the flame tip -->
+            <line x1="30" y1="0" x2="30" y2="125" stroke="url(#chainGradMain)" stroke-width="1.5"/>
+            <g fill="url(#chainGradMain)">
+              <circle cx="30" cy="28" r="2.8"/>
+              <circle cx="30" cy="28" r="1.2" fill="#FFFDF0"/>
+              <circle cx="30" cy="68" r="2.8"/>
+              <circle cx="30" cy="68" r="1.2" fill="#FFFDF0"/>
+              <circle cx="30" cy="102" r="3"/>
+              <circle cx="30" cy="102" r="1.3" fill="#FFFDF0"/>
+              <!-- Hanging Ring directly above the flame tip -->
+              <circle cx="30" cy="125" r="3.6" stroke="url(#chainGradMain)" stroke-width="1.5" fill="none"/>
+            </g>
+
+            <!-- Ambient soft glow for small diya -->
+            <ellipse cx="30" cy="154" rx="28" ry="34" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
+            <ellipse cx="30" cy="195" rx="22" ry="7" fill="rgba(245, 158, 11, 0.35)" class="diya-underglow"/>
+
+            <!-- Small Diya Bowl Body, Rim & Cavity -->
+            <g class="diya-bowl-assembly">
+              <path
+                d="M 7 168 C 7 185 17 192 30 192 C 43 192 53 185 53 168 C 44 172 30 173 7 168 Z"
+                fill="url(#diyaBowlGradGrand)"
+                filter="drop-shadow(0 4px 10px rgba(35, 15, 6, 0.32))"
+              />
+              <ellipse cx="30" cy="168" rx="23" ry="5.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.6"/>
+              <ellipse cx="30" cy="168.5" rx="19" ry="3.8" fill="#381003"/>
+              <ellipse cx="30" cy="169" rx="13" ry="2.2" fill="#6E2308"/>
+              <path d="M 18 169 Q 30 171.5 42 169 Q 30 170.2 18 169 Z" fill="#FBBF24" opacity="0.6"/>
+            </g>
+
+            <!-- Small Living Dancing Flame: rendered ON TOP, rooted in the oil cavity -->
+            <g class="diya-flame-motion">
+              <path
+                d="M 30 129 C 38 141 41 150 41 158 C 41 167 36 171 30 171 C 24 171 19 167 19 158 C 19 150 22 141 30 129 Z"
+                fill="url(#flameOuterGradGrand)"
+                filter="drop-shadow(0 0 7px rgba(245, 158, 11, 0.85)) drop-shadow(0 0 14px rgba(234, 88, 12, 0.45))"
+              />
+              <path
+                d="M 30 138 C 35 146 37 152 37 159 C 37 166 34 169 30 169 C 26 169 23 166 23 159 C 23 152 25 146 30 138 Z"
+                fill="url(#flameInnerGradGrand)"
+              />
+              <ellipse cx="30" cy="160" rx="2.5" ry="4.5" fill="#FFFFFF" opacity="0.95"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Right cluster strand 3 (Silhouette Diya - SHORT) -->
+        <div class="diya-strand diya-strand-r3">
+          <svg class="diya-svg" viewBox="0 0 40 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="0" x2="20" y2="100" stroke="url(#chainGradMain)" stroke-width="1.4"/>
+            <circle cx="20" cy="22" r="2.5" fill="url(#chainGradMain)"/>
+            <circle cx="20" cy="22" r="1.1" fill="#FFFDF0"/>
+            <circle cx="20" cy="58" r="2.5" fill="url(#chainGradMain)"/>
+            <circle cx="20" cy="58" r="1.1" fill="#FFFDF0"/>
+            <circle cx="20" cy="99" r="3" stroke="url(#chainGradMain)" stroke-width="1.4" fill="none"/>
+
+            <!-- Small Silhouette Diya -->
+            <g transform="translate(6, 101)" class="silhouette-diya">
+              <path d="M 2 12 C 2 18 7 22 14 22 C 21 22 26 18 26 12 C 21 14 14 14 2 12 Z" fill="#8B3D1B"/>
+              <ellipse cx="14" cy="12" rx="11" ry="2.4" fill="#6A2508"/>
+              <path d="M 14 2 C 16 6 18 8 18 10 C 18 12 16 13 14 13 C 12 13 10 12 10 10 C 10 8 12 6 14 2 Z" fill="#F59E0B"/>
+              <path d="M 14 4 C 15 7 16 8 16 10 C 16 11 15 12 14 12 C 13 12 12 11 12 10 C 12 8 13 7 14 4 Z" fill="#FEF08A"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MOBILE PRESENTATION (<= 960px)
+       Gracefully scaled to frame top header margins without text overlap
+       ══════════════════════════════════════════════════════════ -->
+  <div class="diwali-mobile-cluster">
+    <!-- Mobile Left Diya: Sits comfortably above headline in the top header cushion -->
+    <div class="diwali-corner diwali-mobile-corner-left">
+      <div class="diya-strand diya-strand-mobile-l">
+        <svg class="diya-svg" viewBox="0 0 60 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Short chain down to ring at y=36 -->
+          <line x1="30" y1="0" x2="30" y2="36" stroke="url(#chainGradMain)" stroke-width="1.5"/>
+          <circle cx="30" cy="16" r="2.6" fill="url(#chainGradMain)"/>
+          <circle cx="30" cy="16" r="1.1" fill="#FFFDF0"/>
+          <circle cx="30" cy="36" r="3.2" stroke="url(#chainGradMain)" stroke-width="1.5" fill="none"/>
+
+          <!-- Aura and Underglow -->
+          <ellipse cx="30" cy="62" rx="26" ry="30" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
+          <ellipse cx="30" cy="98" rx="22" ry="7" fill="rgba(245, 158, 11, 0.4)" class="diya-underglow"/>
+
+          <!-- Bowl -->
+          <g class="diya-bowl-assembly">
+            <path
+              d="M 6 74 C 6 92 16 98 30 98 C 44 98 54 92 54 74 C 45 78 30 79 6 74 Z"
+              fill="url(#diyaBowlGradGrand)"
+              filter="drop-shadow(0 4px 8px rgba(35, 15, 6, 0.35))"
+            />
+            <ellipse cx="30" cy="74" rx="24" ry="5.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.6"/>
+            <ellipse cx="30" cy="74.5" rx="20" ry="3.8" fill="#381003"/>
+            <ellipse cx="30" cy="75" rx="14" ry="2.2" fill="#6E2308"/>
+            <path d="M 18 75 Q 30 77.5 42 75 Q 30 76.5 18 75 Z" fill="#FBBF24" opacity="0.6"/>
+          </g>
+
+          <!-- Flame: perfectly rooted in oil cavity -->
+          <g class="diya-flame-motion">
+            <path
+              d="M 30 39 C 39 51 43 60 43 67 C 43 76 37 79 30 79 C 23 79 17 76 17 67 C 17 60 21 51 30 39 Z"
+              fill="url(#flameOuterGradGrand)"
+              filter="drop-shadow(0 0 7px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 14px rgba(234, 88, 12, 0.45))"
+            />
+            <path
+              d="M 30 48 C 35 56 38 62 38 68 C 38 74 34 77 30 77 C 26 77 22 74 22 68 C 22 62 25 56 30 48 Z"
+              fill="url(#flameInnerGradGrand)"
+            />
+            <ellipse cx="30" cy="69" rx="2.5" ry="4.5" fill="#FFFFFF" opacity="0.95"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Mobile Right Diya: Delicate companion under top right margin -->
+    <div class="diwali-corner diwali-mobile-corner-right">
+      <div class="diya-strand diya-strand-mobile-r">
+        <svg class="diya-svg" viewBox="0 0 50 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="25" y1="0" x2="25" y2="28" stroke="url(#chainGradMain)" stroke-width="1.3"/>
+          <circle cx="25" cy="14" r="2.2" fill="url(#chainGradMain)"/>
+          <circle cx="25" cy="28" r="2.8" stroke="url(#chainGradMain)" stroke-width="1.3" fill="none"/>
+
+          <ellipse cx="25" cy="50" rx="20" ry="24" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
+          <ellipse cx="25" cy="78" rx="16" ry="5.5" fill="rgba(245, 158, 11, 0.35)" class="diya-underglow"/>
+
+          <g class="diya-bowl-assembly">
+            <path
+              d="M 6 60 C 6 74 14 78 25 78 C 36 78 44 74 44 60 C 37 63 25 64 6 60 Z"
+              fill="url(#diyaBowlGradGrand)"
+              filter="drop-shadow(0 3px 6px rgba(35, 15, 6, 0.3))"
+            />
+            <ellipse cx="25" cy="60" rx="19" ry="4.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.5"/>
+            <ellipse cx="25" cy="60.5" rx="15" ry="3" fill="#381003"/>
+            <path d="M 15 60.5 Q 25 62.5 35 60.5 Q 25 61.5 15 60.5 Z" fill="#FBBF24" opacity="0.55"/>
+          </g>
+
+          <g class="diya-flame-motion">
+            <path
+              d="M 25 31 C 32 41 35 48 35 54 C 35 61 31 63 25 63 C 19 63 15 61 15 54 C 15 48 18 41 25 31 Z"
+              fill="url(#flameOuterGradGrand)"
+              filter="drop-shadow(0 0 6px rgba(245, 158, 11, 0.85))"
+            />
+            <path
+              d="M 25 38 C 29 45 31 50 31 54 C 31 59 28 61 25 61 C 22 61 19 59 19 54 C 19 50 21 45 25 38 Z"
+              fill="url(#flameInnerGradGrand)"
+            />
+            <ellipse cx="25" cy="55" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.95"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── DIWALI DIYAS FESTIVE ORNAMENTATION ───────────────── */
+  .diwali-diyas-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 12;
+    overflow: hidden;
+  }
+
+  .diwali-corner {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+  }
+
+  /* ── CLUSTER VISIBILITY SWITCHING ─────────────────────── */
+  .diwali-desktop-cluster {
+    display: block;
+  }
+
+  .diwali-mobile-cluster {
+    display: none;
+  }
+
+  /* ── DESKTOP LEFT CLUSTER: GRAND, PROMINENT & LONGER STRINGS ── */
+  /* Slender footprint tightly hugging the left margin so it frames the text without overlap */
+  .diwali-corner-left {
+    left: clamp(4px, 1.2vw, 18px);
+    width: 95px;
+    height: 480px;
+  }
+
+  /* ── DESKTOP RIGHT CLUSTER: DAINTY, COMPACT & SHORTER STRINGS ── */
+  .diwali-corner-right {
+    right: clamp(12px, 2.2vw, 40px);
+    width: 85px;
+    height: 230px;
+  }
+
+  /* ── WATERMARK SACRED MANDALA ────────────────────────── */
+  .diwali-mandala {
+    position: absolute;
+    top: -35px;
+    opacity: 0.42;
+    pointer-events: none;
+    animation: mandalaSlowSpin 90s linear infinite;
+  }
+
+  .diwali-corner-left .diwali-mandala {
+    left: -55px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .diwali-corner-right .diwali-mandala {
+    right: -30px;
+    width: 140px;
+    height: 140px;
+    opacity: 0.28;
+    animation-direction: reverse;
+  }
+
+  @keyframes mandalaSlowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── PENDULUM SWING ANIMATIONS (ORGANIC HARMONIC MOTION) ── */
+  .diya-strand {
+    position: absolute;
+    top: 0;
+    transform-origin: top center;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .diya-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Desktop Left Cluster Strands (Grand scale with harmonious sway) */
+  .diwali-corner-left .diya-strand-l1 {
+    left: 0;
+    width: 38px;
+    animation: diyaSwayLeft1 5.8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+  }
+
+  .diwali-corner-left .diya-strand-l2 {
+    left: 18px;
+    width: 76px;
+    animation: diyaSwayCenterL 7.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+    animation-delay: -1.6s;
+  }
+
+  /* Desktop Right Cluster Strands (Compact scale with quicker, subtle sway) */
+  .diwali-corner-right .diya-strand-r1 {
+    right: 52px;
+    width: 28px;
+    animation: diyaSwayRight1 4.8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+    animation-delay: -0.8s;
+  }
+
+  .diwali-corner-right .diya-strand-r2 {
+    right: 18px;
+    width: 48px;
+    animation: diyaSwayCenterR 5.8s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+    animation-delay: -1.6s;
+  }
+
+  .diwali-corner-right .diya-strand-r3 {
+    right: 0;
+    width: 26px;
+    animation: diyaSwayRight3 4.4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+    animation-delay: -1.0s;
+  }
+
+  /* Natural Gentle Pendulum Oscillations */
+  @keyframes diyaSwayLeft1 {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-2.6deg); }
+  }
+
+  @keyframes diyaSwayCenterL {
+    0% { transform: rotate(-2.4deg); }
+    100% { transform: rotate(2.4deg); }
+  }
+
+  @keyframes diyaSwayRight1 {
+    0% { transform: rotate(-2.8deg); }
+    100% { transform: rotate(2.8deg); }
+  }
+
+  @keyframes diyaSwayCenterR {
+    0% { transform: rotate(2.2deg); }
+    100% { transform: rotate(-2.2deg); }
+  }
+
+  @keyframes diyaSwayRight3 {
+    0% { transform: rotate(-3deg); }
+    100% { transform: rotate(2.8deg); }
+  }
+
+  /* ── FLAME FLICKER: ANCHORED STABLY AT BASE OF FLAME ───── */
+  /* transform-box: fill-box and transform-origin: 50% 90% lock the base inside the oil pool */
+  .diya-flame-motion {
+    transform-box: fill-box;
+    transform-origin: 50% 90%;
+    will-change: transform, filter;
+    animation: diyaFlameFlicker 2.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes diyaFlameFlicker {
+    0% {
+      transform: scale(1, 1);
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 16px rgba(245, 158, 11, 0.4));
+    }
+    25% {
+      transform: scale(0.98, 1.03);
+      filter: drop-shadow(0 0 11px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 22px rgba(245, 158, 11, 0.5));
+    }
+    50% {
+      transform: scale(1.02, 0.98);
+      filter: drop-shadow(0 0 7px rgba(251, 191, 36, 0.75)) drop-shadow(0 0 15px rgba(245, 158, 11, 0.38));
+    }
+    75% {
+      transform: scale(0.97, 1.04);
+      filter: drop-shadow(0 0 12px rgba(251, 191, 36, 1)) drop-shadow(0 0 24px rgba(245, 158, 11, 0.55));
+    }
+    100% {
+      transform: scale(1.03, 0.97);
+      filter: drop-shadow(0 0 9px rgba(251, 191, 36, 0.88)) drop-shadow(0 0 18px rgba(245, 158, 11, 0.44));
+    }
+  }
+
+  .diya-aura {
+    animation: diyaAuraBreathe 3.6s ease-in-out infinite alternate;
+    transform-origin: 50% 50%;
+  }
+
+  @keyframes diyaAuraBreathe {
+    0% { opacity: 0.55; transform: scale(0.94); }
+    100% { opacity: 0.88; transform: scale(1.06); }
+  }
+
+  .diya-underglow {
+    animation: diyaUnderglowPulse 3.6s ease-in-out infinite alternate;
+  }
+
+  @keyframes diyaUnderglowPulse {
+    0% { opacity: 0.45; }
+    100% { opacity: 0.85; }
+  }
+
+  /* ── MOBILE ADAPTATION (<= 960px) ──────────────────────── */
+  @media (max-width: 960px) {
+    .diwali-desktop-cluster {
+      display: none !important;
+    }
+
+    .diwali-mobile-cluster {
+      display: block !important;
+    }
+
+    /* On mobile, left text starts at x=16px; hide left cluster to prevent headline collision */
+    .diwali-mobile-corner-left {
+      display: none !important;
+    }
+
+    /* Top right open space below the fixed header (top >= 76px) */
+    .diwali-mobile-corner-right {
+      right: 16px;
+      top: 78px;
+      width: 44px;
+      height: 95px;
+    }
+
+    .diwali-mobile-corner-right .diya-strand-mobile-r {
+      width: 42px;
+      right: 0;
+      animation: diyaSwayCenterR 5.4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
+      animation-delay: -1.2s;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .diwali-mobile-corner-right {
+      right: 14px;
+      top: 78px;
+      width: 40px;
+      height: 90px;
+    }
+    .diwali-mobile-corner-right .diya-strand-mobile-r {
+      width: 38px;
+    }
+  }
+
+  /* ── REDUCED MOTION PREFERENCE ────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .diya-strand,
+    .diwali-mandala,
+    .diya-flame-motion,
+    .diya-aura,
+    .diya-underglow {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+</style>

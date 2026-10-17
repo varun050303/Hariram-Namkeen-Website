@@ -90,7 +90,7 @@ const box = {
       <h2 class="qv-title font-serif-editorial" id="qv-title"></h2>
       <p class="qv-promise" id="qv-desc">
         <span class="qv-sparkle" aria-hidden="true">✦</span>
-        <span>Fried in 100% Yellow Mustard Oil · Zero Palm Oil · Zero Preservatives · No Onion No Garlic (100% Jain Friendly)</span>
+        <span>Fried in 100% Yellow Mustard Oil · Zero Palm Oil · Zero Preservatives · No Onion No Garlic</span>
       </p>
     </header>
 
@@ -363,7 +363,9 @@ const box = {
     try {
       const ctx = JSON.parse(sessionStorage.getItem('hn_ctx') || 'null');
       if (ctx && ctx.utm_source) {
-        text += '\nRef: ' + (ctx.utm_source === 'google_ads' ? 'GAds' : ctx.utm_source);
+        const src = String(ctx.utm_source);
+        const refTag = (src === 'google_ads' || src.toLowerCase() === 'gads') ? 'GAds' : src;
+        text += '\nRef: ' + refTag;
       }
     } catch (err) {}
 

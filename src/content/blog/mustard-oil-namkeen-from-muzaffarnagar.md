@@ -43,4 +43,4 @@ Our halwais prepare namkeen to order in small batches of 15-20 kg in our Muzaffa
 
 ---
 
-**Want to taste it?** The Special 4 Box is 4 varieties, 800g, ₹499 with free delivery across India. <a href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___.%20Ref%3A%20GAds" target="_blank" rel="noopener noreferrer" data-wa-click>Order on WhatsApp</a>
+**Want to taste it?** The Special 4 Box is 4 varieties, 800g, ₹499 with free delivery across India. <a href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___." target="_blank" rel="noopener noreferrer" data-wa-click>Order on WhatsApp</a>

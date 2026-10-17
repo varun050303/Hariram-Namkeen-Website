@@ -4,9 +4,13 @@
 // All driven by GSAP timeline in animations.js (heroTl)
 // Mobile: shows namkeen image as background + namkeen-first messaging
 import HeritageBorder from "./HeritageBorder.astro";
+import DiwaliDiyas from "./DiwaliDiyas.astro";
 ---
 
 <section class="hero" id="hero">
+  <!-- Festive Swinging Diwali Diyas & Marigold Garlands -->
+  <DiwaliDiyas position="both" />
+
   <div class="hero-content">
     <div class="hero-origin" id="h-origin">
       <span class="hero-origin-dot"></span>
@@ -79,15 +83,14 @@ import HeritageBorder from "./HeritageBorder.astro";
       </div>
       <div class="hero-mobile-overlay"></div>
       <div class="hero-mobile-badge">
-        <span>🌿</span> No Onion No Garlic (100% Jain Friendly) &middot; Mustard Oil
-        Only
+        <span>🌿</span> No Onion No Garlic &middot; Mustard Oil Only
       </div>
     </div>
 
     <div class="hero-btns" id="h-btns">
       <a href="#products" class="hero-btn-primary"> Explore Namkeen &rarr; </a>
       <a
-        href="https://wa.me/916396122920"
+        href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___."
         target="_blank"
         rel="noopener noreferrer"
         class="hero-wa-link"
@@ -136,11 +139,8 @@ import HeritageBorder from "./HeritageBorder.astro";
       </div>
     </div>
 
-    <!-- Simplified Single Restrained Benefit Line -->
     <div class="hero-benefits-line" id="h-trust">
-      <span class="hero-jain-tag"
-        >🌿 No Onion No Garlic (100% Jain Friendly)</span
-      >
+      <span class="hero-jain-tag">🌿 No Onion No Garlic</span>
     </div>
   </div>
 
@@ -149,7 +149,7 @@ import HeritageBorder from "./HeritageBorder.astro";
     <div id="hero-parallax">
       <div class="hero-slideshow">
         <img
-          src="/images/aloo_bhujia.webp"
+          src="/images/aloo_bhujia_vertical.webp"
           alt="Aloo Bhujia - Pure Mustard Oil Namkeen"
           class="hero-slide active"
           width="600"

@@ -267,21 +267,62 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       let ctx = null;
       try { ctx = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
       const isNewSession = !ctx;
+      const q = new URLSearchParams(location.search);
+      const incomingSource = q.get('utm_source') || (q.get('gclid') ? 'google_ads' : '');
       if (!ctx) {
-        const q = new URLSearchParams(location.search);
         let refHost = '';
         try { refHost = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
         if (refHost === location.hostname) refHost = '';
         ctx = {
           sid: Math.random().toString(36).slice(2, 10),
           ref: refHost,
-          utm_source: q.get('utm_source') || (q.get('gclid') ? 'google_ads' : ''),
+          utm_source: incomingSource,
           utm_medium: q.get('utm_medium') || (q.get('gclid') ? 'cpc' : ''),
           utm_campaign: q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : '')
         };
         try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
+      } else if (incomingSource && (!ctx.utm_source || ctx.utm_source !== incomingSource)) {
+        ctx.utm_source = incomingSource;
+        ctx.utm_medium = q.get('utm_medium') || (q.get('gclid') ? 'cpc' : (ctx.utm_medium || ''));
+        ctx.utm_campaign = q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : (ctx.utm_campaign || ''));
+        try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
       }
       const device = window.matchMedia('(max-width: 768px)').matches ? 'mobile' : 'desktop';
+
+      // Dynamic WhatsApp attribution helper:
+      // Only append campaign references (e.g. Ref: GAds or Ref: instagram) when an explicit campaign source exists.
+      // Organic and direct visitors remain clean with zero Ref tags so attribution is never polluted.
+      const getAttributedWaUrl = (rawHref) => {
+        if (!rawHref || !rawHref.includes('wa.me') || !ctx || !ctx.utm_source) return rawHref;
+        try {
+          const src = String(ctx.utm_source);
+          const refTag = (src === 'google_ads' || src.toLowerCase() === 'gads') ? 'GAds' : src;
+          const u = new URL(rawHref, location.origin);
+          const currentText = u.searchParams.get('text');
+          if (currentText) {
+            if (!currentText.includes('Ref:')) {
+              u.searchParams.set('text', currentText + ' Ref: ' + refTag);
+            }
+          } else {
+            u.searchParams.set('text', 'Ref: ' + refTag);
+          }
+          return u.toString();
+        } catch (e) {
+          return rawHref;
+        }
+      };
+
+      const decorateWaLinks = () => {
+        if (!ctx || !ctx.utm_source) return;
+        document.querySelectorAll('a[href*="wa.me"]').forEach((a) => {
+          a.href = getAttributedWaUrl(a.href);
+        });
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', decorateWaLinks);
+      } else {
+        decorateWaLinks();
+      }
 
       const send = (event, source) => {
         const body = JSON.stringify({ event, source, path: location.pathname, device, ...ctx });
@@ -310,7 +351,10 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 
       document.addEventListener('click', (e) => {
         const a = e.target.closest && e.target.closest('a[href*="wa.me"]');
-        if (a) send('whatsapp_click', sourceOf(a));
+        if (a) {
+          a.href = getAttributedWaUrl(a.href);
+          send('whatsapp_click', sourceOf(a));
+        }
       }, true);
 
       if (isNewSession) send('landing', 'page');
