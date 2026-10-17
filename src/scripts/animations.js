@@ -75,10 +75,10 @@ export function initAnimations() {
   });
 
   // ── HERO ENTRANCE ─────────────────────────────────────────────
-  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust',
-    '#hl1', '#hl2', '#hl3'], { opacity: 0 });
-  gsap.set(['#hl1', '#hl2', '#hl3'], { y: '110%' });
-  gsap.set(['#h-origin', '#h-sub', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust'], { y: 24 });
+  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust',
+    '#hl1', '#hl2'], { opacity: 0 });
+  gsap.set(['#hl1', '#hl2'], { y: '110%' });
+  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust'], { y: 24 });
 
   gsap.set('.hero-stat', { opacity: 0, y: 20 });
 
@@ -88,8 +88,7 @@ export function initAnimations() {
   });
   heroTl
     .to('#h-origin', { opacity: 1, y: 0, duration: .6 })
-    .to(['#hl1', '#hl2', '#hl3'], { y: '0%', opacity: 1, duration: 1.1, stagger: .12, ease: 'expo.out' }, '-=.3')
-    .to('#h-sub', { opacity: 1, y: 0, duration: .8 }, '-=.6')
+    .to(['#hl1', '#hl2'], { y: '0%', opacity: 1, duration: 1.1, stagger: .12, ease: 'expo.out' }, '-=.3')
     .to('#h-pill', { opacity: 1, y: 0, duration: .6 }, '-=.5')
     .to('#h-btns', { opacity: 1, y: 0, duration: .6 }, '-=.5')
     .to('#h-offer-card', { opacity: 1, y: 0, duration: .6 }, '-=.4')

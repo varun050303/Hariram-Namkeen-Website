@@ -14,17 +14,12 @@
       <span class="dpd-price-new" id="dpd-price-new" style="display: none;">&#8377;449</span>
     </div>
 
-    <!-- Festive Diwali Savings Pill Badge & Replay Trigger -->
+    <!-- Festive Diwali Savings Pill Badge -->
     <div class="dpd-meta">
       <div class="dpd-badge" id="dpd-badge" style="display: none;">
         <span class="badge-icon">💥</span>
-        <span class="badge-text">Diwali Dhamaka &middot; Save &#8377;50</span>
+        <span class="badge-text">Diwali offer &middot; Save &#8377;50</span>
       </div>
-
-      <button class="dpd-replay-btn" id="dpd-replay-btn" style="display: none;" aria-label="Replay Diwali price drop animation" title="Watch firecracker blast again">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-        <span>Replay 💥</span>
-      </button>
     </div>
   </div>
 
@@ -661,7 +656,6 @@
     const priceOld = document.getElementById('dpd-price-old');
     const priceNew = document.getElementById('dpd-price-new');
     const badge = document.getElementById('dpd-badge');
-    const replayBtn = document.getElementById('dpd-replay-btn');
 
     if (!wrapper || !priceOld || !priceNew || !badge) return;
 
@@ -681,7 +675,6 @@
       priceOld.style.display = 'inline-block';
       priceNew.style.display = 'none';
       badge.style.display = 'none';
-      if (replayBtn) replayBtn.style.display = 'none';
 
       // Phase 1: Sneak In (After 1.1s)
       animTimeouts.push(setTimeout(() => {
@@ -720,21 +713,11 @@
       animTimeouts.push(setTimeout(() => {
         wrapper.classList.remove('state-boom');
         wrapper.classList.add('state-celebrate');
-        if (replayBtn) replayBtn.style.display = 'inline-flex';
       }, 4150));
     }
 
     // Auto-play when hero enters view
     runDiwaliPriceDropSequence();
-
-    // Replay on button click
-    if (replayBtn) {
-      replayBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        runDiwaliPriceDropSequence();
-      });
-    }
 
     // Also replay if someone taps on the price area!
     const pricesBox = document.getElementById('dpd-prices');

@@ -289,117 +289,116 @@
       }
     }
 
-    // ── SCROLL TRIGGER LOGIC ─────────────────────────────────
-    // Bulletproof section entry tracker with dual IntersectionObserver + Scroll monitoring
-    const sectionTargets = [
-      { id: 'craft', selector: '#craft, .craft-section', type: 'fountain', palette: 'gold' },
-      { id: 'oil-truth', selector: '#oil-truth, #oil-truth-wrap', type: 'single', palette: 'saffronFlame' },
-      { id: 'products', selector: '#products, .products', type: 'double', palette: 'grandDiwali' },
-      { id: 'hamper', selector: '#hamper, .hamper-section', type: 'double', palette: 'grandDiwali' },
-      { id: 'story', selector: '#story, .story-section', type: 'single', palette: 'gold' },
-      { id: 'process', selector: '#process, .process-section', type: 'fountain', palette: 'gold' },
-      { id: 'reels', selector: '.reel-section', type: 'single', palette: 'saffronFlame' },
-      { id: 'reviews', selector: '.reviews-section', type: 'single', palette: 'crimsonGold' },
-      { id: 'grahak-dev', selector: '#grahak-dev, .grahak-section', type: 'single', palette: 'gold' },
-      { id: 'contact', selector: '#contact, .cta-section', type: 'double', palette: 'grandDiwali' }
-    ];
+    // ── MOBILE DETECTION & SCROLL TRIGGER LOGIC ────────────
+    const isMobile = window.innerWidth <= 768;
 
-    const lastTriggeredMap = new Map();
-    const SECTION_COOLDOWN_MS = 4000; // 4s cooldown per section
-    let lastGlobalBurstTime = 0;
-    const GLOBAL_MIN_INTERVAL_MS = 650; // Prevent burst overlap during fast scroll
+    // Bulletproof section entry tracker with dual IntersectionObserver + Scroll monitoring (Desktop only)
+    if (!isMobile) {
+      const sectionTargets = [
+        { id: 'craft', selector: '#craft, .craft-section', type: 'fountain', palette: 'gold' },
+        { id: 'oil-truth', selector: '#oil-truth, #oil-truth-wrap', type: 'single', palette: 'saffronFlame' },
+        { id: 'products', selector: '#products, .products', type: 'double', palette: 'grandDiwali' },
+        { id: 'hamper', selector: '#hamper, .hamper-section', type: 'double', palette: 'grandDiwali' },
+        { id: 'story', selector: '#story, .story-section', type: 'single', palette: 'gold' },
+        { id: 'process', selector: '#process, .process-section', type: 'fountain', palette: 'gold' },
+        { id: 'reels', selector: '.reel-section', type: 'single', palette: 'saffronFlame' },
+        { id: 'reviews', selector: '.reviews-section', type: 'single', palette: 'crimsonGold' },
+        { id: 'grahak-dev', selector: '#grahak-dev, .grahak-section', type: 'single', palette: 'gold' },
+        { id: 'contact', selector: '#contact, .cta-section', type: 'double', palette: 'grandDiwali' }
+      ];
 
-    function triggerSectionFirecrackers(sec) {
-      const now = Date.now();
-      if (now - lastGlobalBurstTime < GLOBAL_MIN_INTERVAL_MS) return;
+      const lastTriggeredMap = new Map();
+      const SECTION_COOLDOWN_MS = 4000; // 4s cooldown per section
+      let lastGlobalBurstTime = 0;
+      const GLOBAL_MIN_INTERVAL_MS = 650; // Prevent burst overlap during fast scroll
 
-      const lastSecTime = lastTriggeredMap.get(sec.id) || 0;
-      if (now - lastSecTime < SECTION_COOLDOWN_MS) return;
+      function triggerSectionFirecrackers(sec) {
+        const now = Date.now();
+        if (now - lastGlobalBurstTime < GLOBAL_MIN_INTERVAL_MS) return;
 
-      lastTriggeredMap.set(sec.id, now);
-      lastGlobalBurstTime = now;
+        const lastSecTime = lastTriggeredMap.get(sec.id) || 0;
+        if (now - lastSecTime < SECTION_COOLDOWN_MS) return;
 
-      const topY = height * (0.24 + Math.random() * 0.16);
+        lastTriggeredMap.set(sec.id, now);
+        lastGlobalBurstTime = now;
 
-      if (sec.type === 'double') {
-        createDoubleBurst(sec.palette);
-      } else if (sec.type === 'fountain') {
-        createFountainBurst(width * 0.15, height * 0.92, sec.palette, 44);
-        setTimeout(() => {
-          createFountainBurst(width * 0.85, height * 0.92, sec.palette, 44);
-        }, 150);
-      } else {
-        const targetX = width * (0.35 + Math.random() * 0.3);
-        createRocketBurst(targetX, topY, sec.palette, 56);
+        const topY = height * (0.24 + Math.random() * 0.16);
+
+        if (sec.type === 'double') {
+          createDoubleBurst(sec.palette);
+        } else if (sec.type === 'fountain') {
+          createFountainBurst(width * 0.15, height * 0.92, sec.palette, 44);
+          setTimeout(() => {
+            createFountainBurst(width * 0.85, height * 0.92, sec.palette, 44);
+          }, 150);
+        } else {
+          const targetX = width * (0.35 + Math.random() * 0.3);
+          createRocketBurst(targetX, topY, sec.palette, 56);
+        }
       }
+
+      // 1. IntersectionObserver with negative rootMargin
+      let isInitialLoad = true;
+      setTimeout(() => {
+        isInitialLoad = false;
+      }, 800);
+
+      const observer = new IntersectionObserver((entries) => {
+        if (isInitialLoad) return;
+
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const el = entry.target;
+          const matched = sectionTargets.find(t => el.matches(t.selector));
+          if (matched) {
+            triggerSectionFirecrackers(matched);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -25% 0px',
+        threshold: 0
+      });
+
+      sectionTargets.forEach((sec) => {
+        const el = document.querySelector(sec.selector);
+        if (el) observer.observe(el);
+      });
+
+      // 2. Direct Window Scroll Listener
+      let scrollTimeout = null;
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener('scroll', () => {
+        if (isInitialLoad) return;
+
+        const currentScrollY = window.scrollY;
+        lastScrollY = currentScrollY;
+
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(() => {
+          scrollTimeout = null;
+
+          const viewportHeight = window.innerHeight;
+          const triggerLine = viewportHeight * 0.72;
+
+          for (const sec of sectionTargets) {
+            const el = document.querySelector(sec.selector);
+            if (!el) continue;
+
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= triggerLine && rect.bottom >= viewportHeight * 0.2) {
+              triggerSectionFirecrackers(sec);
+              break;
+            }
+          }
+        }, 100);
+      }, { passive: true });
     }
 
-    // 1. IntersectionObserver with negative rootMargin
-    // Triggers when top of section crosses ~25% from bottom of viewport
-    let isInitialLoad = true;
-    setTimeout(() => {
-      isInitialLoad = false;
-    }, 800); // Ignore initial intersection before visitor begins scrolling
-
-    const observer = new IntersectionObserver((entries) => {
-      if (isInitialLoad) return;
-
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        const el = entry.target;
-        const matched = sectionTargets.find(t => el.matches(t.selector));
-        if (matched) {
-          triggerSectionFirecrackers(matched);
-        }
-      });
-    }, {
-      rootMargin: '0px 0px -25% 0px',
-      threshold: 0
-    });
-
-    sectionTargets.forEach((sec) => {
-      const el = document.querySelector(sec.selector);
-      if (el) observer.observe(el);
-    });
-
-    // 2. Direct Window Scroll Listener (guarantees triggers on all browsers/devices)
-    let scrollTimeout = null;
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener('scroll', () => {
-      if (isInitialLoad) return;
-
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollY;
-      lastScrollY = currentScrollY;
-
-      // Throttle check
-      if (scrollTimeout) return;
-      scrollTimeout = setTimeout(() => {
-        scrollTimeout = null;
-
-        const viewportHeight = window.innerHeight;
-        const triggerLine = viewportHeight * 0.72; // 72% from top of screen
-
-        for (const sec of sectionTargets) {
-          const el = document.querySelector(sec.selector);
-          if (!el) continue;
-
-          const rect = el.getBoundingClientRect();
-          // When the section header crosses the trigger line
-          if (rect.top <= triggerLine && rect.bottom >= viewportHeight * 0.2) {
-            triggerSectionFirecrackers(sec);
-            break;
-          }
-        }
-      }, 100);
-    }, { passive: true });
-
     // ── PLAYFUL INTERACTIVE CLICK/TAP BURST ──────────────────
-    // Clicking anywhere on the page pops a lovely little sparkler burst
+    // Clicking/tapping gently pops a festive sparkler (reduced particle count on mobile)
     window.addEventListener('pointerdown', (e) => {
-      // Don't fire if user clicked on buttons, links, or form elements
       const target = e.target;
       if (
         target.closest('button') ||
@@ -413,14 +412,16 @@
         return;
       }
 
-      createRocketBurst(e.clientX, e.clientY, 'grandDiwali', 36);
+      const tapParticles = isMobile ? 16 : 36;
+      createRocketBurst(e.clientX, e.clientY, 'grandDiwali', tapParticles);
     }, { passive: true });
 
-    // Expose a global method so any component can trigger crackers
+    // Expose a global method so any component (e.g. Hero Sutli bomb) can trigger crackers
     window.fireDiwaliCrackers = (type = 'double', palette = 'grandDiwali') => {
+      const mobileScale = isMobile ? 0.5 : 1;
       if (type === 'double') createDoubleBurst(palette);
-      else if (type === 'fountain') createFountainBurst(width * 0.5, height * 0.92, palette);
-      else createRocketBurst(width * 0.5, height * 0.32, palette);
+      else if (type === 'fountain') createFountainBurst(width * 0.5, height * 0.92, palette, Math.round(44 * mobileScale));
+      else createRocketBurst(width * 0.5, height * 0.32, palette, Math.round(56 * mobileScale));
     };
   })();
 </script>

@@ -1,15 +1,18 @@
 ---
 // Footer.astro
 // Contains real FSSAI number: 22725393001461 (renewed 06-10-2026, valid to 08-10-2027)
-// Contact, address, and legal policies for payment gateway compliance
+// Contact, address, legal policies & subtle phuljhadi sparkler trails
 ---
 
-<footer>
-  <div style="max-width:1200px;margin:0 auto;padding:0 40px;">
+<footer id="site-footer">
+  <!-- Subtle Phuljhadi (Sparkler) Trails Canvas -->
+  <canvas id="footer-sparkler-canvas" class="footer-sparkler-canvas" aria-hidden="true"></canvas>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;position:relative;z-index:2;">
     <div class="footer-top">
       <div class="footer-brand">
         <img src="/images/logo_white.png" alt="Hariram Namkeen — Traditional UP snacks in pure yellow mustard oil" loading="lazy" width="186" height="124" style="aspect-ratio: 600/400; width:auto; height:124px; object-fit:contain; border-radius:6px;"/>
-        <p>Traditional namkeen from Muzaffarnagar, UP. Pure yellow mustard oil. No factory. No shortcuts. Made fresh.</p>
+        <p>Traditional namkeen from Muzaffarnagar, UP. Pure yellow mustard oil. No factory. Made fresh.</p>
         <div class="footer-address">
           <strong>Operating Address:</strong><br />
           Hariram Namkeen, Main Market, Muzaffarnagar, Uttar Pradesh - 251001, India
@@ -46,13 +49,13 @@
           <li><a href="/products/masala-chana-dal/">Masala Chana Dal</a></li>
           <li><a href="/products/masala-peanuts/">Masala Peanuts</a></li>
           <li><a href="/products/spicy-malka/">Spicy Malka</a></li>
-          <li><a href="/#hamper">Special 4 Box (₹499)</a></li>
+          <li><a href="/#hamper">Special 4 Box (₹449)</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h3>Connect</h3>
         <ul>
-          <li><a href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___." target="_blank" rel="noopener noreferrer" data-wa-click>Order on WhatsApp</a></li>
+          <li><a href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9449).%20My%20pincode%20is%20___." target="_blank" rel="noopener noreferrer" data-wa-click>Order on WhatsApp</a></li>
           <li><a href="tel:+916396122920">Call Us</a></li>
           <!--email_off-->
           <li><a href="mailto:namaste@hariramnamkeen.com">Email Us (namaste@hariramnamkeen.com)</a></li>
@@ -83,3 +86,196 @@
     </div>
   </div>
 </footer>
+
+<style>
+  #site-footer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-sparkler-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  // Subtle Phuljhadi (Sparkler) Cursor/Touch Trails on Footer
+  (function initFooterPhuljhadi() {
+    const footer = document.getElementById('site-footer');
+    const canvas = document.getElementById('footer-sparkler-canvas') as HTMLCanvasElement | null;
+
+    if (!footer || !canvas) return;
+
+    // Respect user motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    interface SparkParticle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      alpha: number;
+      decay: number;
+      shape: 'dot' | 'star';
+    }
+
+    let particles: SparkParticle[] = [];
+    const MAX_PARTICLES = 36;
+    let animId: number | null = null;
+    let width = 0;
+    let height = 0;
+
+    const COLORS = [
+      '#FFFFFF',
+      '#FFFBEB',
+      '#FEF08A',
+      '#FDE047',
+      '#F59E0B',
+      '#EA580C'
+    ];
+
+    function resizeCanvas() {
+      if (!canvas || !footer) return;
+      const rect = footer.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
+
+    function spawnSparks(x: number, y: number, count = 2, speedMult = 1) {
+      if (particles.length > MAX_PARTICLES) return;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = (Math.random() * 2.2 + 0.8) * speedMult;
+        particles.push({
+          x: x + (Math.random() - 0.5) * 6,
+          y: y + (Math.random() - 0.5) * 6,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed + 0.3,
+          size: Math.random() * 2.2 + 1.1,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          alpha: 1,
+          decay: Math.random() * 0.025 + 0.02,
+          shape: Math.random() > 0.6 ? 'star' : 'dot'
+        });
+      }
+      startLoop();
+    }
+
+    function drawStar(c: CanvasRenderingContext2D, cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) {
+      let rot = (Math.PI / 2) * 3;
+      let x = cx;
+      let y = cy;
+      const step = Math.PI / spikes;
+
+      c.beginPath();
+      c.moveTo(cx, cy - outerRadius);
+      for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        c.lineTo(x, y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        c.lineTo(x, y);
+        rot += step;
+      }
+      c.lineTo(cx, cy - outerRadius);
+      c.closePath();
+      c.fill();
+    }
+
+    function tick() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.04;
+        p.vx *= 0.98;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0 || p.x < 0 || p.x > width || p.y > height) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = p.size * 2;
+
+        if (p.shape === 'star') {
+          drawStar(ctx, p.x, p.y, 4, p.size * 1.6, p.size * 0.6);
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      if (particles.length > 0) {
+        animId = requestAnimationFrame(tick);
+      } else {
+        animId = null;
+      }
+    }
+
+    function startLoop() {
+      if (animId === null) {
+        animId = requestAnimationFrame(tick);
+      }
+    }
+
+    let lastMoveTime = 0;
+    function handlePointerMove(e: MouseEvent | Touch) {
+      const now = performance.now();
+      if (now - lastMoveTime < 24) return;
+      lastMoveTime = now;
+
+      const rect = footer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+        spawnSparks(x, y, 2, 1);
+      }
+    }
+
+    footer.addEventListener('mousemove', (e) => handlePointerMove(e), { passive: true });
+    footer.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        handlePointerMove(e.touches[0]);
+      }
+    }, { passive: true });
+
+    document.addEventListener('astro:before-swap', () => {
+      if (animId) cancelAnimationFrame(animId);
+    }, { once: true });
+  })();
+</script>

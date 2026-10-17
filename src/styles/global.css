@@ -667,6 +667,7 @@ body.cursor-hover #cursor-ring {
 .hero-headline #hl1 {
   font-weight: 700;
   font-size: 1em;
+  color: var(--gold, #C27F15);
 }
 
 .hero-headline #hl2 {

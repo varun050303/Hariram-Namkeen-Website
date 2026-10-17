@@ -1,93 +1,79 @@
 ---
 // HeroMobileCarousel.astro
 // Visual-first interactive mobile product carousel for Hariram Namkeen Hero section
-// Displays high-resolution snack photography with floating name tags, prices, and clickable product links.
+// Displays high-resolution snack photography with floating name tags and clickable product links.
 
 const items = [
   {
     title: "The Special 4 Box",
     hindiName: "दिवाली स्पेशल बॉक्स",
-    badge: "💥 Diwali Dhamaka · 800g",
+    badge: "💥 Diwali offer · Save ₹50",
     price: "₹449",
     originalPrice: "₹499",
-    desc: "4 Signature Snacks · Free Pan-India Delivery",
+    desc: "4 Signature Snacks · Free Delivery",
     image: "/images/hariram_special_4_top_view.webp",
     link: "#hamper",
-    cta: "View Box →",
+    cta: "Get Box →",
     featured: true,
   },
   {
     title: "Aloo Bhujia",
     hindiName: "आलू भुजिया",
-    badge: "⭐ Best Seller",
-    price: "₹125",
-    desc: "Melt-in-mouth potato & besan sev in pure mustard oil",
+    badge: "",
+    desc: "Potato & besan sev",
     image: "/images/aloo_bhujia.webp",
     link: "/products/aloo-bhujia/",
-    cta: "View Snack →",
+    featured: false,
   },
   {
     title: "Dal Biji",
     hindiName: "दाल बीजी",
     badge: "🏛️ Muzaffarnagar Classic",
-    price: "₹125",
-    desc: "Crisp moong dal & muskmelon magaz",
+    desc: "Crisp moong dal & magaz",
     image: "/images/dal-bhiji.webp",
     link: "/products/dal-biji/",
-    cta: "View Snack →",
+    featured: false,
   },
   {
     title: "Masala Chana Dal",
     hindiName: "मसाला चना दाल",
     badge: "☕ Teatime Favorite",
-    price: "₹125",
-    desc: "Bold split Bengal gram with tangy amchur",
+    desc: "Split Bengal gram & amchur",
     image: "/images/masala_chana_dal.webp",
     link: "/products/chana-dal/",
-    cta: "View Snack →",
+    featured: false,
   },
   {
     title: "Spicy Malka",
     hindiName: "स्पाइसी मलका",
     badge: "🔥 High Protein",
-    price: "₹125",
-    desc: "Whole red lentils dusted with Kashmiri mirch",
+    desc: "Red lentils & Kashmiri mirch",
     image: "/images/masala_malka.webp",
     link: "/products/spicy-malka/",
-    cta: "View Snack →",
+    featured: false,
   },
   {
     title: "Shahi Dal Biji",
     hindiName: "शाही दाल बीजी",
     badge: "👑 Royal Blend",
-    price: "₹200",
-    desc: "Whole cashews, golden raisins & dry coconut",
+    desc: "Cashews, raisins & melon seeds",
     image: "/images/premium.webp",
     link: "/products/shahi-dal-biji/",
-    cta: "View Snack →",
+    featured: false,
   },
   {
     title: "Masala Moongfali",
     hindiName: "मसाला मूंगफली",
     badge: "🥜 Crunchy Peanuts",
-    price: "₹120",
-    desc: "Crisp roasted peanuts slow-fried in mustard oil",
+    desc: "Crisp roasted peanuts",
     image: "/images/masala_moongfali.webp",
     link: "/products/masala-peanuts/",
-    cta: "View Snack →",
+    featured: false,
   },
 ];
 ---
 
 <div class="hm-carousel-wrapper" id="hmCarouselWrapper" aria-label="Hariram Signature Namkeen Showcase">
-  <div class="hm-carousel-header">
-    <div class="hm-carousel-title-row">
-      <span class="hm-header-icon">🌿</span>
-      <span class="hm-header-text">Our Pure Mustard Oil Favourites</span>
-    </div>
-    <span class="hm-swipe-hint">Swipe to explore &rarr;</span>
-  </div>
-
   <!-- Swipeable Card Track -->
   <div class="hm-carousel-track" id="hmCarouselTrack" tabindex="0" role="region" aria-label="Snack products carousel">
     {
@@ -96,7 +82,7 @@ const items = [
           href={item.link}
           class={`hm-card ${item.featured ? "is-featured" : ""}`}
           data-slide-index={index}
-          aria-label={`${item.title} - ${item.price}`}
+          aria-label={item.title}
         >
           <!-- Product Photography -->
           <div class="hm-card-media">
@@ -110,62 +96,42 @@ const items = [
             />
             <div class="hm-card-scrim" />
 
-            <!-- Floating Top Badge Tag -->
-            <div class="hm-card-top-tag">
-              <span class="hm-badge-pill">{item.badge}</span>
-            </div>
+            <!-- Floating Top Badge Tag (if provided) -->
+            {item.badge && (
+              <div class="hm-card-top-tag">
+                <span class="hm-badge-pill">{item.badge}</span>
+              </div>
+            )}
 
-            <!-- Floating Bottom Name & Price Tag -->
+            <!-- Floating Bottom Name & Offer Details -->
             <div class="hm-card-bottom-tag">
               <div class="hm-card-titles">
                 <div class="hm-card-name-row">
                   <h3 class="hm-card-name">{item.title}</h3>
                   <span class="hm-card-hindi">{item.hindiName}</span>
                 </div>
-                <p class="hm-card-desc">{item.desc}</p>
+                {item.desc && <p class="hm-card-desc">{item.desc}</p>}
               </div>
 
-              <div class="hm-card-action-row">
-                <div class="hm-card-price-wrap">
-                  {item.originalPrice && (
-                    <span class="hm-card-old-price">{item.originalPrice}</span>
-                  )}
-                  <span class="hm-card-price">{item.price}</span>
+              <!-- Only featured Special 4 Box displays pricing & CTA; individual snacks keep focus on the main offer -->
+              {item.featured && (
+                <div class="hm-card-action-row">
+                  <div class="hm-card-price-wrap">
+                    {item.originalPrice && (
+                      <span class="hm-card-old-price">{item.originalPrice}</span>
+                    )}
+                    <span class="hm-card-price">{item.price}</span>
+                  </div>
+                  <span class="hm-card-btn">
+                    {item.cta}
+                  </span>
                 </div>
-                <span class="hm-card-btn">
-                  {item.cta}
-                </span>
-              </div>
+              )}
             </div>
           </div>
         </a>
       ))
     }
-  </div>
-
-  <!-- Carousel Navigation Controls & Dots -->
-  <div class="hm-carousel-controls">
-    <button class="hm-nav-btn hm-prev" id="hmPrevBtn" aria-label="Previous snack">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-
-    <div class="hm-dots" id="hmDots" role="tablist" aria-label="Slide dots">
-      {
-        items.map((_, i) => (
-          <button
-            class={`hm-dot ${i === 0 ? "active" : ""}`}
-            data-dot-index={i}
-            role="tab"
-            aria-selected={i === 0 ? "true" : "false"}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))
-      }
-    </div>
-
-    <button class="hm-nav-btn hm-next" id="hmNextBtn" aria-label="Next snack">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
   </div>
 </div>
 
@@ -174,7 +140,7 @@ const items = [
   .hm-carousel-wrapper {
     display: none; /* Shown only on mobile & tablet via media query */
     width: 100%;
-    margin: 8px 0 16px 0;
+    margin: 12px 0 20px 0;
     position: relative;
     user-select: none;
   }
@@ -183,38 +149,6 @@ const items = [
     .hm-carousel-wrapper {
       display: block;
     }
-  }
-
-  /* ── HEADER ROW ────────────────────────────────────────── */
-  .hm-carousel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 4px;
-    margin-bottom: 8px;
-  }
-
-  .hm-carousel-title-row {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--maroon, #751818);
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .hm-header-icon {
-    font-size: 13px;
-  }
-
-  .hm-swipe-hint {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--gold, #C8931A);
-    opacity: 0.9;
-    letter-spacing: 0.01em;
   }
 
   /* ── SCROLL TRACK ──────────────────────────────────────── */
@@ -226,7 +160,7 @@ const items = [
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Hide standard scrollbar */
-    padding: 4px 2px 10px 2px;
+    padding: 4px 2px 8px 2px;
     margin: 0 -4px;
   }
 
@@ -238,7 +172,7 @@ const items = [
   .hm-card {
     flex: 0 0 84%;
     max-width: 320px;
-    min-width: 260px;
+    min-width: 250px;
     scroll-snap-align: center;
     position: relative;
     text-decoration: none;
@@ -288,7 +222,7 @@ const items = [
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(24, 8, 2, 0.2) 0%,
+      rgba(24, 8, 2, 0.15) 0%,
       rgba(24, 8, 2, 0.05) 30%,
       rgba(20, 7, 2, 0.65) 65%,
       rgba(15, 5, 1, 0.94) 100%
@@ -309,7 +243,7 @@ const items = [
     align-items: center;
     gap: 4px;
     padding: 3.5px 9px;
-    background: rgba(24, 8, 2, 0.78);
+    background: rgba(24, 8, 2, 0.82);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(254, 240, 138, 0.35);
@@ -321,7 +255,7 @@ const items = [
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
-  /* ── BOTTOM NAME & PRICE TAG ───────────────────────────── */
+  /* ── BOTTOM NAME & OFFER DETAILS ───────────────────────── */
   .hm-card-bottom-tag {
     position: absolute;
     bottom: 0;
@@ -366,7 +300,7 @@ const items = [
 
   .hm-card-desc {
     font-size: 11px;
-    color: rgba(253, 243, 227, 0.82);
+    color: rgba(253, 243, 227, 0.88);
     line-height: 1.25;
     margin: 0;
     white-space: nowrap;
@@ -374,7 +308,7 @@ const items = [
     text-overflow: ellipsis;
   }
 
-  /* ── ACTION ROW: PRICE & BUTTON ────────────────────────── */
+  /* ── ACTION ROW: FEATURED BOX ONLY ─────────────────────── */
   .hm-card-action-row {
     display: flex;
     align-items: center;
@@ -426,155 +360,4 @@ const items = [
     background: linear-gradient(135deg, #8B1E1E 0%, #B91C1C 100%);
     transform: translateX(2px);
   }
-
-  /* ── CONTROLS & PAGINATION ─────────────────────────────── */
-  .hm-carousel-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .hm-nav-btn {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: rgba(200, 147, 26, 0.12);
-    border: 1px solid rgba(200, 147, 26, 0.35);
-    color: var(--maroon, #751818);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 0;
-  }
-
-  .hm-nav-btn:active {
-    background: rgba(200, 147, 26, 0.28);
-    transform: scale(0.92);
-  }
-
-  .hm-dots {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .hm-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: rgba(115, 69, 3, 0.22);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .hm-dot.active {
-    width: 18px;
-    background: var(--gold, #C8931A);
-    box-shadow: 0 1px 4px rgba(200, 147, 26, 0.4);
-  }
 </style>
-
-<script is:inline>
-  (() => {
-    const track = document.getElementById("hmCarouselTrack");
-    const prevBtn = document.getElementById("hmPrevBtn");
-    const nextBtn = document.getElementById("hmNextBtn");
-    const dots = document.querySelectorAll(".hm-dot");
-
-    if (!track) return;
-
-    const cards = track.querySelectorAll(".hm-card");
-    if (cards.length === 0) return;
-
-    const updateActiveDot = (activeIndex) => {
-      dots.forEach((dot, idx) => {
-        const isActive = idx === activeIndex;
-        dot.classList.toggle("active", isActive);
-        dot.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-    };
-
-    // Scroll by card offset
-    const scrollToIndex = (index) => {
-      const targetCard = cards[index];
-      if (targetCard) {
-        const offsetLeft = targetCard.offsetLeft - (track.clientWidth - targetCard.clientWidth) / 2;
-        track.scrollTo({ left: offsetLeft, behavior: "smooth" });
-        updateActiveDot(index);
-      }
-    };
-
-    // Next / Prev clicks
-    let currentIndex = 0;
-
-    nextBtn?.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % cards.length;
-      scrollToIndex(currentIndex);
-    });
-
-    prevBtn?.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-      scrollToIndex(currentIndex);
-    });
-
-    // Dot clicks
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const idx = parseInt(dot.getAttribute("data-dot-index") || "0", 10);
-        currentIndex = idx;
-        scrollToIndex(idx);
-      });
-    });
-
-    // IntersectionObserver to sync active dot during user touch swipe
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const idx = parseInt(entry.target.getAttribute("data-slide-index") || "0", 10);
-              currentIndex = idx;
-              updateActiveDot(idx);
-            }
-          });
-        },
-        { root: track, threshold: 0.6 }
-      );
-
-      cards.forEach((card) => observer.observe(card));
-    }
-
-    // Optional gentle auto-scroll preview every 4s, pauses permanently once user touches track
-    let autoScrollTimer = null;
-    let userInteracted = false;
-
-    const startAutoScroll = () => {
-      if (userInteracted) return;
-      autoScrollTimer = setInterval(() => {
-        if (userInteracted) {
-          clearInterval(autoScrollTimer);
-          return;
-        }
-        currentIndex = (currentIndex + 1) % cards.length;
-        scrollToIndex(currentIndex);
-      }, 4200);
-    };
-
-    const stopAutoScroll = () => {
-      userInteracted = true;
-      if (autoScrollTimer) clearInterval(autoScrollTimer);
-    };
-
-    track.addEventListener("touchstart", stopAutoScroll, { passive: true });
-    track.addEventListener("mousedown", stopAutoScroll);
-    track.addEventListener("wheel", stopAutoScroll, { passive: true });
-
-    startAutoScroll();
-  })();
-</script>

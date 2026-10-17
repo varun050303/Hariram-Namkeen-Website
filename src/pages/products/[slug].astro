@@ -245,6 +245,20 @@ const breadcrumbSchema = {
       <section class="prod-hero-grid">
         <!-- LEFT 6 COLS: Showcase Card + Centerpiece + Metrics + Trust Badges -->
         <div class="prod-showcase-col">
+          <!-- Mobile Header (Visible only on <900px screens so buyer immediately sees product name & tags) -->
+          <div class="prod-header-mobile">
+            <div class="prod-kicker">
+              <span class="prod-sparkle">✦</span>
+              <span>100% Cold-Pressed Yellow Mustard Oil · Muzaffarnagar Craft</span>
+            </div>
+            <h1 class="prod-heading font-serif-editorial">{product.name}</h1>
+            <div class="prod-mobile-tags">
+              <span class="prod-badge-hindi" lang="hi">{product.hindiName}</span>
+              {product.badge && <span class="prod-badge-tag">{product.badge}</span>}
+            </div>
+            <p class="prod-tagline">{product.tagline}</p>
+          </div>
+
           <div class="prod-card-stage">
             <div class="prod-card-top-badges">
               <span class="prod-badge-hindi" lang="hi">{product.hindiName}</span>
@@ -275,8 +289,8 @@ const breadcrumbSchema = {
             </div>
           </div>
 
-          <!-- 4 Clean-Label Satvik / Digestive Trust Badges -->
-          <div class="prod-trust-list">
+          <!-- 4 Clean-Label Satvik / Digestive Trust Badges (Desktop Only Here) -->
+          <div class="prod-trust-list prod-trust-list--desktop">
             {trustBadges.map((badge) => (
               <div class="prod-trust-card">
                 <div class="prod-trust-icon" aria-hidden="true">
@@ -293,14 +307,17 @@ const breadcrumbSchema = {
 
         <!-- RIGHT 6 COLS: Product Story + Margin-Protecting Upsell Buy Box -->
         <div class="prod-details-col">
-          <div class="prod-kicker">
-            <span class="prod-sparkle">✦</span>
-            <span>100% Cold-Pressed Yellow Mustard Oil · Muzaffarnagar Craft</span>
-          </div>
+          <!-- Desktop Header (Visible only on ≥900px screens) -->
+          <div class="prod-header-desktop">
+            <div class="prod-kicker">
+              <span class="prod-sparkle">✦</span>
+              <span>100% Cold-Pressed Yellow Mustard Oil · Muzaffarnagar Craft</span>
+            </div>
 
-          <h1 class="prod-heading font-serif-editorial">{product.name}</h1>
-          <p class="prod-hindi-title" lang="hi">{product.hindiName}</p>
-          <p class="prod-tagline">{product.tagline}</p>
+            <h1 class="prod-heading font-serif-editorial">{product.name}</h1>
+            <p class="prod-hindi-title" lang="hi">{product.hindiName}</p>
+            <p class="prod-tagline">{product.tagline}</p>
+          </div>
 
           <div class="prod-story-box">
             <p class="prod-story-text">{product.longDesc}</p>
@@ -329,8 +346,8 @@ const breadcrumbSchema = {
 
               <div class="prod-option-main">
                 <div class="prod-option-pills">
-                  <span class="prod-pill-popular">★ Most Popular</span>
-                  <span class="prod-pill-savings">Save ₹50 Shipping</span>
+                  <span class="prod-pill-diwali">💥 Diwali offer</span>
+                  <span class="prod-pill-savings">Save ₹50</span>
                 </div>
                 <span class="prod-option-title">Get in The Special 4 Tasting Box (800g)</span>
                 <span class="prod-option-sub">
@@ -339,7 +356,10 @@ const breadcrumbSchema = {
               </div>
 
               <div class="prod-option-pricing">
-                <span class="prod-option-price">₹{BOX_OFFER.price}</span>
+                <div class="prod-dual-price">
+                  <span class="prod-price-struck">₹{BOX_OFFER.originalPrice || 499}</span>
+                  <span class="prod-option-price">₹{BOX_OFFER.price}</span>
+                </div>
                 <span class="prod-option-shipping prod-shipping-free">FREE Pan-India Delivery</span>
               </div>
             </label>
@@ -382,6 +402,21 @@ const breadcrumbSchema = {
               <span>Fresh Batch Dispatched via Express Courier</span>
             </div>
           </fieldset>
+
+          <!-- 4 Clean-Label Satvik / Digestive Trust Badges (Mobile Clean Grid Below Buy Box) -->
+          <div class="prod-trust-list prod-trust-list--mobile">
+            {trustBadges.map((badge) => (
+              <div class="prod-trust-card">
+                <div class="prod-trust-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={badge.iconSvg} />
+                </div>
+                <div class="prod-trust-texts">
+                  <h4 class="prod-trust-title">{badge.title}</h4>
+                  <p class="prod-trust-desc">{badge.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -846,6 +881,10 @@ const breadcrumbSchema = {
     margin-top: 20px;
   }
 
+  .prod-trust-list--mobile {
+    display: none;
+  }
+
   .prod-trust-card {
     display: flex;
     align-items: flex-start;
@@ -879,6 +918,74 @@ const breadcrumbSchema = {
     font-size: 12px;
     line-height: 1.4;
     color: var(--text-muted, #6E655C);
+  }
+
+  /* Mobile Header vs Desktop Header */
+  .prod-header-mobile {
+    display: none;
+  }
+
+  .prod-header-desktop {
+    display: block;
+  }
+
+  .prod-mobile-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 899px) {
+    .prod-header-mobile {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .prod-header-desktop {
+      display: none;
+    }
+
+    .prod-card-top-badges {
+      display: none;
+    }
+
+    .prod-details-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .prod-buybox {
+      order: 1;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .prod-story-box {
+      order: 2;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .prod-trust-list--desktop {
+      display: none !important;
+    }
+
+    .prod-trust-list--mobile {
+      order: 3;
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .prod-trust-list--mobile {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* Right Column: Details & Story */
@@ -1081,6 +1188,33 @@ const breadcrumbSchema = {
     flex-direction: column;
     align-items: flex-end;
     text-align: right;
+  }
+
+  .prod-dual-price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .prod-price-struck {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 14px;
+    color: #DC2626;
+    text-decoration: line-through;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+
+  .prod-pill-diwali {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #FEF3C7;
+    color: #9A3412;
+    border: 1px solid rgba(234, 88, 12, 0.4);
+    padding: 2px 7px;
+    border-radius: 99px;
   }
 
   .prod-option-price {
@@ -1564,7 +1698,7 @@ const breadcrumbSchema = {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 10px 16px;
     background: #FFFFFF;
     border-top: 1.5px solid rgba(24, 21, 18, 0.12);
     box-shadow: 0 -8px 24px rgba(24, 21, 18, 0.1);
@@ -1574,6 +1708,22 @@ const breadcrumbSchema = {
 
   .prod-sticky-bar.is-visible {
     transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .prod-sticky-bar {
+      padding-right: 76px; /* Leaves room for floating chat bubble widget */
+    }
+    .prod-urgency-bar {
+      padding: 7px 12px;
+      font-size: 11px;
+    }
+    .prod-urgency-content {
+      gap: 4px 10px;
+    }
+    .prod-urgency-sep {
+      display: none;
+    }
   }
 
   @media (min-width: 641px) {
@@ -1598,21 +1748,22 @@ const breadcrumbSchema = {
     font-size: 11px;
     font-weight: 600;
     color: var(--text-muted, #6E655C);
-    max-width: 200px;
+    max-width: 180px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .prod-sticky-btn {
-    padding: 12px 20px;
+    padding: 10px 16px;
     border-radius: 99px;
     background: var(--cta-terracotta, #B83B2A);
     color: #FFFFFF;
-    font-size: 14.5px;
+    font-size: 13.5px;
     font-weight: 800;
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(184, 59, 42, 0.35);
+    white-space: nowrap;
   }
 </style>

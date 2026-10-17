@@ -50,7 +50,8 @@ export const BOX_OFFER = {
   name: 'The Special 4 Tasting Box',
   weight: '800g',
   packs: '4 × 200g',
-  price: 499,
+  price: 449,
+  originalPrice: 499,
   shipping: 0,
   /** Standard shipping charged on a single pack */
   singleShipping: 50,
