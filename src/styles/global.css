@@ -3501,48 +3501,138 @@ footer {
   }
 }
 
+.btn-mobile-text {
+  display: none;
+}
+
+.btn-desktop-text {
+  display: inline;
+}
+
 @media (max-width: 768px) {
+  .btn-mobile-text {
+    display: inline;
+  }
+  .btn-desktop-text {
+    display: none;
+  }
+
   .hero-content {
-    padding: 20px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 14px;
+    gap: 10px;
+  }
+
+  #h-origin {
+    order: 1;
+    margin-bottom: -2px;
+  }
+
+  .hero-headline {
+    order: 2;
+    font-size: clamp(1.65rem, 1.3rem + 1.6vw, 2.15rem);
+    line-height: 1.15;
+    margin-bottom: -2px;
+  }
+
+  .hero-headline #hl3 {
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
   .hero-sub {
-    font-size: 14px;
-    padding-left: 14px;
+    order: 3;
+    font-size: 13px;
+    padding-left: 12px;
     border-left-width: 2px;
+    margin-bottom: 0;
+    line-height: 1.45;
   }
 
-  .hero-btns {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+  /* Carousel sits prominently right under the subtitle */
+  .hm-carousel-wrapper {
+    order: 4;
   }
 
-  .hero-btn-primary {
-    width: auto;
-    justify-content: flex-start;
-  }
-
+  /* Editorial offer card with Diwali Price Drop */
   .hero-offer-editorial {
+    order: 5;
     max-width: 100%;
-    margin-top: 8px;
+    margin-top: 2px;
+  }
+
+  /* On mobile, the carousel showcases each snack visually, so hide redundant repeated copy */
+  .hoe-divider,
+  .hoe-tag,
+  .hoe-title,
+  .hoe-snacks,
+  .hoe-link {
+    display: none !important;
   }
 
   .hoe-meta-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 8px;
+    width: 100%;
   }
 
-  .hoe-link {
+  /* Action buttons sit directly under the Diwali Price Drop */
+  .hero-btns {
+    order: 6;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .hero-btn-primary {
     width: 100%;
     justify-content: center;
+    background: linear-gradient(135deg, #751818 0%, #991B1B 100%);
+    color: #FFFDF9;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(117, 24, 24, 0.28);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+  }
+
+  .hero-btn-primary:hover,
+  .hero-btn-primary:active {
+    background: linear-gradient(135deg, #8B1E1E 0%, #B91C1C 100%);
+    color: #FFFDF9;
+    text-decoration: none;
+    transform: none;
+    box-shadow: 0 4px 14px rgba(117, 24, 24, 0.35);
+  }
+
+  .hero-wa-link {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 18px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #065F46;
+    background: rgba(37, 211, 102, 0.09);
+    border: 1.5px solid rgba(37, 211, 102, 0.45);
+    border-radius: 9px;
+    text-decoration: none;
+  }
+
+  .hero-wa-link:hover,
+  .hero-wa-link:active {
+    background: rgba(37, 211, 102, 0.16);
+    color: #047857;
   }
 
   .hero-benefits-line {
+    order: 7;
     max-width: 100%;
-    margin-top: 10px;
+    margin-top: 4px;
     font-size: 11.5px;
     gap: 4px 8px;
   }
