@@ -648,37 +648,133 @@ body.cursor-hover #cursor-ring {
 
 .hero-headline {
   font-family: var(--F);
-  font-size: clamp(2.1rem, 1.5rem + 1.8vw, 3.375rem);
-  font-weight: 700;
+  font-size: clamp(2.2rem, 1.65rem + 2vw, 3.5rem);
+  font-weight: 800;
   line-height: 1.15;
-  color: var(--dark);
-  letter-spacing: -.01em;
-}
-
-.hero-headline em {
-  font-style: italic;
-  color: var(--maroon);
-}
-
-.hero-headline .gold {
-  color: var(--gold);
+  color: var(--dark, #180702);
+  letter-spacing: -.015em;
+  margin: 0;
 }
 
 .hero-headline #hl1 {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1em;
+  color: var(--dark, #180702);
+  display: block;
+}
+
+/* ── APPLE "HELLO" WRITE-ON MOTION FOR "NAMKEEN" & "MUSTARD" ── */
+.apple-hello-wrap {
+  display: inline-block;
+  position: relative;
+  vertical-align: -0.04em;
+  white-space: nowrap;
+}
+
+.apple-hello-text {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.34em;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 0 4px;
+  will-change: mask-image, -webkit-mask-image, background-position;
+}
+
+.apple-hello-namkeen .apple-hello-text {
+  color: var(--maroon, #751818);
+  background: linear-gradient(120deg, #751818 0%, #A82020 38%, #F0B342 50%, #751818 62%, #751818 100%);
+  background-size: 240% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(117, 24, 24, 0.12));
+}
+
+.apple-hello-mustard .apple-hello-text {
+  color: var(--gold, #C27F15);
+  background: linear-gradient(120deg, #965F0B 0%, #C27F15 36%, #FEF08A 50%, #C27F15 64%, #965F0B 100%);
+  background-size: 240% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(194, 127, 21, 0.15));
+}
+
+.apple-hello-flourish {
+  position: absolute;
+  left: 4px;
+  bottom: -4px;
+  width: calc(100% - 6px);
+  height: 14px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.apple-hello-namkeen .apple-hello-flourish {
+  color: var(--maroon, #751818);
+}
+
+.apple-hello-mustard .apple-hello-flourish {
   color: var(--gold, #C27F15);
 }
 
-.hero-headline #hl2 {
-  font-size: 1em;
-  font-weight: 700;
+.apple-flourish-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-width: 2.4;
+  will-change: stroke-dashoffset;
 }
 
-.hero-headline #hl3 {
+/* Interactive Hover Shimmer */
+.apple-hello-wrap:hover .apple-hello-text {
+  animation: appleShimmer 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.apple-hello-wrap:hover .apple-flourish-path {
+  stroke-width: 3.2;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+@keyframes appleShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .apple-hello-text {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    background-position: 0% 0 !important;
+  }
+  .apple-flourish-path {
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+.hl-plain {
+  font-family: var(--F);
   font-weight: 800;
-  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.875rem);
-  line-height: 1.25;
+  color: var(--dark, #180702);
+}
+
+.hero-subline {
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(15px, 0.95rem + 0.35vw, 18px);
+  font-weight: 600;
+  color: var(--text-dim, #3B1F10);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  margin: -2px 0 2px 0;
 }
 
 .hero-sub {
@@ -961,80 +1057,147 @@ body.cursor-hover #cursor-ring {
   margin-top: 4px;
 }
 
-.hoe-pricing {
+/* ── HERO PRICING BLOCK (₹449 Large, ₹499 Small Grey with Strike, Deadline) ── */
+.hero-pricing-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 6px;
+  margin: 4px 0 2px 0;
 }
 
-.hoe-price {
-  font-family: var(--F);
-  font-size: clamp(1.85rem, 1.5rem + 1vw, 2.375rem);
+.hero-price-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-price-large {
+  font-family: var(--F, "Playfair Display", serif);
+  font-size: clamp(2.35rem, 1.95rem + 1.2vw, 3.1rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
-  background: linear-gradient(
-    115deg,
-    #734503 0%,
-    #A06D10 22%,
-    #D49B2A 40%,
-    #ECCB77 50%,
-    #D49B2A 60%,
-    #A06D10 78%,
-    #734503 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--maroon, #751818);
   display: inline-block;
-  animation: goldPriceShimmer 3.8s linear infinite;
-  filter: drop-shadow(0 1px 3px rgba(85, 45, 8, 0.18));
-  will-change: background-position;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
-@keyframes goldPriceShimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: 0% 0;
-  }
+.hero-price-strike {
+  font-family: var(--F, "Playfair Display", serif);
+  font-size: clamp(1.25rem, 1.05rem + 0.3vw, 1.45rem);
+  font-weight: 600;
+  color: #8C827A;
+  text-decoration: line-through;
+  text-decoration-color: #8C827A;
+  text-decoration-thickness: 1.5px;
 }
 
-.hoe-shipping {
-  font-family: var(--B);
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.hoe-link {
+.hero-price-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--maroon);
-  color: #FFFDF9 !important;
-  font-family: var(--B);
-  font-size: 14px;
+  gap: 4px;
+  background: rgba(194, 127, 21, 0.12);
+  color: var(--maroon, #751818);
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 99px;
+  border: 1px solid rgba(194, 127, 21, 0.38);
+  box-shadow: 0 1px 3px rgba(194, 127, 21, 0.08);
+}
+
+.hero-price-deadline {
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted, #5A351D);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.01em;
+}
+
+.hero-price-deadline .deadline-icon {
+  font-size: 13px;
+  color: var(--gold, #C27F15);
+}
+
+/* ── HERO ACTIONS ROW: Primary Button "Order on WhatsApp" + Secondary Text Link "See what's inside" ── */
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.hero-btn-primary-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: linear-gradient(135deg, #751818 0%, #941E1E 100%);
+  color: #FFFFFF !important;
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: 14.5px;
   font-weight: 700;
   letter-spacing: .02em;
   text-decoration: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 1px solid var(--maroon);
-  box-shadow: 0 4px 14px rgba(117, 24, 24, 0.28);
+  padding: 13px 26px;
+  border-radius: 99px;
+  border: 1px solid rgba(226, 158, 40, 0.4);
+  box-shadow: 0 4px 18px rgba(117, 24, 24, 0.28);
   transition: all .25s var(--ease-out);
   cursor: pointer;
   white-space: nowrap;
 }
 
-.hoe-link:hover {
-  background: var(--maroon-d);
-  border-color: var(--maroon-d);
-  color: #FFFFFF !important;
+.hero-btn-primary-wa svg {
+  flex-shrink: 0;
+  color: #25D366;
+  fill: #25D366;
+  transition: transform .2s ease;
+}
+
+.hero-btn-primary-wa:hover {
+  background: linear-gradient(135deg, #5C1010 0%, #751818 100%);
+  border-color: rgba(226, 158, 40, 0.65);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(117, 24, 24, 0.38);
+  box-shadow: 0 8px 24px rgba(117, 24, 24, 0.38);
+}
+
+.hero-btn-primary-wa:hover svg {
+  transform: scale(1.12);
+}
+
+.hero-link-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-dim, #3B1F10);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(59, 31, 16, 0.25);
+  padding-bottom: 2px;
+  transition: all .2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero-link-secondary:hover {
+  color: var(--maroon, #751818);
+  border-color: var(--maroon, #751818);
+  transform: translateX(2px);
 }
 
 /* ── SIMPLIFIED SINGLE RESTRAINED BENEFIT LINE ────────── */
@@ -3541,13 +3704,11 @@ footer {
     font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
-  .hero-sub {
+  .hero-subline {
     order: 3;
-    font-size: 13px;
-    padding-left: 12px;
-    border-left-width: 2px;
-    margin-bottom: 0;
-    line-height: 1.45;
+    font-size: 14.5px;
+    margin: 0;
+    line-height: 1.4;
   }
 
   /* Carousel sits prominently right under the subtitle */
@@ -3555,79 +3716,33 @@ footer {
     order: 4;
   }
 
-  /* Editorial offer card with Diwali Price Drop */
-  .hero-offer-editorial {
+  .hero-pricing-box {
     order: 5;
-    max-width: 100%;
+    width: 100%;
     margin-top: 2px;
   }
 
-  /* On mobile, the carousel showcases each snack visually, so hide redundant repeated copy */
-  .hoe-divider,
-  .hoe-tag,
-  .hoe-title,
-  .hoe-snacks,
-  .hoe-link {
-    display: none !important;
-  }
-
-  .hoe-meta-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    width: 100%;
-  }
-
-  /* Action buttons sit directly under the Diwali Price Drop */
-  .hero-btns {
+  .hero-actions-row {
     order: 6;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     width: 100%;
-    gap: 8px;
-    margin-top: 2px;
+    gap: 10px;
+    margin-top: 4px;
   }
 
-  .hero-btn-primary {
+  .hero-btn-primary-wa {
     width: 100%;
     justify-content: center;
-    background: linear-gradient(135deg, #751818 0%, #991B1B 100%);
-    color: #FFFDF9;
-    padding: 12px 20px;
-    border-radius: 9px;
+    padding: 13px 20px;
+    font-size: 14.5px;
+  }
+
+  .hero-link-secondary {
+    align-self: center;
     font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(117, 24, 24, 0.28);
-    border: 1px solid rgba(251, 191, 36, 0.35);
-  }
-
-  .hero-btn-primary:hover,
-  .hero-btn-primary:active {
-    background: linear-gradient(135deg, #8B1E1E 0%, #B91C1C 100%);
-    color: #FFFDF9;
-    text-decoration: none;
-    transform: none;
-    box-shadow: 0 4px 14px rgba(117, 24, 24, 0.35);
-  }
-
-  .hero-wa-link {
-    width: 100%;
-    justify-content: center;
-    padding: 11px 18px;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #065F46;
-    background: rgba(37, 211, 102, 0.09);
-    border: 1.5px solid rgba(37, 211, 102, 0.45);
-    border-radius: 9px;
-    text-decoration: none;
-  }
-
-  .hero-wa-link:hover,
-  .hero-wa-link:active {
-    background: rgba(37, 211, 102, 0.16);
-    color: #047857;
+    padding: 2px 0;
   }
 
   .hero-benefits-line {

@@ -214,7 +214,7 @@
 
   .dpd-prices {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
     position: relative;
     cursor: pointer;
@@ -261,27 +261,30 @@
     80% { transform: translate(2px, -2px) rotate(1deg); }
   }
 
-  /* ── NEW PRICE (₹449) ─────────────────────────────────── */
+  /* ── NEW PRICE (₹449) — Highlighted Plate with Dark Legible Text ──── */
   .dpd-price-new {
     font-family: var(--F, "Playfair Display", serif);
-    font-size: clamp(2.1rem, 1.7rem + 1.2vw, 2.75rem);
+    font-size: clamp(2rem, 1.6rem + 1.1vw, 2.6rem);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
-    background: linear-gradient(115deg, #854D0E 0%, #CA8A04 22%, #FACC15 45%, #FEF08A 55%, #EAB308 70%, #854D0E 100%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(202, 138, 4, 0.42));
+    color: var(--maroon-d, #4F0E0E);
+    -webkit-text-fill-color: var(--maroon-d, #4F0E0E);
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 55%, #FEF9C3 100%);
+    padding: 3px 10px 4px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(217, 119, 6, 0.45);
+    box-shadow: 0 3px 12px rgba(202, 138, 4, 0.22), 0 1px 3px rgba(0, 0, 0, 0.05);
+    text-shadow: 0 1px 1px rgba(24, 7, 2, 0.08);
     display: inline-block;
-    animation: goldPriceShimmer 3.4s linear infinite, newPriceBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: newPriceBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   @keyframes newPriceBounce {
     0% {
       opacity: 0;
       transform: scale(0.3) translateY(18px);
-      filter: drop-shadow(0 0 24px rgba(245, 158, 11, 1));
+      filter: drop-shadow(0 0 12px rgba(117, 24, 24, 0.35));
     }
     60% {
       opacity: 1;
@@ -296,28 +299,27 @@
     }
   }
 
-  @keyframes goldPriceShimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: 0% 0; }
-  }
-
-  /* ── DIWALI SAVINGS BADGE ─────────────────────────────── */
+  /* ── DIWALI SAVINGS BADGE — Informational Tag (Non-button look) ──── */
   .dpd-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #751818 0%, #991B1B 100%);
-    color: #FFFDF9;
+    gap: 5px;
+    background: rgba(117, 24, 24, 0.07);
+    color: var(--maroon, #751818);
     font-family: var(--B, "Plus Jakarta Sans", sans-serif);
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 4px 10px;
-    border-radius: 999px;
-    border: 1px solid #FBBF24;
-    box-shadow: 0 3px 10px rgba(153, 27, 27, 0.35);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 6px;
+    border: 1px dashed rgba(117, 24, 24, 0.32);
+    box-shadow: none;
     animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     white-space: nowrap;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
   }
 
   @keyframes badgePop {
