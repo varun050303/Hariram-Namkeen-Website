@@ -596,16 +596,18 @@ const { position = 'both', class: className = '' } = Astro.props;
       display: none !important;
     }
 
-    /* Top right open space below the fixed header (top >= 76px) */
+    /* Hang delicately from top edge to the left of hamburger button, never colliding with anything */
     .diwali-mobile-corner-right {
-      right: 16px;
-      top: 78px;
-      width: 44px;
-      height: 95px;
+      right: 62px;
+      top: 2px;
+      width: 32px;
+      height: 68px;
+      z-index: 501;
+      pointer-events: none;
     }
 
     .diwali-mobile-corner-right .diya-strand-mobile-r {
-      width: 42px;
+      width: 30px;
       right: 0;
       animation: diyaSwayCenterR 5.4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
       animation-delay: -1.2s;
@@ -614,13 +616,13 @@ const { position = 'both', class: className = '' } = Astro.props;
 
   @media (max-width: 480px) {
     .diwali-mobile-corner-right {
-      right: 14px;
-      top: 78px;
-      width: 40px;
-      height: 90px;
+      right: 58px;
+      top: 2px;
+      width: 30px;
+      height: 66px;
     }
     .diwali-mobile-corner-right .diya-strand-mobile-r {
-      width: 38px;
+      width: 28px;
     }
   }
 

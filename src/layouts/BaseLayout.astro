@@ -380,9 +380,10 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   })();
   </script>
 
-  <!--Start of Tawk.to Script (deferred to prevent iframe layout shift)-->
+  <!--Start of Tawk.to Script (desktop only to prevent mobile clutter and button blocking)-->
   <script type="text/javascript" is:inline>
   window.addEventListener('load', function() {
+    if (window.innerWidth <= 768) return; // Keep mobile screen clean and focused on WhatsApp
     setTimeout(function() {
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];

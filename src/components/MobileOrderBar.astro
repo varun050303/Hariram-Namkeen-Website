@@ -3,22 +3,25 @@
 // Appears once the hero button scrolls out of view; hides again on the Special 4 Box
 // section, the final CTA banner and the footer, which already have their own order buttons.
 const waUrl =
-  'https://wa.me/916396122920?text=Hi%2C%20I%20want%20The%20Hariram%20Special%204%20(%E2%82%B9499).%20My%20pincode%20is%20___.';
+  'https://wa.me/916396122920?text=Hi%2C%20I%20want%20to%20order%20The%20Hariram%20Special%204%20Diwali%20Box%20(800g%20for%20%E2%82%B9449%2C%20Free%20Delivery).%20My%20pincode%20is%20___.';
 ---
 
 <div class="m-order-bar" id="m-order-bar">
   <div class="m-order-info">
-    <strong>₹499</strong>
+    <div class="m-order-price-row">
+      <strong>₹449</strong>
+      <span class="m-order-strike">₹499</span>
+    </div>
     <span>Special 4 Box · Free delivery</span>
   </div>
-  <a href={waUrl} target="_blank" rel="noopener noreferrer" class="m-order-btn" data-wa-click>Order now</a>
+  <a href={waUrl} target="_blank" rel="noopener noreferrer" class="m-order-btn" data-wa-click>Order on WhatsApp</a>
 </div>
 
 <script is:inline>
   (() => {
     const bar = document.getElementById('m-order-bar');
-    const heroCta = document.getElementById('hero-cta');
-    if (!bar || !heroCta || !('IntersectionObserver' in window)) return;
+    const heroOffer = document.getElementById('h-offer-card') || document.getElementById('hero-cta');
+    if (!bar || !heroOffer || !('IntersectionObserver' in window)) return;
 
     let heroVisible = true;
     const overlapping = new Set();
@@ -28,7 +31,7 @@ const waUrl =
     new IntersectionObserver((entries) => {
       heroVisible = entries[0].isIntersecting;
       update();
-    }).observe(heroCta);
+    }, { threshold: 0.1 }).observe(heroOffer);
 
     const hideOver = [
       document.getElementById('hamper'),

@@ -336,10 +336,11 @@ body.cursor-hover #cursor-ring {
 }
 
 #header.scrolled {
-  background: rgba(250, 245, 235, 0.94);
+  background: rgba(250, 245, 235, 0.96);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   backdrop-filter: blur(20px) saturate(160%);
   border-bottom-color: rgba(194, 127, 21, 0.18);
-  box-shadow: 0 4px 20px rgba(35, 15, 6, 0.05);
+  box-shadow: 0 4px 20px rgba(35, 15, 6, 0.08);
 }
 
 .header-inner {
@@ -432,10 +433,11 @@ body.cursor-hover #cursor-ring {
   inset: 0;
   background: rgba(35, 15, 6, 0.6);
   backdrop-filter: blur(8px);
-  z-index: 499;
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 700;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .4s;
+  transition: opacity .35s;
 }
 
 .mobile-nav-overlay.open {
@@ -450,14 +452,17 @@ body.cursor-hover #cursor-ring {
   width: 300px;
   max-width: 85vw;
   height: 100vh;
+  height: 100dvh;
   background: var(--bg);
-  z-index: 501;
+  z-index: 701;
   display: flex;
   flex-direction: column;
-  padding: 28px;
-  transition: right .4s var(--ease-out);
+  padding: 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: right .35s var(--ease-out);
   border-left: 1px solid rgba(194, 127, 21, 0.15);
-  box-shadow: -10px 0 30px rgba(35, 15, 6, 0.1);
+  box-shadow: -10px 0 30px rgba(35, 15, 6, 0.15);
 }
 
 .mobile-nav.open {
@@ -669,6 +674,9 @@ body.cursor-hover #cursor-ring {
   position: relative;
   vertical-align: -0.04em;
   white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .apple-hello-text {
@@ -681,7 +689,9 @@ body.cursor-hover #cursor-ring {
   position: relative;
   z-index: 1;
   padding: 0 4px;
-  will-change: mask-image, -webkit-mask-image, background-position;
+  will-change: mask-image, -webkit-mask-image, background-position, transform, filter;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .apple-hello-namkeen .apple-hello-text {
@@ -713,6 +723,8 @@ body.cursor-hover #cursor-ring {
   overflow: visible;
   pointer-events: none;
   z-index: 0;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .apple-hello-namkeen .apple-hello-flourish {
@@ -727,23 +739,49 @@ body.cursor-hover #cursor-ring {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   stroke-width: 2.4;
-  will-change: stroke-dashoffset;
+  will-change: stroke-dashoffset, stroke-width, filter;
+  transition: stroke-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Interactive Hover Shimmer */
-.apple-hello-wrap:hover .apple-hello-text {
-  animation: appleShimmer 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+/* Smooth Interactive Hover State (Desktop with fine pointer) */
+@media (hover: hover) and (pointer: fine) {
+  .apple-hello-wrap:hover {
+    transform: translateY(-2px);
+  }
+
+  .apple-hello-wrap:hover .apple-hello-text {
+    transform: scale(1.025);
+  }
+
+  .apple-hello-namkeen:hover .apple-hello-text {
+    filter: drop-shadow(0 4px 14px rgba(117, 24, 24, 0.32)) drop-shadow(0 0 10px rgba(240, 179, 66, 0.38));
+  }
+
+  .apple-hello-mustard:hover .apple-hello-text {
+    filter: drop-shadow(0 4px 14px rgba(194, 127, 21, 0.38)) drop-shadow(0 0 10px rgba(254, 240, 138, 0.45));
+  }
+
+  .apple-hello-wrap:hover .apple-hello-flourish {
+    transform: translateY(-0.5px) scale(1.015);
+  }
+
+  .apple-hello-wrap:hover .apple-flourish-path {
+    stroke-width: 3.1;
+    filter: drop-shadow(0 2px 7px currentColor);
+  }
 }
 
-.apple-hello-wrap:hover .apple-flourish-path {
-  stroke-width: 3.2;
-  filter: drop-shadow(0 0 4px currentColor);
+/* Silky smooth shimmer sweep (plays gracefully to completion without snapping on mouseleave) */
+.apple-hello-text.is-shimmering {
+  animation: appleSmoothShimmer 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
 }
 
-@keyframes appleShimmer {
+@keyframes appleSmoothShimmer {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -40% 0;
   }
@@ -751,13 +789,29 @@ body.cursor-hover #cursor-ring {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+  .apple-hello-wrap {
+    transition: none !important;
+    transform: none !important;
+  }
+
   .apple-hello-text {
     mask-image: none !important;
     -webkit-mask-image: none !important;
     background-position: 0% 0 !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
   }
+
   .apple-flourish-path {
     stroke-dashoffset: 0 !important;
+    transition: none !important;
+    stroke-width: 2.4 !important;
+    filter: none !important;
+  }
+
+  .apple-hello-text.is-shimmering {
+    animation: none !important;
   }
 }
 
@@ -1130,6 +1184,36 @@ body.cursor-hover #cursor-ring {
   color: var(--gold, #C27F15);
 }
 
+.hero-offer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-offer-kicker {
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold, #C8931A);
+}
+
+.hero-offer-title {
+  font-family: var(--F, "Playfair Display", serif);
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--dark, #180702);
+  line-height: 1.2;
+}
+
+.hero-price-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 /* ── HERO ACTIONS ROW: Primary Button "Order on WhatsApp" + Secondary Text Link "See what's inside" ── */
 .hero-actions-row {
   display: flex;
@@ -1237,8 +1321,17 @@ body.cursor-hover #cursor-ring {
 
 /* Hero Editorial Divider Diamond Living Shimmer */
 @keyframes diamondShimmer {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(194,127,21,0)); }
-  50% { transform: scale(1.16); filter: drop-shadow(0 0 5px rgba(194,127,21,0.55)); }
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(194, 127, 21, 0));
+  }
+
+  50% {
+    transform: scale(1.16);
+    filter: drop-shadow(0 0 5px rgba(194, 127, 21, 0.55));
+  }
 }
 
 .hoe-divider-diamond svg {
@@ -1315,7 +1408,8 @@ body.cursor-hover #cursor-ring {
   transition: color .2s;
 }
 
-@media (max-height: 720px), (max-width: 960px) {
+@media (max-height: 720px),
+(max-width: 960px) {
   .hero-scroll-hint {
     display: none !important;
   }
@@ -2513,6 +2607,15 @@ body.cursor-hover #cursor-ring {
   gap: 8px;
 }
 
+.hamper-price-old {
+  font-family: var(--B);
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: line-through;
+  margin-left: 2px;
+}
+
 .hamper-price-pill {
   font-family: var(--B);
   font-size: 11px;
@@ -3556,6 +3659,7 @@ footer {
     text-align: center;
     gap: 14px;
   }
+
   .footer-copy,
   .footer-made-in-india,
   .footer-certs {
@@ -3623,6 +3727,7 @@ footer {
 }
 
 @media (max-width: 960px) {
+
   /* ── Hero tablet & mobile stacked ── */
   .hero {
     display: flex;
@@ -3677,6 +3782,7 @@ footer {
   .btn-mobile-text {
     display: inline;
   }
+
   .btn-desktop-text {
     display: none;
   }
@@ -3719,7 +3825,59 @@ footer {
   .hero-pricing-box {
     order: 5;
     width: 100%;
-    margin-top: 2px;
+    margin-top: 4px;
+    background: rgba(255, 252, 245, 0.95);
+    border: 1.5px solid rgba(200, 147, 26, 0.35);
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 16px rgba(35, 15, 6, 0.06);
+    gap: 8px;
+  }
+
+  .hero-pricing-box .hero-price-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-offer-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-offer-kicker {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-offer-title {
+    font-size: 1.05rem;
+    line-height: 1.2;
+    color: var(--dark, #180702);
+  }
+
+  .hero-price-wrap {
+    flex-shrink: 0;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .hero-price-large {
+    font-size: 1.85rem;
+  }
+
+  .hero-price-strike {
+    font-size: 1.05rem;
+  }
+
+  .hero-price-deadline {
+    font-size: 12px;
+    color: var(--text-muted, #734503);
+    border-top: 1px dashed rgba(200, 147, 26, 0.25);
+    padding-top: 6px;
+    width: 100%;
   }
 
   .hero-actions-row {
@@ -3728,29 +3886,49 @@ footer {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    gap: 10px;
+    gap: 8px;
     margin-top: 4px;
   }
 
   .hero-btn-primary-wa {
     width: 100%;
     justify-content: center;
-    padding: 13px 20px;
-    font-size: 14.5px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(117, 24, 24, 0.25);
   }
 
   .hero-link-secondary {
     align-self: center;
-    font-size: 14px;
+    font-size: 13px;
     padding: 2px 0;
+    color: var(--maroon, #751818);
+    font-weight: 600;
   }
 
   .hero-benefits-line {
     order: 7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 100%;
-    margin-top: 4px;
-    font-size: 11.5px;
-    gap: 4px 8px;
+    margin-top: 2px;
+    font-size: 11px;
+    gap: 6px 8px;
+  }
+
+  .hero-jain-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(34, 197, 94, 0.08);
+    color: #166534;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    border-radius: 99px;
+    padding: 3px 8px;
+    font-weight: 600;
+    font-size: 11px;
   }
 
   .hamper-contents {
@@ -4080,8 +4258,7 @@ footer {
     right: 0;
     bottom: 0;
     z-index: 490;
-    /* right padding keeps the button clear of the chat bubble */
-    padding: 10px 84px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
     background: rgba(63, 14, 14, 0.97);
     border-top: 1.5px solid rgba(226, 158, 40, 0.55);
     box-shadow: 0 -8px 24px rgba(35, 15, 6, 0.25);
@@ -4103,6 +4280,19 @@ footer {
     font-size: 12px;
     font-weight: 600;
     min-width: 0;
+  }
+
+  .m-order-price-row {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .m-order-strike {
+    font-size: 13px;
+    color: rgba(254, 240, 138, 0.7);
+    text-decoration: line-through;
+    font-weight: 500;
   }
 
   .m-order-info strong {
@@ -4142,5 +4332,3 @@ footer {
     font-size: 19px;
   }
 }
-
-

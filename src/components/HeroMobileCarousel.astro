@@ -7,20 +7,17 @@ const items = [
   {
     title: "The Special 4 Box",
     hindiName: "दिवाली स्पेशल बॉक्स",
-    badge: "💥 Diwali offer · Save ₹50",
-    price: "₹449",
-    originalPrice: "₹499",
-    desc: "4 Signature Snacks · Free Delivery",
+    badge: "✦ Artisanal Tasting Platter",
+    desc: "Sampler Box · Assorted Snacks",
     image: "/images/hariram_special_4_top_view.webp",
     link: "#hamper",
-    cta: "Get Box →",
     featured: true,
   },
   {
     title: "Aloo Bhujia",
     hindiName: "आलू भुजिया",
-    badge: "",
-    desc: "Potato & besan sev",
+    badge: "🥔 Crisp & Golden",
+    desc: "Crispy potato & besan sev in pure mustard oil",
     image: "/images/aloo_bhujia.webp",
     link: "/products/aloo-bhujia/",
     featured: false,
@@ -29,7 +26,7 @@ const items = [
     title: "Dal Biji",
     hindiName: "दाल बीजी",
     badge: "🏛️ Muzaffarnagar Classic",
-    desc: "Crisp moong dal & magaz",
+    desc: "Crisp moong dal & magaz melon seeds",
     image: "/images/dal-bhiji.webp",
     link: "/products/dal-biji/",
     featured: false,
@@ -37,8 +34,8 @@ const items = [
   {
     title: "Masala Chana Dal",
     hindiName: "मसाला चना दाल",
-    badge: "☕ Teatime Favorite",
-    desc: "Split Bengal gram & amchur",
+    badge: "☕ Teatime Favourite",
+    desc: "Split Bengal gram & tangy dried mango amchur",
     image: "/images/masala_chana_dal.webp",
     link: "/products/chana-dal/",
     featured: false,
@@ -46,8 +43,8 @@ const items = [
   {
     title: "Spicy Malka",
     hindiName: "स्पाइसी मलका",
-    badge: "🔥 High Protein",
-    desc: "Red lentils & Kashmiri mirch",
+    badge: "🔥 Whole Red Masoor",
+    desc: "Whole red lentils & Kashmiri red chilli",
     image: "/images/masala_malka.webp",
     link: "/products/spicy-malka/",
     featured: false,
@@ -56,7 +53,7 @@ const items = [
     title: "Shahi Dal Biji",
     hindiName: "शाही दाल बीजी",
     badge: "👑 Royal Blend",
-    desc: "Cashews, raisins & melon seeds",
+    desc: "Whole cashews, Kishmish raisins & melon seeds",
     image: "/images/premium.webp",
     link: "/products/shahi-dal-biji/",
     featured: false,
@@ -65,7 +62,7 @@ const items = [
     title: "Masala Moongfali",
     hindiName: "मसाला मूंगफली",
     badge: "🥜 Crunchy Peanuts",
-    desc: "Crisp roasted peanuts",
+    desc: "Slow-roasted peanuts with roasted spices",
     image: "/images/masala_moongfali.webp",
     link: "/products/masala-peanuts/",
     featured: false,
@@ -96,14 +93,14 @@ const items = [
             />
             <div class="hm-card-scrim" />
 
-            <!-- Floating Top Badge Tag (if provided) -->
+            <!-- Floating Top Badge Tag -->
             {item.badge && (
               <div class="hm-card-top-tag">
                 <span class="hm-badge-pill">{item.badge}</span>
               </div>
             )}
 
-            <!-- Floating Bottom Name & Offer Details -->
+            <!-- Floating Bottom Name & Flavour Highlights -->
             <div class="hm-card-bottom-tag">
               <div class="hm-card-titles">
                 <div class="hm-card-name-row">
@@ -113,34 +110,60 @@ const items = [
                 {item.desc && <p class="hm-card-desc">{item.desc}</p>}
               </div>
 
-              <!-- Only featured Special 4 Box displays pricing & CTA; individual snacks keep focus on the main offer -->
-              {item.featured && (
-                <div class="hm-card-action-row">
-                  <div class="hm-card-price-wrap">
-                    {item.originalPrice && (
-                      <span class="hm-card-old-price">{item.originalPrice}</span>
-                    )}
-                    <span class="hm-card-price">{item.price}</span>
-                  </div>
-                  <span class="hm-card-btn">
-                    {item.cta}
-                  </span>
-                </div>
-              )}
+              <div class="hm-card-explore-pill">
+                <span>{item.featured ? "Taste The Box" : "View Details"} &rarr;</span>
+              </div>
             </div>
           </div>
         </a>
       ))
     }
   </div>
+
+  <!-- Subtle swipe dots & indicator -->
+  <div class="hm-carousel-dots" id="hmCarouselDots" aria-hidden="true">
+    <div class="hm-dots-row">
+      {items.map((_, i) => (
+        <span class={`hm-dot ${i === 0 ? "active" : ""}`} data-index={i}></span>
+      ))}
+    </div>
+    <span class="hm-swipe-label">Swipe to explore 7 authentic snacks &rarr;</span>
+  </div>
 </div>
+
+<script is:inline>
+  (() => {
+    const track = document.getElementById("hmCarouselTrack");
+    const dots = document.querySelectorAll(".hm-dot");
+    if (!track || dots.length === 0) return;
+
+    let ticking = false;
+    track.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollLeft = track.scrollLeft;
+          const cardWidth = track.querySelector(".hm-card")?.offsetWidth || 280;
+          const activeIndex = Math.min(
+            dots.length - 1,
+            Math.max(0, Math.round(scrollLeft / (cardWidth + 12)))
+          );
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === activeIndex);
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
 
 <style>
   /* ── MOBILE CAROUSEL WRAPPER ───────────────────────────── */
   .hm-carousel-wrapper {
     display: none; /* Shown only on mobile & tablet via media query */
     width: 100%;
-    margin: 12px 0 20px 0;
+    margin: 8px 0 14px 0;
     position: relative;
     user-select: none;
   }
@@ -160,7 +183,7 @@ const items = [
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Hide standard scrollbar */
-    padding: 4px 2px 8px 2px;
+    padding: 2px 2px 6px 2px;
     margin: 0 -4px;
   }
 
@@ -180,15 +203,15 @@ const items = [
     border-radius: 18px;
     overflow: hidden;
     background: #1A0D05;
-    border: 1.5px solid rgba(200, 147, 26, 0.28);
-    box-shadow: 0 8px 24px rgba(35, 15, 6, 0.16);
+    border: 1.5px solid rgba(200, 147, 26, 0.32);
+    box-shadow: 0 6px 20px rgba(35, 15, 6, 0.14);
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
   .hm-card.is-featured {
     border-color: rgba(200, 147, 26, 0.65);
-    box-shadow: 0 8px 28px rgba(117, 24, 24, 0.22);
+    box-shadow: 0 8px 26px rgba(117, 24, 24, 0.2);
   }
 
   .hm-card:active {
@@ -222,7 +245,7 @@ const items = [
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(24, 8, 2, 0.15) 0%,
+      rgba(24, 8, 2, 0.2) 0%,
       rgba(24, 8, 2, 0.05) 30%,
       rgba(20, 7, 2, 0.65) 65%,
       rgba(15, 5, 1, 0.94) 100%
@@ -242,8 +265,8 @@ const items = [
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 3.5px 9px;
-    background: rgba(24, 8, 2, 0.82);
+    padding: 3.5px 10px;
+    background: rgba(24, 8, 2, 0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(254, 240, 138, 0.35);
@@ -255,7 +278,7 @@ const items = [
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
-  /* ── BOTTOM NAME & OFFER DETAILS ───────────────────────── */
+  /* ── BOTTOM NAME & FLAVOUR HIGHLIGHTS ──────────────────── */
   .hm-card-bottom-tag {
     position: absolute;
     bottom: 0;
@@ -264,20 +287,23 @@ const items = [
     padding: 12px 14px 10px 14px;
     z-index: 2;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .hm-card-titles {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
+    flex: 1;
   }
 
   .hm-card-name-row {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
 
@@ -295,12 +321,12 @@ const items = [
     font-size: 11px;
     font-weight: 500;
     color: #FBBF24;
-    opacity: 0.85;
+    opacity: 0.9;
   }
 
   .hm-card-desc {
     font-size: 11px;
-    color: rgba(253, 243, 227, 0.88);
+    color: rgba(253, 243, 227, 0.9);
     line-height: 1.25;
     margin: 0;
     white-space: nowrap;
@@ -308,56 +334,55 @@ const items = [
     text-overflow: ellipsis;
   }
 
-  /* ── ACTION ROW: FEATURED BOX ONLY ─────────────────────── */
-  .hm-card-action-row {
+  .hm-card-explore-pill {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: rgba(200, 147, 26, 0.2);
+    border: 1px solid rgba(254, 240, 138, 0.4);
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #FFFDF9;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── CAROUSEL DOTS & HINT ──────────────────────────────── */
+  .hm-carousel-dots {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    margin-top: 2px;
+    padding: 2px 4px;
+    margin-top: 4px;
   }
 
-  .hm-card-price-wrap {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-  }
-
-  .hm-card-old-price {
-    font-size: 12px;
-    color: rgba(248, 113, 113, 0.9);
-    text-decoration: line-through;
-    font-weight: 600;
-  }
-
-  .hm-card-price {
-    font-family: var(--F, "Playfair Display", serif);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #FDE047;
-    text-shadow: 0 1px 6px rgba(245, 158, 11, 0.4);
-    line-height: 1;
-  }
-
-  .hm-card-btn {
+  .hm-dots-row {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px 11px;
-    background: linear-gradient(135deg, #751818 0%, #991B1B 100%);
-    color: #FFFDF9;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    border-radius: 999px;
-    border: 1px solid rgba(251, 191, 36, 0.45);
-    box-shadow: 0 2px 8px rgba(117, 24, 24, 0.4);
-    white-space: nowrap;
-    transition: transform 0.15s ease, background 0.15s ease;
+    gap: 5px;
   }
 
-  .hm-card:hover .hm-card-btn {
-    background: linear-gradient(135deg, #8B1E1E 0%, #B91C1C 100%);
-    transform: translateX(2px);
+  .hm-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 99px;
+    background: rgba(200, 147, 26, 0.28);
+    transition: all 0.25s ease;
+  }
+
+  .hm-dot.active {
+    width: 18px;
+    background: var(--gold, #C8931A);
+  }
+
+  .hm-swipe-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted, #734503);
+    letter-spacing: 0.02em;
+    opacity: 0.85;
   }
 </style>

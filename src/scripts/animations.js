@@ -75,10 +75,10 @@ export function initAnimations() {
   });
 
   // ── HERO ENTRANCE ─────────────────────────────────────────────
-  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust',
+  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-trust',
     '#hl1', '#h-sub'], { opacity: 0 });
   gsap.set('#hl1', { y: '110%' });
-  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-offer-card', '#h-trust', '#h-sub'], { y: 24 });
+  gsap.set(['#h-origin', '#h-pill', '#h-btns', '#h-trust', '#h-sub'], { y: 24 });
 
   gsap.set('.hero-stat', { opacity: 0, y: 20 });
 
@@ -99,7 +99,6 @@ export function initAnimations() {
       }, 420);
     }, '-=.4')
     .to('#h-sub', { opacity: 1, y: 0, duration: .6 }, '-=.6')
-    .to('#h-offer-card', { opacity: 1, y: 0, duration: .6 }, '-=.4')
     .to('#h-btns', { opacity: 1, y: 0, duration: .6 }, '-=.4')
     .to('#h-trust', { opacity: 1, y: 0, duration: .6 }, '-=.4')
     .to('.hero-stat', { opacity: 1, y: 0, duration: .5, stagger: .08 }, '-=.6');

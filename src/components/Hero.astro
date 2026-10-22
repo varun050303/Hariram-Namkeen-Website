@@ -24,15 +24,39 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
         <span class="split-inner" id="hl1">
           <span class="apple-hello-wrap apple-hello-namkeen" id="word-namkeen">
             <span class="apple-hello-text">Namkeen</span>
-            <svg class="apple-hello-flourish" viewBox="0 0 160 22" fill="none" aria-hidden="true">
-              <path class="apple-flourish-path" pathLength="1" d="M 4 8 C 45 3, 115 4, 148 9 C 158 11, 159 15, 146 17 C 110 20, 55 18, 18 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              class="apple-hello-flourish"
+              viewBox="0 0 160 22"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                class="apple-flourish-path"
+                pathLength="1"
+                d="M 4 8 C 45 3, 115 4, 148 9 C 158 11, 159 15, 146 17 C 110 20, 55 18, 18 15"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </span>
           <span class="hl-plain">made in yellow</span>
           <span class="apple-hello-wrap apple-hello-mustard" id="word-mustard">
             <span class="apple-hello-text">mustard</span>
-            <svg class="apple-hello-flourish" viewBox="0 0 135 22" fill="none" aria-hidden="true">
-              <path class="apple-flourish-path" pathLength="1" d="M 4 8 C 38 3, 98 4, 124 9 C 134 11, 135 15, 123 17 C 92 20, 45 18, 14 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              class="apple-hello-flourish"
+              viewBox="0 0 135 22"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                class="apple-flourish-path"
+                pathLength="1"
+                d="M 4 8 C 38 3, 98 4, 124 9 C 134 11, 135 15, 123 17 C 92 20, 45 18, 14 15"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </span>
           <span class="hl-plain">oil.</span>
@@ -40,31 +64,18 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
       </span>
     </h1>
 
-    <!-- One subline: “4 favourites · 800g · ₹449, free delivery.” -->
-    <p class="hero-subline" id="h-sub">
-      4 favourites &middot; 800g &middot; &#8377;449, free delivery.
-    </p>
+    <!-- Core Brand Identity: Pure Yellow Mustard Oil & Traditional Small Batch Craft -->
+    <!-- <p class="hero-subline" id="h-sub">
+      India’s 1st 100% yellow mustard oil namkeen &middot; Handcrafted in small batches &middot; Zero palm oil &middot; Strictly No Onion No Garlic
+    </p> -->
 
     <!-- Mobile-only Interactive Product Carousel (Swipeable with tags & links) -->
     <HeroMobileCarousel />
 
-    <!-- Price: ₹449 large, ₹499 small and grey with a strike, plus a deadline line. -->
-    <div class="hero-pricing-box" id="h-offer-card">
-      <div class="hero-price-row">
-        <span class="hero-price-large" id="hero-price-val">&#8377;449</span>
-        <span class="hero-price-strike">&#8377;499</span>
-        <span class="hero-price-pill">Save &#8377;50</span>
-      </div>
-      <div class="hero-price-deadline">
-        <span class="deadline-icon">⚡</span>
-        <span>Diwali festive offer &middot; Price increases to &#8377;499 after Diwali</span>
-      </div>
-    </div>
-
-    <!-- One primary button, “Order on WhatsApp”, with icon and prefilled message. Secondary action: text link, “See what’s inside”. -->
+    <!-- Single Clear Call to Action with Trust & Inside Links -->
     <div class="hero-actions-row" id="h-btns">
       <a
-        href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20to%20order%20The%20Hariram%20Special%204%20Diwali%20Box%20(800g%20for%20%E2%82%B9449%2C%20Free%20Delivery).%20My%20pincode%20is%20___."
+        href="https://wa.me/916396122920?text=Hi%2C%20I%20want%20to%20order%20Hariram%20Namkeen.%20My%20pincode%20is%20___."
         target="_blank"
         rel="noopener noreferrer"
         class="hero-btn-primary-wa"
@@ -72,8 +83,8 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
         data-wa-click
       >
         <svg
-          width="18"
-          height="18"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
@@ -86,12 +97,14 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
       </a>
 
       <a href="#hamper" class="hero-link-secondary">
-        <span>See what’s inside &rarr;</span>
+        <span>Explore Flavours &amp; Tasting Box &rarr;</span>
       </a>
     </div>
 
     <div class="hero-benefits-line" id="h-trust">
-      <span class="hero-jain-tag">🌿 No Onion No Garlic</span>
+      <span class="hero-jain-tag">🌿 Strictly No Onion No Garlic</span>
+      <span class="hero-jain-tag">🚫 Zero Palm Oil</span>
+      <span class="hero-jain-tag">✦ 100% Pure Mustard Oil</span>
     </div>
   </div>
 
@@ -178,10 +191,16 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 
     // Buttery-smooth Apple "hello" write-on motion sequence
     function initAppleHelloWriteOn() {
-      const namkeenText = document.querySelector("#word-namkeen .apple-hello-text");
-      const namkeenFlourish = document.querySelector("#word-namkeen .apple-flourish-path");
-      const mustardText = document.querySelector("#word-mustard .apple-hello-text");
-      const mustardFlourish = document.querySelector("#word-mustard .apple-flourish-path");
+      const namkeenWrap = document.getElementById("word-namkeen");
+      const mustardWrap = document.getElementById("word-mustard");
+      const namkeenText = namkeenWrap?.querySelector(".apple-hello-text");
+      const namkeenFlourish = namkeenWrap?.querySelector(
+        ".apple-flourish-path",
+      );
+      const mustardText = mustardWrap?.querySelector(".apple-hello-text");
+      const mustardFlourish = mustardWrap?.querySelector(
+        ".apple-flourish-path",
+      );
 
       if (!namkeenText || !mustardText) return;
 
@@ -198,10 +217,38 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
       }
 
       // Initial state: feathered ink mask hiding text
-      namkeenText.style.webkitMaskImage = "linear-gradient(to right, black 0%, transparent 14%)";
-      namkeenText.style.maskImage = "linear-gradient(to right, black 0%, transparent 14%)";
-      mustardText.style.webkitMaskImage = "linear-gradient(to right, black 0%, transparent 14%)";
-      mustardText.style.maskImage = "linear-gradient(to right, black 0%, transparent 14%)";
+      namkeenText.style.webkitMaskImage =
+        "linear-gradient(to right, black 0%, transparent 14%)";
+      namkeenText.style.maskImage =
+        "linear-gradient(to right, black 0%, transparent 14%)";
+      mustardText.style.webkitMaskImage =
+        "linear-gradient(to right, black 0%, transparent 14%)";
+      mustardText.style.maskImage =
+        "linear-gradient(to right, black 0%, transparent 14%)";
+
+      let introDone = false;
+
+      function setupInteractiveHover(wrap, textEl) {
+        if (!wrap || !textEl) return;
+
+        const triggerShimmer = () => {
+          if (!introDone && window.gsap) return;
+          if (textEl.classList.contains("is-shimmering")) return;
+          textEl.classList.add("is-shimmering");
+        };
+
+        wrap.addEventListener("mouseenter", triggerShimmer);
+        wrap.addEventListener("pointerdown", triggerShimmer);
+
+        textEl.addEventListener("animationend", (e) => {
+          if (e.animationName === "appleSmoothShimmer") {
+            textEl.classList.remove("is-shimmering");
+          }
+        });
+      }
+
+      setupInteractiveHover(namkeenWrap, namkeenText);
+      setupInteractiveHover(mustardWrap, mustardText);
 
       const runWithGsap = () => {
         const gsap = window.gsap;
@@ -212,10 +259,16 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
           mustardText.style.maskImage = "none";
           if (namkeenFlourish) namkeenFlourish.style.strokeDashoffset = "0";
           if (mustardFlourish) mustardFlourish.style.strokeDashoffset = "0";
+          introDone = true;
           return;
         }
 
-        const tl = gsap.timeline({ delay: 0.35 });
+        const tl = gsap.timeline({
+          delay: 0.35,
+          onComplete: () => {
+            introDone = true;
+          },
+        });
 
         // 1. "Namkeen" ink write-on (feathered soft reveal)
         const nk = { p: 0 };
@@ -232,58 +285,83 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
           onComplete: () => {
             namkeenText.style.webkitMaskImage = "none";
             namkeenText.style.maskImage = "none";
-          }
+          },
         });
 
         // 2. Flourish underline draws as final pen stroke of "Namkeen"
         if (namkeenFlourish) {
-          tl.to(namkeenFlourish, {
-            strokeDashoffset: 0,
-            duration: 1.0,
-            ease: "power1.inOut"
-          }, "-=0.3");
+          tl.to(
+            namkeenFlourish,
+            {
+              strokeDashoffset: 0,
+              duration: 1.0,
+              ease: "power1.inOut",
+            },
+            "-=0.3",
+          );
         }
 
         // 3. Gentle luminous shimmer across "Namkeen"
-        tl.to(namkeenText, {
-          backgroundPosition: "-40% 0",
-          duration: 1.5,
-          ease: "power1.inOut"
-        }, "-=0.4");
+        tl.to(
+          namkeenText,
+          {
+            backgroundPosition: "-40% 0",
+            duration: 1.5,
+            ease: "power1.inOut",
+          },
+          "-=0.4",
+        );
 
         // 4. Natural pause as eye reads "made in yellow", then "mustard" begins
         const ms = { p: 0 };
-        tl.to(ms, {
-          p: 100,
-          duration: 1.7,
-          ease: "power1.out",
-          onUpdate: () => {
-            const p = ms.p;
-            const feather = Math.max(6, 18 * (1 - p / 100));
-            mustardText.style.webkitMaskImage = `linear-gradient(to right, black ${p}%, transparent ${p + feather}%)`;
-            mustardText.style.maskImage = `linear-gradient(to right, black ${p}%, transparent ${p + feather}%)`;
+        tl.to(
+          ms,
+          {
+            p: 100,
+            duration: 1.7,
+            ease: "power1.out",
+            onUpdate: () => {
+              const p = ms.p;
+              const feather = Math.max(6, 18 * (1 - p / 100));
+              mustardText.style.webkitMaskImage = `linear-gradient(to right, black ${p}%, transparent ${p + feather}%)`;
+              mustardText.style.maskImage = `linear-gradient(to right, black ${p}%, transparent ${p + feather}%)`;
+            },
+            onComplete: () => {
+              mustardText.style.webkitMaskImage = "none";
+              mustardText.style.maskImage = "none";
+            },
           },
-          onComplete: () => {
-            mustardText.style.webkitMaskImage = "none";
-            mustardText.style.maskImage = "none";
-          }
-        }, "+=0.35");
+          "+=0.35",
+        );
 
         // 5. Golden flourish draws as final pen stroke of "mustard"
         if (mustardFlourish) {
-          tl.to(mustardFlourish, {
-            strokeDashoffset: 0,
-            duration: 0.95,
-            ease: "power1.inOut"
-          }, "-=0.3");
+          tl.to(
+            mustardFlourish,
+            {
+              strokeDashoffset: 0,
+              duration: 0.95,
+              ease: "power1.inOut",
+            },
+            "-=0.3",
+          );
         }
 
         // 6. Gentle golden shimmer across "mustard"
-        tl.to(mustardText, {
-          backgroundPosition: "-40% 0",
-          duration: 1.5,
-          ease: "power1.inOut"
-        }, "-=0.4");
+        tl.to(
+          mustardText,
+          {
+            backgroundPosition: "-40% 0",
+            duration: 1.5,
+            ease: "power1.inOut",
+          },
+          "-=0.4",
+        );
+
+        // 7. Intro write-on complete — ready for interactive hover shimmer
+        tl.call(() => {
+          introDone = true;
+        });
       };
 
       if (window.gsap) {
@@ -299,10 +377,17 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
       }
     }
 
-    if (document.readyState === "complete" || document.readyState === "interactive") {
+    if (
+      document.readyState === "complete" ||
+      document.readyState === "interactive"
+    ) {
       setTimeout(initAppleHelloWriteOn, 150);
     } else {
-      window.addEventListener("DOMContentLoaded", () => setTimeout(initAppleHelloWriteOn, 150), { once: true });
+      window.addEventListener(
+        "DOMContentLoaded",
+        () => setTimeout(initAppleHelloWriteOn, 150),
+        { once: true },
+      );
     }
   })();
 </script>
