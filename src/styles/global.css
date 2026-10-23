@@ -1214,11 +1214,57 @@ body.cursor-hover #cursor-ring {
   flex-wrap: wrap;
 }
 
+/* ── HERO VALUE BRIDGE STRIP ─────────────────────────────
+   Editorial micro-line between headline and CTA.
+   Bridges the emotional headline to the transactional button
+   by killing the two biggest objections: shipping cost + price. ── */
+.hero-value-bridge {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  font-family: var(--B, "Plus Jakarta Sans", sans-serif);
+  font-size: clamp(13px, 0.82rem + 0.2vw, 15px);
+  font-weight: 500;
+  color: var(--text-dim, #3B1F10);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  margin: -4px 0 2px 0;
+}
+
+.hero-value-bridge strong {
+  font-weight: 700;
+  color: var(--dark, #180702);
+}
+
+.hvb-hook {
+  display: inline;
+}
+
+.hvb-dot {
+  display: inline-block;
+  margin: 0 8px;
+  color: var(--gold, #C8931A);
+  font-weight: 700;
+  font-size: 1.1em;
+  opacity: 0.7;
+}
+
+/* ── HERO BULK & GIFTING LINK (secondary, different persona) ── */
+.hero-link-bulk {
+  opacity: 0.72;
+  font-size: 13px;
+}
+
+.hero-link-bulk:hover {
+  opacity: 1;
+}
+
 /* ── HERO ACTIONS ROW: Primary Button "Order on WhatsApp" + Secondary Text Link "See what's inside" ── */
 .hero-actions-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px 22px;
   flex-wrap: wrap;
   margin-top: 6px;
 }
@@ -3810,11 +3856,18 @@ footer {
     font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
-  .hero-subline {
+  .hero-value-bridge {
     order: 3;
-    font-size: 14.5px;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
     margin: 0;
     line-height: 1.4;
+    gap: 2px 0;
+  }
+
+  .hvb-dot {
+    margin: 0 6px;
   }
 
   /* Carousel sits prominently right under the subtitle */
@@ -3906,6 +3959,11 @@ footer {
     padding: 2px 0;
     color: var(--maroon, #751818);
     font-weight: 600;
+  }
+
+  .hero-link-bulk {
+    font-size: 12px;
+    opacity: 0.65;
   }
 
   .hero-benefits-line {

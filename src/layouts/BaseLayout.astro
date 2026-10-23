@@ -23,7 +23,8 @@ const anyTagActive = isAnyGoogleTagActive();
 const adsTagId = GOOGLE_TAG_CONFIG.adsTagId;
 const gaMeasurementId = GOOGLE_TAG_CONFIG.gaMeasurementId;
 const conversionSendTo = GOOGLE_TAG_CONFIG.conversionSendTo;
-const primaryTagId = adsTagActive ? adsTagId : gaMeasurementId;
+const extraTagIds = (GOOGLE_TAG_CONFIG.extraTagIds || []).filter((id) => id.startsWith('G-') || id.startsWith('AW-'));
+const primaryTagId = gaActive ? gaMeasurementId : (adsTagActive ? adsTagId : '');
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hariramnamkeen.com');
 const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
@@ -49,7 +50,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     <>
       <!-- Google tag (gtag.js) -->
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(primaryTagId)}`}></script>
-      <script is:inline define:vars={{ adsTagActive, adsTagId, gaActive, gaMeasurementId, conversionSendTo }}>
+      <script is:inline define:vars={{ adsTagActive, adsTagId, gaActive, gaMeasurementId, conversionSendTo, extraTagIds }}>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = window.gtag || gtag;
@@ -60,6 +61,9 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         if (gaActive) {
           gtag('config', gaMeasurementId);
         }
+        extraTagIds.forEach(function (id) {
+          if (id !== adsTagId && id !== gaMeasurementId) gtag('config', id);
+        });
         window.__GADS_SEND_TO__ = conversionSendTo;
       </script>
     </>

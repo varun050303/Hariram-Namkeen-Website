@@ -33,11 +33,13 @@ export const GOOGLE_TAG_CONFIG = {
   gaMeasurementId:
     getEnv('PUBLIC_GA_MEASUREMENT_ID') ||
     getEnv('GA_MEASUREMENT_ID') ||
-    'G-KL6WWBZJ94',
+    'G-KH2W2VE90M',
   conversionSendTo:
     getEnv('PUBLIC_GADS_CONVERSION_SEND_TO') ||
     getEnv('GOOGLE_ADS_CONVERSION_SEND_TO') ||
     'AW-18507413408/2LB4CJKnmJodEKDvgvlE',
+  // Additional Google tag IDs if needed
+  extraTagIds: [] as string[],
 };
 
 // Backwards-compatible export
