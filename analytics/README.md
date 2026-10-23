@@ -34,6 +34,14 @@ npx wrangler d1 execute hariram-analytics --remote \
 ```
 Until the `DB` binding exists, events are dropped silently and the site works normally.
 
+### D. View Live Dashboard Locally
+Instead of running raw SQL in the terminal, launch the local dashboard:
+```bash
+npm run analytics
+```
+Then open: **http://localhost:43210**
+It provides visual graphs for 30-day traffic, WhatsApp conversion breakdown, scroll funnel, top referrers, and live telemetry.
+
 ## Events recorded
 
 | event | when | `source` |
