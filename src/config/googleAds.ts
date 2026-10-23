@@ -38,8 +38,6 @@ export const GOOGLE_TAG_CONFIG = {
     getEnv('PUBLIC_GADS_CONVERSION_SEND_TO') ||
     getEnv('GOOGLE_ADS_CONVERSION_SEND_TO') ||
     'AW-18507413408/2LB4CJKnmJodEKDvgvlE',
-  // Additional Google tag IDs if needed
-  extraTagIds: [] as string[],
 };
 
 // Backwards-compatible export
