@@ -5,7 +5,7 @@ Two layers, both free at your volume:
 1. **Cloudflare Web Analytics** — visitors, page views, referrers, countries, devices, Core Web Vitals. No code needed.
 2. **First-party event counter** (`functions/api/track.js` + D1) — which Order button gets tapped, where visitors come from (Instagram, Google, UTM links), and how far they scroll. This is what Web Analytics can't do.
 
-No cookies, no IP addresses and no personal data are stored.
+No cookies, no IP addresses and no personal data are stored. A random visitor id (`vid`) is kept in the browser's localStorage to tell new from returning visitors; it is disclosed in `src/pages/privacy.astro`.
 
 ## One-time setup
 
@@ -49,6 +49,9 @@ It provides visual graphs for 30-day traffic, WhatsApp conversion breakdown, scr
 | `landing` | first page load in a browser-tab session | `page` |
 | `whatsapp_click` | any tap on a wa.me link | `hero`, `header`, `mobile_menu`, `mobile_bar`, `product:<name>`, `products_section`, `hamper`, `cta_banner`, `footer`, `other` |
 | `section_view` | section scrolled into view (once per session) | `oil-truth`, `products`, `hamper`, `story` |
+| `engage` | summary sent when the page is hidden/closed (max 6 per session): `active_s` seconds the tab was visible AND the person was interacting, `depth` deepest scroll %, plus `input` = a real touch/click/key happened | — |
+
+`input`, `vid`, `active_s`, `depth` are NULL on rows recorded by the old tracker (= unknown, never 0). The dashboard shows those as "unknown" and leaves them out of time-on-site / real-input / new-vs-returning numbers.
 
 To label a specific link, add `data-track="my_label"` to it (or a parent element).
 
@@ -96,6 +99,14 @@ SELECT device, COUNT(DISTINCT CASE WHEN event='landing' THEN sid END) AS session
 FROM events WHERE ts > (strftime('%s','now') - 7*86400) * 1000
 GROUP BY device;
 ```
+
+## Bot filtering, self-exclusion and the leads log
+- `functions/api/track.js` flags each event `is_bot = 1` (crawler user-agent, no Accept-Language, WebDriver, or a datacenter network such as Google Cloud / AWS / Azure / Hetzner) and stores the network owner in `asorg`. Nothing is dropped — flagged rows stay in D1 and show up in the dashboard's **Raw** scope and in the raw event stream with a `bot` badge.
+- Dashboard scopes: **India · humans** (default), **All humans**, **Raw**. A banner always says how many raw sessions the current scope hides.
+- Stop counting yourself: open `https://hariramnamkeen.com/?hn_ignore=1` once on each of your own phones/laptops/browsers (`?hn_ignore=0` undoes it). Those devices send no events and fire no GA4 / Google Ads conversion.
+- Existing database? Run the two `ALTER TABLE` lines at the top of `analytics/schema.sql` once, then `--file=analytics/schema.sql` to create the `leads` table.
+- Rows recorded before the filter went live have no bot flag; they are only filtered by country. If a rule is wrong, re-flag history with SQL, e.g. `UPDATE events SET is_bot = 1 WHERE country <> 'IN' AND ts < <deploy time in ms>`.
+- **Real orders** card: log each WhatsApp chat (source from the `Ref:` tag in their first message → status chat / quote / paid). That is the only place a tap becomes an order.
 
 ## What this can't see
 A WhatsApp tap is not an order. Keep a "came from" column in your order sheet and compare it with the daily click count to get your true tap-to-order rate.

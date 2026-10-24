@@ -289,6 +289,33 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       }
       const device = window.matchMedia('(max-width: 768px)').matches ? 'mobile' : 'desktop';
 
+      // Owner exclusion: open any page once with ?hn_ignore=1 on each of your own devices/browsers
+      // (?hn_ignore=0 undoes it). Your visits and test taps are then never recorded and never
+      // fire the GA4 / Google Ads conversion.
+      let ignore = false;
+      try {
+        if (q.get('hn_ignore') === '1') localStorage.setItem('hn_ignore', '1');
+        if (q.get('hn_ignore') === '0') localStorage.removeItem('hn_ignore');
+        ignore = localStorage.getItem('hn_ignore') === '1';
+      } catch (e) {}
+      window.__HN_IGNORE__ = ignore;
+
+      // Visitor id: random, first-party, kept only in this browser (localStorage) so the dashboard can tell
+      // new from returning visitors. No cookie, no IP, nothing personal. Devices opened with ?hn_ignore=1 never get one.
+      let vid = '';
+      try {
+        if (!ignore) {
+          vid = localStorage.getItem('hn_vid') || '';
+          if (!vid) {
+            vid = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
+            localStorage.setItem('hn_vid', vid);
+          }
+        }
+      } catch (e) {}
+
+      // Real-input signal + engagement (filled in by the listeners at the bottom of this script)
+      let input = 0, lastInputAt = 0, activeMs = 0, depth = 0, flushes = 0, lastFlushAt = 0;
+
       // Dynamic WhatsApp attribution helper:
       // Only append campaign references (e.g. Ref: GAds or Ref: instagram) when an explicit campaign source exists.
       // Organic and direct visitors remain clean with zero Ref tags so attribution is never polluted.
@@ -324,8 +351,11 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         decorateWaLinks();
       }
 
-      const send = (event, source) => {
-        const body = JSON.stringify({ event, source, path: location.pathname, device, ...ctx });
+      const send = (event, source, extra) => {
+        if (ignore) return;
+        // wd = browser says it is automated (WebDriver / headless); server also checks UA + network
+        // inp = a real touch/click/key/wheel has happened on this page before this event (0 or 1)
+        const body = JSON.stringify({ event, source, path: location.pathname, device, wd: navigator.webdriver === true, vid, inp: input, ...(extra || {}), ...ctx });
         if (navigator.sendBeacon) navigator.sendBeacon('/api/track', body);
         else fetch('/api/track', { method: 'POST', body, keepalive: true }).catch(() => {});
         // also forwarded if Cloudflare Zaraz is ever switched on
@@ -376,6 +406,39 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
           if (el) io.observe(el);
         });
       }
+
+      // Engagement: did a real person touch the page, how long were they actually active, how deep did they scroll.
+      // Active time only counts while the tab is visible AND there was input in the last 15 s.
+      // One summary is sent when the page is hidden or closed (e.g. the moment WhatsApp opens), max 6 per session.
+      const markInput = () => { input = 1; lastInputAt = performance.now(); };
+      ['pointerdown', 'touchstart', 'keydown', 'wheel'].forEach((t) => {
+        addEventListener(t, markInput, { passive: true, capture: true });
+      });
+      const measureDepth = () => {
+        const h = document.documentElement.scrollHeight;
+        if (h > 0) depth = Math.max(depth, Math.min(100, Math.round(((window.scrollY + window.innerHeight) / h) * 100)));
+      };
+      addEventListener('scroll', () => {
+        if (input) lastInputAt = performance.now();
+        measureDepth();
+      }, { passive: true });
+      addEventListener('load', () => setTimeout(measureDepth, 1500));
+      let tickAt = performance.now();
+      setInterval(() => {
+        const now = performance.now(), dt = now - tickAt;
+        tickAt = now;
+        if (document.visibilityState === 'visible' && input && now - lastInputAt < 15000) activeMs += Math.min(dt, 2000);
+      }, 1000);
+      const flush = () => {
+        const now = Date.now();
+        if (flushes >= 6 || now - lastFlushAt < 1000) return; // visibilitychange + pagehide fire together on close
+        flushes += 1;
+        lastFlushAt = now;
+        measureDepth();
+        send('engage', '', { a: Math.round(activeMs / 1000), dp: depth });
+      };
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+      addEventListener('pagehide', flush);
     } catch (e) { /* analytics must never break the page */ }
   })();
   </script>
@@ -406,6 +469,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         ? e.target.closest('a[data-wa-click]')
         : null;
       if (!link) return;
+      if (window.__HN_IGNORE__) return; // owner device: no GA4 / Google Ads conversion
 
       // Track WhatsApp lead in Google Analytics 4
       if (typeof window.gtag === 'function') {
