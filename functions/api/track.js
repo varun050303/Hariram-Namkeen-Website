@@ -109,8 +109,10 @@ export async function onRequestPost({ request, env }) {
         try {
           await insert(db, row);
           break;
-        } catch {
-          // column missing in an older schema: try the narrower row
+        } catch (err) {
+          // Only fall back to an older/narrower schema if a column is missing.
+          // Transient DB errors should not trigger retries across all fallback rows.
+          if (!/no such column/i.test(err?.message || '')) break;
         }
       }
     }

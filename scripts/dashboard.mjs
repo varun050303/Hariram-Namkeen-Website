@@ -334,9 +334,16 @@ function buildQueries(now, days, scope) {
       SELECT s.human AS human, s.active_s AS active_s, s.depth AS depth, s.taps AS taps,
              CASE WHEN s.tap_ts IS NULL THEN NULL ELSE (s.tap_ts - s.t0) / 1000.0 END AS tap_secs,
              CASE WHEN s.vid IS NULL THEN NULL
-                  WHEN EXISTS (SELECT 1 FROM events e WHERE e.vid = s.vid AND e.event = 'landing' AND e.ts < s.t0 - 1800000) THEN 1
+                  WHEN v.first_landing < s.t0 - 1800000 THEN 1
                   ELSE 0 END AS is_returning
-      FROM sess s WHERE s.t0 >= ${S} AND s.inst = 1
+      FROM sess s
+      LEFT JOIN (
+        SELECT vid, MIN(ts) AS first_landing
+        FROM events
+        WHERE event = 'landing' AND vid IS NOT NULL AND vid <> ''
+        GROUP BY vid
+      ) v ON v.vid = s.vid
+      WHERE s.t0 >= ${S} AND s.inst = 1
       ORDER BY s.t0 DESC LIMIT 3000`,
     ],
     [
@@ -348,9 +355,16 @@ function buildQueries(now, days, scope) {
              s.taps AS taps, s.inst AS inst, s.human AS human, s.active_s AS active_s, s.depth AS depth,
              s.is_bot AS is_bot, s.sid AS sid_full, substr(s.sid,1,6) AS sid,
              CASE WHEN s.vid IS NULL THEN NULL
-                  WHEN EXISTS (SELECT 1 FROM events e WHERE e.vid = s.vid AND e.event = 'landing' AND e.ts < s.t0 - 1800000) THEN 1
+                  WHEN v.first_landing < s.t0 - 1800000 THEN 1
                   ELSE 0 END AS is_returning
-      FROM sess s WHERE s.t0 >= ${S}
+      FROM sess s
+      LEFT JOIN (
+        SELECT vid, MIN(ts) AS first_landing
+        FROM events
+        WHERE event = 'landing' AND vid IS NOT NULL AND vid <> ''
+        GROUP BY vid
+      ) v ON v.vid = s.vid
+      WHERE s.t0 >= ${S}
       ORDER BY s.t0 DESC LIMIT 60`,
     ],
     [
