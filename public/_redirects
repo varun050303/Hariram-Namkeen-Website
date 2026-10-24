@@ -1,0 +1,6 @@
+# Short links for print (QR codes on packets / invoices). Printed QR codes point at these short paths,
+# so the tracking tags can be changed here later WITHOUT reprinting anything.
+# Format: [source] [destination] [status]   — docs: https://developers.cloudflare.com/pages/configuration/redirects/
+# Keep the utm values lowercase and in sync with analytics/README.md ("Link tagging").
+/p /?utm_source=packet_qr&utm_medium=print&utm_campaign=packet 302
+/i /?utm_source=invoice_qr&utm_medium=print&utm_campaign=invoice 302
