@@ -123,14 +123,14 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
           width="600"
           height="1066"
         />
-        <img
+        <!-- <img
           src="/images/hariram_special_4_top_view.webp"
           alt="The Hariram Special 4 Box - Top View"
           class="hero-slide"
           width="1024"
           height="1024"
           loading="lazy"
-        />
+        /> -->
         <img
           src="/images/masala_chana_dal.webp"
           alt="Crispy Masala Chana Dal"
@@ -159,7 +159,7 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
     </div>
   </div>
 
-  <a href="#craft" class="hero-scroll-hint" aria-label="Scroll down">
+  <a href="#products" class="hero-scroll-hint" aria-label="Scroll down">
     <span class="hero-scroll-label">Scroll</span>
     <span class="hero-scroll-arrow">
       <svg
@@ -268,7 +268,7 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
         }
 
         const tl = gsap.timeline({
-          delay: 0.35,
+          delay: 0.1,
           onComplete: () => {
             introDone = true;
           },
@@ -278,7 +278,7 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
         const nk = { p: 0 };
         tl.to(nk, {
           p: 100,
-          duration: 1.8,
+          duration: 0.85,
           ease: "power1.out",
           onUpdate: () => {
             const p = nk.p;
@@ -298,31 +298,20 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
             namkeenFlourish,
             {
               strokeDashoffset: 0,
-              duration: 1.0,
+              duration: 0.5,
               ease: "power1.inOut",
             },
-            "-=0.3",
+            "-=0.25",
           );
         }
 
-        // 3. Gentle luminous shimmer across "Namkeen"
-        tl.to(
-          namkeenText,
-          {
-            backgroundPosition: "-40% 0",
-            duration: 1.5,
-            ease: "power1.inOut",
-          },
-          "-=0.4",
-        );
-
-        // 4. Natural pause as eye reads "made in yellow", then "mustard" begins
+        // 3. "mustard" begins in close natural cadence (no long awkward wait!)
         const ms = { p: 0 };
         tl.to(
           ms,
           {
             p: 100,
-            duration: 1.7,
+            duration: 0.85,
             ease: "power1.out",
             onUpdate: () => {
               const p = ms.p;
@@ -335,34 +324,35 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
               mustardText.style.maskImage = "none";
             },
           },
-          "+=0.35",
+          "-=0.5",
         );
 
-        // 5. Golden flourish draws as final pen stroke of "mustard"
+        // 4. Golden flourish draws as final pen stroke of "mustard"
         if (mustardFlourish) {
           tl.to(
             mustardFlourish,
             {
               strokeDashoffset: 0,
-              duration: 0.95,
+              duration: 0.5,
               ease: "power1.inOut",
             },
-            "-=0.3",
+            "-=0.25",
           );
         }
 
-        // 6. Gentle golden shimmer across "mustard"
+        // 5. Gentle luminous golden shimmer across both as finishing touch
         tl.to(
-          mustardText,
+          [namkeenText, mustardText],
           {
             backgroundPosition: "-40% 0",
-            duration: 1.5,
+            duration: 0.9,
+            stagger: 0.15,
             ease: "power1.inOut",
           },
-          "-=0.4",
+          "-=0.2",
         );
 
-        // 7. Intro write-on complete — ready for interactive hover shimmer
+        // 6. Complete
         tl.call(() => {
           introDone = true;
         });
@@ -377,21 +367,30 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
             runWithGsap();
           }
         }, 30);
-        setTimeout(() => clearInterval(checkGsap), 3000);
+        setTimeout(() => {
+          clearInterval(checkGsap);
+          if (!introDone) runWithGsap();
+        }, 2000);
       }
     }
+
+    const startIntro = () => {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          setTimeout(initAppleHelloWriteOn, 50);
+        });
+      } else {
+        setTimeout(initAppleHelloWriteOn, 50);
+      }
+    };
 
     if (
       document.readyState === "complete" ||
       document.readyState === "interactive"
     ) {
-      setTimeout(initAppleHelloWriteOn, 150);
+      startIntro();
     } else {
-      window.addEventListener(
-        "DOMContentLoaded",
-        () => setTimeout(initAppleHelloWriteOn, 150),
-        { once: true },
-      );
+      window.addEventListener("DOMContentLoaded", startIntro, { once: true });
     }
   })();
 </script>
