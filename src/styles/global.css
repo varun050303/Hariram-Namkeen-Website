@@ -3887,12 +3887,25 @@ footer {
     font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
-  .hero-value-bridge {
+  /* USP Trust Pills right under headline */
+  .hero-benefits-line {
     order: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    margin-top: 2px;
+    font-size: 11px;
+    gap: 6px 8px;
+  }
+
+  /* Free Delivery Hook */
+  .hero-value-bridge {
+    order: 4;
     justify-content: center;
     text-align: center;
     font-size: 13px;
-    margin: 0;
+    margin: 2px 0 0 0;
     line-height: 1.4;
     gap: 2px 0;
   }
@@ -3901,13 +3914,27 @@ footer {
     margin: 0 6px;
   }
 
-  /* Carousel sits prominently right under the subtitle */
+  /* Primary WhatsApp CTA row */
+  .hero-actions-row {
+    order: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* Carousel sits right under the CTA as visual proof */
   .hm-carousel-wrapper {
-    order: 4;
+    order: 6;
+    margin-top: 8px;
+    margin-bottom: 2px;
   }
 
   .hero-pricing-box {
-    order: 5;
+    order: 7;
     width: 100%;
     margin-top: 4px;
     background: rgba(255, 252, 245, 0.95);
@@ -3964,17 +3991,6 @@ footer {
     width: 100%;
   }
 
-  .hero-actions-row {
-    order: 6;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    gap: 12px;
-    margin-top: 8px;
-    margin-bottom: 6px;
-  }
-
   .hero-action-row-primary {
     width: 100%;
     display: flex;
@@ -4002,17 +4018,6 @@ footer {
     padding: 4px 0;
     color: var(--maroon, #751818);
     font-weight: 600;
-  }
-
-  .hero-benefits-line {
-    order: 7;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 100%;
-    margin-top: 2px;
-    font-size: 11px;
-    gap: 6px 8px;
   }
 
   .hero-jain-tag {

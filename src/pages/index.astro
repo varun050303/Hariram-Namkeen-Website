@@ -25,6 +25,7 @@ import MobileOrderBar from '../components/MobileOrderBar.astro';
 import QuickViewModal from '../components/QuickViewModal.astro';
 import HeritageBorder from '../components/HeritageBorder.astro';
 import DiwaliCrackers from '../components/DiwaliCrackers.astro';
+import DeliveryTerms  from '../components/DeliveryTerms.astro';
 
 import '../styles/global.css';
 ---
@@ -40,28 +41,37 @@ import '../styles/global.css';
 
   <Header />
   <main id="main-content">
+    <!-- 1. Brand identity and hero (First screen) -->
     <Hero />
+
+    <!-- 2. Delivery terms and products (Immediately after hero) -->
+    <DeliveryTerms />
     <Marquee />
     <HeritageBorder id="border-after-marquee" class="section-end-border" height={22} />
     <Products />
     <HeritageBorder id="border-after-products" class="section-end-border" height={22} />
-    <Craft />
-    <HeritageBorder id="border-after-craft" class="section-end-border" height={22} />
+
+    <!-- 3. Why Hariram is different (After products) -->
     <OilTruth />
     <HeritageBorder id="border-after-oil" class="section-end-border" height={22} />
-    <!-- <FestiveHamper /> -->
-    <!-- <HeritageBorder id="border-after-hamper" class="section-end-border" height={22} /> -->
-    <!-- <Platforms /> -->
+    <Craft />
+    <HeritageBorder id="border-after-craft" class="section-end-border" height={22} />
+
+    <!-- 4. Customer reviews & crunch proof (Below main buying content) -->
+    <Reviews />
+    <HeritageBorder id="border-after-reviews" class="section-end-border" height={22} />
+    <ReelSection />
+    <HeritageBorder id="border-after-reels" class="section-end-border" height={22} />
+
+    <!-- 5. Our Story, How It's Made, Our Culture (Further down) -->
     <Story />
     <HeritageBorder id="border-after-story" class="section-end-border" height={22} />
     <Process />
     <HeritageBorder id="border-after-process" class="section-end-border" height={22} />
-    <ReelSection />
-    <HeritageBorder id="border-after-reels" class="section-end-border" height={22} />
-    <Reviews />
-    <HeritageBorder id="border-after-reviews" class="section-end-border" height={22} />
     <GrahakDev />
     <HeritageBorder id="border-after-grahak" class="section-end-border" height={22} />
+
+    <!-- 6. Blog, detailed FAQs and educational articles (Near the bottom) -->
     <HomeFAQ />
     <HeritageBorder id="border-after-faq" class="section-end-border" height={22} />
     <CTA />
