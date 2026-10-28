@@ -41,7 +41,7 @@ const lowPrice = Math.min(product.priceSingle, BOX_OFFER.price);
 const highPrice = Math.max(product.priceSingle, BOX_OFFER.price);
 
 const pageTitle = `Buy ${product.name} (${product.hindiName}) Online — Pure Yellow Mustard Oil Namkeen | Hariram`;
-const pageDescription = `Order artisanal ${product.name} crafted in 100% cold-pressed yellow mustard oil with zero palm oil and zero TBHQ. ₹${product.priceSingle} single pack or ₹${BOX_OFFER.price} Special 4 Tasting Box with Free Pan-India Delivery.`;
+const pageDescription = `Order artisanal ${product.name} crafted in 100% pure yellow mustard oil with zero palm oil and zero chemical preservatives. ₹${product.priceSingle} per ${product.weightSingle} pack with doorstep delivery across India.`;
 
 const productKeywords = [
   `buy ${product.shortName.toLowerCase()} online`,
@@ -58,27 +58,25 @@ const productKeywords = [
   'hariram namkeen',
 ].join(', ');
 
-// ── Order Payloads for Margin-Protecting Buy Box & Mobile Bar ─────────────
-const boxItem = product.inBox
-  ? `${BOX_OFFER.name} (${BOX_OFFER.weight}) — incl. ${product.name}`
-  : `${BOX_OFFER.name} (${BOX_OFFER.weight}) + ${product.name}`;
+// ── Order Payloads for Product Buy Box & Mobile Bar ────────────────────────
+const bundlePrice = product.priceSingle * 4;
 
 const buyBoxCfg = {
-  box: {
-    item: boxItem,
-    price: BOX_OFFER.price,
-    shipping: BOX_OFFER.shipping,
-    cta: `Get The Special 4 Box · ₹${BOX_OFFER.price} (Free Delivery)`,
-    stickyPrice: `₹${BOX_OFFER.price}`,
-    stickyNote: 'The Special 4 Box (800g) · Free Pan-India Delivery',
-  },
   single: {
-    item: `${product.name} (${product.weightSingle}) — Single Pack`,
+    item: `${product.name} (${product.weightSingle})`,
     price: product.priceSingle,
-    shipping: ship,
-    cta: `Order Single ${product.weightSingle} Pack · ₹${singleTotal}`,
-    stickyPrice: `₹${singleTotal}`,
-    stickyNote: `Single ${product.weightSingle} Pack · ₹${product.priceSingle} + ₹${ship} Shipping`,
+    shipping: 0,
+    cta: `Order on WhatsApp · ₹${product.priceSingle}`,
+    stickyPrice: `₹${product.priceSingle}`,
+    stickyNote: `Single ${product.weightSingle} · Free delivery on 1st order (1kg+)`,
+  },
+  bundle: {
+    item: `4 × ${product.name} (1kg Family Pack)`,
+    price: bundlePrice,
+    shipping: 0,
+    cta: `Order 4 Packs (1kg) · ₹${bundlePrice} (Free Delivery)`,
+    stickyPrice: `₹${bundlePrice}`,
+    stickyNote: `1kg Pack (4 × ${product.weightSingle}) · Free Delivery on 1st Order`,
   },
 };
 
@@ -227,7 +225,7 @@ const breadcrumbSchema = {
         <span class="prod-urgency-sep" aria-hidden="true">•</span>
         <span class="prod-urgency-item">100% Satvik (No Onion / No Garlic)</span>
         <span class="prod-urgency-sep" aria-hidden="true">•</span>
-        <span class="prod-urgency-item">Free Pan-India Delivery on ₹{BOX_OFFER.price} Tasting Boxes</span>
+        <span class="prod-urgency-item">Free Delivery: 1st Order on 1kg+ (4 packs) · All Orders 2kg+</span>
       </div>
     </aside>
 
@@ -332,59 +330,55 @@ const breadcrumbSchema = {
               Select Package Configuration
             </legend>
 
-            <!-- Option A: The Special 4 Tasting Box (DEFAULT & RECOMMENDED) -->
-            <label class="prod-option-card is-active" id="opt-box" for="radio-pack-box">
+            <!-- Option A: Single Pack (DEFAULT) -->
+            <label class="prod-option-card is-active" id="opt-single" for="radio-pack-single">
               <input
                 type="radio"
-                id="radio-pack-box"
+                id="radio-pack-single"
                 name="pack-choice"
-                value="box"
+                value="single"
                 checked
                 class="prod-radio-input"
               />
               <span class="prod-custom-radio" aria-hidden="true"></span>
 
               <div class="prod-option-main">
-                <div class="prod-option-pills">
-                  <span class="prod-pill-diwali">💥 Diwali offer</span>
-                  <span class="prod-pill-savings">Save ₹50</span>
-                </div>
-                <span class="prod-option-title">Get in The Special 4 Tasting Box (800g)</span>
+                <span class="prod-option-title">Single {product.weightSingle} Pack</span>
                 <span class="prod-option-sub">
-                  Includes {product.name} + 3 other signature snacks (4 × 200g pouches)
-                </span>
-              </div>
-
-              <div class="prod-option-pricing">
-                <div class="prod-dual-price">
-                  <span class="prod-price-struck">₹{BOX_OFFER.originalPrice || 499}</span>
-                  <span class="prod-option-price">₹{BOX_OFFER.price}</span>
-                </div>
-                <span class="prod-option-shipping prod-shipping-free">FREE Pan-India Delivery</span>
-              </div>
-            </label>
-
-            <!-- Option B: Single 200g Pack Only -->
-            <label class="prod-option-card" id="opt-single" for="radio-pack-single">
-              <input
-                type="radio"
-                id="radio-pack-single"
-                name="pack-choice"
-                value="single"
-                class="prod-radio-input"
-              />
-              <span class="prod-custom-radio" aria-hidden="true"></span>
-
-              <div class="prod-option-main">
-                <span class="prod-option-title">Single {product.weightSingle} Pack Only</span>
-                <span class="prod-option-sub">
-                  + ₹{ship} Standard Shipping = ₹{singleTotal} Total Delivered
+                  Pure yellow mustard oil · Zero palm oil
                 </span>
               </div>
 
               <div class="prod-option-pricing">
                 <span class="prod-option-price">₹{product.priceSingle}</span>
-                <span class="prod-option-shipping">+ ₹{ship} Shipping</span>
+                <span class="prod-option-shipping">Net Wt. {product.weightSingle}</span>
+              </div>
+            </label>
+
+            <!-- Option B: 4 Packs Bundle (1kg) -->
+            <label class="prod-option-card" id="opt-bundle" for="radio-pack-bundle">
+              <input
+                type="radio"
+                id="radio-pack-bundle"
+                name="pack-choice"
+                value="bundle"
+                class="prod-radio-input"
+              />
+              <span class="prod-custom-radio" aria-hidden="true"></span>
+
+              <div class="prod-option-main">
+                <div class="prod-option-pills">
+                  <span class="prod-pill-savings">Free Delivery on 1st Order</span>
+                </div>
+                <span class="prod-option-title">4 Packs (1kg Family Bundle)</span>
+                <span class="prod-option-sub">
+                  4 × {product.weightSingle} packs · Ships Free on your 1st order
+                </span>
+              </div>
+
+              <div class="prod-option-pricing">
+                <span class="prod-option-price">₹{bundlePrice}</span>
+                <span class="prod-option-shipping prod-shipping-free">1kg Total</span>
               </div>
             </label>
 
@@ -393,7 +387,7 @@ const breadcrumbSchema = {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
               </svg>
-              <span id="prod-cta-label">{buyBoxCfg.box.cta}</span>
+              <span id="prod-cta-label">{buyBoxCfg.single.cta}</span>
             </button>
 
             <div class="prod-buybox-footer">
@@ -530,13 +524,13 @@ const breadcrumbSchema = {
         <div class="prod-cross-header">
           <div class="prod-kicker">
             <span class="prod-sparkle">✦</span>
-            <span>Inside The Special 4 Box</span>
+            <span>More Authentic Namkeens</span>
           </div>
           <h2 class="prod-section-heading font-serif-editorial" id="cross-sell-heading">
-            Also Inside The Special 4 Tasting Box
+            You Might Also Like
           </h2>
           <p class="prod-section-sub">
-            Sample the four authentic culinary traditions of Western UP in one 800g box with Free Pan-India Delivery.
+            Handcrafted fresh in 100% pure yellow mustard oil with zero palm oil, zero TBHQ, and strictly No Onion No Garlic.
           </p>
         </div>
 
@@ -587,8 +581,8 @@ const breadcrumbSchema = {
   <!-- ── STICKY MOBILE BOTTOM BAR (Mobile viewports only) ── -->
   <aside class="prod-sticky-bar" id="prod-sticky-bar" aria-label="Quick Order">
     <div class="prod-sticky-left">
-      <strong class="prod-sticky-price" id="sticky-price-text">{buyBoxCfg.box.stickyPrice}</strong>
-      <span class="prod-sticky-note" id="sticky-note-text">{buyBoxCfg.box.stickyNote}</span>
+      <strong class="prod-sticky-price" id="sticky-price-text">{buyBoxCfg.single.stickyPrice}</strong>
+      <span class="prod-sticky-note" id="sticky-note-text">{buyBoxCfg.single.stickyNote}</span>
     </div>
     <button type="button" class="prod-sticky-btn" id="prod-sticky-btn">
       Order Now →
@@ -602,7 +596,7 @@ const breadcrumbSchema = {
 <script is:inline define:vars={{ buyBoxCfg }}>
   (() => {
     const radioInputs = document.querySelectorAll('input[name="pack-choice"]');
-    const optBox = document.getElementById('opt-box');
+    const optBundle = document.getElementById('opt-bundle');
     const optSingle = document.getElementById('opt-single');
     const ctaButton = document.getElementById('prod-main-cta');
     const ctaLabel = document.getElementById('prod-cta-label');
@@ -613,15 +607,15 @@ const breadcrumbSchema = {
 
     function getSelectedOption() {
       const checked = document.querySelector('input[name="pack-choice"]:checked');
-      return checked && checked.value === 'single' ? buyBoxCfg.single : buyBoxCfg.box;
+      return checked && checked.value === 'bundle' ? buyBoxCfg.bundle : buyBoxCfg.single;
     }
 
     function updateBuyBoxUI() {
       const current = getSelectedOption();
-      const isBox = current === buyBoxCfg.box;
+      const isBundle = current === buyBoxCfg.bundle;
 
-      if (optBox) optBox.classList.toggle('is-active', isBox);
-      if (optSingle) optSingle.classList.toggle('is-active', !isBox);
+      if (optBundle) optBundle.classList.toggle('is-active', isBundle);
+      if (optSingle) optSingle.classList.toggle('is-active', !isBundle);
 
       if (ctaLabel) ctaLabel.textContent = current.cta;
       if (stickyPrice) stickyPrice.textContent = current.stickyPrice;

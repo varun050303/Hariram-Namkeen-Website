@@ -156,7 +156,7 @@ const box = {
       <!-- Action Buttons -->
       <footer class="qv-actions">
         <button type="button" class="qv-btn-order" id="qv-order">
-          <span>Get in 4-Pack Box · ₹{BOX_OFFER.price} (Free Delivery)</span>
+          <span id="qv-order-label">Order on WhatsApp</span>
           <span class="qv-arrow" aria-hidden="true">→</span>
         </button>
         <a class="qv-link-page" id="qv-page-link" href="/">
@@ -211,6 +211,11 @@ const box = {
 
       const pageLink = $('qv-page-link');
       if (pageLink) pageLink.setAttribute('href', item.url || '/');
+
+      const orderLabel = $('qv-order-label');
+      if (orderLabel) {
+        orderLabel.textContent = `Order ${item.name} · ₹${item.priceSingle}`;
+      }
 
       if (item.nutrition) {
         $('qv-kcal').textContent = Math.round(item.nutrition.energyKcal) + ' kcal';
@@ -295,23 +300,19 @@ const box = {
       }
     });
 
-    // Primary Modal CTA: Triggers the 4-pack box with current snack noted
+    // Primary Modal CTA: Triggers individual snack order on WhatsApp
     const orderBtn = $('qv-order');
     if (orderBtn) {
       orderBtn.addEventListener('click', () => {
         const item = currentSlug ? qvData[currentSlug] : null;
-        const itemName =
-          box.name +
-          ' (' +
-          box.weight +
-          ')' +
-          (item && item.inBox ? ' — incl. ' + item.shortName : '');
+        if (!item) return;
+        const itemName = `${item.name} (${item.weightSingle})`;
 
         window.closeHariramQuickView();
         window.triggerHariramOrder({
           item: itemName,
-          price: box.price,
-          shipping: box.shipping,
+          price: item.priceSingle,
+          shipping: 0,
           source: 'quickview_modal',
         });
       });
