@@ -25,7 +25,6 @@ import MobileOrderBar from '../components/MobileOrderBar.astro';
 import QuickViewModal from '../components/QuickViewModal.astro';
 import HeritageBorder from '../components/HeritageBorder.astro';
 import DiwaliCrackers from '../components/DiwaliCrackers.astro';
-import DeliveryTerms  from '../components/DeliveryTerms.astro';
 
 import '../styles/global.css';
 ---
@@ -43,11 +42,10 @@ import '../styles/global.css';
   <main id="main-content">
     <!-- 1. Brand identity and hero (First screen) -->
     <Hero />
-
-    <!-- 2. Delivery terms and products (Immediately after hero) -->
-    <DeliveryTerms />
     <Marquee />
     <HeritageBorder id="border-after-marquee" class="section-end-border" height={22} />
+
+    <!-- 2. Delivery terms and products (Immediately after hero) -->
     <Products />
     <HeritageBorder id="border-after-products" class="section-end-border" height={22} />
 
