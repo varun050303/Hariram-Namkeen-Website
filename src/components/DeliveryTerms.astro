@@ -1,293 +1,139 @@
 ---
-// DeliveryTerms.astro — High-conversion Delivery Terms & First-Order Free Delivery Card
-// Clearly highlights:
-// 1. Free delivery on 1st order with min. 1kg (any 4 packs)
-// 2. Free delivery on orders of 2kg or above
-// 3. Fast pan-India shipping from Muzaffarnagar
+// DeliveryTerms.astro — Refined Heritage Delivery Strip
+// Compact, artisanal announcement strip communicating:
+// 1. First-order free delivery on min. 1kg (any 4 packs)
+// 2. All orders free delivery on 2kg+
+// 3. Fresh kitchen dispatch in 24–48 hours
 ---
 
-<section class="delivery-terms-section" id="delivery-terms" aria-label="Hariram Namkeen Delivery Terms">
+<div class="delivery-strip" id="delivery-terms">
   <div class="container">
-    <div class="delivery-card">
-      <div class="delivery-badge-row">
-        <span class="delivery-tag">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="1" y="3" width="15" height="13"></rect>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-            <circle cx="18.5" cy="18.5" r="2.5"></circle>
-          </svg>
-          Doorstep Delivery Across India
-        </span>
-        <span class="delivery-highlight-pill">✨ Fresh Kitchen Dispatch</span>
+    <div class="delivery-strip-inner">
+      <div class="ds-item">
+        <span class="ds-tag">First Order</span>
+        <span class="ds-text">Free delivery on <strong>1kg+</strong> <span class="ds-hint">(any 4 packs)</span></span>
       </div>
 
-      <div class="delivery-content-grid">
-        <!-- Offer 1: First Order -->
-        <div class="delivery-offer-box is-first-order">
-          <div class="dob-icon-wrap">
-            <span class="dob-emoji">🎁</span>
-          </div>
-          <div class="dob-text">
-            <div class="dob-kicker">FIRST-TIME CUSTOMER OFFER</div>
-            <h3 class="dob-title">Free Delivery on 1st Order</h3>
-            <p class="dob-desc">
-              Minimum order of just <strong>1kg</strong> (pick any <strong>4 packs</strong> of 250g). Taste the freshness risk-free!
-            </p>
-          </div>
-        </div>
+      <span class="ds-sep" aria-hidden="true">✦</span>
 
-        <!-- Offer 2: Regular & Bulk Orders -->
-        <div class="delivery-offer-box">
-          <div class="dob-icon-wrap">
-            <span class="dob-emoji">🚚</span>
-          </div>
-          <div class="dob-text">
-            <div class="dob-kicker">ALL CUSTOMERS &amp; REPEAT ORDERS</div>
-            <h3 class="dob-title">Free Delivery on 2kg+</h3>
-            <p class="dob-desc">
-              Any order of <strong>2kg or above</strong> ships <strong>100% Free</strong> to any serviceable PIN code in India.
-            </p>
-          </div>
-        </div>
-
-        <!-- Guarantee 3: Kitchen Dispatch -->
-        <div class="delivery-offer-box">
-          <div class="dob-icon-wrap">
-            <span class="dob-emoji">⚡</span>
-          </div>
-          <div class="dob-text">
-            <div class="dob-kicker">FRESHNESS PROMISE</div>
-            <h3 class="dob-title">Dispatched in 24–48 Hrs</h3>
-            <p class="dob-desc">
-              Fried fresh in pure yellow mustard oil, packed airtight, and handed to express couriers directly from Muzaffarnagar.
-            </p>
-          </div>
-        </div>
+      <div class="ds-item">
+        <span class="ds-tag">All Orders</span>
+        <span class="ds-text">Free delivery on <strong>2kg or above</strong></span>
       </div>
 
-      <!-- Action helper nudge -->
-      <div class="delivery-helper-bar">
-        <span>💡 <em>Pro Tip:</em> Mix &amp; match any 4 snacks (250g each) below to build your 1kg sampler and claim <strong>Free Delivery</strong>!</span>
+      <span class="ds-sep" aria-hidden="true">✦</span>
+
+      <div class="ds-item">
+        <span class="ds-tag ds-tag-muted">Direct Kitchen</span>
+        <span class="ds-text">Dispatched fresh across India in 24–48 hrs</span>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <style>
-  .delivery-terms-section {
-    padding: 18px 0 10px;
+  .delivery-strip {
+    padding: 10px 0;
     background: transparent;
     position: relative;
     z-index: 2;
   }
 
-  .delivery-card {
-    background: linear-gradient(145deg, #FFFDF9 0%, #FAF3E6 100%);
-    border: 1.5px solid rgba(194, 127, 21, 0.32);
-    border-radius: 20px;
-    padding: 24px 28px 20px;
-    box-shadow: 0 8px 30px rgba(79, 14, 14, 0.06), 0 2px 6px rgba(194, 127, 21, 0.08);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .delivery-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--maroon, #751818), var(--gold, #C27F15), var(--maroon, #751818));
-  }
-
-  .delivery-badge-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed rgba(194, 127, 21, 0.28);
-  }
-
-  .delivery-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--maroon, #751818);
-  }
-
-  .delivery-tag svg {
-    color: var(--gold, #C27F15);
-  }
-
-  .delivery-highlight-pill {
-    font-size: 11.5px;
-    font-weight: 700;
-    background: rgba(34, 197, 94, 0.1);
-    color: #15803D;
-    padding: 4px 12px;
-    border-radius: 99px;
-    border: 1px solid rgba(34, 197, 94, 0.25);
-    letter-spacing: 0.02em;
-  }
-
-  .delivery-content-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .delivery-offer-box {
-    background: #FFFFFF;
-    border: 1px solid rgba(194, 127, 21, 0.2);
-    border-radius: 14px;
-    padding: 16px 18px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .delivery-offer-box.is-first-order {
-    background: linear-gradient(145deg, #FFFBF2 0%, #FFF5E1 100%);
-    border-color: rgba(226, 158, 40, 0.55);
-    box-shadow: 0 4px 16px rgba(194, 127, 21, 0.12);
-  }
-
-  .dob-icon-wrap {
-    flex-shrink: 0;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: rgba(194, 127, 21, 0.12);
+  .delivery-strip-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    gap: 18px;
+    flex-wrap: wrap;
+    background: #FFFDF9;
+    border: 1px solid rgba(194, 127, 21, 0.28);
+    border-radius: 999px;
+    padding: 10px 24px;
+    box-shadow: 0 2px 10px rgba(35, 15, 6, 0.04);
   }
 
-  .delivery-offer-box.is-first-order .dob-icon-wrap {
-    background: rgba(117, 24, 24, 0.08);
+  .ds-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-dim, #3B1F10);
+    line-height: 1.3;
   }
 
-  .dob-text {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .dob-kicker {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+  .ds-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--gold, #C27F15);
-    margin-bottom: 2px;
-  }
-
-  .delivery-offer-box.is-first-order .dob-kicker {
     color: var(--maroon, #751818);
+    background: rgba(117, 24, 24, 0.06);
+    border: 1px solid rgba(117, 24, 24, 0.18);
+    padding: 2.5px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
   }
 
-  .dob-title {
-    font-family: var(--F, 'Playfair Display', serif);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--dark, #180702);
-    margin: 0 0 4px 0;
-    line-height: 1.25;
-  }
-
-  .dob-desc {
-    font-size: 12.5px;
-    color: var(--text-dim, #3B1F10);
-    line-height: 1.45;
-    margin: 0;
-  }
-
-  .dob-desc strong {
-    color: var(--dark, #180702);
-    font-weight: 700;
-  }
-
-  .delivery-helper-bar {
-    margin-top: 16px;
-    padding: 10px 14px;
+  .ds-tag-muted {
+    color: var(--gold-d, #965F0B);
     background: rgba(194, 127, 21, 0.08);
-    border-radius: 10px;
-    border-left: 3px solid var(--gold, #C27F15);
-    font-size: 12.5px;
-    color: var(--text-dim, #3B1F10);
-    line-height: 1.4;
-    text-align: center;
+    border-color: rgba(194, 127, 21, 0.25);
   }
 
-  .delivery-helper-bar strong {
+  .ds-text {
+    font-weight: 500;
+    color: var(--text, #180702);
+    white-space: nowrap;
+  }
+
+  .ds-text strong {
+    font-weight: 700;
     color: var(--maroon, #751818);
   }
 
-  /* ── MOBILE RESPONSIVENESS ───────────────────────── */
+  .ds-hint {
+    color: var(--text-muted, #5A351D);
+    font-size: 12px;
+  }
+
+  .ds-sep {
+    color: var(--gold, #C27F15);
+    font-size: 9px;
+    opacity: 0.7;
+    user-select: none;
+  }
+
+  /* ── MOBILE VIEW ────────────────────────── */
   @media (max-width: 768px) {
-    .delivery-terms-section {
-      padding: 10px 0 6px;
+    .delivery-strip {
+      padding: 6px 0;
     }
 
-    .delivery-card {
-      padding: 16px 14px 14px;
-      border-radius: 16px;
+    .delivery-strip-inner {
+      border-radius: 14px;
+      padding: 10px 14px;
+      gap: 8px 12px;
+      justify-content: flex-start;
+      background: rgba(255, 253, 249, 0.98);
+      border-color: rgba(194, 127, 21, 0.22);
     }
 
-    .delivery-badge-row {
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-    }
-
-    .delivery-tag {
-      font-size: 11px;
-    }
-
-    .delivery-highlight-pill {
-      font-size: 10.5px;
-      padding: 3px 9px;
-    }
-
-    .delivery-content-grid {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    .delivery-offer-box {
-      padding: 12px 14px;
-      gap: 12px;
-      border-radius: 12px;
-    }
-
-    .dob-icon-wrap {
-      width: 32px;
-      height: 32px;
-      font-size: 16px;
-    }
-
-    .dob-title {
-      font-size: 0.98rem;
-    }
-
-    .dob-desc {
+    .ds-item {
       font-size: 12px;
+      gap: 6px;
     }
 
-    .delivery-helper-bar {
-      margin-top: 10px;
-      padding: 8px 10px;
-      font-size: 11.5px;
-      text-align: left;
+    .ds-tag {
+      font-size: 9.5px;
+      padding: 2px 7px;
+    }
+
+    .ds-text {
+      white-space: normal;
+    }
+
+    .ds-sep {
+      display: none;
     }
   }
 </style>
