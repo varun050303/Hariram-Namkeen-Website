@@ -292,94 +292,6 @@ const { position = 'both', class: className = '' } = Astro.props;
       </div>
     )}
   </div>
-
-  <!-- ══════════════════════════════════════════════════════════
-       MOBILE PRESENTATION (<= 960px)
-       Gracefully scaled to frame top header margins without text overlap
-       ══════════════════════════════════════════════════════════ -->
-  <div class="diwali-mobile-cluster">
-    <!-- Mobile Left Diya: Sits comfortably above headline in the top header cushion -->
-    <div class="diwali-corner diwali-mobile-corner-left">
-      <div class="diya-strand diya-strand-mobile-l">
-        <svg class="diya-svg" viewBox="0 0 60 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Short chain down to ring at y=36 -->
-          <line x1="30" y1="0" x2="30" y2="36" stroke="url(#chainGradMain)" stroke-width="1.5"/>
-          <circle cx="30" cy="16" r="2.6" fill="url(#chainGradMain)"/>
-          <circle cx="30" cy="16" r="1.1" fill="#FFFDF0"/>
-          <circle cx="30" cy="36" r="3.2" stroke="url(#chainGradMain)" stroke-width="1.5" fill="none"/>
-
-          <!-- Aura and Underglow -->
-          <ellipse cx="30" cy="62" rx="26" ry="30" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
-          <ellipse cx="30" cy="98" rx="22" ry="7" fill="rgba(245, 158, 11, 0.4)" class="diya-underglow"/>
-
-          <!-- Bowl -->
-          <g class="diya-bowl-assembly">
-            <path
-              d="M 6 74 C 6 92 16 98 30 98 C 44 98 54 92 54 74 C 45 78 30 79 6 74 Z"
-              fill="url(#diyaBowlGradGrand)"
-              filter="drop-shadow(0 4px 8px rgba(35, 15, 6, 0.35))"
-            />
-            <ellipse cx="30" cy="74" rx="24" ry="5.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.6"/>
-            <ellipse cx="30" cy="74.5" rx="20" ry="3.8" fill="#381003"/>
-            <ellipse cx="30" cy="75" rx="14" ry="2.2" fill="#6E2308"/>
-            <path d="M 18 75 Q 30 77.5 42 75 Q 30 76.5 18 75 Z" fill="#FBBF24" opacity="0.6"/>
-          </g>
-
-          <!-- Flame: perfectly rooted in oil cavity -->
-          <g class="diya-flame-motion">
-            <path
-              d="M 30 39 C 39 51 43 60 43 67 C 43 76 37 79 30 79 C 23 79 17 76 17 67 C 17 60 21 51 30 39 Z"
-              fill="url(#flameOuterGradGrand)"
-              filter="drop-shadow(0 0 7px rgba(245, 158, 11, 0.9)) drop-shadow(0 0 14px rgba(234, 88, 12, 0.45))"
-            />
-            <path
-              d="M 30 48 C 35 56 38 62 38 68 C 38 74 34 77 30 77 C 26 77 22 74 22 68 C 22 62 25 56 30 48 Z"
-              fill="url(#flameInnerGradGrand)"
-            />
-            <ellipse cx="30" cy="69" rx="2.5" ry="4.5" fill="#FFFFFF" opacity="0.95"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Mobile Right Diya: Delicate companion under top right margin -->
-    <div class="diwali-corner diwali-mobile-corner-right">
-      <div class="diya-strand diya-strand-mobile-r">
-        <svg class="diya-svg" viewBox="0 0 50 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="25" y1="0" x2="25" y2="28" stroke="url(#chainGradMain)" stroke-width="1.3"/>
-          <circle cx="25" cy="14" r="2.2" fill="url(#chainGradMain)"/>
-          <circle cx="25" cy="28" r="2.8" stroke="url(#chainGradMain)" stroke-width="1.3" fill="none"/>
-
-          <ellipse cx="25" cy="50" rx="20" ry="24" fill="url(#diyaAuraGradGrand)" class="diya-aura"/>
-          <ellipse cx="25" cy="78" rx="16" ry="5.5" fill="rgba(245, 158, 11, 0.35)" class="diya-underglow"/>
-
-          <g class="diya-bowl-assembly">
-            <path
-              d="M 6 60 C 6 74 14 78 25 78 C 36 78 44 74 44 60 C 37 63 25 64 6 60 Z"
-              fill="url(#diyaBowlGradGrand)"
-              filter="drop-shadow(0 3px 6px rgba(35, 15, 6, 0.3))"
-            />
-            <ellipse cx="25" cy="60" rx="19" ry="4.5" fill="url(#diyaRimGradGrand)" stroke="#B45309" stroke-width="0.5"/>
-            <ellipse cx="25" cy="60.5" rx="15" ry="3" fill="#381003"/>
-            <path d="M 15 60.5 Q 25 62.5 35 60.5 Q 25 61.5 15 60.5 Z" fill="#FBBF24" opacity="0.55"/>
-          </g>
-
-          <g class="diya-flame-motion">
-            <path
-              d="M 25 31 C 32 41 35 48 35 54 C 35 61 31 63 25 63 C 19 63 15 61 15 54 C 15 48 18 41 25 31 Z"
-              fill="url(#flameOuterGradGrand)"
-              filter="drop-shadow(0 0 6px rgba(245, 158, 11, 0.85))"
-            />
-            <path
-              d="M 25 38 C 29 45 31 50 31 54 C 31 59 28 61 25 61 C 22 61 19 59 19 54 C 19 50 21 45 25 38 Z"
-              fill="url(#flameInnerGradGrand)"
-            />
-            <ellipse cx="25" cy="55" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.95"/>
-          </g>
-        </svg>
-      </div>
-    </div>
-  </div>
 </div>
 
 <style>
@@ -582,57 +494,10 @@ const { position = 'both', class: className = '' } = Astro.props;
   }
 
   /* ── MOBILE ADAPTATION (<= 960px) ──────────────────────── */
-  /* Mobile: keep diyas static (no sway, flicker or glow loops) for smooth scrolling */
+  /* Diyas are desktop-only: completely removed on mobile for maximum speed and clean reading */
   @media (max-width: 960px) {
-    .diya-strand,
-    .diya-flame-motion,
-    .diya-aura,
-    .diya-underglow {
-      animation: none !important;
-    }
-  }
-
-  @media (max-width: 960px) {
-    .diwali-desktop-cluster {
+    .diwali-diyas-wrapper {
       display: none !important;
-    }
-
-    .diwali-mobile-cluster {
-      display: block !important;
-    }
-
-    /* On mobile, left text starts at x=16px; hide left cluster to prevent headline collision */
-    .diwali-mobile-corner-left {
-      display: none !important;
-    }
-
-    /* Hang delicately from top edge to the left of hamburger button, never colliding with anything */
-    .diwali-mobile-corner-right {
-      right: 62px;
-      top: 2px;
-      width: 32px;
-      height: 68px;
-      z-index: 501;
-      pointer-events: none;
-    }
-
-    .diwali-mobile-corner-right .diya-strand-mobile-r {
-      width: 30px;
-      right: 0;
-      animation: diyaSwayCenterR 5.4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate;
-      animation-delay: -1.2s;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .diwali-mobile-corner-right {
-      right: 58px;
-      top: 2px;
-      width: 30px;
-      height: 66px;
-    }
-    .diwali-mobile-corner-right .diya-strand-mobile-r {
-      width: 28px;
     }
   }
 

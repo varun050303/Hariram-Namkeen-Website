@@ -24,14 +24,14 @@ import Footer     from '../components/Footer.astro';
 import MobileOrderBar from '../components/MobileOrderBar.astro';
 import QuickViewModal from '../components/QuickViewModal.astro';
 import HeritageBorder from '../components/HeritageBorder.astro';
-// DiwaliCrackers deactivated post-festive to save 14.6KB canvas engine
-// import DiwaliCrackers from '../components/DiwaliCrackers.astro';
+import DiwaliCrackers from '../components/DiwaliCrackers.astro';
 
 import '../styles/global.css';
 ---
 
 <BaseLayout>
-  <!-- Festive Diwali Firecrackers deactivated post-festive -->
+  <!-- Festive Diwali Firecrackers Burst Engine (Desktop only: returns immediately on mobile) -->
+  <DiwaliCrackers />
 
   <!-- Cursor & scroll progress bar (rendered by animations.js) -->
   <div id="cursor-dot"></div>

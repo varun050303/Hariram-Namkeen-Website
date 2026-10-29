@@ -33,6 +33,11 @@
       return;
     }
 
+    // Desktop only: on mobile (<=768px), disable canvas particle burst engine for max battery & speed
+    if (window.innerWidth <= 768) {
+      return;
+    }
+
     const canvas = document.getElementById('diwali-fireworks-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');

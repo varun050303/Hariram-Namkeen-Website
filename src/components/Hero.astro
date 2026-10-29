@@ -4,13 +4,13 @@
 // All driven by GSAP timeline in animations.js (heroTl)
 // Mobile: shows namkeen image as background + namkeen-first messaging
 import HeritageBorder from "./HeritageBorder.astro";
-// DiwaliDiyas deactivated post-festive to eliminate 28.9KB inline SVG/CSS payload
-// import DiwaliDiyas from "./DiwaliDiyas.astro";
+import DiwaliDiyas from "./DiwaliDiyas.astro";
 import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 ---
 
 <section class="hero" id="hero">
-  <!-- Festive Swinging Diwali Diyas deactivated post-festive -->
+  <!-- Festive Swinging Diwali Diyas & Marigold Garlands (Desktop only: hidden on mobile) -->
+  <DiwaliDiyas position="both" />
 
   <div class="hero-content">
     <div class="hero-origin" id="h-origin">
