@@ -24,14 +24,14 @@ import Footer     from '../components/Footer.astro';
 import MobileOrderBar from '../components/MobileOrderBar.astro';
 import QuickViewModal from '../components/QuickViewModal.astro';
 import HeritageBorder from '../components/HeritageBorder.astro';
-import DiwaliCrackers from '../components/DiwaliCrackers.astro';
+// DiwaliCrackers deactivated post-festive to save 14.6KB canvas engine
+// import DiwaliCrackers from '../components/DiwaliCrackers.astro';
 
 import '../styles/global.css';
 ---
 
 <BaseLayout>
-  <!-- Festive Diwali Firecrackers Burst Engine (Scroll-triggered & Click) -->
-  <DiwaliCrackers />
+  <!-- Festive Diwali Firecrackers deactivated post-festive -->
 
   <!-- Cursor & scroll progress bar (rendered by animations.js) -->
   <div id="cursor-dot"></div>
@@ -88,6 +88,9 @@ import '../styles/global.css';
 <script is:inline>
   (() => {
     function initPageAnimations() {
+      // Desktop-only animations: on mobile (<=768px), bypass GSAP entirely for zero TBT
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) return;
+
       if (!window.gsap || !window.ScrollTrigger) {
         if (document.readyState === 'loading') {
           window.addEventListener('load', initPageAnimations, { once: true });

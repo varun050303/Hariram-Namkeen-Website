@@ -7,7 +7,7 @@ const items = [
   {
     title: "Aloo Bhujia",
     hindiName: "आलू भुजिया",
-    badge: "🥔 Crisp & Golden",
+    badge: "Crisp Potato & Besan",
     desc: "Crispy potato & besan sev in pure mustard oil",
     image: "/images/aloo_bhujia.webp",
     link: "/products/aloo-bhujia/",
@@ -16,7 +16,7 @@ const items = [
   {
     title: "Dal Biji",
     hindiName: "दाल बीजी",
-    badge: "🏛️ Muzaffarnagar Classic",
+    badge: "Moong Dal & Magaz",
     desc: "Crisp moong dal & magaz melon seeds",
     image: "/images/dal-bhiji.webp",
     link: "/products/dal-biji/",
@@ -25,7 +25,7 @@ const items = [
   {
     title: "Masala Chana Dal",
     hindiName: "मसाला चना दाल",
-    badge: "☕ Teatime Favourite",
+    badge: "Bengal Gram & Amchur",
     desc: "Split Bengal gram & tangy dried mango amchur",
     image: "/images/masala_chana_dal.webp",
     link: "/products/chana-dal/",
@@ -34,7 +34,7 @@ const items = [
   {
     title: "Spicy Malka",
     hindiName: "स्पाइसी मलका",
-    badge: "🔥 Whole Red Masoor",
+    badge: "Whole Red Masoor",
     desc: "Whole red lentils & Kashmiri red chilli",
     image: "/images/masala_malka.webp",
     link: "/products/spicy-malka/",
@@ -43,7 +43,7 @@ const items = [
   {
     title: "Shahi Dal Biji",
     hindiName: "शाही दाल बीजी",
-    badge: "👑 Royal Blend",
+    badge: "Cashews & Raisins",
     desc: "Whole cashews, Kishmish raisins & melon seeds",
     image: "/images/premium.webp",
     link: "/products/shahi-dal-biji/",
@@ -52,7 +52,7 @@ const items = [
   {
     title: "Masala Moongfali",
     hindiName: "मसाला मूंगफली",
-    badge: "🥜 Crunchy Peanuts",
+    badge: "Roasted Peanuts",
     desc: "Slow-roasted peanuts with roasted spices",
     image: "/images/masala_moongfali.webp",
     link: "/products/masala-peanuts/",
@@ -79,7 +79,9 @@ const items = [
               alt={`${item.title} - Pure Mustard Oil Namkeen`}
               width="600"
               height="450"
-              loading={index < 2 ? "eager" : "lazy"}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "low"}
+              decoding={index === 0 ? "sync" : "async"}
               class="hm-card-img"
             />
             <div class="hm-card-scrim" />
@@ -150,18 +152,18 @@ const items = [
 </script>
 
 <style>
-  /* ── MOBILE CAROUSEL WRAPPER ───────────────────────────── */
+  /* ── MOBILE CAROUSEL WRAPPER (Mobile-First) ─────────────── */
   .hm-carousel-wrapper {
-    display: none; /* Shown only on mobile & tablet via media query */
+    display: block;
     width: 100%;
     margin: 8px 0 14px 0;
     position: relative;
     user-select: none;
   }
 
-  @media (max-width: 960px) {
+  @media (min-width: 961px) {
     .hm-carousel-wrapper {
-      display: block;
+      display: none !important;
     }
   }
 
@@ -258,8 +260,6 @@ const items = [
     gap: 4px;
     padding: 3.5px 10px;
     background: rgba(24, 8, 2, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(254, 240, 138, 0.35);
     border-radius: 999px;
     font-size: 10.5px;
@@ -338,7 +338,6 @@ const items = [
     color: #FFFDF9;
     letter-spacing: 0.02em;
     white-space: nowrap;
-    backdrop-filter: blur(4px);
   }
 
   /* ── CAROUSEL DOTS & HINT ──────────────────────────────── */

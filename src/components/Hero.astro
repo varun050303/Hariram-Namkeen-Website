@@ -4,18 +4,18 @@
 // All driven by GSAP timeline in animations.js (heroTl)
 // Mobile: shows namkeen image as background + namkeen-first messaging
 import HeritageBorder from "./HeritageBorder.astro";
-import DiwaliDiyas from "./DiwaliDiyas.astro";
+// DiwaliDiyas deactivated post-festive to eliminate 28.9KB inline SVG/CSS payload
+// import DiwaliDiyas from "./DiwaliDiyas.astro";
 import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 ---
 
 <section class="hero" id="hero">
-  <!-- Festive Swinging Diwali Diyas & Marigold Garlands -->
-  <DiwaliDiyas position="both" />
+  <!-- Festive Swinging Diwali Diyas deactivated post-festive -->
 
   <div class="hero-content">
     <div class="hero-origin" id="h-origin">
       <span class="hero-origin-dot"></span>
-      Muzaffarnagar, UP
+      Fresh Kitchen Dispatch · 100% Mustard Oil
     </div>
 
     <!-- One headline: “Namkeen made in yellow mustard oil.” with Apple "hello" write-on motion on "Namkeen" & "mustard" -->
@@ -118,37 +118,50 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
     <div class="hero-overlay"></div>
     <div id="hero-parallax">
       <div class="hero-slideshow">
-        <img
-          src="/images/aloo_bhujia_vertical.webp"
-          alt="Aloo Bhujia - Pure Mustard Oil Namkeen"
-          class="hero-slide active"
-          width="600"
-          height="1066"
-        />
-        <img
-          src="/images/masala_chana_dal.webp"
-          alt="Crispy Masala Chana Dal"
-          class="hero-slide"
-          width="700"
-          height="1244"
-          loading="lazy"
-        />
-        <img
-          src="/images/masala_moongfali.webp"
-          alt="Roasted Masala Moongfali"
-          class="hero-slide"
-          width="800"
-          height="597"
-          loading="lazy"
-        />
-        <img
-          src="/images/premium.webp"
-          alt="Premium Shahi Dal Bhiji"
-          class="hero-slide"
-          width="900"
-          height="600"
-          loading="lazy"
-        />
+        <picture class="hero-slide active">
+          <source media="(min-width: 961px)" srcset="/images/aloo_bhujia_vertical.webp" type="image/webp" />
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 1066'%3E%3C/svg%3E"
+            alt="Aloo Bhujia - Pure Mustard Oil Namkeen"
+            width="600"
+            height="1066"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <picture class="hero-slide">
+          <source media="(min-width: 961px)" srcset="/images/masala_chana_dal.webp" type="image/webp" />
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 1244'%3E%3C/svg%3E"
+            alt="Crispy Masala Chana Dal"
+            width="700"
+            height="1244"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <picture class="hero-slide">
+          <source media="(min-width: 961px)" srcset="/images/masala_moongfali.webp" type="image/webp" />
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 597'%3E%3C/svg%3E"
+            alt="Roasted Masala Moongfali"
+            width="800"
+            height="597"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <picture class="hero-slide">
+          <source media="(min-width: 961px)" srcset="/images/premium.webp" type="image/webp" />
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3C/svg%3E"
+            alt="Premium Shahi Dal Bhiji"
+            width="900"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
     </div>
   </div>
@@ -179,7 +192,7 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
   (() => {
     const desktopSlides = document.querySelectorAll(".hero-slide");
     let currentSlide = 0;
-    if (desktopSlides.length > 0) {
+    if (desktopSlides.length > 0 && window.innerWidth > 960) {
       setInterval(() => {
         desktopSlides[currentSlide]?.classList.remove("active");
         currentSlide = (currentSlide + 1) % desktopSlides.length;
@@ -201,6 +214,17 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
       );
 
       if (!namkeenText || !mustardText) return;
+
+      // On mobile (<=768px), prioritize instant readability (0ms LCP paint) with pure CSS flourish
+      if (window.innerWidth <= 768) {
+        namkeenText.style.webkitMaskImage = "none";
+        namkeenText.style.maskImage = "none";
+        mustardText.style.webkitMaskImage = "none";
+        mustardText.style.maskImage = "none";
+        if (namkeenFlourish) namkeenFlourish.style.strokeDashoffset = "0";
+        if (mustardFlourish) mustardFlourish.style.strokeDashoffset = "0";
+        return;
+      }
 
       // Reset flourish paths with normalized pathLength="1"
       if (namkeenFlourish) {
@@ -388,3 +412,21 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
     }
   })();
 </script>
+
+<style>
+  @media (max-width: 768px) {
+    .apple-hello-text {
+      -webkit-mask-image: none !important;
+      mask-image: none !important;
+      opacity: 1 !important;
+    }
+    .apple-flourish-path {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: flourishDrawMobile 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+  }
+  @keyframes flourishDrawMobile {
+    to { stroke-dashoffset: 0; }
+  }
+</style>

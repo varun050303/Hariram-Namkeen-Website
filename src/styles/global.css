@@ -75,7 +75,7 @@
   --F: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
   --font-serif-editorial: 'Fraunces', Georgia, serif;
   --B: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --H: 'Noto Sans Devanagari', sans-serif;
+  --H: -apple-system, BlinkMacSystemFont, 'Noto Sans Devanagari', 'Kohinoor Devanagari', system-ui, sans-serif;
 
   /* Conversion & Transparency Upgrade Design Tokens */
   --bg-parchment: #F6F0E4;

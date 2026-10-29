@@ -582,6 +582,16 @@ const { position = 'both', class: className = '' } = Astro.props;
   }
 
   /* ── MOBILE ADAPTATION (<= 960px) ──────────────────────── */
+  /* Mobile: keep diyas static (no sway, flicker or glow loops) for smooth scrolling */
+  @media (max-width: 960px) {
+    .diya-strand,
+    .diya-flame-motion,
+    .diya-aura,
+    .diya-underglow {
+      animation: none !important;
+    }
+  }
+
   @media (max-width: 960px) {
     .diwali-desktop-cluster {
       display: none !important;

@@ -98,30 +98,18 @@ const tileId = `hb-tile-${id}`;
   </div>
 </div>
 
-<script is:inline>
-  (() => {
-    function initBorderMarquee() {
-      const tracks = document.querySelectorAll('.heritage-border-track:not([data-animated])');
-      if (tracks.length === 0) return;
-      if (window.gsap) {
-        tracks.forEach(track => {
-          track.setAttribute('data-animated', 'true');
-          const stripWidth = parseFloat(track.dataset.stripWidth) || 2160;
-          window.gsap.to(track, {
-            x: -stripWidth,
-            duration: 110,
-            ease: 'none',
-            repeat: -1
-          });
-        });
-      } else {
-        setTimeout(initBorderMarquee, 60);
-      }
+<style>
+  @keyframes ribbonMarqueeLoop {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-2160px, 0, 0); }
+  }
+  .heritage-border-track {
+    animation: ribbonMarqueeLoop 80s linear infinite;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .heritage-border-track {
+      animation: none !important;
     }
-    if (document.readyState === 'loading') {
-      window.addEventListener('load', initBorderMarquee, { once: true });
-    } else {
-      initBorderMarquee();
-    }
-  })();
-</script>
+  }
+</style>

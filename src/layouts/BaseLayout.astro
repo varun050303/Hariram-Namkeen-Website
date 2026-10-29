@@ -37,7 +37,9 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
   <link rel="alternate" hreflang="en" href={canonicalURL} />
   <link rel="alternate" hreflang="x-default" href={canonicalURL} />
@@ -85,12 +87,20 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageURL} />
 
+  <!-- Preload Mobile Hero Image (Primary LCP candidate on phones) -->
+  <link rel="preload" as="image" href="/images/aloo_bhujia.webp" type="image/webp" media="(max-width: 960px)" fetchpriority="high" />
+
   <!-- Fonts: Preloaded local font + Google Fonts -->
   <link rel="preload" href="/fonts/alexbrush.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+  <!-- Core Typography: Playfair Display + Plus Jakarta Sans (Alex Brush local, Sacramento & external Devanagari dropped) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -140,7 +150,8 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         min-height: auto;
         max-height: none;
       }
-      .hero-visual { display: none; }
+      .hero-visual { display: none !important; }
+      .hm-carousel-wrapper { display: block; }
       .hero-mobile-img { display: block; }
     }
   </style>
@@ -459,9 +470,19 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     }, 2000);
   });
   </script>
-  <!-- GSAP: Loaded at bottom of body to ensure zero FCP delay -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer is:inline></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer is:inline></script>
+  <!-- GSAP: Loaded only on desktop (>768px) to eliminate 250ms mobile TBT -->
+  <script is:inline>
+    if (typeof window !== 'undefined' && window.innerWidth > 768) {
+      const g = document.createElement('script');
+      g.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+      g.defer = true;
+      document.body.appendChild(g);
+      const st = document.createElement('script');
+      st.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+      st.defer = true;
+      document.body.appendChild(st);
+    }
+  </script>
   <!-- Google Ads WhatsApp Click Conversion Tracking -->
   <script is:inline>
   (() => {
