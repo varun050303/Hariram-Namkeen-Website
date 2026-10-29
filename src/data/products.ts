@@ -59,7 +59,7 @@ export const BOX_OFFER = {
 
 /** 4 Clean-Label Trust Badges on every product */
 export const TRUST_HIGHLIGHTS: string[] = [
-  '100% Satvik (No Onion / No Garlic)',
+  '100% Satvik (No Onion No Garlic)',
   'Real Hing & Rock Salt (Sendha/Kala Namak)',
   '0% Palm Oil & 0% Commercial Pre-Mix Masala',
   'Small-Batch Hand-Fried in Heavy Iron Kadhais (FSSAI Licensed)',

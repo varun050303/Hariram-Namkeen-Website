@@ -19,7 +19,7 @@ We do not try to mask that character. That natural pungency works quietly alongs
 
 We do not make namkeen in bulk stock to sit on warehouse shelves. In our Muzaffarnagar kitchen, our halwais work in small batches of 15-20 kg at a time. Every single batch is prepared to order.
 
-Before any batch is sealed, our halwais crunch-test and taste it. Only when the texture is crisp and the flavor is right does it move to packing. Everything is packed right here in Muzaffarnagar and shipped directly across India.
+Before any batch is sealed, our halwais crunch-test and taste it. Only when the texture is crisp and the flavour is right does it move to packing. Everything is packed right here in Muzaffarnagar and shipped directly across India.
 
 ## Purity and Grahak Dev Tulya
 

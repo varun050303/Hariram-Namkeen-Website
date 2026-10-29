@@ -76,7 +76,7 @@ Here is the straightforward breakdown between industrial supermarket frying fat 
 
 Why can commercial namkeen last for a whole year without spoiling? 
 
-Because industrial manufacturers add synthetic chemical antioxidants, most commonly **TBHQ (Tertiary Butylhydroquinone)** or **BHA**, along with anti-caking agents and artificial color dyes.
+Because industrial manufacturers add synthetic chemical antioxidants, most commonly **TBHQ (Tertiary Butylhydroquinone)** or **BHA**, along with anti-caking agents and artificial colour dyes.
 
 When food is engineered to survive a nationwide distributor chain, it ceases to be fresh food.
 
@@ -126,7 +126,7 @@ The Special 4 Box contains 800g total across 4 individually sealed 200g packs: A
 
 ## Taste Honest Namkeen: The Special 4 Box (₹499)
 
-Never let anyone compare artisanal snacks purely by per-gram weight against a giant 1kg single-flavor supermarket bag. When you open a 1kg packet, air and Indian humidity quickly make the bottom half soggy and stale.
+Never let anyone compare artisanal snacks purely by per-gram weight against a giant 1kg single-flavour supermarket bag. When you open a 1kg packet, air and Indian humidity quickly make the bottom half soggy and stale.
 
 With our **Special 4 Assortment Box**, you get **4 individually sealed 200g packs (800g total)**—you open one pack for chai today while the other three stay factory-sealed and crunchy. Plus, express pan-India shipping is already absorbed into the price.
 

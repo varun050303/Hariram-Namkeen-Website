@@ -45,7 +45,7 @@ We operate on a **direct-to-consumer micro-batch cadence**:
 
 ## 3. Fresh Spices vs Factory Flavorings
 
-When spices sit inside a sealed pouch for six months, their volatile essential oils degrade. To compensate, mass factories inject artificial flavor enhancers, synthetic amchur substitutes, and heavy sodium.
+When spices sit inside a sealed pouch for six months, their volatile essential oils degrade. To compensate, mass factories inject artificial flavour enhancers, synthetic amchur substitutes, and heavy sodium.
 
 In artisanal small-batch cooking, spices are ground fresh in-house daily:
 - Whole **ajwain (carom seeds)** and **roasted cumin** release their sharp, refreshing aromatic oils.

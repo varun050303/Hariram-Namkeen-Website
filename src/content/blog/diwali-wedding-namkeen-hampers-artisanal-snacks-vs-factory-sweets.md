@@ -53,7 +53,7 @@ Why do commercial sweets feel so uninspired? Because the modern FMCG gifting mar
 | :--- | :--- | :--- |
 | **Preparation Timeline** | Manufactured months in advance, stored in cold warehouses | **Fried fresh to order** in small 15–20kg iron kadhais |
 | **Fat / Cooking Medium** | Hydrogenated vegetable fats (*dalda*) or refined palm oil | **100% Pure Yellow Mustard Oil** |
-| **Chemical Additives** | Synthetic stabilizers, artificial flavor enhancers, artificial coatings | **0% Preservatives, No TBHQ, No artificial colors** |
+| **Chemical Additives** | Synthetic stabilizers, artificial flavour enhancers, artificial coatings | **0% Preservatives, No TBHQ, No artificial colours** |
 | **Perceived Value** | Generic, easily forgotten, frequently re-gifted | Thoughtful, authentic, handcrafted UP culinary heritage |
 | **Freshness Guaranteed** | Vulnerable to staling and oil separation | Individually sealed packs that stay crisp |
 

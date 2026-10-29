@@ -45,7 +45,7 @@ Turn over almost any commercial packet of Aloo Bhujia, Sev Murmura, or Mixture i
 Why is palmolein everywhere? Because it is the cheapest commodity oil on the planet and resists spoiling for 9 to 12 months in distribution godowns. But here is what that means for your blood vessels:
 
 1. **Nearly 50% Saturated Fatty Acids (SFA)**: Palmolein is loaded with palmitic acid. Clinical cardiovascular studies consistently link high dietary palmitic acid intake to elevated serum LDL ("bad") cholesterol and increased arterial plaque formation.
-2. **Industrial Refining & Deodorization (240°C+)**: Industrial crude palm oil must be aggressively stripped with bleaching earth and high-heat vacuum steam to neutralize its natural color and smell. This process can produce harmful process contaminants such as glycidyl fatty acid esters.
+2. **Industrial Refining & Deodorization (240°C+)**: Industrial crude palm oil must be aggressively stripped with bleaching earth and high-heat vacuum steam to neutralize its natural colour and smell. This process can produce harmful process contaminants such as glycidyl fatty acid esters.
 3. **Repeated Deep-Fryer Cycling**: In mass manufacturing plants, conveyer vats fry thousands of kilograms continuously. Repeated thermal stress oxidizes lipids, creating polar compounds and free radicals that promote systemic vascular inflammation.
 
 ---

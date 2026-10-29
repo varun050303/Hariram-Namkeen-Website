@@ -15,7 +15,7 @@ Here in Muzaffarnagar, we believe that what goes into our food defines our relat
 
 In contrast, refined oils and palm oils go through intense industrial processing—bleaching, deodorizing, and chemical refining. From day one, large industrial brands chose these refined oils because they are cheap and extend shelf life for months on supermarket shelves. They did not switch away from mustard oil; they simply designed their businesses around industrial efficiency.
 
-We chose a different path. Kachi Ghani mustard oil is expensive, and because it is unrefined, it has a shorter shelf life. But it brings a depth of flavor and digestive ease that refined oil can never match.
+We chose a different path. Kachi Ghani mustard oil is expensive, and because it is unrefined, it has a shorter shelf life. But it brings a depth of flavour and digestive ease that refined oil can never match.
 
 ## A Blend of Two Great Traditions
 

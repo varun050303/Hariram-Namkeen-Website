@@ -17,7 +17,7 @@ However, our philosophy is simple: "Grahak Dev Tulya"—the customer is equal to
 
 ## A Blend of Rajasthan and Uttar Pradesh
 
-Namkeen making is a beautiful tradition that originally traces its roots back to Rajasthan. At Hariram, we have taken that time-honored Rajasthani heritage and blended it with the distinct, robust flavors of UP-style preparation.
+Namkeen making is a beautiful tradition that originally traces its roots back to Rajasthan. At Hariram, we have taken that time-honored Rajasthani heritage and blended it with the distinct, robust flavours of UP-style preparation.
 
 To do justice to this fusion, we never use pre-mixed, factory-made masalas. Instead, we source whole spices and grind them fresh in-house daily. Every single pack of our namkeen is prepared in small batches, right here in Muzaffarnagar. We are fully FSSAI licensed (Lic. 22725393001461), combining traditional home-kitchen care with strict quality standards.
 
