@@ -20,13 +20,8 @@
     <!-- Heritage Delivery Guide Strip: perfectly aligned, zero fluff, zero emojis -->
     <div class="products-delivery-strip" aria-label="Hariram Namkeen Delivery Terms">
       <div class="pds-item">
-        <span class="pds-pill">First Order</span>
-        <span class="pds-label">Free Delivery on min. 1kg <span class="pds-sub">(any 4 packs)</span></span>
-      </div>
-      <span class="pds-sep" aria-hidden="true">✦</span>
-      <div class="pds-item">
-        <span class="pds-pill">All Orders</span>
-        <span class="pds-label">Free Delivery on <strong>2kg or above</strong></span>
+        <span class="pds-pill">Offer</span>
+        <span class="pds-label">Free Delivery on First Order</span>
       </div>
     </div>
     <div class="products-grid">
@@ -319,15 +314,18 @@
 
   @media (max-width: 768px) {
     .products-delivery-strip {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-      border-radius: 12px;
-      padding: 11px 14px;
-      margin-top: -28px;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 7px 16px;
+      margin-top: -24px;
       margin-bottom: 22px;
-      width: 100%;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
       box-shadow: 0 2px 8px rgba(35, 15, 6, 0.04);
     }
 
@@ -336,16 +334,14 @@
     }
 
     .pds-item {
-      display: grid;
-      grid-template-columns: 86px 1fr;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .pds-pill {
-      text-align: center;
       font-size: 10px;
-      padding: 2.5px 4px;
+      padding: 2.5px 7px;
     }
 
     .pds-label {
