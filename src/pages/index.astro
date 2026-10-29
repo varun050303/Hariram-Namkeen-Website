@@ -219,19 +219,8 @@ import '../styles/global.css';
       onLeaveBack: () => document.getElementById('header').classList.remove('scrolled'),
     });
 
-    // ── HERITAGE BORDER RIBBON (CONTINUOUS SEAMLESS GLIDE) ────────
-    const borderTracks = document.querySelectorAll('.heritage-border-track');
-    borderTracks.forEach(track => {
-      if (track.dataset.animated) return;
-      track.setAttribute('data-animated', 'true');
-      const stripWidth = parseFloat(track.dataset.stripWidth) || 2160;
-      gsap.to(track, {
-        x: -stripWidth,
-        duration: 110,
-        ease: 'none',
-        repeat: -1
-      });
-    });
+    // ── HERITAGE BORDER RIBBON ──────────────────────────────────
+    // Handled natively via GPU-accelerated CSS @keyframes ribbonMarqueeLoop in HeritageBorder.astro (0ms JS delay)
 
     // ── HERO PARALLAX ON VISUAL ──────────────────────────────────
     const heroParallax = document.getElementById('hero-parallax');

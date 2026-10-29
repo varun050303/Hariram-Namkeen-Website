@@ -65,9 +65,14 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
     </h1>
 
     <!-- Value Bridge Strip: Kills shipping objection before the CTA -->
-    <p class="hero-value-bridge" id="h-sub">
-      <span class="hvb-hook"><span class="hvb-icon">✦</span> <strong>Free Delivery on 1st Order</strong> (min. 1kg / 4 packs) <span class="hvb-dot">·</span> <strong>Free on 2kg+</strong> all orders</span>
-    </p>
+    <div class="hero-value-bridge" id="h-sub">
+      <div class="hvb-pill">
+        <span class="hvb-icon">✦</span>
+        <span><strong>Free Delivery on 1st Order</strong> <span class="hvb-parenthetical">(min. 1kg / 4 packs)</span></span>
+        <span class="hvb-sep">·</span>
+        <span class="hvb-tier-two"><strong>Free on 2kg+</strong> all orders</span>
+      </div>
+    </div>
 
     <!-- Mobile-only Interactive Product Carousel (Swipeable with tags & links) -->
     <HeroMobileCarousel />
@@ -414,7 +419,52 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 </script>
 
 <style>
+  .hero-value-bridge {
+    margin: 6px 0 10px 0;
+  }
+  .hvb-pill {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 8px;
+    font-size: 13.5px;
+    color: var(--text-dim, #3B1F10);
+    line-height: 1.4;
+  }
+  .hvb-icon {
+    color: var(--gold, #C27F15);
+    font-size: 11px;
+  }
+  .hvb-sep {
+    color: var(--gold, #C8931A);
+    font-weight: bold;
+  }
+  .hvb-parenthetical {
+    color: var(--muted, #6B5E51);
+    font-size: 12px;
+  }
+
   @media (max-width: 768px) {
+    .hero-origin {
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .hero-value-bridge {
+      margin: 4px 0 8px 0;
+      width: 100%;
+    }
+    .hvb-pill {
+      font-size: 12.5px;
+      text-align: center;
+      gap: 3px 6px;
+      line-height: 1.35;
+    }
+    .hvb-tier-two {
+      display: inline-block;
+    }
     .apple-hello-text {
       -webkit-mask-image: none !important;
       mask-image: none !important;

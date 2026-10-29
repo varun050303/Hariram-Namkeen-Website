@@ -1575,11 +1575,18 @@ body.cursor-hover #cursor-ring {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  display: block;
   opacity: 0;
   filter: contrast(1.04) brightness(1.03) saturate(1.08);
   transition: opacity 1.2s ease-in-out;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .hero-slide.active {
@@ -4409,21 +4416,36 @@ footer {
   .m-order-price-row {
     display: inline-flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 5px;
   }
 
-  .m-order-strike {
-    font-size: 13px;
-    color: rgba(254, 240, 138, 0.7);
-    text-decoration: line-through;
+  .m-order-label {
+    font-size: 11px;
+    color: rgba(254, 240, 138, 0.85);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .m-order-unit {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
   }
 
   .m-order-info strong {
     font-family: var(--F);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--gold-l);
+  }
+
+  .m-order-delivery {
+    font-size: 11px;
+    color: rgba(250, 245, 235, 0.88);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .m-order-btn {
