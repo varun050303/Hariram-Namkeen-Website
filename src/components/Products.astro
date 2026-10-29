@@ -36,6 +36,7 @@
         <div class="pcard-img">
           <img src="/images/aloo_bhujia.webp" alt="Buy Hariram Aloo Bhujia online — crispy potato sev cooked in pure yellow mustard oil, no palm oil" loading="lazy" width="768" height="1365"/>
           <span class="pbadge">New Launch</span>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Potato Flakes & Besan</div>
@@ -62,6 +63,7 @@
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/dal-bhiji.webp" alt="Buy Hariram Dal Biji online — traditional moong dal namkeen from Muzaffarnagar in pure yellow mustard oil" loading="lazy" width="900" height="600"/>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal</div>
@@ -88,6 +90,7 @@
       <div class="pcard" data-tilt>
         <div class="pcard-img">
           <img src="/images/premium.webp" alt="Buy Hariram Shahi Dal Biji online — premium royal moong dal mix with cashews, raisins, and dried coconut in mustard oil" loading="lazy" width="900" height="600"/>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Moong Dal + Sev</div>
@@ -115,6 +118,7 @@
         <div class="pcard-img">
           <img src="/images/masala_chana_dal.webp" alt="Buy Hariram Masala Chana Dal online — crunchy Bengal gram with tangy amchur and chaat masala in yellow mustard oil" loading="lazy" width="900" height="1600"/>
           <span class="pbadge">Best Seller</span>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Chana Dal (Bengal Gram)</div>
@@ -142,6 +146,7 @@
         <div class="pcard-img">
           <img src="/images/masala_moongfali.webp" alt="Buy Hariram Masala Peanuts online — roasted groundnuts with hing, black salt, and Kashmiri chilli in mustard oil" loading="lazy" width="1200" height="896"/>
           <span class="pbadge">Crunchy Special</span>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Select Groundnuts (Peanuts)</div>
@@ -169,6 +174,7 @@
         <div class="pcard-img">
           <img src="/images/masala_malka.webp" alt="Buy Hariram Spicy Malka online — crispy whole red lentils in UP chaat spices and pure yellow mustard oil" loading="lazy" width="1376" height="768"/>
           <span class="pbadge">New Launch</span>
+          <div class="pcard-tap-hint" aria-hidden="true"><span>Ingredients ↺</span></div>
           <div class="pcard-ingredients">
             <div class="ing-title">What's inside</div>
             <div class="ing-item">Whole Malka (Masoor Dal)</div>
@@ -230,6 +236,35 @@
   .pcard-link:hover h3 {
     color: var(--gold);
     transition: color 0.2s ease;
+  }
+
+  .pcard-tap-hint {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(26, 13, 5, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(226, 158, 40, 0.45);
+    color: #FAF5EB;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 3.5px 9px;
+    border-radius: 99px;
+    z-index: 4;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .pcard.ing-open .pcard-tap-hint,
+  .pcard:hover .pcard-tap-hint {
+    opacity: 0;
+    transform: scale(0.92);
   }
 
   .products-delivery-strip {

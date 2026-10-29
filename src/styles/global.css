@@ -4383,13 +4383,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 490;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)) 14px;
     background: rgba(63, 14, 14, 0.97);
     border-top: 1.5px solid rgba(226, 158, 40, 0.55);
     box-shadow: 0 -8px 24px rgba(35, 15, 6, 0.25);
@@ -4441,8 +4441,8 @@ footer {
   }
 
   .m-order-delivery {
-    font-size: 11px;
-    color: rgba(250, 245, 235, 0.88);
+    font-size: 10.5px;
+    color: rgba(250, 245, 235, 0.9);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -4452,14 +4452,35 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 0 18px;
+    min-height: 42px;
+    padding: 0 14px;
     border-radius: 99px;
     background: linear-gradient(135deg, #F0B342, #D48C18);
     color: #260A0A !important;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 800;
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 365px) {
+    .m-order-bar {
+      padding-left: 10px;
+      padding-right: 10px;
+      gap: 8px;
+    }
+    .m-order-delivery {
+      font-size: 9.8px;
+    }
+    .m-order-btn {
+      padding: 0 11px;
+      font-size: 13px;
+    }
+  }
+
+  /* Hide duplicate middle CTA in products section header on mobile */
+  .products-head .view-all {
+    display: none !important;
   }
 
   /* room for the bar so it never covers the last lines of the footer */

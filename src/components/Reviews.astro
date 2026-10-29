@@ -58,7 +58,8 @@ const reviews = [
           <p class="review-quote">"{review.quote}"</p>
           <div class="review-author">
             <span class="author-name">{review.name}</span>
-            <span class="author-loc">, {review.location}</span>
+            <span class="author-bullet" aria-hidden="true">·</span>
+            <span class="author-loc">{review.location}</span>
           </div>
         </div>
       ))}
@@ -147,6 +148,12 @@ const reviews = [
     font-weight: 700;
     color: var(--cream);
     font-size: 15px;
+  }
+  .author-bullet {
+    color: var(--gold);
+    margin: 0 4px;
+    font-size: 13px;
+    opacity: 0.8;
   }
   .author-loc {
     color: rgba(253, 243, 227, 0.8);
