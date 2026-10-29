@@ -9,7 +9,7 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 
 <section class="hero" id="hero">
   <!-- Desktop-Only Festive Diwali Diyas: dynamically fetched on desktop (>960px) so mobile downloads 0 bytes -->
-  <div id="desktop-diwali-slot"></div>
+  <div id="desktop-diwali-slot" class="desktop-diwali-slot" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;"></div>
   <script is:inline>
     (() => {
       if (typeof window === 'undefined' || window.innerWidth <= 960) return;
@@ -438,6 +438,14 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
 </script>
 
 <style>
+  .desktop-diwali-slot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
   .hero-value-bridge {
     margin: 6px 0 10px 0;
   }
