@@ -197,14 +197,14 @@ const items = [
     overflow: hidden;
     background: #1A0D05;
     border: 1.5px solid rgba(200, 147, 26, 0.32);
-    box-shadow: 0 6px 20px rgba(35, 15, 6, 0.14);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: none;
+    transition: transform 0.25s ease, border-color 0.25s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
   .hm-card.is-featured {
     border-color: rgba(200, 147, 26, 0.65);
-    box-shadow: 0 8px 26px rgba(117, 24, 24, 0.2);
+    box-shadow: none;
   }
 
   .hm-card:active {
@@ -232,18 +232,9 @@ const items = [
     transform: scale(1.04);
   }
 
-  /* Gradient scrim for perfect text contrast */
+  /* Remove dark gray shadow overlay from hero images */
   .hm-card-scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(24, 8, 2, 0.2) 0%,
-      rgba(24, 8, 2, 0.05) 30%,
-      rgba(20, 7, 2, 0.65) 65%,
-      rgba(15, 5, 1, 0.94) 100%
-    );
-    pointer-events: none;
+    display: none;
   }
 
   /* ── TOP BADGE TAG ─────────────────────────────────────── */
@@ -266,21 +257,26 @@ const items = [
     font-weight: 700;
     color: #FEF3C7;
     letter-spacing: 0.02em;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
   }
 
   /* ── BOTTOM NAME & FLAVOUR HIGHLIGHTS ──────────────────── */
   .hm-card-bottom-tag {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 12px 14px 10px 14px;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 8px 12px;
     z-index: 2;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 10px;
+    background: rgba(26, 13, 5, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(200, 147, 26, 0.35);
   }
 
   .hm-card-titles {
@@ -305,7 +301,7 @@ const items = [
     line-height: 1.15;
     color: #FFFDF9;
     margin: 0;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: none;
   }
 
   .hm-card-hindi {
