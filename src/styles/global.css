@@ -3984,27 +3984,37 @@ footer {
     font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
-  /* USP Trust Pills right under headline */
+  /* USP Trust Pills right under headline: aligned left on a single row */
   .hero-benefits-line {
     order: 3;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    text-align: left;
+    width: 100%;
     margin-top: 2px;
-    font-size: 11px;
+    font-size: 11.5px;
     gap: 6px 8px;
   }
 
-  /* Free Delivery Hook */
+  /* Free Delivery Hook: aligned left */
   .hero-value-bridge {
     order: 4;
-    justify-content: center;
-    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
     font-size: 13px;
     margin: 2px 0 0 0;
     line-height: 1.4;
     gap: 2px 0;
+  }
+
+  .hero-value-bridge .hvb-pill {
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .hvb-dot {
