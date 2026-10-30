@@ -3909,11 +3909,16 @@ footer {
     display: none;
   }
 
+  .hero {
+    padding-top: 76px;
+    padding-bottom: 24px;
+  }
+
   .hero-content {
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 14px;
-    gap: 10px;
+    padding: 12px 16px 14px;
+    gap: 8px;
   }
 
   #h-origin {
@@ -3926,6 +3931,53 @@ footer {
     font-size: clamp(1.65rem, 1.3rem + 1.6vw, 2.15rem);
     line-height: 1.15;
     margin-bottom: -2px;
+  }
+
+  /* ── Mobile Hero Headline: Remove Cursive & Apply Editorial Brand Highlighting ── */
+  .apple-hello-flourish {
+    display: none !important;
+  }
+
+  .apple-hello-wrap {
+    vertical-align: baseline !important;
+    cursor: default !important;
+    display: inline !important;
+  }
+
+  .apple-hello-text {
+    font-family: var(--F, 'Playfair Display', serif) !important;
+    font-size: 1em !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+    vertical-align: baseline !important;
+    display: inline !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: initial !important;
+    filter: none !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Distinct color highlights for core value props */
+  .apple-hello-namkeen .apple-hello-text {
+    color: var(--maroon, #751818) !important;
+    font-weight: 800 !important;
+  }
+
+  .hl-made-in {
+    color: var(--dark, #180702) !important;
+    font-weight: 700 !important;
+  }
+
+  .hero-hl-oil-phrase,
+  .hl-yellow,
+  .apple-hello-mustard .apple-hello-text,
+  .hl-oil {
+    color: #9E5806 !important;
+    font-weight: 800 !important;
   }
 
   .hero-headline #hl3 {
@@ -3959,23 +4011,23 @@ footer {
     margin: 0 6px;
   }
 
-  /* Primary WhatsApp CTA row */
-  .hero-actions-row {
+  /* Carousel sits directly above the CTA as visual proof & appetite hook */
+  .hm-carousel-wrapper {
     order: 5;
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* Primary WhatsApp CTA row sits directly below the product carousel */
+  .hero-actions-row {
+    order: 6;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
     gap: 10px;
-    margin-top: 6px;
+    margin-top: 4px;
     margin-bottom: 4px;
-  }
-
-  /* Carousel sits right under the CTA as visual proof */
-  .hm-carousel-wrapper {
-    order: 6;
-    margin-top: 8px;
-    margin-bottom: 2px;
   }
 
   .hero-pricing-box {

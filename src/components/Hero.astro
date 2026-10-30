@@ -63,26 +63,29 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
                 stroke-linejoin="round"></path>
             </svg>
           </span>
-          <span class="hl-plain">made in yellow</span>
-          <span class="apple-hello-wrap apple-hello-mustard" id="word-mustard">
-            <span class="apple-hello-text">mustard</span>
-            <svg
-              class="apple-hello-flourish"
-              viewBox="0 0 135 22"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                class="apple-flourish-path"
-                pathLength="1"
-                d="M 4 8 C 38 3, 98 4, 124 9 C 134 11, 135 15, 123 17 C 92 20, 45 18, 14 15"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
+          <span class="hl-plain hl-made-in">made in </span>
+          <span class="hero-hl-oil-phrase">
+            <span class="hl-plain hl-yellow">yellow </span>
+            <span class="apple-hello-wrap apple-hello-mustard" id="word-mustard">
+              <span class="apple-hello-text">mustard</span>
+              <svg
+                class="apple-hello-flourish"
+                viewBox="0 0 135 22"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  class="apple-flourish-path"
+                  pathLength="1"
+                  d="M 4 8 C 38 3, 98 4, 124 9 C 134 11, 135 15, 123 17 C 92 20, 45 18, 14 15"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
+            <span class="hl-plain hl-oil"> oil.</span>
           </span>
-          <span class="hl-plain">oil.</span>
         </span>
       </span>
     </h1>
@@ -492,18 +495,45 @@ import HeroMobileCarousel from "./HeroMobileCarousel.astro";
     .hvb-tier-two {
       display: inline-block;
     }
+    .apple-flourish-path,
+    .apple-hello-flourish {
+      display: none !important;
+    }
+    .apple-hello-wrap {
+      vertical-align: baseline !important;
+      cursor: default !important;
+      display: inline !important;
+    }
     .apple-hello-text {
+      font-family: var(--F, 'Playfair Display', serif) !important;
+      font-size: 1em !important;
+      line-height: inherit !important;
+      letter-spacing: inherit !important;
+      vertical-align: baseline !important;
+      display: inline !important;
       -webkit-mask-image: none !important;
       mask-image: none !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: initial !important;
+      filter: none !important;
+      text-shadow: none !important;
       opacity: 1 !important;
     }
-    .apple-flourish-path {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      animation: flourishDrawMobile 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    .apple-hello-namkeen .apple-hello-text {
+      color: var(--maroon, #751818) !important;
+      font-weight: 800 !important;
     }
-  }
-  @keyframes flourishDrawMobile {
-    to { stroke-dashoffset: 0; }
+    .hl-made-in {
+      color: var(--dark, #180702) !important;
+      font-weight: 700 !important;
+    }
+    .hero-hl-oil-phrase,
+    .hl-yellow,
+    .apple-hello-mustard .apple-hello-text,
+    .hl-oil {
+      color: #9E5806 !important;
+      font-weight: 800 !important;
+    }
   }
 </style>
