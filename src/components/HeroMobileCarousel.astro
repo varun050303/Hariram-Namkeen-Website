@@ -193,15 +193,15 @@ const items = [
     border-radius: 18px;
     overflow: hidden;
     background: #1A0D05;
-    border: 1.5px solid rgba(200, 147, 26, 0.32);
-    box-shadow: none;
+    border: 1.5px solid rgba(200, 147, 26, 0.38);
+    box-shadow: 0 8px 24px rgba(35, 15, 6, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     transition: transform 0.25s ease, border-color 0.25s ease;
     -webkit-tap-highlight-color: transparent;
   }
 
   .hm-card.is-featured {
     border-color: rgba(200, 147, 26, 0.65);
-    box-shadow: none;
+    box-shadow: 0 8px 26px rgba(117, 24, 24, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .hm-card:active {
@@ -234,7 +234,7 @@ const items = [
     display: none;
   }
 
-  /* ── TOP BADGE TAG ─────────────────────────────────────── */
+  /* ── TOP BADGE TAG: FROSTED GLASS PILL ─────────────────── */
   .hm-card-top-tag {
     position: absolute;
     top: 8px;
@@ -247,17 +247,19 @@ const items = [
     align-items: center;
     gap: 4px;
     padding: 2.5px 8px;
-    background: rgba(24, 8, 2, 0.85);
+    background: rgba(18, 8, 3, 0.58);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
     border: 1px solid rgba(254, 240, 138, 0.35);
     border-radius: 999px;
     font-size: 9.5px;
     font-weight: 700;
     color: #FEF3C7;
     letter-spacing: 0.03em;
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0.5px rgba(255, 255, 255, 0.18);
   }
 
-  /* ── BOTTOM NAME & FLAVOUR HIGHLIGHTS ──────────────────── */
+  /* ── BOTTOM NAME & FLAVOUR HIGHLIGHTS: FROSTED GLASS BAR ── */
   .hm-card-bottom-tag {
     position: absolute;
     bottom: 6px;
@@ -269,11 +271,12 @@ const items = [
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    background: rgba(26, 13, 5, 0.88);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(18, 8, 3, 0.56);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
     border-radius: 10px;
-    border: 1px solid rgba(200, 147, 26, 0.35);
+    border: 1px solid rgba(254, 240, 138, 0.38);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.22);
   }
 
   .hm-card-titles {
@@ -309,14 +312,17 @@ const items = [
     display: inline-flex;
     align-items: center;
     padding: 3px 8px;
-    background: rgba(200, 147, 26, 0.2);
-    border: 1px solid rgba(254, 240, 138, 0.4);
+    background: rgba(200, 147, 26, 0.32);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(254, 240, 138, 0.45);
     border-radius: 999px;
     font-size: 9.5px;
     font-weight: 700;
     color: #FFFDF9;
     letter-spacing: 0.02em;
     white-space: nowrap;
+    box-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.25);
   }
 
   /* ── CAROUSEL DOTS & HINT ──────────────────────────────── */

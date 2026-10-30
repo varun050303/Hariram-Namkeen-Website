@@ -3930,7 +3930,7 @@ footer {
     order: 2;
     font-size: clamp(1.65rem, 1.3rem + 1.6vw, 2.15rem);
     line-height: 1.15;
-    margin-bottom: -2px;
+    margin-bottom: 6px;
   }
 
   /* ── Mobile Hero Headline: Remove Cursive & Apply Editorial Brand Highlighting ── */
@@ -3984,7 +3984,7 @@ footer {
     font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.15rem);
   }
 
-  /* USP Trust Pills right under headline: aligned left on a single row */
+  /* USP Trust Pills right under headline: aligned left on a single row with breathing margin */
   .hero-benefits-line {
     order: 3;
     display: flex;
@@ -3995,19 +3995,21 @@ footer {
     white-space: nowrap;
     text-align: left;
     width: 100%;
-    margin-top: 2px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    padding: 2px 0;
     font-size: 11.5px;
     gap: 6px 8px;
   }
 
-  /* Free Delivery Hook: aligned left */
+  /* Free Delivery Hook: aligned left with clear spacing before carousel */
   .hero-value-bridge {
     order: 4;
     display: flex;
     justify-content: flex-start;
     text-align: left;
     font-size: 13px;
-    margin: 2px 0 0 0;
+    margin: 2px 0 10px 0;
     line-height: 1.4;
     gap: 2px 0;
   }
@@ -4024,8 +4026,8 @@ footer {
   /* Carousel sits directly above the CTA as visual proof & appetite hook */
   .hm-carousel-wrapper {
     order: 5;
-    margin-top: 6px;
-    margin-bottom: 4px;
+    margin-top: 0;
+    margin-bottom: 6px;
   }
 
   /* Primary WhatsApp CTA row sits directly below the product carousel */
