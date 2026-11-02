@@ -26,7 +26,7 @@ When a multi-ton batch of namkeen is manufactured in a mega-factory outside a me
 By the time you open that packet, the namkeen has often been sitting in plastic film for **4 to 8 months**. 
 
 To survive that brutal journey without turning rancid or moldy, mass-market manufacturers rely on three compromises:
-1. **Hydrogenated or cheap palm oil** (which oxidizes slower than cold-pressed heritage oils).
+1. **Hydrogenated or cheap palm oil** (which oxidizes slower than pure yellow mustard oil (पीली सरसों का तेल)).
 2. **TBHQ synthetic preservatives** and artificial chemical antioxidants.
 3. **Nitrogen gas flushing** to mask stale oils.
 
@@ -74,7 +74,7 @@ There is a misconception in India today that "clean-label" or "freshly made" foo
 
 We believe that fresh, pure-oil namkeen should be on every Indian family's evening tea table. 
 
-By selling direct from our Muzaffarnagar kitchen to your doorstep, we cut out distributors, retail middlemen, and astronomical advertising budgets. Our prices—**₹100 to ₹125 for 250g**—reflect the actual cost of Grade-A pulses and pure cold-pressed yellow mustard oil. 
+By selling direct from our Muzaffarnagar kitchen to your doorstep, we cut out distributors, retail middlemen, and astronomical advertising budgets. Our prices—**₹100 to ₹125 for 250g**—reflect the actual cost of Grade-A pulses and pure yellow mustard oil (पीली सरसों का तेल). 
 
 Nothing added. Nothing hidden. Just pure namkeen, prepared as it was always meant to be.
 

@@ -65,7 +65,7 @@ export const TRUST_HIGHLIGHTS: string[] = [
   'Small-Batch Hand-Fried in Heavy Iron Kadhais (FSSAI Licensed)',
 ];
 
-const OIL = '100% Cold-Pressed Yellow Mustard Oil (Peeli Sarson Ka Tel)';
+const OIL = '100% Yellow Mustard Oil (पीली सरसों का तेल)';
 
 const NO_NASTIES = [
   'Palm Oil',
@@ -89,7 +89,7 @@ export const products: Product[] = [
     priceSingle: 125,
     shortDesc: 'Crisp split-moong, besan and magaz fried in yellow mustard oil.',
     longDesc:
-      "A staple of Muzaffarnagar and Western UP kitchens, Dal Biji takes patience and a halwai's feel for the oil. We soak split moong, drain it well and fry it with besan and muskmelon seeds (magaz) in 100% cold-pressed yellow mustard oil, then season it with roasted cumin, hing, and rock salt. The result is a deep, nutty crunch with no waxy aftertaste.",
+      "A staple of Muzaffarnagar and Western UP kitchens, Dal Biji takes patience and a halwai's feel for the oil. We soak split moong, drain it well and fry it with besan and muskmelon seeds (magaz) in 100% yellow mustard oil (पीली सरसों का तेल), then season it with roasted cumin, hing, and rock salt. The result is a deep, nutty crunch with no waxy aftertaste.",
     tasteProfile: 'Super-crisp lentil crunch, earthy roasted cumin, a golden mustard-oil finish.',
     ingredients: {
       base: 'Split Moong Lentils (Moong Dal), Besan (Gram Flour), Muskmelon Seeds (Magaz)',

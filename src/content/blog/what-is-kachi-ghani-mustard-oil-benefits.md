@@ -9,9 +9,9 @@ When you open a packet of namkeen, what is the first thing you smell? If it is a
 
 Here in Muzaffarnagar, we believe that what goes into our food defines our relationship with you. To us, "Grahak Dev Tulya"—the customer is equal to God. That is why we never compromise on our oil.
 
-## What is Kachi Ghani and Why Does It Matter?
+## What is Yellow Mustard Oil (पीली सरसों का तेल) and Why Does It Matter?
 
-"Kachi Ghani" simply means cold-pressed. It is the traditional method where mustard seeds are gently crushed at low temperatures using a heavy press. Because there is no high heat or harsh chemical solvents involved, the oil retains its natural nutrients, rich golden colour, and distinct, pungent taste.
+"Kachi Ghani" simply means traditional extraction without harsh heat. We use pure yellow mustard oil (पीली सरसों का तेल), gently extracted to preserve its natural nutrients, mild golden hue, and clean, wholesome taste. Because there is no high heat or harsh chemical solvents involved, the oil retains its wholesome goodness and distinct, authentic aroma.
 
 In contrast, refined oils and palm oils go through intense industrial processing—bleaching, deodorizing, and chemical refining. From day one, large industrial brands chose these refined oils because they are cheap and extend shelf life for months on supermarket shelves. They did not switch away from mustard oil; they simply designed their businesses around industrial efficiency.
 
