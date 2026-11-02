@@ -28,6 +28,25 @@ import { execFile } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// Load environment variables from .env if present
+const envPath = path.join(ROOT, '.env');
+if (fs.existsSync(envPath)) {
+  try {
+    const lines = fs.readFileSync(envPath, 'utf8').split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eq = trimmed.indexOf('=');
+      if (eq > 0) {
+        const key = trimmed.slice(0, eq).trim();
+        const val = trimmed.slice(eq + 1).trim().replace(/^['"](.*)['"]$/, '$1');
+        if (!process.env[key] && val) process.env[key] = val;
+      }
+    }
+  } catch (e) {}
+}
+
 const PORT = Number(process.env.PORT) || 43210;
 const HOST = '127.0.0.1';
 const DB_NAME = process.env.D1_NAME || 'hariram-analytics';
@@ -158,6 +177,7 @@ function sessCte(since, base) {
          MAX(COALESCE(is_bot, 0)) AS is_bot,
          MAX(CASE WHEN event = 'landing' THEN device END) AS device,
          MAX(country) AS country, MAX(city) AS city, MAX(region) AS region,
+         ${first('path')} AS landing_path,
          ${first('utm_source')} AS utm_source,
          ${first('utm_medium')} AS utm_medium,
          ${first('utm_campaign')} AS utm_campaign,
@@ -176,7 +196,7 @@ function buildQueries(now, days, scope) {
   const P_END = now - days * DAY;
   const base = baseFilter(scope);
   const sess = (since) => sessCte(since, base);
-  const engaged = '(scrolled = 1 OR taps > 0)';
+  const engaged = '(taps > 0 OR (scrolled = 1 AND (inst = 0 OR human = 1)))';
   const inSessions = `sid IN (SELECT sid FROM sess WHERE t0 >= ${S})`;
 
   const queries = [
@@ -283,6 +303,16 @@ function buildQueries(now, days, scope) {
       GROUP BY 1, 2, 3 ORDER BY sessions DESC LIMIT 10`,
     ],
     [
+      'landingPages',
+      `${sess(S)}
+      SELECT COALESCE(NULLIF(landing_path, ''), '/') AS path,
+             COUNT(*) AS sessions,
+             SUM(${engaged}) AS engaged,
+             SUM(taps > 0) AS tappers
+      FROM sess WHERE t0 >= ${S}
+      GROUP BY 1 ORDER BY sessions DESC LIMIT 15`,
+    ],
+    [
       'buttons',
       `${sess(S)}
       SELECT COALESCE(NULLIF(source, ''), 'other') AS source, COUNT(*) AS taps, COUNT(DISTINCT sid) AS people
@@ -351,6 +381,7 @@ function buildQueries(now, days, scope) {
       `${sess(S)}
       SELECT datetime(s.t0/1000,'unixepoch','${IST}') AS time,
              COALESCE(s.utm_source, s.ref, 'direct') AS origin,
+             COALESCE(NULLIF(s.landing_path, ''), '/') AS landing_path,
              s.device AS device, s.country AS country, s.city AS city, s.region AS region,
              s.taps AS taps, s.inst AS inst, s.human AS human, s.active_s AS active_s, s.depth AS depth,
              s.is_bot AS is_bot, s.sid AS sid_full, substr(s.sid,1,6) AS sid,
@@ -379,7 +410,7 @@ function buildQueries(now, days, scope) {
     [
       // Recent taps to pick from when logging a chat (links a real conversation to a real visit).
       'tapChoices',
-      `SELECT c.sid AS sid, datetime(c.ts/1000,'unixepoch','${IST}') AS time,
+      `SELECT c.sid AS sid, substr(c.sid, 1, 4) AS code, datetime(c.ts/1000,'unixepoch','${IST}') AS time,
               COALESCE(NULLIF(c.source,''),'other') AS source,
               COALESCE(NULLIF(c.utm_source,''), NULLIF(c.ref,''), 'direct') AS origin,
               c.device AS device,
@@ -551,6 +582,7 @@ async function fetchAnalytics(days, scope) {
     countries: rows('countries'),
     origins: rows('origins'),
     campaigns: rows('campaigns'),
+    landingPages: rows('landingPages'),
     buttons: rows('buttons'),
     recentTaps: rows('recentTaps'),
     recentEvents: rows('recentEvents'),
@@ -844,12 +876,22 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
 
   <div class="grid g-11">
     <div class="card">
+      <div class="card-title"><span>Top landing pages</span><span class="tag">Landing → engaged → tapped</span></div>
+      <div class="scroll"><table>
+        <thead><tr><th>Landing page</th><th class="r">Sessions</th><th class="r">Engaged</th><th class="r">Tapped</th><th class="r">Rate</th></tr></thead>
+        <tbody id="landingPages"></tbody>
+      </table></div>
+    </div>
+    <div class="card">
       <div class="card-title"><span>UTM campaigns</span><span class="tag">Tagged links only</span></div>
       <div class="scroll"><table>
         <thead><tr><th>Source / medium</th><th>Campaign</th><th class="r">Sessions</th><th class="r">Tapped</th></tr></thead>
         <tbody id="campaigns"></tbody>
       </table></div>
     </div>
+  </div>
+
+  <div class="grid g-11">
     <div class="card">
       <div class="card-title">
         <span>Top Locations</span>
@@ -867,9 +909,6 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
         <tbody id="countries"></tbody>
       </table></div>
     </div>
-  </div>
-
-  <div class="grid g-11">
     <div class="card">
       <div class="card-title"><span>Real orders — by source</span><span class="tag">Manual log · range</span></div>
       <div class="scroll"><table>
@@ -877,19 +916,20 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
         <tbody id="leadSummary"></tbody>
       </table></div>
     </div>
-    <div class="card">
-      <div class="card-title"><span>Log a WhatsApp chat</span><span class="tag">Saved to D1</span></div>
-      <div class="formrow">
-        <select class="in" id="leadTap" style="grid-column:1/-1"><option value="">Which website tap was this chat? (optional)</option></select>
-        <input class="in" id="leadSource" list="leadSources" placeholder="Source (e.g. google_ads)" autocomplete="off">
-        <datalist id="leadSources"><option value="google_ads"><option value="google_organic"><option value="instagram"><option value="whatsapp"><option value="email"><option value="referral"><option value="direct"></datalist>
-        <select class="in" id="leadStatus"><option value="chat">chat</option><option value="quote">quote</option><option value="paid">paid</option><option value="lost">lost</option></select>
-        <input class="in" id="leadAmount" type="number" min="0" step="1" placeholder="₹ amount (if paid)">
-        <input class="in" id="leadNote" maxlength="120" placeholder="Note (optional)">
-        <button class="btn" id="leadAdd" type="button">Add</button>
-      </div>
-      <div class="hint">Read the Ref: tag in their first WhatsApp message — GAds → google_ads, instagram → instagram, no tag → direct. Change a row's status below as the chat progresses. Link a chat to a tap only when the WhatsApp message time matches it; a chat with no matching tap came from outside the site (phone, live chat, offline) — leave it unlinked.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title"><span>Log a WhatsApp chat</span><span class="tag">Saved to D1</span></div>
+    <div class="formrow">
+      <select class="in" id="leadTap" style="grid-column:1/-1"><option value="">Which website tap was this chat? (optional)</option></select>
+      <input class="in" id="leadSource" list="leadSources" placeholder="Source (e.g. google_ads)" autocomplete="off">
+      <datalist id="leadSources"><option value="google_ads"><option value="google_organic"><option value="instagram"><option value="whatsapp"><option value="email"><option value="referral"><option value="direct"></datalist>
+      <select class="in" id="leadStatus"><option value="chat">chat</option><option value="quote">quote</option><option value="paid">paid</option><option value="lost">lost</option></select>
+      <input class="in" id="leadAmount" type="number" min="0" step="1" placeholder="₹ amount (if paid)">
+      <input class="in" id="leadNote" maxlength="120" placeholder="Note (optional)">
+      <button class="btn" id="leadAdd" type="button">Add</button>
     </div>
+    <div class="hint">Read the Ref: tag in their first WhatsApp message — GAds → google_ads, instagram → instagram, no tag → direct. Change a row's status below as the chat progresses. Link a chat to a tap only when the WhatsApp message time matches it; a chat with no matching tap came from outside the site (phone, live chat, offline) — leave it unlinked.</div>
   </div>
 
   <div class="card" style="margin-bottom:20px">
@@ -903,7 +943,7 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
   <div class="card" style="margin-bottom:20px">
     <div class="card-title"><span>Session explorer</span><span class="tag">Last 60 · current scope · one row = one visit</span></div>
     <div class="scroll"><table>
-      <thead><tr><th>Time (IST)</th><th>From</th><th>Device</th><th>Where</th><th>Journey</th><th class="r">Active</th><th class="r">Depth</th><th>Input</th><th>Visitor</th></tr></thead>
+      <thead><tr><th>Time (IST)</th><th>From</th><th>Landing</th><th>Device</th><th>Where</th><th>Journey</th><th class="r">Active</th><th class="r">Depth</th><th>Input</th><th>Visitor</th></tr></thead>
       <tbody id="sessions"></tbody>
     </table></div>
   </div>
@@ -1113,6 +1153,9 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     fill('origins', d.origins, 5, 'No landings in this range', function (r) {
       return '<tr><td><b>' + esc(origin(r.origin)) + '</b></td><td class="r mono">' + num(r.sessions) + '</td><td class="r mono">' + num(r.engaged) + '</td><td class="r mono">' + num(r.tappers) + '</td>' + rateCell(r.tappers, r.sessions) + '</tr>';
     });
+    fill('landingPages', d.landingPages, 5, 'No landing pages in this range', function (r) {
+      return '<tr><td><b class="mono small">' + esc(r.path) + '</b></td><td class="r mono">' + num(r.sessions) + '</td><td class="r mono">' + num(r.engaged) + '</td><td class="r mono">' + num(r.tappers) + '</td>' + rateCell(r.tappers, r.sessions) + '</tr>';
+    });
     fill('buttons', d.buttons, 3, 'No taps in this range', function (r) {
       return '<tr><td><span class="src">' + esc(r.source) + '</span></td><td class="r mono">' + num(r.taps) + '</td><td class="r mono">' + num(r.people) + '</td></tr>';
     });
@@ -1184,7 +1227,7 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     hh += stat('Events flagged as bots', num(h.flagged), 'Hidden in the default views, visible under Raw.');
     $('health').innerHTML = hh;
 
-    fill('sessions', d.sessionList, 9, 'No sessions in this scope', function (r) {
+    fill('sessions', d.sessionList, 10, 'No sessions in this scope', function (r) {
       var input = !n0(r.inst)
         ? '<span style="color:var(--subtle)" title="Recorded before the new tracker: unknown, not assumed">unknown</span>'
         : n0(r.human) ? 'yes' : '<span style="color:var(--red)">none</span>';
@@ -1192,7 +1235,9 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
       var bot = n0(r.is_bot) ? ' <span class="badge b-bot">bot</span>' : '';
       var j = esc(r.journey || '—');
       if (n0(r.taps) > 0) j = '<span style="color:var(--wa)">' + j + '</span>';
-      return '<tr><td class="mono small">' + esc(fmtTime(r.time)) + '</td><td>' + esc(origin(r.origin)) + bot + '</td><td><span class="badge b-dev">' + esc(r.device || '—') + '</span></td>' +
+      return '<tr><td class="mono small">' + esc(fmtTime(r.time)) + '</td><td>' + esc(origin(r.origin)) + bot + '</td>' +
+        '<td class="mono small">' + esc(r.landing_path || '/') + '</td>' +
+        '<td><span class="badge b-dev">' + esc(r.device || '—') + '</span></td>' +
         '<td class="small">' + locationLabel(r.city, r.region, r.country) + '</td><td class="small">' + j + '</td>' +
         '<td class="r mono">' + (r.active_s == null ? '—' : dur(r.active_s)) + '</td><td class="r mono">' + (r.depth == null ? '—' : esc(r.depth) + '%') + '</td>' +
         '<td class="small">' + input + '</td><td class="small">' + vis + '</td></tr>';
@@ -1202,7 +1247,8 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     var sel = $('leadTap'), cur = sel.value;
     sel.innerHTML = '<option value="">Which website tap was this chat? (optional — leave empty if unknown)</option>' +
       d.tapChoices.map(function (t) {
-        return '<option value="' + esc(t.sid) + '" data-origin="' + esc(t.origin) + '">' + esc(fmtTime(t.time)) + ' · ' + esc(t.source) + ' · ' + esc(origin(t.origin)) + ' · ' + esc(t.device) + (n0(t.linked) ? ' (already linked)' : '') + '</option>';
+        var code = t.code ? '[' + esc(t.code) + '] ' : (t.sid ? '[' + esc(t.sid.slice(0, 4)) + '] ' : '');
+        return '<option value="' + esc(t.sid) + '" data-origin="' + esc(t.origin) + '">' + code + esc(fmtTime(t.time)) + ' · ' + esc(t.source) + ' · ' + esc(origin(t.origin)) + ' · ' + esc(t.device) + (n0(t.linked) ? ' (already linked)' : '') + '</option>';
       }).join('');
     sel.value = cur;
   }

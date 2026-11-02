@@ -10,6 +10,7 @@
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN active_s INTEGER"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN depth INTEGER"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN input INTEGER"
+--   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN ua_class TEXT"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE leads ADD COLUMN sid TEXT"
 
 CREATE TABLE IF NOT EXISTS events (
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS events (
   region       TEXT,               -- state code/name from Cloudflare (e.g. UP, DL, MH)
   asorg        TEXT,               -- network owner from Cloudflare (e.g. Reliance Jio, Google Cloud) — no IP stored
   is_bot       INTEGER DEFAULT 0,  -- 1 = flagged by functions/api/track.js (crawler UA, datacenter network, webdriver)
+  ua_class     TEXT,               -- in-app browser, OS, browser computed server-side from User-Agent
   vid          TEXT,               -- random visitor id kept in the browser (localStorage) to tell new from returning; NULL = old tracker
   active_s     INTEGER,            -- engage events: seconds the tab was visible AND the person was interacting
   depth        INTEGER,            -- engage events: deepest scroll position reached, 0-100 (% of page)

@@ -360,13 +360,15 @@ const box = {
       '• Amount: ₹' + total + ' (' + deliveryText + ')\n' +
       'Please share the instant payment link to confirm my dispatch.';
 
-    // Preserve tracking & campaign attribution if present
+    // Preserve tracking & campaign attribution with session code
     try {
       const ctx = JSON.parse(sessionStorage.getItem('hn_ctx') || 'null');
-      if (ctx && ctx.utm_source) {
-        const src = String(ctx.utm_source);
+      if (ctx) {
+        const code = ctx.sid ? ctx.sid.slice(0, 4) : '';
+        const src = ctx.utm_source ? String(ctx.utm_source) : '';
         const refTag = (src === 'google_ads' || src.toLowerCase() === 'gads') ? 'GAds' : src;
-        text += '\nRef: ' + refTag;
+        const tag = refTag ? `(ref ${refTag} ${code})` : `(ref ${code})`;
+        text += '\n' + tag;
       }
     } catch (err) {}
 

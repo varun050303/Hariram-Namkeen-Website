@@ -329,22 +329,19 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       let input = 0, lastInputAt = 0, activeMs = 0, depth = 0, flushes = 0, lastFlushAt = 0;
 
       // Dynamic WhatsApp attribution helper:
-      // Only append campaign references (e.g. Ref: GAds or Ref: instagram) when an explicit campaign source exists.
-      // Organic and direct visitors remain clean with zero Ref tags so attribution is never polluted.
+      // Always append a short session reference code (e.g. "(ref 6u5x)" or "(ref GAds 6u5x)") to every WhatsApp message
+      // so the merchant can match incoming chats with real dashboard visitor sessions.
       const getAttributedWaUrl = (rawHref) => {
-        if (!rawHref || !rawHref.includes('wa.me') || !ctx || !ctx.utm_source) return rawHref;
+        if (!rawHref || !rawHref.includes('wa.me') || !ctx) return rawHref;
         try {
-          const src = String(ctx.utm_source);
-          const refTag = (src === 'google_ads' || src.toLowerCase() === 'gads') ? 'GAds' : src;
           const u = new URL(rawHref, location.origin);
-          const currentText = u.searchParams.get('text');
-          if (currentText) {
-            if (!currentText.includes('Ref:')) {
-              u.searchParams.set('text', currentText + ' Ref: ' + refTag);
-            }
-          } else {
-            u.searchParams.set('text', 'Ref: ' + refTag);
-          }
+          const currentText = u.searchParams.get('text') || '';
+          if (currentText.includes('(ref ') || currentText.includes('Ref:')) return rawHref;
+          const code = ctx.sid ? ctx.sid.slice(0, 4) : '';
+          const src = ctx.utm_source ? String(ctx.utm_source) : '';
+          const refTag = (src === 'google_ads' || src.toLowerCase() === 'gads') ? 'GAds' : src;
+          const tag = refTag ? `(ref ${refTag} ${code})` : `(ref ${code})`;
+          u.searchParams.set('text', currentText ? `${currentText} ${tag}` : tag);
           return u.toString();
         } catch (e) {
           return rawHref;
@@ -352,9 +349,10 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       };
 
       const decorateWaLinks = () => {
-        if (!ctx || !ctx.utm_source) return;
+        if (!ctx) return;
         document.querySelectorAll('a[href*="wa.me"]').forEach((a) => {
           a.href = getAttributedWaUrl(a.href);
+          if (!a.hasAttribute('data-wa-click')) a.setAttribute('data-wa-click', '');
         });
       };
       if (document.readyState === 'loading') {
@@ -488,7 +486,7 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   (() => {
     document.addEventListener('click', (e) => {
       const link = e.target && e.target.closest
-        ? e.target.closest('a[data-wa-click]')
+        ? (e.target.closest('a[data-wa-click]') || e.target.closest('a[href*="wa.me"]'))
         : null;
       if (!link) return;
       if (window.__HN_IGNORE__) return; // owner device: no GA4 / Google Ads conversion

@@ -23,7 +23,41 @@ const BOT_UA =
 // Cloudflare, Akamai and Fastly are deliberately NOT listed: iCloud Private Relay and WARP route real
 // people through them.
 const DATACENTER_ORG =
-  /google (cloud|llc)|amazon|aws|microsoft|azure|digitalocean|hetzner|ovh|oracle|linode|alibaba|tencent|vultr|leaseweb|scaleway|contabo|choopa|m247|datacamp|colocrossing/i;
+  /google (cloud|llc)|amazon|aws|microsoft|azure|digitalocean|hetzner|ovh|oracle|linode|alibaba|tencent|vultr|leaseweb|scaleway|contabo|choopa|m247|datacamp|colocrossing|hosting|server/i;
+
+function classifyUA(ua) {
+  if (!ua) return '';
+  const s = String(ua);
+
+  // 1. In-app browsers (Instagram, Facebook, WhatsApp, etc.)
+  let app = '';
+  if (/Instagram/i.test(s)) app = 'Instagram';
+  else if (/FBAN|FBAV|FB_IAB/i.test(s)) app = 'Facebook';
+  else if (/WhatsApp/i.test(s)) app = 'WhatsApp';
+  else if (/LinkedInApp/i.test(s)) app = 'LinkedIn';
+  else if (/Twitter|TwitterAndroid/i.test(s)) app = 'Twitter';
+
+  // 2. Operating System
+  let os = '';
+  if (/iPhone|iPad|iPod/i.test(s)) os = 'iOS';
+  else if (/Android/i.test(s)) os = 'Android';
+  else if (/Macintosh|Mac OS X/i.test(s)) os = 'macOS';
+  else if (/Windows/i.test(s)) os = 'Windows';
+  else if (/CrOS/i.test(s)) os = 'ChromeOS';
+  else if (/Linux/i.test(s)) os = 'Linux';
+
+  // 3. Standalone Browser
+  let browser = '';
+  if (/SamsungBrowser/i.test(s)) browser = 'Samsung';
+  else if (/Edg|EdgiOS/i.test(s)) browser = 'Edge';
+  else if (/Chrome|CriOS/i.test(s)) browser = 'Chrome';
+  else if (/Firefox|FxiOS/i.test(s)) browser = 'Firefox';
+  else if (/Safari/i.test(s)) browser = 'Safari';
+
+  if (app) return `${app} · ${os || 'Mobile'}`;
+  if (browser && os) return `${browser} · ${os}`;
+  return browser || os || 'Other';
+}
 
 function looksLikeBot({ ua, asorg, acceptLanguage, webdriver }) {
   return (
@@ -88,6 +122,8 @@ export async function onRequestPost({ request, env }) {
         region: typeof cf.regionCode === 'string' ? clip(cf.regionCode, 10) : (typeof cf.region === 'string' ? clip(cf.region, 40) : ''),
       };
       const sid = clip(d.sid, 16);
+      const rawUa = request.headers.get('User-Agent') || '';
+      const ua_class = clip(classifyUA(rawUa), 40);
 
       // New-tracker fields. A missing field stays NULL = "unknown" (old cached page), never 0, so the
       // dashboard can tell "measured and zero" from "not measured".
@@ -100,6 +136,7 @@ export async function onRequestPost({ request, env }) {
 
       // Newest schema first, then progressively older ones (so a deploy before the migration still records).
       const attempts = [
+        { ...base, ...geo, asorg, is_bot, ua_class, ...extra, sid },
         { ...base, ...geo, asorg, is_bot, ...extra, sid },
         { ...base, ...geo, asorg, is_bot, sid },
         { ...base, ...geo, sid },
