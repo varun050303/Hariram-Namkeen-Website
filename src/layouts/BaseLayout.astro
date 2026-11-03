@@ -499,52 +499,74 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   })();
   </script>
 
-  <!--Start of Tawk.to Script (desktop native widget + mobile compact button integration)-->
+  <!--Start of Tawk.to Script (Zero-TBT interaction-deferred loader for 100/100 Lighthouse)-->
   <script type="text/javascript" is:inline>
   (() => {
-    var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
-    window.Tawk_API = Tawk_API;
-
     var isMobile = window.innerWidth <= 768;
+    var tawkLoaded = false;
+    var pendingOpen = false;
 
-    if (isMobile) {
-      // 1. Hide Tawk's native launcher BEFORE it renders so it never flashes or displays
-      Tawk_API.onBeforeLoad = function() {
-        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
-      };
+    var loadTawk = function(openWhenReady) {
+      if (tawkLoaded) return;
+      tawkLoaded = true;
+      if (openWhenReady) pendingOpen = true;
 
-      Tawk_API.onLoad = function() {
-        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
-      };
+      var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+      window.Tawk_API = Tawk_API;
 
-      Tawk_API.onChatMaximized = function() {
-        document.body.classList.add('tawk-open');
-      };
+      if (isMobile) {
+        // 1. Hide Tawk's native launcher BEFORE it renders so it never flashes or displays
+        Tawk_API.onBeforeLoad = function() {
+          try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+        };
 
-      Tawk_API.onChatMinimized = function() {
-        document.body.classList.remove('tawk-open');
-        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
-      };
+        Tawk_API.onLoad = function() {
+          if (pendingOpen) {
+            pendingOpen = false;
+            try { if (typeof Tawk_API.maximize === 'function') Tawk_API.maximize(); } catch (e) {}
+            var btn = document.getElementById('m-chat-btn');
+            if (btn) btn.style.opacity = '1';
+          } else {
+            try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+          }
+        };
 
-      Tawk_API.onChatHidden = function() {
-        document.body.classList.remove('tawk-open');
-        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
-      };
+        Tawk_API.onChatMaximized = function() {
+          document.body.classList.add('tawk-open');
+        };
 
-      Tawk_API.onUnreadCountChanged = function(count) {
-        var chatBtn = document.getElementById('m-chat-btn');
-        if (!chatBtn) return;
-        var badge = chatBtn.querySelector('.m-chat-badge');
-        var dot = chatBtn.querySelector('.m-chat-dot');
-        if (badge) {
-          badge.textContent = count > 0 ? count : '';
-          badge.style.display = count > 0 ? 'block' : 'none';
-        }
-        if (dot) {
-          dot.style.display = count > 0 ? 'none' : 'block';
-        }
-      };
-    }
+        Tawk_API.onChatMinimized = function() {
+          document.body.classList.remove('tawk-open');
+          try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+        };
+
+        Tawk_API.onChatHidden = function() {
+          document.body.classList.remove('tawk-open');
+          try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+        };
+
+        Tawk_API.onUnreadCountChanged = function(count) {
+          var chatBtn = document.getElementById('m-chat-btn');
+          if (!chatBtn) return;
+          var badge = chatBtn.querySelector('.m-chat-badge');
+          var dot = chatBtn.querySelector('.m-chat-dot');
+          if (badge) {
+            badge.textContent = count > 0 ? count : '';
+            badge.style.display = count > 0 ? 'block' : 'none';
+          }
+          if (dot) {
+            dot.style.display = count > 0 ? 'none' : 'block';
+          }
+        };
+      }
+
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    };
 
     // 2. Attach click handler to mobile chat button as soon as DOM is ready
     var setupBtn = function() {
@@ -557,16 +579,8 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
         if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
           window.Tawk_API.maximize();
         } else {
-          // If clicked while script is still loading in the first second
-          chatBtn.style.opacity = '0.6';
-          var poll = setInterval(function() {
-            if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-              clearInterval(poll);
-              chatBtn.style.opacity = '1';
-              window.Tawk_API.maximize();
-            }
-          }, 100);
-          setTimeout(function() { clearInterval(poll); chatBtn.style.opacity = '1'; }, 5000);
+          chatBtn.style.opacity = '0.7';
+          loadTawk(true);
         }
       });
     };
@@ -577,13 +591,24 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       setupBtn();
     }
 
-    // 3. Load Tawk.to script asynchronously
-    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    s0.parentNode.insertBefore(s1, s0);
+    // 3. Defer Tawk.to download until first user interaction or idle to protect 100/100 Lighthouse
+    var onUserInteraction = function() {
+      ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function(evt) {
+        removeEventListener(evt, onUserInteraction, { passive: true });
+      });
+      loadTawk(false);
+    };
+
+    ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function(evt) {
+      addEventListener(evt, onUserInteraction, { passive: true, once: true });
+    });
+
+    // Fallback: If no interaction after 3.5 seconds, load quietly when browser is idle
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() { setTimeout(function() { loadTawk(false); }, 1500); });
+    } else {
+      setTimeout(function() { loadTawk(false); }, 3500);
+    }
   })();
   </script>
   <!-- GSAP: Loaded only on desktop (>768px) to eliminate 250ms mobile TBT -->
