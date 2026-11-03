@@ -292,6 +292,11 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       const isNewSession = !ctx;
       const q = new URLSearchParams(location.search);
       const incomingSource = q.get('utm_source') || (q.get('gclid') ? 'google_ads' : '');
+      const incomingMedium = q.get('utm_medium') || (q.get('gclid') ? 'cpc' : '');
+      const incomingCampaign = q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : '');
+      const incomingTerm = q.get('utm_term') || '';
+      const incomingContent = q.get('utm_content') || '';
+      const incomingGclid = q.get('gclid') || '';
 
       if (!ctx) {
         let refHost = '';
@@ -302,16 +307,26 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
           ts: now,
           ref: refHost,
           utm_source: incomingSource,
-          utm_medium: q.get('utm_medium') || (q.get('gclid') ? 'cpc' : ''),
-          utm_campaign: q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : '')
+          utm_medium: incomingMedium,
+          utm_campaign: incomingCampaign,
+          utm_term: incomingTerm,
+          utm_content: incomingContent,
+          gclid: incomingGclid
         };
         try { localStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
       } else {
         ctx.ts = now;
         if (incomingSource && (!ctx.utm_source || ctx.utm_source !== incomingSource)) {
           ctx.utm_source = incomingSource;
-          ctx.utm_medium = q.get('utm_medium') || (q.get('gclid') ? 'cpc' : (ctx.utm_medium || ''));
-          ctx.utm_campaign = q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : (ctx.utm_campaign || ''));
+          ctx.utm_medium = incomingMedium || (ctx.utm_medium || '');
+          ctx.utm_campaign = incomingCampaign || (ctx.utm_campaign || '');
+          if (incomingTerm) ctx.utm_term = incomingTerm;
+          if (incomingContent) ctx.utm_content = incomingContent;
+          if (incomingGclid) ctx.gclid = incomingGclid;
+        } else {
+          if (incomingGclid && !ctx.gclid) ctx.gclid = incomingGclid;
+          if (incomingTerm && !ctx.utm_term) ctx.utm_term = incomingTerm;
+          if (incomingContent && !ctx.utm_content) ctx.utm_content = incomingContent;
         }
         try { localStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
       }
@@ -320,11 +335,14 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
       // Owner exclusion: open any page once with ?hn_ignore=1 on each of your own devices/browsers
       // (?hn_ignore=0 undoes it). Your visits and test taps are then never recorded and never
       // fire the GA4 / Google Ads conversion.
+      // Auto-excludes localhost, 127.0.0.1, Cloudflare preview/pages.dev domains, and Google Tag Assistant traffic.
       let ignore = false;
       try {
         if (q.get('hn_ignore') === '1') localStorage.setItem('hn_ignore', '1');
         if (q.get('hn_ignore') === '0') localStorage.removeItem('hn_ignore');
-        ignore = localStorage.getItem('hn_ignore') === '1';
+        const isLocalOrPreview = /^(localhost|127\.0\.0\.1|.*\.pages\.dev)$/i.test(location.hostname) || location.hostname.includes('preview');
+        const isGoogleTagChecker = q.has('gtm_debug') || q.has('google_tag_assistant') || (document.referrer && document.referrer.includes('tagassistant.google.com'));
+        ignore = localStorage.getItem('hn_ignore') === '1' || isLocalOrPreview || isGoogleTagChecker;
       } catch (e) {}
       window.__HN_IGNORE__ = ignore;
 
@@ -433,10 +451,16 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
             }
           });
         }, { threshold: 0.2 });
-        ['oil-truth', 'products', 'hamper', 'story'].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) io.observe(el);
-        });
+        const observeSections = () => {
+          document.querySelectorAll('section[id]').forEach((sec) => {
+            if (sec.id && !sec.id.startsWith('h-')) io.observe(sec);
+          });
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', observeSections);
+        } else {
+          observeSections();
+        }
       }
 
       // Engagement: did a real person touch the page, how long were they actually active, how deep did they scroll.

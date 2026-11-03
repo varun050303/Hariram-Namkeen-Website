@@ -182,6 +182,9 @@ function sessCte(since, base) {
          ${first('utm_source')} AS utm_source,
          ${first('utm_medium')} AS utm_medium,
          ${first('utm_campaign')} AS utm_campaign,
+         ${first('utm_term')} AS utm_term,
+         ${first('utm_content')} AS utm_content,
+         ${first('gclid')} AS gclid,
          ${first('ref')} AS ref
   FROM events
   WHERE ts >= ${since} AND ${base}
@@ -325,14 +328,15 @@ function buildQueries(now, days, scope) {
       // Scroll funnel over the same qualified sessions; "Landed" is overview.sessions, so it always reconciles.
       'funnel',
       `${sess(S)}
-      SELECT COALESCE(source, '') AS source, COUNT(DISTINCT sid) AS sessions
+      SELECT COALESCE(source, '') AS source, COUNT(DISTINCT sid) AS sessions, MIN(ts) AS min_ts
       FROM events
       WHERE event = 'section_view' AND ts >= ${S} AND ${inSessions}
       GROUP BY source`,
     ],
     [
       'recentTaps',
-      `SELECT datetime(c.ts/1000,'unixepoch','${IST}') AS time,
+      `${sess(S)}
+      SELECT datetime(c.ts/1000,'unixepoch','${IST}') AS time,
               COALESCE(NULLIF(c.source,''),'other') AS source,
               COALESCE(NULLIF(l.utm_source,''), NULLIF(l.ref,''), NULLIF(c.utm_source,''), NULLIF(c.ref,''), 'direct') AS origin,
               COALESCE(NULLIF(l.utm_campaign,''), NULLIF(c.utm_campaign,''), '') AS campaign,
@@ -340,7 +344,7 @@ function buildQueries(now, days, scope) {
               c.asorg AS asorg, substr(c.sid,1,6) AS sid
        FROM (
          SELECT * FROM events
-         WHERE event = 'whatsapp_click' AND ${base}
+         WHERE event = 'whatsapp_click' AND ts >= ${S} AND ${inSessions}
          ORDER BY ts DESC, id DESC LIMIT 30
        ) c
        LEFT JOIN events l ON l.id = (
@@ -386,6 +390,7 @@ function buildQueries(now, days, scope) {
              s.device AS device, s.country AS country, s.city AS city, s.region AS region,
              s.taps AS taps, s.inst AS inst, s.human AS human, s.active_s AS active_s, s.depth AS depth,
              s.is_bot AS is_bot, s.sid AS sid_full, substr(s.sid,1,6) AS sid,
+             s.gclid AS gclid, s.utm_term AS utm_term, s.utm_content AS utm_content, s.utm_campaign AS utm_campaign,
              CASE WHEN s.vid IS NULL THEN NULL
                   WHEN v.first_landing < s.t0 - 1800000 THEN 1
                   ELSE 0 END AS is_returning
@@ -456,7 +461,6 @@ function buildQueries(now, days, scope) {
   return { queries, S };
 }
 
-const FUNNEL_ORDER = ['oil-truth', 'products', 'hamper', 'story'];
 const istDay = (ms) => new Date(ms + IST_OFFSET_MIN * 60_000).toISOString().slice(0, 10);
 const n = (v) => Number(v) || 0;
 
@@ -503,15 +507,12 @@ async function fetchAnalytics(days, scope) {
     return { hour, sessions: n(h.sessions), tappers: n(h.tappers) };
   });
 
-  // Funnel: landed → each section scrolled into view (page order) → tapped WhatsApp.
+  // Funnel: landed → each section scrolled into view (derived from reach & position) → tapped WhatsApp.
   // Every step is a subset of the same qualified sessions, so no step can exceed "Landed".
   const sections = r.funnel
-    .map((f) => ({ label: f.source || 'unknown', sessions: n(f.sessions) }))
-    .sort((a, b) => {
-      const ia = FUNNEL_ORDER.indexOf(a.label);
-      const ib = FUNNEL_ORDER.indexOf(b.label);
-      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || b.sessions - a.sessions;
-    });
+    .filter((f) => f.source && !f.source.startsWith('h-'))
+    .map((f) => ({ label: f.source, sessions: n(f.sessions), minTs: n(f.min_ts) }))
+    .sort((a, b) => b.sessions - a.sessions || a.minTs - b.minTs);
   const funnel = [
     { label: 'Landed', sessions: overview.sessions },
     ...sections,
@@ -1239,9 +1240,12 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
         : n0(r.human) ? 'yes' : '<span style="color:var(--red)">none</span>';
       var vis = r.is_returning == null ? '<span style="color:var(--subtle)">unknown</span>' : n0(r.is_returning) ? 'returning' : 'new';
       var bot = n0(r.is_bot) ? ' <span class="badge b-bot">bot</span>' : '';
+      var gads = r.gclid ? ' <span class="badge" style="background:#0284c7;color:#fff;font-size:10px;padding:1px 4px;border-radius:3px;" title="Google Ads Click: ' + esc(r.gclid) + '">gads</span>' : '';
+      var kw = r.utm_term ? '<div class="mono" style="font-size:10px;color:var(--subtle)">' + esc(r.utm_term) + '</div>' : '';
+      var orig = esc(origin(r.origin)) + bot + gads + kw;
       var j = esc(r.journey || '—');
       if (n0(r.taps) > 0) j = '<span style="color:var(--wa)">' + j + '</span>';
-      return '<tr><td class="mono small">' + esc(fmtTime(r.time)) + '</td><td>' + esc(origin(r.origin)) + bot + '</td>' +
+      return '<tr><td class="mono small">' + esc(fmtTime(r.time)) + '</td><td>' + orig + '</td>' +
         '<td class="mono small">' + esc(r.landing_path || '/') + '</td>' +
         '<td><span class="badge b-dev">' + esc(r.device || '—') + '</span></td>' +
         '<td class="small">' + locationLabel(r.city, r.region, r.country) + '</td><td class="small">' + j + '</td>' +

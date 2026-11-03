@@ -121,6 +121,11 @@ export async function onRequestPost({ request, env }) {
         city: typeof cf.city === 'string' ? clip(cf.city, 60) : '',
         region: typeof cf.regionCode === 'string' ? clip(cf.regionCode, 10) : (typeof cf.region === 'string' ? clip(cf.region, 40) : ''),
       };
+      const campaignExtras = {
+        gclid: typeof d.gclid === 'string' ? clip(d.gclid, 100) : null,
+        utm_term: typeof d.utm_term === 'string' ? clip(d.utm_term, 60) : null,
+        utm_content: typeof d.utm_content === 'string' ? clip(d.utm_content, 60) : null,
+      };
       const sid = clip(d.sid, 16);
       const rawUa = request.headers.get('User-Agent') || '';
       const ua_class = clip(classifyUA(rawUa), 40);
@@ -136,6 +141,7 @@ export async function onRequestPost({ request, env }) {
 
       // Newest schema first, then progressively older ones (so a deploy before the migration still records).
       const attempts = [
+        { ...base, ...campaignExtras, ...geo, asorg, is_bot, ua_class, ...extra, sid },
         { ...base, ...geo, asorg, is_bot, ua_class, ...extra, sid },
         { ...base, ...geo, asorg, is_bot, ...extra, sid },
         { ...base, ...geo, asorg, is_bot, sid },

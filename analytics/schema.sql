@@ -11,6 +11,9 @@
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN depth INTEGER"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN input INTEGER"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN ua_class TEXT"
+--   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN gclid TEXT"
+--   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN utm_content TEXT"
+--   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE events ADD COLUMN utm_term TEXT"
 --   npx wrangler d1 execute hariram-analytics --remote --command "ALTER TABLE leads ADD COLUMN sid TEXT"
 
 CREATE TABLE IF NOT EXISTS events (
@@ -23,6 +26,9 @@ CREATE TABLE IF NOT EXISTS events (
   utm_source   TEXT,
   utm_medium   TEXT,
   utm_campaign TEXT,
+  utm_term     TEXT,               -- Google Ads / paid search keyword
+  utm_content  TEXT,               -- ad creative / version
+  gclid        TEXT,               -- Google Click Identifier (ties spend to paid WhatsApp conversions)
   device       TEXT,               -- mobile | desktop
   country      TEXT,               -- 2-letter country from Cloudflare
   city         TEXT,               -- visitor city from Cloudflare (e.g. Prayagraj, Varanasi, Lucknow, New Delhi)
