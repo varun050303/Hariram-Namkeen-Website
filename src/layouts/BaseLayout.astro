@@ -276,28 +276,44 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   (() => {
     try {
       const KEY = 'hn_ctx';
+      const SESSION_TTL = 30 * 60 * 1000; // 30 minutes rolling expiry
+      const now = Date.now();
       let ctx = null;
-      try { ctx = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.sid && parsed.ts && (now - parsed.ts < SESSION_TTL)) {
+            ctx = parsed;
+          }
+        }
+      } catch (e) {}
+
       const isNewSession = !ctx;
       const q = new URLSearchParams(location.search);
       const incomingSource = q.get('utm_source') || (q.get('gclid') ? 'google_ads' : '');
+
       if (!ctx) {
         let refHost = '';
         try { refHost = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) {}
         if (refHost === location.hostname) refHost = '';
         ctx = {
           sid: Math.random().toString(36).slice(2, 10),
+          ts: now,
           ref: refHost,
           utm_source: incomingSource,
           utm_medium: q.get('utm_medium') || (q.get('gclid') ? 'cpc' : ''),
           utm_campaign: q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : '')
         };
-        try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
-      } else if (incomingSource && (!ctx.utm_source || ctx.utm_source !== incomingSource)) {
-        ctx.utm_source = incomingSource;
-        ctx.utm_medium = q.get('utm_medium') || (q.get('gclid') ? 'cpc' : (ctx.utm_medium || ''));
-        ctx.utm_campaign = q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : (ctx.utm_campaign || ''));
-        try { sessionStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
+        try { localStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
+      } else {
+        ctx.ts = now;
+        if (incomingSource && (!ctx.utm_source || ctx.utm_source !== incomingSource)) {
+          ctx.utm_source = incomingSource;
+          ctx.utm_medium = q.get('utm_medium') || (q.get('gclid') ? 'cpc' : (ctx.utm_medium || ''));
+          ctx.utm_campaign = q.get('utm_campaign') || (q.get('gclid') ? 'gads_click' : (ctx.utm_campaign || ''));
+        }
+        try { localStorage.setItem(KEY, JSON.stringify(ctx)); } catch (e) {}
       }
       const device = window.matchMedia('(max-width: 768px)').matches ? 'mobile' : 'desktop';
 
@@ -363,6 +379,12 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 
       const send = (event, source, extra) => {
         if (ignore) return;
+        try {
+          if (ctx) {
+            ctx.ts = Date.now();
+            localStorage.setItem(KEY, JSON.stringify(ctx));
+          }
+        } catch (e) {}
         // wd = browser says it is automated (WebDriver / headless); server also checks UA + network
         // inp = a real touch/click/key/wheel has happened on this page before this event (0 or 1)
         const body = JSON.stringify({ event, source, path: location.pathname, device, wd: navigator.webdriver === true, vid, inp: input, ...(extra || {}), ...ctx });

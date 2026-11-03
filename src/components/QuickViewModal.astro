@@ -362,7 +362,8 @@ const box = {
 
     // Preserve tracking & campaign attribution with session code
     try {
-      const ctx = JSON.parse(sessionStorage.getItem('hn_ctx') || 'null');
+      const raw = localStorage.getItem('hn_ctx') || sessionStorage.getItem('hn_ctx');
+      const ctx = JSON.parse(raw || 'null');
       if (ctx) {
         const code = ctx.sid ? ctx.sid.slice(0, 4) : '';
         const src = ctx.utm_source ? String(ctx.utm_source) : '';

@@ -1018,7 +1018,10 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     return SCOPES.indexOf(s) === -1 ? 'in' : s;
   }
 
-  function delta(cur, prev) {
+  function delta(cur, prev, curSessions, prevSessions) {
+    if (curSessions != null && prevSessions != null && (curSessions < 20 || prevSessions < 20)) {
+      return '<span class="delta" title="Sample under 20 sessions">—</span>';
+    }
     if (!prev && !cur) return '<span class="delta">–</span>';
     if (!prev) return '<span class="delta up">new</span>';
     var d = ((cur - prev) / prev) * 100;
@@ -1026,8 +1029,10 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     var arrow = d > 0.5 ? '▲ ' : d < -0.5 ? '▼ ' : '';
     return '<span class="delta ' + cls + '">' + arrow + Math.abs(d).toFixed(0) + '%</span>';
   }
-  function pts(rate, prevRate, prevSessions) {
-    if (!prevSessions) return '<span class="delta">–</span>';
+  function pts(rate, prevRate, curSessions, prevSessions) {
+    if (curSessions == null || prevSessions == null || curSessions < 20 || prevSessions < 20) {
+      return '<span class="delta" title="Sample under 20 sessions">—</span>';
+    }
     var d = rate - prevRate;
     var cls = d > 0.25 ? 'up' : d < -0.25 ? 'down' : '';
     return '<span class="delta ' + cls + '">' + (d > 0 ? '+' : '') + d.toFixed(1) + ' pts</span>';
@@ -1104,11 +1109,11 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     var rate = pct(o.tappers, o.sessions), prate = pct(p.tappers, p.sessions);
 
     $('k-sessions').textContent = num(o.sessions);
-    $('k-sessions-sub').innerHTML = delta(o.sessions, p.sessions) + '<span>vs previous (' + num(p.sessions) + ')</span>';
+    $('k-sessions-sub').innerHTML = delta(o.sessions, p.sessions, o.sessions, p.sessions) + '<span>vs previous (' + num(p.sessions) + ')</span>';
     $('k-engaged').textContent = o.sessions ? fmtPct(erate) : '—';
-    $('k-engaged-sub').innerHTML = pts(erate, perate, p.sessions) + '<span>' + num(o.engaged) + ' of ' + num(o.sessions) + ' sessions</span>' + ciText(o.engaged, o.sessions);
+    $('k-engaged-sub').innerHTML = pts(erate, perate, o.sessions, p.sessions) + '<span>' + num(o.engaged) + ' of ' + num(o.sessions) + ' sessions</span>' + ciText(o.engaged, o.sessions);
     $('k-rate').textContent = o.sessions ? fmtPct(rate) : '—';
-    $('k-rate-sub').innerHTML = pts(rate, prate, p.sessions) + '<span>' + num(o.tappers) + ' people · ' + num(o.taps) + ' taps</span>' + ciText(o.tappers, o.sessions);
+    $('k-rate-sub').innerHTML = pts(rate, prate, o.sessions, p.sessions) + '<span>' + num(o.tappers) + ' people · ' + num(o.taps) + ' taps</span>' + ciText(o.tappers, o.sessions);
 
     var chats = 0, paid = 0, revenue = 0;
     d.leadSummary.forEach(function (r) { chats += n0(r.chats); paid += n0(r.paid); revenue += n0(r.revenue); });

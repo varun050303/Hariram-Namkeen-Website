@@ -23,7 +23,7 @@ const BOT_UA =
 // Cloudflare, Akamai and Fastly are deliberately NOT listed: iCloud Private Relay and WARP route real
 // people through them.
 const DATACENTER_ORG =
-  /google (cloud|llc)|amazon|aws|microsoft|azure|digitalocean|hetzner|ovh|oracle|linode|alibaba|tencent|vultr|leaseweb|scaleway|contabo|choopa|m247|datacamp|colocrossing|hosting|server/i;
+  /google (cloud|llc)|amazon|aws|microsoft|azure|digitalocean|hetzner|ovh|oracle|linode|alibaba|tencent|vultr|leaseweb|scaleway|contabo|choopa|m247|datacamp|colocrossing|\b(hosting|servers?|vps|colocation|colo|data\s?cent(er|re))\b/i;
 
 function classifyUA(ua) {
   if (!ua) return '';
