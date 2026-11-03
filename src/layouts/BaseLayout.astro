@@ -499,18 +499,96 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
   })();
   </script>
 
-  <!--Start of Tawk.to Script (desktop only to prevent mobile clutter and button blocking)-->
+  <!--Start of Tawk.to Script (desktop native widget + mobile compact button integration)-->
   <script type="text/javascript" is:inline>
   window.addEventListener('load', function() {
-    if (window.innerWidth <= 768) return; // Keep mobile screen clean and focused on WhatsApp
+    var chatBtn = document.getElementById('m-chat-btn');
+    var pendingOpen = false;
+
+    if (chatBtn) {
+      chatBtn.addEventListener('click', function() {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          if (typeof window.Tawk_API.showWidget === 'function') window.Tawk_API.showWidget();
+          window.Tawk_API.maximize();
+        } else {
+          pendingOpen = true;
+          chatBtn.style.opacity = '0.7';
+        }
+      });
+    }
+
     setTimeout(function() {
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
+      var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+      window.Tawk_API = Tawk_API;
+
+      Tawk_API.customStyle = {
+        visibility: {
+          desktop: {
+            position: 'br',
+            xOffset: 20,
+            yOffset: 20
+          },
+          mobile: {
+            position: 'bl',
+            xOffset: 14,
+            yOffset: 75
+          }
+        }
+      };
+
+      // On mobile screens, hide Tawk's native large launcher and 350px greeting balloon
+      // so the compact button controls the chat smoothly without blocking WhatsApp
+      if (window.innerWidth <= 768) {
+        Tawk_API.onLoad = function() {
+          if (pendingOpen) {
+            if (typeof Tawk_API.showWidget === 'function') Tawk_API.showWidget();
+            if (typeof Tawk_API.maximize === 'function') Tawk_API.maximize();
+            if (chatBtn) chatBtn.style.opacity = '1';
+          } else {
+            try {
+              if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
+            } catch (e) {}
+          }
+        };
+
+        Tawk_API.onChatMaximized = function() {
+          document.body.classList.add('tawk-open');
+        };
+
+        Tawk_API.onChatMinimized = function() {
+          document.body.classList.remove('tawk-open');
+          try {
+            if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
+          } catch (e) {}
+        };
+
+        Tawk_API.onChatHidden = function() {
+          document.body.classList.remove('tawk-open');
+          try {
+            if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
+          } catch (e) {}
+        };
+
+        Tawk_API.onUnreadCountChanged = function(count) {
+          if (!chatBtn) return;
+          var badge = chatBtn.querySelector('.m-chat-badge');
+          var dot = chatBtn.querySelector('.m-chat-dot');
+          if (badge) {
+            badge.textContent = count > 0 ? count : '';
+            badge.style.display = count > 0 ? 'block' : 'none';
+          }
+          if (dot) {
+            dot.style.display = count > 0 ? 'none' : 'block';
+          }
+        };
+      }
+
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
     }, 2000);
   });
   </script>
@@ -616,5 +694,13 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
     }, false);
   })();
   </script>
+  <!-- Mobile Tawk.to Live Chat Trigger (Compact button for mobile) -->
+  <button id="m-chat-btn" type="button" aria-label="Live Chat Support" title="Chat with customer support">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <span class="m-chat-dot" aria-hidden="true"></span>
+    <span class="m-chat-badge" aria-hidden="true"></span>
+  </button>
 </body>
 </html>

@@ -4300,7 +4300,8 @@ footer {
 }
 
 /* Sticky order bar (markup in MobileOrderBar.astro) */
-.m-order-bar {
+.m-order-bar,
+#m-chat-btn {
   display: none;
 }
 
@@ -4576,6 +4577,72 @@ footer {
   /* room for the bar so it never covers the last lines of the footer */
   footer {
     padding-bottom: 96px;
+  }
+
+  /* ── Mobile Compact Tawk.to Live Chat Button ── */
+  #m-chat-btn {
+    position: fixed;
+    left: 14px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #751818;
+    color: #FAF5EB;
+    border: 1.5px solid rgba(226, 158, 40, 0.7);
+    box-shadow: 0 4px 14px rgba(35, 15, 6, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 489;
+    cursor: pointer;
+    padding: 0;
+    transition: bottom .3s var(--ease-out), transform .2s ease, opacity .2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #m-chat-btn:active {
+    transform: scale(0.92);
+  }
+
+  #m-chat-btn .m-chat-dot {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 8px;
+    height: 8px;
+    background: #25d366;
+    border: 1.5px solid #751818;
+    border-radius: 50%;
+  }
+
+  #m-chat-btn .m-chat-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 99px;
+    background: #DC2626;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 17px;
+    text-align: center;
+    display: none;
+    border: 1.5px solid #FAF5EB;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  body:has(.m-order-bar.show) #m-chat-btn,
+  body.order-bar-active #m-chat-btn {
+    bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.tawk-open #m-chat-btn {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 

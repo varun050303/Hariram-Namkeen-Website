@@ -26,7 +26,11 @@ const waUrl =
     let heroVisible = true;
     const overlapping = new Set();
 
-    const update = () => bar.classList.toggle('show', !heroVisible && overlapping.size === 0);
+    const update = () => {
+      const show = !heroVisible && overlapping.size === 0;
+      bar.classList.toggle('show', show);
+      document.body.classList.toggle('order-bar-active', show);
+    };
 
     new IntersectionObserver((entries) => {
       heroVisible = entries[0].isIntersecting;
