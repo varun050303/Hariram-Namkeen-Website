@@ -501,96 +501,90 @@ const ogImageURL = new URL(image, Astro.site || 'https://hariramnamkeen.com');
 
   <!--Start of Tawk.to Script (desktop native widget + mobile compact button integration)-->
   <script type="text/javascript" is:inline>
-  window.addEventListener('load', function() {
-    var chatBtn = document.getElementById('m-chat-btn');
-    var pendingOpen = false;
+  (() => {
+    var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
+    window.Tawk_API = Tawk_API;
 
-    if (chatBtn) {
-      chatBtn.addEventListener('click', function() {
-        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-          if (typeof window.Tawk_API.showWidget === 'function') window.Tawk_API.showWidget();
-          window.Tawk_API.maximize();
-        } else {
-          pendingOpen = true;
-          chatBtn.style.opacity = '0.7';
-        }
-      });
-    }
+    var isMobile = window.innerWidth <= 768;
 
-    setTimeout(function() {
-      var Tawk_API = window.Tawk_API || {}, Tawk_LoadStart = new Date();
-      window.Tawk_API = Tawk_API;
-
-      Tawk_API.customStyle = {
-        visibility: {
-          desktop: {
-            position: 'br',
-            xOffset: 20,
-            yOffset: 20
-          },
-          mobile: {
-            position: 'bl',
-            xOffset: 14,
-            yOffset: 75
-          }
-        }
+    if (isMobile) {
+      // 1. Hide Tawk's native launcher BEFORE it renders so it never flashes or displays
+      Tawk_API.onBeforeLoad = function() {
+        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
       };
 
-      // On mobile screens, hide Tawk's native large launcher and 350px greeting balloon
-      // so the compact button controls the chat smoothly without blocking WhatsApp
-      if (window.innerWidth <= 768) {
-        Tawk_API.onLoad = function() {
-          if (pendingOpen) {
-            if (typeof Tawk_API.showWidget === 'function') Tawk_API.showWidget();
-            if (typeof Tawk_API.maximize === 'function') Tawk_API.maximize();
-            if (chatBtn) chatBtn.style.opacity = '1';
-          } else {
-            try {
-              if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
-            } catch (e) {}
-          }
-        };
+      Tawk_API.onLoad = function() {
+        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+      };
 
-        Tawk_API.onChatMaximized = function() {
-          document.body.classList.add('tawk-open');
-        };
+      Tawk_API.onChatMaximized = function() {
+        document.body.classList.add('tawk-open');
+      };
 
-        Tawk_API.onChatMinimized = function() {
-          document.body.classList.remove('tawk-open');
-          try {
-            if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
-          } catch (e) {}
-        };
+      Tawk_API.onChatMinimized = function() {
+        document.body.classList.remove('tawk-open');
+        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+      };
 
-        Tawk_API.onChatHidden = function() {
-          document.body.classList.remove('tawk-open');
-          try {
-            if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget();
-          } catch (e) {}
-        };
+      Tawk_API.onChatHidden = function() {
+        document.body.classList.remove('tawk-open');
+        try { if (typeof Tawk_API.hideWidget === 'function') Tawk_API.hideWidget(); } catch (e) {}
+      };
 
-        Tawk_API.onUnreadCountChanged = function(count) {
-          if (!chatBtn) return;
-          var badge = chatBtn.querySelector('.m-chat-badge');
-          var dot = chatBtn.querySelector('.m-chat-dot');
-          if (badge) {
-            badge.textContent = count > 0 ? count : '';
-            badge.style.display = count > 0 ? 'block' : 'none';
-          }
-          if (dot) {
-            dot.style.display = count > 0 ? 'none' : 'block';
-          }
-        };
-      }
+      Tawk_API.onUnreadCountChanged = function(count) {
+        var chatBtn = document.getElementById('m-chat-btn');
+        if (!chatBtn) return;
+        var badge = chatBtn.querySelector('.m-chat-badge');
+        var dot = chatBtn.querySelector('.m-chat-dot');
+        if (badge) {
+          badge.textContent = count > 0 ? count : '';
+          badge.style.display = count > 0 ? 'block' : 'none';
+        }
+        if (dot) {
+          dot.style.display = count > 0 ? 'none' : 'block';
+        }
+      };
+    }
 
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    }, 2000);
-  });
+    // 2. Attach click handler to mobile chat button as soon as DOM is ready
+    var setupBtn = function() {
+      var chatBtn = document.getElementById('m-chat-btn');
+      if (!chatBtn || chatBtn.__bound) return;
+      chatBtn.__bound = true;
+
+      chatBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.maximize();
+        } else {
+          // If clicked while script is still loading in the first second
+          chatBtn.style.opacity = '0.6';
+          var poll = setInterval(function() {
+            if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+              clearInterval(poll);
+              chatBtn.style.opacity = '1';
+              window.Tawk_API.maximize();
+            }
+          }, 100);
+          setTimeout(function() { clearInterval(poll); chatBtn.style.opacity = '1'; }, 5000);
+        }
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupBtn);
+    } else {
+      setupBtn();
+    }
+
+    // 3. Load Tawk.to script asynchronously
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/6a02e88e29b77e1c335ff088/1jodlos84';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+  })();
   </script>
   <!-- GSAP: Loaded only on desktop (>768px) to eliminate 250ms mobile TBT -->
   <script is:inline>

@@ -4644,6 +4644,32 @@ footer {
     opacity: 0;
     pointer-events: none;
   }
+
+  /* Compact short window / bottom-sheet for open chat on mobile */
+  iframe[id^="t"]:not([style*="60px"]):not([style*="45px"]):not([style*="95px"]) {
+    height: min(440px, 65vh) !important;
+    max-height: 65vh !important;
+    min-height: 320px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 380px !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 36px rgba(35, 15, 6, 0.35) !important;
+    transition: bottom .3s var(--ease-out);
+  }
+
+  body:has(.m-order-bar.show) iframe[id^="t"]:not([style*="60px"]):not([style*="45px"]):not([style*="95px"]),
+  body.order-bar-active iframe[id^="t"]:not([style*="60px"]):not([style*="45px"]):not([style*="95px"]) {
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Suppress the 350px greeting balloon on mobile so it never covers the screen */
+  iframe[style*="252px"],
+  iframe[style*="width: 350px"] {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
