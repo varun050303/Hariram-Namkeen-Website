@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS events (
   active_s     INTEGER,            -- engage events: seconds the tab was visible AND the person was interacting
   depth        INTEGER,            -- engage events: deepest scroll position reached, 0-100 (% of page)
   input        INTEGER,            -- 1 = a real touch/click/key/wheel happened before this event, 0 = none yet, NULL = old tracker (unknown)
-  sid          TEXT                -- random id for one browser-tab session
+  sid          TEXT                -- random id for a browser-profile session shared across tabs; expires after 30 minutes without activity
 );
 
 CREATE INDEX IF NOT EXISTS idx_events_ts ON events (ts);

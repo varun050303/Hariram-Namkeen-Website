@@ -46,7 +46,7 @@ It provides visual graphs for 30-day traffic, WhatsApp conversion breakdown, scr
 
 | event | when | `source` |
 |---|---|---|
-| `landing` | first page load in a browser-tab session | `page` |
+| `landing` | first page load after 30 minutes without activity in this browser profile (tabs share a session) | `page` |
 | `whatsapp_click` | any tap on a wa.me link | `hero`, `header`, `mobile_menu`, `mobile_bar`, `product:<name>`, `products_section`, `hamper`, `cta_banner`, `footer`, `other` |
 | `section_view` | section scrolled into view (once per session) | `oil-truth`, `products`, `hamper`, `story` |
 | `engage` | summary sent when the page is hidden/closed (max 6 per session): `active_s` seconds the tab was visible AND the person was interacting, `depth` deepest scroll %, plus `input` = a real touch/click/key happened | — |

@@ -10,7 +10,8 @@
 // Serves on 127.0.0.1 only. See analytics/README.md for what each event means.
 //
 // How the numbers are built (this is what makes them trustworthy):
-//   • One row per SESSION: a browser-tab visit that fired a `landing` event. Events without a sid, or
+//   • One row per SESSION: a browser-profile session shared across tabs that fired a `landing` event.
+//     Sessions expire after 30 minutes without activity. Events without a sid, or
 //     sessions we never saw land, are never counted as sessions.
 //   • Scope (top-right toggle):
 //       "India · humans" (default) = not flagged is_bot AND country = IN
@@ -1127,7 +1128,7 @@ const HTML_TEMPLATE = String.raw`<!DOCTYPE html>
     var a = d.allTime;
     var since = a.firstTs ? new Date(a.firstTs).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }) : '—';
     $('foot').innerHTML = 'All time (' + esc(scopeLabel(d.scope)) + '): <b>' + num(a.sessions) + '</b> sessions · <b>' + num(a.tappers) + '</b> people tapped · tracking since ' + esc(since) + '.<br>' +
-      'Session = one browser-tab visit that fired a landing event (no cookies, no IPs stored). A random visitor id kept in the browser (localStorage) tells new from returning visitors. Engaged = scrolled to a section or tapped Order. "Real input" = a genuine touch, click or key press happened — a strong filter against simple bots, not proof of a human. Anything not measured is shown as unknown, never as zero. ' +
+      'Session = activity in this browser profile, shared across tabs; it expires after 30 minutes without interaction and starts with a landing event (no cookies, no IPs stored). A random visitor id kept in the browser (localStorage) tells new from returning visitors. Engaged = scrolled to a section or tapped Order. "Real input" = a genuine touch, click or key press happened — a strong filter against simple bots, not proof of a human. Anything not measured is shown as unknown, never as zero. ' +
       'Bot flags only exist for events recorded after the filter went live; older rows are filtered by country only. ' +
       'A tap is a click on a WhatsApp link, not an order — the "Real orders" log is the number that counts. ' +
       'Changes compare against the previous period of equal length. Open any page with ?hn_ignore=1 on your own devices to stop counting yourself.';
